@@ -20,7 +20,8 @@ analyzer.analyze_function(0x1000C232C) #待测方法地址
 1. 返回值：通常情况下函数调用应跳转到该method的imp，但考虑到效率问题，目前暂时将返回值置为未初始化寄存器，以保证覆盖所有执行路径；
 2. 循环：循环的限制应该使用LoopSeer，但需要cfg，目前angr貌似不支持macho的cfg生成；
 
-
+以下为解析 classref-> classdata 的思路。
 ![image classdata](https://github.com/15cream/MachOA/raw/master/graph/classdata)
 
+以下为macho数据结构之间的关联。
 ![image macho](https://github.com/15cream/MachOA/raw/master/graph/macho)
