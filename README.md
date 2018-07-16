@@ -21,6 +21,6 @@ analyzer.analyze_function(0x1000C232C) #待测方法地址
 2. 循环：循环的限制应该使用LoopSeer，但需要cfg，目前angr貌似不支持macho的cfg生成；
 
 
-![Image text](https://github.com/15cream/MachOA.git/graph/classdata)
+![Image text](https://github.com/15cream/MachOA.git/raw/master/graph/classdata)
 
-![Image text](https://github.com/15cream/MachOA.git/graph/macho)
+![Image text](https://github.com/15cream/MachOA.git/raw/master/graph/macho)
