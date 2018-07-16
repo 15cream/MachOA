@@ -3,8 +3,11 @@
 入口位于：angrTest/main.py 
 
 analyzer = Analyzer('../samples/ToGoProject') # 输入：MachO 二进制文件
+
 analyzer.data_init() # 类数据解析
+
 analyzer.analyze_function(0x1000C232C) #待测方法地址
+
 
 结果：
 该方法内的API调用序列
