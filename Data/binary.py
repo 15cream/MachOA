@@ -17,6 +17,7 @@ class MachO:
         self.functions = dict()
         angr.types.define_struct('struct methlist{int entrysize; int count;}')
         angr.types.define_struct('struct meth{char* name; long type; long imp;}')
+        self.stubs = dict()  # stub_code -> symbol_name
 
     def build_classdata(self, state):
         # imported

@@ -59,11 +59,12 @@ class Analyzer:
             methname = meth[1]
             self.analyze_function(imp)
 
-analyzer = Analyzer('../samples/ToGoProject')
+analyzer = Analyzer('/Users/gjy/Desktop/doooo/angr/ToGoProject')
 analyzer.data_init()
-analyzer.analyze_function(0x1000C232C)
+# analyzer.analyze_function(0x1000C232C)
+analyzer.analyze_function(0x100050110)
 # analyzer.analyze_function(0x100005C30)
 # analyzer.analyze_function(0x1003CC798)
 # analyzer.analyze_function(0x1000C39D4)
-analyzer.analyze_function(0x1000C46B4)
+# analyzer.analyze_function(0x1000C46B4)
 

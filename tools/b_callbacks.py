@@ -1,3 +1,4 @@
+from Data.binary import MachO
 
 
 def ret_cond(state):
@@ -12,3 +13,11 @@ def get_retval(state):
     print 'guard', state.inspect.exit_guard,
     print 'jumpkind', state.inspect.exit_jumpkind,
     print "return value: ", state.solver.eval(state.regs.x0)
+
+
+def stubs_construct(state):
+    # print "mem read at: ", state.inspect.mem_read_address
+    stub_code_addr = state.addr - 4
+    if stub_code_addr not in MachO.pd.stubs:
+        MachO.pd.stubs[stub_code_addr] = MachO.pd.macho.get_symbol_by_address_fuzzy(state.solver.eval(state.inspect.mem_read_address))
+
