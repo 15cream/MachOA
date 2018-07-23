@@ -1,7 +1,6 @@
 import archinfo
 import pickle
 
-
 class class_o:
 
     class_set = []
@@ -9,6 +8,7 @@ class class_o:
     binary_class_set = dict()  # INDEXED BY CLASS_INFO_ADDRESS (the value stored in classref)
     classrefs = dict()
     classnames = dict()
+    functions = dict()
 
     def __init__(self, classref, imported=False, name=None):
 
@@ -28,9 +28,9 @@ class class_o:
             self.class_addr = state.memory.load(self.classref_addr, 8, endness=archinfo.Endness.LE)
             class_data_addr = state.memory.load(self.class_addr + 32, 8, endness=archinfo.Endness.LE)
             self.name = state.mem[class_data_addr+24].deref.string.concrete
-            # self.resolve_methods_imp(state, self.class_addr, instance_m=True)
+            self.resolve_methods_imp(state, self.class_addr, instance_m=True)
             self.meta_class_addr = state.memory.load(self.class_addr, 8, endness=archinfo.Endness.LE)
-            # self.resolve_methods_imp(state, self.meta_class_addr, class_m=True)
+            self.resolve_methods_imp(state, self.meta_class_addr, class_m=True)
             class_o.binary_class_set[state.solver.eval(self.class_addr)] = self
 
         class_o.classnames[self.name] = class_o.classrefs[self.classref_addr] = self
@@ -49,11 +49,13 @@ class class_o:
         count = state.solver.eval(meth_list.count.resolved)
         for i in range(0, count):
             meth = state.mem[meth_addr].meth
-            meth_name = meth.name.deref.string.concrete
+            meth_name = formatstr.format(classname, meth.name.deref.string.concrete)
             meth_imp = state.solver.eval(meth.imp.resolved)
             # print "{} [ {} {} ]".format(hex(meth_imp), classname, meth_name)
             meth_addr += entry_size
-            meths.append([meth_imp, formatstr.format(classname, meth_name)])
+            meths.append([meth_imp, meth_name])
+            if meth_imp not in class_o.functions:
+               class_o.functions[meth_imp] = [meth_name, self]
         if instance_m:
             self.instance_meths = meths
         elif class_m:

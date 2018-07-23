@@ -36,9 +36,6 @@ class MachO:
                 class_o(addr).build(state)
         class_o.dump()
 
-    def build_functions(self):
-        self.functions[0x1000C232C] = 'TGHttpManager'
-
     def read_str_from_cfstring(self, state, addr):
         str = state.memory.load(addr + 0x10, 8, endness=archinfo.Endness.LE).args[0] - 0x100000000
         length = state.memory.load(addr + 0x18, 8, endness=archinfo.Endness.LE).args[0]

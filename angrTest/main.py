@@ -3,7 +3,6 @@ import angr
 import angr.engines.successors
 import angr.sim_state
 from cle.backends.macho.binding import BindingHelper
-from Data.binary import MachO
 from Data.class_o import class_o
 from Data.function import Function
 from Data.stubs import *
@@ -28,7 +27,7 @@ class Analyzer:
         bh.do_lazy_bind(self.macho.lazy_binding_blob)
         self.pd.build_classdata(self.init_state)
         hook_stubs(self.init_state)
-        self.pd.build_functions()
+
 
     def analyze_function(self, start_addr):
         st = self.init_state.copy()
@@ -36,8 +35,10 @@ class Analyzer:
         # st.options.add(option.LAZY_SOLVES)
         self.current_f = Function(start_addr, st)
 
-        if start_addr in self.pd.functions:
-            classref = class_o.classnames[self.pd.functions[start_addr]].classref_addr
+        if start_addr in class_o.functions:
+            meth_info = class_o.functions[start_addr]
+            print "Analyze method {}. ".format(meth_info[0])
+            classref = meth_info[1].classref_addr
             bv = st.solver.BVV(classref, 64)
             st.regs.x0 = bv
 
@@ -59,7 +60,7 @@ class Analyzer:
             methname = meth[1]
             self.analyze_function(imp)
 
-analyzer = Analyzer('/Users/gjy/Desktop/doooo/angr/ToGoProject')
+analyzer = Analyzer('../samples/ToGoProject')
 analyzer.data_init()
 # analyzer.analyze_function(0x1000C232C)
 analyzer.analyze_function(0x100050110)
