@@ -17,7 +17,9 @@ class Analyzer:
         MachO.pd = self.pd = MachO(self.macho, self.loader, self.p, self)
 
         self.current_f = None
+        self.next_func_addr = None
         self.init_state = None  # memeory initialized
+        self.manager = None
 
     def data_init(self):
         self.init_state = self.p.factory.blank_state()
@@ -27,7 +29,6 @@ class Analyzer:
         bh.do_lazy_bind(self.macho.lazy_binding_blob)
         self.pd.build_classdata(self.init_state)
         hook_stubs(self.init_state)
-
 
     def analyze_function(self, start_addr):
         st = self.init_state.copy()
@@ -41,8 +42,13 @@ class Analyzer:
             classref = meth_info[1].classref_addr
             bv = st.solver.BVV(classref, 64)
             st.regs.x0 = bv
-
-        sm = self.p.factory.simgr(st)
+            self.next_func_addr = class_o.function_addrs[class_o.function_addrs.index(start_addr) + 1]
+            print "next: {}".format(hex(self.next_func_addr))
+        # bv = st.solver.BVV(0X100D5E488, 64)
+        # st.regs.x0 = bv
+        # self.next_func_addr = 0x1003cc9e8
+        st.inspect.b('exit', when=angr.BP_BEFORE, action=get_retval)
+        self.manager = sm = self.p.factory.simgr(st)
         # looplimiter = angr.exploration_techniques.LoopSeer(bound=1)
         # sm.use_technique(looplimiter)
         # while sm.active:
@@ -62,10 +68,11 @@ class Analyzer:
 
 analyzer = Analyzer('../samples/ToGoProject')
 analyzer.data_init()
-# analyzer.analyze_function(0x1000C232C)
-analyzer.analyze_function(0x100050110)
+analyzer.analyze_function(0x1000C232C)
+# analyzer.analyze_function(0x100050110)
 # analyzer.analyze_function(0x100005C30)
-# analyzer.analyze_function(0x1003CC798)
+analyzer.analyze_function(0x1003CC798)
+analyzer.analyze_function(0x10000D0C0)
 # analyzer.analyze_function(0x1000C39D4)
 # analyzer.analyze_function(0x1000C46B4)
 

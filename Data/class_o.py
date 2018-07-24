@@ -9,6 +9,7 @@ class class_o:
     classrefs = dict()
     classnames = dict()
     functions = dict()
+    function_addrs = []
 
     def __init__(self, classref, imported=False, name=None):
 
@@ -35,9 +36,11 @@ class class_o:
 
         class_o.classnames[self.name] = class_o.classrefs[self.classref_addr] = self
         class_o.class_set.append(self.__dict__)
+        class_o.function_addrs = sorted(class_o.functions.keys())
         # print "class {} has been resolved.".format(self.name)
 
     def resolve_methods_imp(self, state, addr, instance_m=None, class_m=None):
+        # return
         meths = []
         classname = self.name
         formatstr = "-[{} {}]" if instance_m else "+[{} {}]"
