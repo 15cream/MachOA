@@ -2,9 +2,14 @@ __author__ = 'gjy'
 
 from Data.invokenode import InvokeNode
 import re
+from class_o import class_o
 
 
 class Function:
+
+    meth_list = []
+    meth_data = dict()
+
     def __init__(self, addr, state):
         self.name = None
         self.start = addr
@@ -14,6 +19,26 @@ class Function:
         self.start_node = None
         self.build_start_node()
         self.retVal = None
+
+    @staticmethod
+    def build_meth_list():
+        Function.meth_list = sorted(class_o.classes_indexed_by_meth.keys())
+        for meth_imp in Function.meth_list:
+            if meth_imp not in Function.meth_data:
+                Function.meth_data[meth_imp] = {'name':class_o.classes_indexed_by_meth[meth_imp][0],
+                                                'class':class_o.classes_indexed_by_meth[meth_imp][1]}
+
+    def init_state(self):
+        if self.start in Function.meth_list:
+            meth_data = Function.meth_data[self.start]
+            print " * * * * * * * * * * * Analyze method {} at {}  * * * * * * * * * * * ".format(meth_data['name'], hex(self.start))
+            class_data = meth_data['class']
+            if self.start in class_data.instance_meths:
+                classname = meth_data['class'].name
+                self.state.regs.x0 = self.state.solver.BVS(classname + "_instance", 64)
+            else:
+                classref = meth_data['class'].classref_addr
+                self.state.regs.x0 = self.state.solver.BVV(classref, 64)
 
     def build_start_node(self):
         start_node = InvokeNode(self.start)

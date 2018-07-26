@@ -19,15 +19,17 @@ class MachO:
         angr.types.define_struct('struct meth{char* name; long type; long imp;}')
         self.stubs = dict()  # stub_code -> symbol_name
 
-    def build_classdata(self, state):
+    def build_classdata(self, state, packed=None):
+        if packed:
+            class_o.unpack()
+            return
         # imported
         classrefs = self.macho.get_segment_by_name('__DATA').get_section_by_name('__objc_classrefs')
         symbols = self.macho.symbols
         for s in symbols:
-            name = s.name
             for addr in s.bind_xrefs:
                 if addr in range(classrefs.min_addr, classrefs.max_addr):
-                    class_o(addr, imported=True, name=name).build(state)
+                    class_o(addr, imported=True, name=s.name).build(state)
         # binary classes
         for addr in range(classrefs.min_addr, classrefs.max_addr, 8):
             if addr in class_o.imported_class_set:
@@ -55,8 +57,8 @@ class MachO:
     def resolve_receiver(state, receiver):
         cfstring = MachO.pd.macho.get_segment_by_name('__DATA').get_section_by_name('__cfstring')
         cstring = MachO.pd.macho.get_segment_by_name('__TEXT').get_section_by_name('__cstring')
-        if receiver in class_o.classrefs:
-            receiver = class_o.classrefs[receiver].name
+        if receiver in class_o.classes_indexed_by_ref:
+            receiver = class_o.classes_indexed_by_ref[receiver].name
         elif receiver in class_o.binary_class_set:
             receiver = class_o.binary_class_set[receiver].name
         elif receiver in range(cfstring.min_addr, cfstring.max_addr):
@@ -69,8 +71,8 @@ class MachO:
     @staticmethod
     def resolve_arg(state, val):
         cfstring = MachO.pd.macho.get_segment_by_name('__DATA').get_section_by_name('__cfstring')
-        if val in class_o.classrefs:
-            val = class_o.classrefs[val].name
+        if val in class_o.classes_indexed_by_ref:
+            val = class_o.classes_indexed_by_ref[val].name
         elif val in MachO.pd.cstring:
             val = MachO.pd.cstring[val]
         elif val in range(cfstring.min_addr, cfstring.max_addr):
