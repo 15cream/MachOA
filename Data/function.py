@@ -1,6 +1,7 @@
 __author__ = 'gjy'
 
 from Data.invokenode import InvokeNode
+import re
 
 
 class Function:
@@ -12,6 +13,7 @@ class Function:
         self.state = state
         self.start_node = None
         self.build_start_node()
+        self.retVal = None
 
     def build_start_node(self):
         start_node = InvokeNode(self.start)
@@ -19,9 +21,20 @@ class Function:
         self.start_node = start_node
         self.invokes[self.state.history] = start_node
 
-    def insert_invoke(self, state, ins_addr, description):
+    def resolve_dependency(self, receiver):
+        match = re.search('ret_from_(?P<addr>\w+?)L_.*', receiver)
+        if match:
+            d_addr = int(match.group('addr'), 16)
+            for node in self.invokes.values():
+                if d_addr == node.addr:
+                    return node
+        else:
+            return None
+
+    def insert_invoke(self, state, ins_addr, selector, receiver):
         node = InvokeNode(ins_addr)
-        node.set_description(description)
+        node.set_deps('receiver', self.resolve_dependency(receiver))
+        node.set_description('[' + receiver + ' ' + selector + ']')
         history = state.history
         if history not in self.invokes:
             self.invokes[history] = node
@@ -38,7 +51,7 @@ class Function:
                 self.godown(child, callstring)
         else:
             for c in callstring:
-                print str(hex(c.addr)), c.description + '->',
+                print str(hex(c.addr)), c.description,  '->',
             print 'End'
         callstring.pop()
 
@@ -46,3 +59,6 @@ class Function:
         callstring = []
         node = self.start_node
         self.godown(node, callstring)
+
+    def setRetVal(self, val):
+        self.retVal = val

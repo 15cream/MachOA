@@ -8,6 +8,7 @@ class InvokeNode:
         self.description = ''
         self.next = []
         self.parents = []
+        self.dependencies = dict()
 
     def add_child(self, invoke):
         self.next.append(invoke)
@@ -17,3 +18,7 @@ class InvokeNode:
 
     def set_description(self, description):
         self.description = description
+
+    def set_deps(self, key, node):
+        if key not in self.dependencies:
+            self.dependencies[key] = node

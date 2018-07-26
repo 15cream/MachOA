@@ -46,9 +46,9 @@ class MachO:
     def resolve_invoke(state, addr):
         receiver = MachO.resolve_receiver(state, state.regs.x0.args[0])
         selector = MachO.resolve_selector(state, state.regs.x1.args[0])
+        MachO.pd.analyzer.current_f.insert_invoke(state, addr, selector, receiver)
         description = '[' + receiver + ' ' + selector + ']'
-        print hex(addr), "bl _objc_msgSend: {}".format(description)
-        MachO.pd.analyzer.current_f.insert_invoke(state, addr, description)
+        # print hex(addr), "bl _objc_msgSend: {}".format(description)
         return description
 
     @staticmethod
@@ -63,6 +63,7 @@ class MachO:
             receiver = MachO.read_cfstring(state, receiver)
         elif receiver in range(cstring.min_addr, cfstring.max_addr):
             receiver = state.mem[receiver].string.concrete
+        # print "reveiver name :".format(receiver.name)
         return str(receiver)
 
     @staticmethod

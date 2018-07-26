@@ -24,6 +24,8 @@ class stubHelper(SimProcedure):
         symbol = MachO.pd.stubs[state.history.parent.addr]
         if symbol.name == '_objc_retainAutoreleasedReturnValue':
             return state.registers.load('x0')
+        elif symbol.name == '_objc_autoreleaseReturnValue':
+            return state.registers.load('x0')
         elif symbol.name == '_objc_retain':
             return state.registers.load('x0')
         elif symbol.name == '_objc_release':
