@@ -3,15 +3,17 @@ __author__ = 'gjy'
 from Data.invokenode import InvokeNode
 import re
 from class_o import class_o
+import xml.etree.ElementTree as ET
 
 
 class Function:
 
     meth_list = []
     meth_data = dict()
+    callgraph = None
 
     def __init__(self, addr, state):
-        self.name = None
+        self.name = Function.meth_data[addr]['name']
         self.start = addr
         self.end = None
         self.invokes = dict() # state_addr, invoke_node
@@ -87,3 +89,20 @@ class Function:
 
     def setRetVal(self, val):
         self.retVal = val
+
+    def dump(self):
+        f = ET.Element('FUNCTION')
+        f.set('name', self.name)
+        f.set('address', hex(self.start))
+
+        # self.dump_node(f, self.start_node)
+        for node in self.invokes.values():
+            f.append(node.xmlNode())
+        f = ET.ElementTree(f)
+        f.write("../xmls/{}.xml".format(self.name))
+
+    def dump_node(self, f_node, invoke_node):
+        f_node.append(invoke_node.xmlNode())
+        for next in invoke_node.next():
+            self.dump_node(f_node, next)
+

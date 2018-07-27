@@ -10,7 +10,7 @@ import time
 
 class Analyzer:
 
-    def __init__(self, binary, database=None):
+    def __init__(self, binary, database=None, store=None, visualize=None):
         self.p = angr.Project(binary)
         self.loader = self.p.loader
         self.macho = self.loader.main_object
@@ -19,6 +19,8 @@ class Analyzer:
         self.init_state = None  # memeory initialized
         self.manager = None
         self.database = database
+        self.store = store
+        self.visualize = visualize
 
         MachO.pd = self.pd = MachO(self.macho, self.loader, self.p, self)
         self.data_init()
@@ -49,8 +51,10 @@ class Analyzer:
         self.manager = sm = self.p.factory.simgr(st)
         sm.run()
         # print "Ret Value: {}".format(self.current_f.retVal)
-
+        if self.store:
+            self.current_f.dump()
         self.current_f.print_call_string()
+
 
     def analyze_class(self, classref=None, classname=None):
         class_obj = class_o.retrieve(classref=classref, classname=classname)
@@ -66,15 +70,15 @@ class Analyzer:
 
 print time.strftime("-START-%Y-%m-%d %H:%M:%S", time.localtime())
 
-analyzer = Analyzer('../samples/ToGoProject', database=True)
+analyzer = Analyzer('../samples/ToGoProject', database=True, store=True, visualize=False)
 # analyzer.analyze_class(classname='TGHttpManager')
-analyzer.analyze_class(classref=0x100D5C370)
+# analyzer.analyze_class(classref=0x100D5C370)
 
 print time.strftime("-END-%Y-%m-%d %H:%M:%S", time.localtime())
 
 
 
-# analyzer.analyze_function(0x1000C232C)
+analyzer.analyze_function(0x1000C232C)
 # analyzer.analyze_function(0x100050110)
 # analyzer.analyze_function(0x100005C30)
 # analyzer.analyze_function(0x1003CC798)

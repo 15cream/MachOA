@@ -1,5 +1,6 @@
 __author__ = 'gjy'
 
+import xml.etree.ElementTree as ET
 
 class InvokeNode:
 
@@ -22,3 +23,13 @@ class InvokeNode:
     def set_deps(self, key, node):
         if key not in self.dependencies:
             self.dependencies[key] = node
+
+    def xmlNode(self):
+        node = ET.Element('NODE')
+        node.set('addr', hex(self.addr))
+        for next in self.next:
+            nn = ET.Element('NEXT')
+            nn.set('addr', hex(next.addr))
+            node.append(nn)
+        node.text = self.description
+        return node
