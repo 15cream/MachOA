@@ -33,7 +33,7 @@ class stubHelper(SimProcedure):
         elif symbol.name == '_objc_msgSend':
             src_state = state.history.parent.parent
             bl_addr = src_state.addr + src_state.recent_instruction_count * 4
-            invoke = MachO.resolve_invoke(state, bl_addr)
+            MachO.resolve_invoke(state, bl_addr)
             x0_name = "ret_from_" + hex(bl_addr)
             return claripy.BVS(x0_name, 64)
         else:

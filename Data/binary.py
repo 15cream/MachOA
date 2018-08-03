@@ -3,6 +3,7 @@ __author__ = 'gjy'
 import angr
 import archinfo
 from Data.class_o import class_o
+from Data.function import Function
 
 
 class MachO:
@@ -21,7 +22,7 @@ class MachO:
 
     def build_classdata(self, state, packed=None):
         if packed:
-            class_o.unpack()
+            class_o.unpack(state)
             return
         # imported
         classrefs = self.macho.get_segment_by_name('__DATA').get_section_by_name('__objc_classrefs')
@@ -51,7 +52,6 @@ class MachO:
         MachO.pd.analyzer.current_f.insert_invoke(state, addr, selector, receiver)
         description = '[' + receiver + ' ' + selector + ']'
         # print hex(addr), "bl _objc_msgSend: {}".format(description)
-        return description
 
     @staticmethod
     def resolve_receiver(state, receiver):

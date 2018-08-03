@@ -1,5 +1,6 @@
 import archinfo
 import pickle
+from types import *
 
 class class_o:
 
@@ -83,7 +84,40 @@ class class_o:
         output.close()
 
     @staticmethod
-    def unpack():
+    def unpack1(state):
+        input = open('classes.pkl', 'rb')
+        class_set = pickle.load(input)
+        for c in class_set:
+            cd = class_o(c['classref_addr'])
+            if type(c['class_addr']) is not NoneType:
+                cd.class_addr = state.solver.eval(c['class_addr'])
+            else:
+                cd.class_addr = None
+            if type(c['meta_class_addr']) is not NoneType:
+                cd.meta_class_addr = state.solver.eval(c['meta_class_addr'])
+            else:
+                cd.meta_class_addr = None
+            cd.name = c['name']
+            cd.imported = c['imported']
+            cd.class_meths = c['class_meths']
+            cd.instance_meths = c['instance_meths']
+            if cd.imported:
+                class_o.imported_class_set.append(cd)
+                bv = state.solver.BVV(cd.classref_addr, 64).reversed
+                state.memory.store(cd.classref_addr, bv)
+            else:
+                class_o.binary_class_set[cd.class_addr] = cd
+            class_o.classes_indexed_by_ref[cd.classref_addr] = cd
+            class_o.classes_indexed_by_name[cd.name] = cd
+            meths = dict(cd.instance_meths.items() + cd.class_meths.items())
+            for meth in meths:
+                meth_name = meths[meth]
+                class_o.classes_indexed_by_meth[meth] = [meth_name, cd]
+
+        input.close()
+
+    @staticmethod
+    def unpack(state):
         input = open('classes.pkl', 'rb')
         class_set = pickle.load(input)
         for c in class_set:
@@ -106,7 +140,4 @@ class class_o:
                 class_o.classes_indexed_by_meth[meth] = [meth_name, cd]
 
         input.close()
-
-
-
 

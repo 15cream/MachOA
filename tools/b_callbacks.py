@@ -14,30 +14,33 @@ def loop_filter(state):
         state_addr = history.addr
         if jmp_target == state_addr:
             # print "Loop at {}".format(jmp_target)
-            state.inspect.exit_guard = state.solver.BVV(1, 64) > 5
+            # state.inspect.exit_guard = state.solver.BVV(0, 64)
+            state.inspect.exit_guard = state.solver.BVV(int(state.inspect.exit_guard.is_false()), 64) # reverse
             break
         history = history.parent
 
 def log_jmp(state):
-    print "ip:", state.ip,
-    print 'target', hex(state.solver.eval(state.inspect.exit_target)),
-    print 'guard', state.inspect.exit_guard,
-    print 'jumpkind', state.inspect.exit_jumpkind
-    print "return value: ", state.solver.eval(state.regs.x0)
+    # print "ip:", state.ip,
+    # print 'target', hex(state.solver.eval(state.inspect.exit_target)),
+    # print 'guard', state.inspect.exit_guard,
+    # print 'jumpkind', state.inspect.exit_jumpkind
+    # print "return value: ", state.solver.eval(state.regs.x0)
+    print "from {} to {}, guard {}".format(hex(state.solver.eval(state.ip)), hex(state.solver.eval(state.inspect.exit_target)), state.inspect.exit_guard)
+    print state.regs.w21
 
 def branch(state):
-    # log_jmp(state)
+    log_jmp(state)
     text = MachO.pd.macho.get_segment_by_name('__TEXT').get_section_by_name('__text')
     jmp_target = state.solver.eval(state.inspect.exit_target)
 
     if state.inspect.exit_jumpkind == 'Ijk_Boring' and jmp_target < text.max_addr:
-        state.inspect.exit_guard = state.solver.BVV(1, 64) < 5
         loop_filter(state)
 
     if jmp_target == MachO.pd.analyzer.next_func_addr:
         # print "Log ret value at {} : {}".format(state.ip, state.solver.eval(state.regs.x0))
         MachO.pd.analyzer.current_f.setRetVal(state.solver.eval(state.regs.x0))
-        state.inspect.exit_guard = state.solver.BVV(1, 64) > 5
+        # state.inspect.exit_guard = state.solver.BVV(0, 64)
+        state.solver.BVV(int(state.inspect.exit_guard.is_false()), 64)
     if state.solver.eval(state.inspect.exit_target) == 0:
         # print "Log ret value : {}".format(state.solver.eval(state.regs.x0))
         MachO.pd.analyzer.current_f.setRetVal(state.solver.eval(state.regs.x0))

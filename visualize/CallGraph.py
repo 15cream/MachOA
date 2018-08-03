@@ -1,5 +1,7 @@
 import xml.etree.ElementTree as ET
 from graphviz import Digraph
+import os
+import sys
 
 
 class CallGraph:
@@ -11,37 +13,42 @@ class CallGraph:
         self.vertexs = []
 
     def build(self):
-        self.link(self.find_start_node())
+        self.build_vertexs()
+        self.build_edges()
 
-    def find_start_node(self):
+    def build_vertexs(self):
         for node in self.root.iter('NODE'):
-            if node.text == 'Start':
-                return node
-        return None
+            addr = node.get('addr')
+            self.g.node(addr, label=addr + " " + node.text)
 
-    def link(self, node):
-        source = self.build_vertex(node)
-        for next in node.findall('NEXT'):
-            next_node = self.root.findall("./NODE[@addr='{}']".format(next.get('addr'))).pop()
-            self.g.edge(source, self.build_vertex(next_node))
-            self.link(next_node)
+    def build_edges(self):
+        edges = []
+        for node in self.root.iter('NODE'):
+            src = node.get('addr')
+            for next in node.findall('NEXT'):
+                des = next.get('addr')
+                edge = [src, des]
+                if edge in edges:
+                    continue
+                else:
+                    edges.append(edge)
+                    self.g.edge(src, des)
 
-    def build_vertex(self, node):
-        addr = node.get('addr')
-        if addr not in self.vertexs:
-            n = self.g.node(addr, label=addr + " " + node.text)
-            self.vertexs.append(addr)
-            return addr
-        else:
-            return addr
-
-    def output(self):
-        self.g.render('test.gv', view=True)
+    def output(self, file):
+        self.g.render(file, view=True)
 
 
-cg = CallGraph('test.xml')
-cg.build()
-cg.output()
+# cg = CallGraph('/home/gjy/Desktop/MachOA/xmls/+[TGHttpManager handleSuccessWithSuccess:response:url:name:loginInvalid:].xml')
+# cg.build()
+# cg.output('/home/gjy/Desktop/MachOA/visualize/cgs/+[TGHttpManager handleSuccessWithSuccess:response:url:name:loginInvalid:].pdf')
+
+rootDir = '/home/gjy/Desktop/MachOA/xmls/'
+for filename in os.listdir(rootDir):
+    path = os.path.join(rootDir, filename)
+    if (os.path.isfile(path)):
+        cg = CallGraph(path)
+        cg.build()
+        cg.output('cgs/' + filename.split('.')[0])
 
 
 
