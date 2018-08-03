@@ -84,7 +84,7 @@ class class_o:
         output.close()
 
     @staticmethod
-    def unpack1(state):
+    def unpack(state):
         input = open('classes.pkl', 'rb')
         class_set = pickle.load(input)
         for c in class_set:
@@ -116,28 +116,4 @@ class class_o:
 
         input.close()
 
-    @staticmethod
-    def unpack(state):
-        input = open('classes.pkl', 'rb')
-        class_set = pickle.load(input)
-        for c in class_set:
-            cd = class_o(c['classref_addr'])
-            cd.class_addr = c['class_addr']
-            cd.name = c['name']
-            cd.meta_class_addr = c['meta_class_addr'] if 'meta_class_addr' in c else None
-            cd.imported = c['imported']
-            cd.class_meths = c['class_meths']
-            cd.instance_meths = c['instance_meths']
-            if cd.imported:
-                class_o.imported_class_set.append(cd)
-            else:
-                class_o.binary_class_set[cd.class_addr] = cd
-            class_o.classes_indexed_by_ref[cd.classref_addr] = cd
-            class_o.classes_indexed_by_name[cd.name] = cd
-            meths = dict(cd.instance_meths.items() + cd.class_meths.items())
-            for meth in meths:
-                meth_name = meths[meth]
-                class_o.classes_indexed_by_meth[meth] = [meth_name, cd]
-
-        input.close()
 

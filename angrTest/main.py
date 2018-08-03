@@ -74,7 +74,7 @@ class Analyzer:
 print time.strftime("-START-%Y-%m-%d %H:%M:%S", time.localtime())
 
 analyzer = Analyzer('../samples/ToGoProject', database=True, store=True, visualize=False)
-# analyzer.analyze_class(classname='TGHttpManager')
+# analyzer.analyze_class(classname='TGPayManager')
 # analyzer.analyze_class(classref=0x1000c39d4)
 analyzer.analyze_function(0x1000c43d4)
 

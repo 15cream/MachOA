@@ -96,7 +96,8 @@ class Function:
         args = []
         for c in range(0, argc):
             reg_name = 'x{}'.format(c + 2)
-            args.append(str(state.solver.eval(state.regs.get(reg_name))))
+            args.append(state.regs.get(reg_name))
+            # args.append(state.solver.eval(state.regs.get(reg_name)))
 
         meth_info = Function.retrieve_f(name=d, ret=0b110)
         if meth_info:

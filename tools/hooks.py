@@ -39,8 +39,8 @@ class stubHelper(SimProcedure):
         else:
             x0_name = "ret_from_" + symbol.name
             newval = claripy.BVS(x0_name, 64)
-            # state.registers.store('x0', newval)
             return newval
+            # state.registers.store('x0', newval)
 
 
 class ReturnHook(SimProcedure):
