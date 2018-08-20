@@ -28,8 +28,9 @@ def log_jmp(state):
     print "from {} to {}, guard {}".format(hex(state.solver.eval(state.ip)), hex(state.solver.eval(state.inspect.exit_target)), state.inspect.exit_guard)
     print state.regs.w21
 
+
 def branch(state):
-    log_jmp(state)
+    # log_jmp(state)
     text = MachO.pd.macho.get_segment_by_name('__TEXT').get_section_by_name('__text')
     jmp_target = state.solver.eval(state.inspect.exit_target)
 

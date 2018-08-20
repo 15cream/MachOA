@@ -4,6 +4,7 @@ import angr
 import archinfo
 from Data.class_o import class_o
 from Data.function import Function
+import os
 
 
 class MachO:
@@ -20,9 +21,10 @@ class MachO:
         angr.types.define_struct('struct meth{char* name; long type; long imp;}')
         self.stubs = dict()  # stub_code -> symbol_name
 
-    def build_classdata(self, state, packed=None):
-        if packed:
-            class_o.unpack(state)
+    def build_classdata(self, state):
+        db = "{}{}.pkl".format(self.analyzer.configs.get('PATH', 'dbs'), self.macho.provides)
+        if os.path.exists(db):
+            class_o.unpack(state, db)
             return
         # imported
         classrefs = self.macho.get_segment_by_name('__DATA').get_section_by_name('__objc_classrefs')
@@ -37,7 +39,7 @@ class MachO:
                 continue
             else:
                 class_o(addr).build(state)
-        class_o.dump()
+        class_o.dump(db)
 
     def read_str_from_cfstring(self, state, addr):
         str = state.memory.load(addr + 0x10, 8, endness=archinfo.Endness.LE).args[0] - 0x100000000

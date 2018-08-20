@@ -78,14 +78,14 @@ class class_o:
             self.class_meths = meths
 
     @staticmethod
-    def dump():
-        output = open('classes.pkl', 'wb')
+    def dump(db):
+        output = open(db, 'wb')
         pickle.dump(class_o.class_set, output)
         output.close()
 
     @staticmethod
-    def unpack(state):
-        input = open('classes.pkl', 'rb')
+    def unpack(state, db):
+        input = open(db, 'rb')
         class_set = pickle.load(input)
         for c in class_set:
             cd = class_o(c['classref_addr'])

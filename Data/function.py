@@ -1,9 +1,13 @@
 __author__ = 'gjy'
+#coding=utf-8
 
 from Data.invokenode import InvokeNode
 import re
 from class_o import class_o
 import xml.etree.ElementTree as ET
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 class Function:
 
@@ -12,7 +16,8 @@ class Function:
     function_symbols = dict()
     callgraph = None
 
-    def __init__(self, addr, state):
+    def __init__(self, addr, state, analyzer):
+        self.analyzer = analyzer
         self.name = Function.meth_data[addr]['name']
         self.start = addr
         self.end = None
@@ -21,6 +26,7 @@ class Function:
         self.start_node = None
         self.build_start_node()
         self.retVal = []
+        self.dds = []
 
     @staticmethod
     def build_meth_list():
@@ -35,16 +41,18 @@ class Function:
 
     @staticmethod
     def retrieve_f(name=None, imp=None, ret=None):
-        # ret=the information you ask for. 3 bits are used to specify specified info
-        # 0b111 --> imp ; completed name; meth type. 1 for yes, 0 for no
+        # ret=the information you ask for. bits are used to specify specified info
+        # 0b11111 --> receiver; selector; imp ; completed name; meth type. 1 for yes, 0 for no
         if name:
-            m = re.search('(?P<type>[-+]?)\[(?P<receiver>.+?) (?P<selector>[\w:]+)\]', name)
+            m = re.search('(?P<type>[-+]?)\[(?P<receiver>\S+?) (?P<selector>[\w:]+)\]', name)
             if m:
                 type = m.group('type')
                 receiver = m.group('receiver')
                 if receiver not in class_o.classes_indexed_by_name:
                     return None
                 selector = m.group('selector')
+                return receiver if ret & 0b10000 and receiver else None
+                return selector if ret & 0b1000 and selector else None
             else:
                 print "NOT FOUND" + name
                 return None
@@ -53,11 +61,11 @@ class Function:
         if name:
             for s, imp in Function.function_symbols.items():
                 if name in s:
-                    if ret and 0b100:
+                    if ret & 0b100:
                         results.append(imp)
-                    if ret and 0b010:
+                    if ret & 0b010:
                         results.append(s)
-                    if ret and 0b001:
+                    if ret & 0b001:
                         results.append(s[0])  # should change to meth_type, such as v40@0:8@16@24@32
                     return results
 
@@ -76,6 +84,8 @@ class Function:
     def build_start_node(self):
         start_node = InvokeNode(self.start)
         start_node.set_description("Start")
+        start_node.set_receiver(self.retrieve_f(self.name, ret=0b10000))
+        start_node.set_selector(self.retrieve_f(self.name, ret=0b1000))
         self.start_node = start_node
         self.invokes[self.state.history] = start_node
 
@@ -91,20 +101,23 @@ class Function:
 
     def insert_invoke(self, state, ins_addr, selector, receiver):
         node = InvokeNode(ins_addr)
-        d = '[' + receiver + ' ' + selector + ']'
+        node.set_receiver(receiver)
+        node.set_selector(selector)
+        node.set_deps('receiver', self.resolve_dependency(receiver))
         argc = selector.count(':')
         args = []
         for c in range(0, argc):
             reg_name = 'x{}'.format(c + 2)
             args.append(state.regs.get(reg_name))
             # args.append(state.solver.eval(state.regs.get(reg_name)))
+        node.set_args(args)
 
-        meth_info = Function.retrieve_f(name=d, ret=0b110)
+        d = '[' + receiver + ' ' + selector + ']'
+        meth_info = Function.retrieve_f(name=d, ret=0b10)
         if meth_info:
-            d = "{} ({}) args:{}".format(meth_info[1], hex(meth_info[0]), args)
-
-        node.set_deps('receiver', self.resolve_dependency(receiver))
+            d = meth_info[0]
         node.set_description(d)
+
         history = state.history
         if history not in self.invokes:
             self.invokes[history] = node
@@ -134,19 +147,32 @@ class Function:
         self.retVal.append(val)
 
     def dump(self):
-        f = ET.Element('FUNCTION')
-        f.set('name', self.name)
-        f.set('address', hex(self.start))
+        try:
+            self.resolve_dependencies()
+            f = ET.Element('FUNCTION')
+            f.set('name', self.name)
+            f.set('address', hex(self.start))
 
-        # self.dump_node(f, self.start_node)
-        for node in self.invokes.values():
-            f.append(node.xmlNode())
-        f = ET.ElementTree(f)
-        f.write("../xmls/{}.xml".format(self.name))
+            # self.dump_node(f, self.start_node)
+            for node in self.invokes.values():
+                f.append(node.xmlNode())
+            f = ET.ElementTree(f)
+            output = "{}{}/{}.xml".format(self.analyzer.configs.get('PATH', 'xmls'), self.analyzer.macho.provides, self.name)
+            f.write(output)
+        except UnicodeDecodeError:
+            print "UnicodeDecodeError at {}".format(hex(self.start))
 
     def dump_node(self, f_node, invoke_node):
         f_node.append(invoke_node.xmlNode())
         for next in invoke_node.next():
             self.dump_node(f_node, next)
+
+    def resolve_dependencies(self):
+        for node in self.invokes.values():
+            self.dds.append(hex(node.addr) + node.get_expr())
+
+
+
+
 
 
