@@ -4,11 +4,11 @@ from visualize.CallGraph import CallGraph
 from tools.utils import *
 
 def analyzer_test():
-    analyzer = Analyzer('../samples/Mobike', store=True, visualize=False)
+    analyzer = Analyzer('samples/AlipaySDK_arm64', store=True, visualize=False)
     # analyzer.analyze_class_dds(classname='BaiduMobStat')
     # analyzer.analyze_class(classref=0x1000c39d4)
-    # analyzer.analyze_function(0x100042FA4)
-    analyzer.analyze_bin()
+    analyzer.analyze_function(0x1009932D8)
+    # analyzer.analyze_bin()
 
     print time.strftime("-END-%Y-%m-%d %H:%M:%S", time.localtime())
 

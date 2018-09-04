@@ -43,7 +43,7 @@ class Analyzer:
 
     def config(self):
         config = ConfigParser.RawConfigParser()
-        config.read('../config/config')
+        config.read('config/config')
         xml_path = "{}{}".format(config.get('PATH', 'xmls'), self.macho.provides)
         dd_path = "{}{}".format(config.get('PATH', 'dds'), self.macho.provides)
         if not os.path.exists(xml_path):
