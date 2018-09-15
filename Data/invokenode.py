@@ -1,6 +1,7 @@
 __author__ = 'gjy'
 
 import xml.etree.ElementTree as ET
+from binary import MachO
 
 class InvokeNode:
 
@@ -53,5 +54,11 @@ class InvokeNode:
             nn = ET.Element('NEXT')
             nn.set('addr', hex(next.addr))
             node.append(nn)
-        node.text = self.description
+        node.text = self.show_description(detailed=True)
         return node
+
+    def show_description(self, detailed=None):
+        if detailed and self.args:
+            return "{} \n({})".format(self.description, ','.join(self.args))
+        else:
+            return self.description

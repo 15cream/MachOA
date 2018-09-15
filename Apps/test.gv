@@ -1,0 +1,2903 @@
+digraph {
+	APHTTPRequestOperation [label=APHTTPRequestOperation]
+	KSCrashReportFilterGZipDecompress [label=KSCrashReportFilterGZipDecompress]
+	BLYCrashSignalHandler [label=BLYCrashSignalHandler]
+	BLYCrashSignalHandler -> BLYConstants
+	MAPolyline [label=MAPolyline]
+	DTGZipUtil [label=DTGZipUtil]
+	JPUSHVersionOneFileParser [label=JPUSHVersionOneFileParser]
+	JPUSHVersionOneFileParser -> JPUSHReportCacheController
+	MAPointAnnotation [label=MAPointAnnotation]
+	DRFrameView [label=DRFrameView]
+	DRFrameView -> DRCardConfig
+	SendMessageToWXReq [label=SendMessageToWXReq]
+	SendMessageToWXReq -> SendMessageToWXReq
+	BaiduMTJNewCUID [label=BaiduMTJNewCUID]
+	BaiduMTJNewCUID -> BaiduMTJNewCUID
+	GtSdkDataUtils [label=GtSdkDataUtils]
+	GtSdkDataUtils -> GtSdkDataUtils
+	UILoading [label=UILoading]
+	UILoading -> UILoading
+	WXTextObject [label=WXTextObject]
+	WXTextObject -> WXTextObject
+	YCXMenuItem [label=YCXMenuItem]
+	YCXMenuItem -> YCXMenuItem
+	AFImageResponseSerializer [label=AFImageResponseSerializer]
+	GTXBinaryLayout [label=GTXBinaryLayout]
+	MAOfflineMap [label=MAOfflineMap]
+	MAOfflineMap -> MAOfflineMap
+	MAOfflineMap -> MAOfflineItemNationWide
+	EditNameViewController [label=EditNameViewController]
+	AMapImage [label=AMapImage]
+	WXOMTAGCDAsyncReadPacket [label=WXOMTAGCDAsyncReadPacket]
+	TDATUtilManager [label=TDATUtilManager]
+	GTXCaptureTool [label=GTXCaptureTool]
+	BaiduMobStatEvent [label=BaiduMobStatEvent]
+	BaiduMobStatEvent -> BaiduMobStatExtraInfo
+	BPushRSA [label=BPushRSA]
+	BPushRSA -> BPushRSA
+	TDAADataSource [label=TDAADataSource]
+	BLYRqdStrategy [label=BLYRqdStrategy]
+	BLYRqdStrategy -> BLYRqdStrategy
+	BLYRqdStrategy -> BLYRqdSecurity
+	WXOMTADataConfigHolder [label=WXOMTADataConfigHolder]
+	TGPersonView [label=TGPersonView]
+	TGPersonView -> AboutTOGOViewController
+	TGPersonView -> TGButton
+	TGPersonView -> SendDataInterface
+	MAAnnotationContainerView [label=MAAnnotationContainerView]
+	MAAnnotationContainerView -> MAPointAnnotation
+	GtGbdWifiClient [label=GtGbdWifiClient]
+	GtGbdWifiClient -> GtGbdReachability
+	AFURLSessionManager [label=AFURLSessionManager]
+	AFURLSessionManager -> AFURLSessionManagerTaskDelegate
+	GTXDeviceID [label=GTXDeviceID]
+	GTXDeviceID -> GTXDeviceID
+	AMapRoadTrafficSearchRequest [label=AMapRoadTrafficSearchRequest]
+	MJProperty [label=MJProperty]
+	WXOMTAUser [label=WXOMTAUser]
+	BLYAnalyticsLogic [label=BLYAnalyticsLogic]
+	BLYAnalyticsLogic -> BLYConstants
+	BLYAppInfo [label=BLYAppInfo]
+	BLYAppInfo -> BLYAppInfo
+	MJRefreshNormalHeader [label=MJRefreshNormalHeader]
+	JPUSHLogMessage [label=JPUSHLogMessage]
+	JPUSHLogMessage -> JPUSHLogMessage
+	GtkmMessage [label=GtkmMessage]
+	GtkmMessage -> GtkDBColumnDes
+	SDImageCache [label=SDImageCache]
+	SDImageCache -> SDImageCacheConfig
+	SDWebImageManager [label=SDWebImageManager]
+	SDWebImageManager -> SDImageCache
+	SDWebImageManager -> SDImageCacheConfig
+	SDWebImageManager -> SDWebImageCombinedOperation
+	GtGbdDbManager [label=GtGbdDbManager]
+	TGMarginField [label=TGMarginField]
+	MyinfoViewController [label=MyinfoViewController]
+	MyinfoViewController -> UILoading
+	MyinfoViewController -> EditNameViewController
+	MyinfoViewController -> TGMyInfoHeadIconCell
+	MyinfoViewController -> TGLookImageView
+	MyinfoViewController -> TGHandleAuditClass
+	ASSUmidTokenCollector [label=ASSUmidTokenCollector]
+	AppCommunicateData [label=AppCommunicateData]
+	AppCommunicateData -> SendMessageToWXReq
+	AppCommunicateData -> WXTextObject
+	AppCommunicateData -> ShowMessageFromWXResp
+	AppCommunicateData -> WXAuthInternal
+	AppCommunicateData -> JoinChatRoomResp
+	AppCommunicateData -> WXMediaInternalMessage
+	AppCommunicateData -> WXAppExtendObject
+	AppCommunicateData -> SendMessageToWXResp
+	AppCommunicateData -> LaunchFromWXReq
+	AppCommunicateData -> ShowMessageFromWXReq
+	AppCommunicateData -> WXLaunchMiniProgramResp
+	AppCommunicateData -> WXVideoObject
+	AppCommunicateData -> WXLocationObject
+	AppCommunicateData -> SendAuthReq
+	AppCommunicateData -> GetMessageFromWXReq
+	AppCommunicateData -> WXFileObject
+	AppCommunicateData -> WXWebpageObject
+	AppCommunicateData -> CreateChatRoomResp
+	AppCommunicateData -> WXMiniProgramObject
+	AppCommunicateData -> WXGameVideoFileObject
+	AppCommunicateData -> GetMessageFromWXResp
+	AppCommunicateData -> SendAuthResp
+	AppCommunicateData -> WXVideoFileObject
+	AppCommunicateData -> WXImageObject
+	AppCommunicateData -> WXMediaMessage
+	AppCommunicateData -> WXMusicObject
+	AppCommunicateData -> WXEmoticonObject
+	TGUpdateViewCell [label=TGUpdateViewCell]
+	TDAASwizzle [label=TDAASwizzle]
+	TGDepositRecordViewController [label=TGDepositRecordViewController]
+	TGDepositRecordViewController -> DepositRecordModel
+	TGCarParkingModel [label=TGCarParkingModel]
+	JPUSHTagAliasValidation [label=JPUSHTagAliasValidation]
+	JPUSHTagAliasValidation -> JPUSHTagAliasValidation
+	RACStream [label=RACStream]
+	AMapTMC [label=AMapTMC]
+	AMapLocationShareSearchRequest [label=AMapLocationShareSearchRequest]
+	IQKeyboardManager [label=IQKeyboardManager]
+	TGAlert [label=TGAlert]
+	MACircleRenderer [label=MACircleRenderer]
+	MACircleRenderer -> MACircleRenderer
+	MACircleRenderer -> MAPolygon
+	TGServiceView [label=TGServiceView]
+	TGServiceView -> TGServiceView
+	TGServiceView -> TGAfterFeedbackVC
+	TGServiceView -> TGButton
+	TGServiceView -> TGUploadGridImageView
+	TGServiceView -> SendDataInterface
+	TDAAEventBinding [label=TDAAEventBinding]
+	TDAAEventBinding -> TDAAConsole
+	RACTupleNil [label=RACTupleNil]
+	GTXLogger [label=GTXLogger]
+	TDATAccountManager [label=TDATAccountManager]
+	TDATAccountManager -> TDATAccountManager
+	TDATAccountManager -> TDATAccountProfile
+	TDATAccountManager -> TDATMissionProfile
+	TDATAccountManager -> TDATRoleProfile
+	AMapSearchExecutor [label=AMapSearchExecutor]
+	AFImageDownloader [label=AFImageDownloader]
+	AFImageDownloader -> AFImageResponseSerializer
+	AFImageDownloader -> AFHTTPSessionManager
+	AFImageDownloader -> AFImageDownloadReceipt
+	TDAAKeyChain [label=TDAAKeyChain]
+	JPUSHThreadController [label=JPUSHThreadController]
+	ConfirmBackCarViewController [label=ConfirmBackCarViewController]
+	AliSecXSSKeychain [label=AliSecXSSKeychain]
+	RACDynamicSequence [label=RACDynamicSequence]
+	RACDynamicSequence -> RACDynamicSequence
+	MJRefreshComponent [label=MJRefreshComponent]
+	ShowMessageFromWXResp [label=ShowMessageFromWXResp]
+	AMapLocationUploadRequestReformer [label=AMapLocationUploadRequestReformer]
+	MAEnInlandMapTileOverlayRequestReformer [label=MAEnInlandMapTileOverlayRequestReformer]
+	MAEnInlandMapTileOverlayRequestReformer -> MAServiceProvider
+	MACachedObject [label=MACachedObject]
+	MACachedObject -> MACachedObject
+	AMapSearchLogger [label=AMapSearchLogger]
+	AMapSearchLogger -> AMapSearchComponent
+	AMapSearchLogger -> AMapSearchCategoryLoader
+	AMapSearchLogger -> AMapSearchLoggerItem
+	AFCachedImage [label=AFCachedImage]
+	RechargeBillDetailCell [label=RechargeBillDetailCell]
+	AMapLocationUploadResponse [label=AMapLocationUploadResponse]
+	AMapCloudPOILocalSearchReformer [label=AMapCloudPOILocalSearchReformer]
+	AMapCloudPOILocalSearchReformer -> AMapSearchServiceProvider
+	FDKeyedHeightCache [label=FDKeyedHeightCache]
+	TGIDCardAuthView [label=TGIDCardAuthView]
+	TGIDCardAuthView -> EXOCRIDCardRecoManager
+	RACIndexSetSequence [label=RACIndexSetSequence]
+	ASSStaticInfoCollector [label=ASSStaticInfoCollector]
+	ASSStaticInfoCollector -> ASSCommonUtils
+	ASSStaticInfoCollector -> ASSSecurityGTMBase64
+	ASSStaticInfoCollector -> ASSPhotoInfoCollector
+	BLYJCEBaseObject [label=BLYJCEBaseObject]
+	BLYJCEBaseObject -> BLYJCEBaseObject
+	internal_DeviceInfo [label=internal_DeviceInfo]
+	internal_DeviceInfo -> AliSecXSafeUtils
+	internal_DeviceInfo -> AliSecXPhoneInfoHolder
+	JPUSHUserLoginReportResponse [label=JPUSHUserLoginReportResponse]
+	TDATAccountProfile [label=TDATAccountProfile]
+	TDATAccountProfile -> TDATAccountProfile
+	TDATAccountProfile -> TDATMissionProfile
+	TDATAccountProfile -> TDATRoleProfile
+	JPUSHAutoJsonVersionParser [label=JPUSHAutoJsonVersionParser]
+	JPUSHUdpSocket [label=JPUSHUdpSocket]
+	JPUSHUdpSocket -> JPUSHUdpPacket
+	AMapRoadInter [label=AMapRoadInter]
+	AMapRoadInter -> AMapGeoPoint
+	JSONModelClassProperty [label=JSONModelClassProperty]
+	MAHeatMapGradient [label=MAHeatMapGradient]
+	RACTestScheduler [label=RACTestScheduler]
+	RACTestScheduler -> RACCompoundDisposable
+	TGBluetoothUtils [label=TGBluetoothUtils]
+	TGBluetoothUtils -> TGBluetoothUtils
+	YCXMenu [label=YCXMenu]
+	TDAALocationManager [label=TDAALocationManager]
+	AMapLocationUploadInfo [label=AMapLocationUploadInfo]
+	TGRadarTimerAnnotationView [label=TGRadarTimerAnnotationView]
+	JPUSHLocationReportResponse [label=JPUSHLocationReportResponse]
+	TGInviteModel [label=TGInviteModel]
+	GXActionDirector [label=GXActionDirector]
+	AMapCloudPOIIDSearchRequest [label=AMapCloudPOIIDSearchRequest]
+	TGAfterFeedbackVC [label=TGAfterFeedbackVC]
+	TGAfterFeedbackVC -> TGButton
+	TGAfterFeedbackVC -> TGUploadGridImageView
+	TGDrivingLicenseModel [label=TGDrivingLicenseModel]
+	MQPCrashHandler [label=MQPCrashHandler]
+	TDAADeviceProfile [label=TDAADeviceProfile]
+	TGCenterPointAnnotation [label=TGCenterPointAnnotation]
+	TGShadowImageView [label=TGShadowImageView]
+	TDAAObjectFilter [label=TDAAObjectFilter]
+	BPushListTagRequest [label=BPushListTagRequest]
+	AMapSimplePing [label=AMapSimplePing]
+	TGBleResponseModel [label=TGBleResponseModel]
+	RACSubscriber [label=RACSubscriber]
+	RACSubscriber -> RACCompoundDisposable
+	AMapFoundationKeychainManager [label=AMapFoundationKeychainManager]
+	APHTTPCookieStorage [label=APHTTPCookieStorage]
+	YCXMenuView [label=YCXMenuView]
+	YCXMenuView -> YCXMenu
+	TDAAObjectSerializer [label=TDAAObjectSerializer]
+	TDAAObjectSerializer -> TDAAConsole
+	HFStretchableTableHeaderView [label=HFStretchableTableHeaderView]
+	GtkDBModel [label=GtkDBModel]
+	GtkDBModel -> GtkDBModel
+	WXOMTAErrorEvent [label=WXOMTAErrorEvent]
+	PayReq [label=PayReq]
+	TDAADesignerSnapshotResponseMessage [label=TDAADesignerSnapshotResponseMessage]
+	TDAAPropertyDescription [label=TDAAPropertyDescription]
+	TDAAPropertyDescription -> TDAAConsole
+	LSTextView [label=LSTextView]
+	TGCoupon [label=TGCoupon]
+	JCORESisReportData [label=JCORESisReportData]
+	AMapTip [label=AMapTip]
+	AMapTip -> AMapGeoPoint
+	AMapCloudPOILocalSearchRequest [label=AMapCloudPOILocalSearchRequest]
+	WXOMTAGameUserEvent [label=WXOMTAGameUserEvent]
+	TGCheckVersion [label=TGCheckVersion]
+	RACScopedDisposable [label=RACScopedDisposable]
+	TDATAppProfile [label=TDATAppProfile]
+	GtAsyncSpecialPacket [label=GtAsyncSpecialPacket]
+	GXDataBody_Object [label=GXDataBody_Object]
+	GuideRadraPlus [label=GuideRadraPlus]
+	TGPageBackgroundView [label=TGPageBackgroundView]
+	WXOMTASocket [label=WXOMTASocket]
+	WXOMTASocket -> WXOMTADataConfigHolder
+	KSCrashReportFilterStringToData [label=KSCrashReportFilterStringToData]
+	TGMyInfoHeadIconCell [label=TGMyInfoHeadIconCell]
+	TGMyInfoHeadIconCell -> TGLookImageView
+	MATraceComponent [label=MATraceComponent]
+	TSCENTERAppListCmdRequest [label=TSCENTERAppListCmdRequest]
+	TGPriceInfoView [label=TGPriceInfoView]
+	TGLocationButton [label=TGLocationButton]
+	DTShort [label=DTShort]
+	APRoute [label=APRoute]
+	MJRefreshAutoGifFooter [label=MJRefreshAutoGifFooter]
+	AMapLocalWeatherLive [label=AMapLocalWeatherLive]
+	AMapSubPOI [label=AMapSubPOI]
+	AMapSubPOI -> AMapGeoPoint
+	BLYFileOperation [label=BLYFileOperation]
+	GXPhoneUtils [label=GXPhoneUtils]
+	GXPhoneUtils -> GtSdkDataUtils
+	GXTaskDispatchManager [label=GXTaskDispatchManager]
+	GXTaskDispatchManager -> GXTaskItem
+	RACCommand [label=RACCommand]
+	JPUSHASLLogger [label=JPUSHASLLogger]
+	GXBusiness [label=GXBusiness]
+	GXBusiness -> GtSdkDataUtils
+	GXBusiness -> GtSdkTimerManager
+	GXBusiness -> TargetInfo
+	WXOMTAActiveEvent [label=WXOMTAActiveEvent]
+	UTDIDAES [label=UTDIDAES]
+	TGParkAnnotationView [label=TGParkAnnotationView]
+	RACGroupedSignal [label=RACGroupedSignal]
+	TGListButtonView [label=TGListButtonView]
+	DTRpcConfig [label=DTRpcConfig]
+	DTRpcConfig -> DTRpcConfig
+	RACKVOTrampoline [label=RACKVOTrampoline]
+	TDAADelegateInfo [label=TDAADelegateInfo]
+	TDAAUniqueIdentifier [label=TDAAUniqueIdentifier]
+	TDAAUniqueIdentifier -> TDAACrypto
+	TDATApplicationMemory [label=TDATApplicationMemory]
+	MADiskCache [label=MADiskCache]
+	MADiskCache -> MADiskCache
+	MATraceQueryOperation [label=MATraceQueryOperation]
+	MATraceQueryOperation -> MATraceUtils
+	BLYUnexpectedExitManager [label=BLYUnexpectedExitManager]
+	BLYUnexpectedExitManager -> BLYEnvironmentInfo
+	BLYUnexpectedExitManager -> BLYConstants
+	ASSApplistModel [label=ASSApplistModel]
+	ASSApplistModel -> ASSCommonUtils
+	ASSApplistModel -> ASSSecurityGTMBase64
+	MAProjection [label=MAProjection]
+	RACSignalSequence [label=RACSignalSequence]
+	MAMemoryCache [label=MAMemoryCache]
+	GtkStatement [label=GtkStatement]
+	WXLaunchMiniProgramResp [label=WXLaunchMiniProgramResp]
+	BuglyLog [label=BuglyLog]
+	AFHTTPSessionManager [label=AFHTTPSessionManager]
+	AMapPOIAroundSearchRequest [label=AMapPOIAroundSearchRequest]
+	AMapReGeocodeSearchResponse [label=AMapReGeocodeSearchResponse]
+	TDAAHARRecords [label=TDAAHARRecords]
+	TDAACloudSettings [label=TDAACloudSettings]
+	TDAACloudSettings -> TDAACrypto
+	TDAACloudSettings -> TDAADataCompressManager
+	TDAACloudSettings -> TDAAConsole
+	JPUSHKeychain [label=JPUSHKeychain]
+	GtGbdHttpNetWork [label=GtGbdHttpNetWork]
+	GtGbdHttpNetWork -> GtGbdHttpNetWork
+	TGPhoneTextField [label=TGPhoneTextField]
+	AMapDownloadRequestReformer [label=AMapDownloadRequestReformer]
+	BPushStaticsHelper [label=BPushStaticsHelper]
+	BPushStaticsHelper -> BPushBase64
+	BPushStaticsHelper -> BPushNetworkInfoData
+	BPushStaticsHelper -> BPushSettingManager
+	BPushStaticsHelper -> BPushGzipCompressor
+	OpenTempSessionResp [label=OpenTempSessionResp]
+	BLYCrashUncaughtExceptionHandler [label=BLYCrashUncaughtExceptionHandler]
+	TGInvoiceHistoryCell [label=TGInvoiceHistoryCell]
+	BLYSDKManager [label=BLYSDKManager]
+	BLYSDKManager -> BLYRqdStrategy
+	BLYSDKManager -> BLYRqdSecurity
+	BLYSDKManager -> BLYMartianTracker
+	BLYSDKManager -> BLYEnvironmentInfo
+	BLYSDKManager -> BLYModule
+	BLYSDKManager -> BLYCrashUserException
+	BLYSDKManager -> BLYConstants
+	DZNEmptyDataSetView [label=DZNEmptyDataSetView]
+	EXOCRLPRRecoManager [label=EXOCRLPRRecoManager]
+	MADataCache [label=MADataCache]
+	MADataCache -> MADiskCache
+	MADataCache -> MAMemoryCache
+	AMapLocationRequest [label=AMapLocationRequest]
+	TDATEvoCryptoUtil [label=TDATEvoCryptoUtil]
+	TDATEvoCryptoUtil -> TDATConsole
+	MATracePoint [label=MATracePoint]
+	GTXBaseLogger [label=GTXBaseLogger]
+	GTXBaseLogger -> GTXBaseLogEvent
+	GTXBaseLogger -> GTXCaptureTool
+	AMapLocationUserDefault [label=AMapLocationUserDefault]
+	ASSSecurityManager [label=ASSSecurityManager]
+	ASSSecurityManager -> ASSStaticInfoCollector
+	ASSSecurityManager -> ASSCommonUtils
+	ASSSecurityManager -> ASSSecurityGTMBase64
+	ASSSecurityManager -> ASSPhotoInfoCollector
+	ASSSecurityManager -> ASSApplistModel
+	ASSSecurityManager -> ASSStorageModel
+	ASSSecurityManager -> ASSLogger
+	ASSSecurityManager -> ASSLogUpdater
+	ASSSecurityManager -> ASSInputArgument
+	ASSSecurityManager -> ASSTokenResult
+	ASSSecurityManager -> ASSUmidTokenCollector
+	AboutTOGOViewController [label=AboutTOGOViewController]
+	TGCoverView [label=TGCoverView]
+	TDAACrypto [label=TDAACrypto]
+	AppRegisterInfo [label=AppRegisterInfo]
+	AidManager [label=AidManager]
+	AidManager -> AidManager
+	AidManager -> UTDIDStringUtils
+	AliSecXSafeUtils [label=AliSecXSafeUtils]
+	WXAuthInternal [label=WXAuthInternal]
+	WXMiniProgramObject [label=WXMiniProgramObject]
+	WXMiniProgramObject -> WXMiniProgramObject
+	AVViewController [label=AVViewController]
+	AMapAnalyticsManager [label=AMapAnalyticsManager]
+	AMapAnalyticsManager -> AMapFoundationComponent
+	MJRefreshAutoNormalFooter [label=MJRefreshAutoNormalFooter]
+	TDAASystemCPU [label=TDAASystemCPU]
+	MAGroundOverlay [label=MAGroundOverlay]
+	DTMD5Util [label=DTMD5Util]
+	MAGroundOverlayRenderer [label=MAGroundOverlayRenderer]
+	BLYMartianTracker [label=BLYMartianTracker]
+	BLYMartianTracker -> BLYMartianTracker
+	BLYMartianTracker -> BLYEnvironmentInfo
+	TDATDCLConfig [label=TDATDCLConfig]
+	GtGbdManager [label=GtGbdManager]
+	GtGbdManager -> GtGbdWifiClient
+	GtGbdManager -> GtGbdReachability
+	GtGbdManager -> GtGbdMemoryVariables
+	TGCommitIDCardInfoSuccess [label=TGCommitIDCardInfoSuccess]
+	DTRpcClient [label=DTRpcClient]
+	DTRpcClient -> DTRpcException
+	MAViewRecycler [label=MAViewRecycler]
+	RACDelegateProxy [label=RACDelegateProxy]
+	AMapLocationUploadManager [label=AMapLocationUploadManager]
+	AMapLocationUploadManager -> AMapLocationComponent
+	AMapLocationUploadManager -> AMapAnalyticsRequestReformer
+	AMapLocationUploadManager -> AMapFoundationServiceProvider
+	AMapLocationUploadManager -> AMapFoundationReachability
+	BLYEnvironmentInfo [label=BLYEnvironmentInfo]
+	TDATSafeDictionary [label=TDATSafeDictionary]
+	ASSStorageModel [label=ASSStorageModel]
+	ASSStorageModel -> ASSStorageModel
+	ASSStorageModel -> ASSCommonUtils
+	ASSStorageModel -> ASSSecurityGTMBase64
+	AMapSMCalloutMaskedBackgroundView [label=AMapSMCalloutMaskedBackgroundView]
+	RACMulticastConnection [label=RACMulticastConnection]
+	RACMulticastConnection -> RACSerialDisposable
+	BLYASLLogger [label=BLYASLLogger]
+	KSCrashReportFilterObjectForKey [label=KSCrashReportFilterObjectForKey]
+	HBResp [label=HBResp]
+	OrderFinishViewController [label=OrderFinishViewController]
+	OrderFinishViewController -> TGAfterFeedbackVC
+	OrderFinishViewController -> TGButton
+	OrderFinishViewController -> TGUploadGridImageView
+	GTXLoggerConfigurator [label=GTXLoggerConfigurator]
+	GTPDnsInfo [label=GTPDnsInfo]
+	AMapWeatherRequestReformer [label=AMapWeatherRequestReformer]
+	AMapWeatherRequestReformer -> AMapSearchServiceProvider
+	AFXMLParserResponseSerializer [label=AFXMLParserResponseSerializer]
+	GtGbdNetworkCalculator [label=GtGbdNetworkCalculator]
+	TGQrCodeView [label=TGQrCodeView]
+	TGQrCodeView -> TGQrCodeView
+	TGCancleOrderResonViewController [label=TGCancleOrderResonViewController]
+	BLYDevice [label=BLYDevice]
+	TDAACGRectToNSDictionaryValueTransformer [label=TDAACGRectToNSDictionaryValueTransformer]
+	JPUSHUdpPacket [label=JPUSHUdpPacket]
+	TDAAUIFontToNSDictionaryValueTransformer [label=TDAAUIFontToNSDictionaryValueTransformer]
+	JPUSHHeartbeatRequest [label=JPUSHHeartbeatRequest]
+	GTXBaseFileManager [label=GTXBaseFileManager]
+	BLYExtensionLogic [label=BLYExtensionLogic]
+	KSCrashMailProcess [label=KSCrashMailProcess]
+	GTXCryptor [label=GTXCryptor]
+	JPUSHCaughtExceptionHandlerController [label=JPUSHCaughtExceptionHandlerController]
+	AlipaySDK [label=AlipaySDK]
+	WXOMTAAccountEvent [label=WXOMTAAccountEvent]
+	JoinChatRoomResp [label=JoinChatRoomResp]
+	SDWebImageImageIOCoder [label=SDWebImageImageIOCoder]
+	SDWebImageImageIOCoder -> SDWebImageCoderHelper
+	MAMapStatus [label=MAMapStatus]
+	GtGbdIpAddress [label=GtGbdIpAddress]
+	GtGbdIpAddress -> GtGbdKeyInfoTable
+	GtGbdIpAddress -> GtGbdDeviceInfo
+	JPUSHFIFOQueue [label=JPUSHFIFOQueue]
+	OrderDetialModel [label=OrderDetialModel]
+	JPUSHMessageDispatchController [label=JPUSHMessageDispatchController]
+	JPUSHMessageDispatchController -> JPUSHMessageReceipt
+	TGlllegaCompleteViewController [label=TGlllegaCompleteViewController]
+	TGlllegaCompleteViewController -> TGIllegalModel
+	TDAAEventBindingCollection [label=TDAAEventBindingCollection]
+	TGPunishBrandVC [label=TGPunishBrandVC]
+	TGPunishBrandVC -> TGPageBackgroundView
+	TGPunishBrandVC -> TGPunishBrandCell
+	KSCrashReportSinkEMail [label=KSCrashReportSinkEMail]
+	KSCrashReportSinkEMail -> KSCrashReportFilterStringToData
+	KSCrashReportSinkEMail -> KSCrashReportFilterPipeline
+	KSCrashReportSinkEMail -> KSCrashReportFilterGZipCompress
+	TSCENTERDeviceDataReportResult [label=TSCENTERDeviceDataReportResult]
+	TGIllegalPayViewController [label=TGIllegalPayViewController]
+	TGIllegalPayViewController -> TGPayUtilityClass
+	TGIllegalPayViewController -> PayReq
+	MAUserLocation [label=MAUserLocation]
+	TGPayUtilityClass [label=TGPayUtilityClass]
+	TGPayUtilityClass -> TGPayUtilityClass
+	TGPayUtilityClass -> PayReq
+	TGHomeViewController [label=TGHomeViewController]
+	TGHomeViewController -> TGRadarScanAnnotationView
+	TGHomeViewController -> MAPolyline
+	TGHomeViewController -> MAPointAnnotation
+	TGHomeViewController -> TGPersonView
+	TGHomeViewController -> AboutTOGOViewController
+	TGHomeViewController -> TGButton
+	TGHomeViewController -> SendDataInterface
+	TGHomeViewController -> TGCarParkingModel
+	TGHomeViewController -> MACircleRenderer
+	TGHomeViewController -> MAPolygon
+	TGHomeViewController -> TGServiceView
+	TGHomeViewController -> TGAfterFeedbackVC
+	TGHomeViewController -> TGUploadGridImageView
+	TGHomeViewController -> TGCenterPointAnnotation
+	TGHomeViewController -> TGCheckVersion
+	TGHomeViewController -> TGLocationButton
+	TGHomeViewController -> TGParkAnnotationView
+	TGHomeViewController -> MAUserLocation
+	TGHomeViewController -> TGPushHandleObject
+	TGHomeViewController -> TGRoutePolylineRenderer
+	TGHomeViewController -> TGAMAPSearchManager
+	TGHomeViewController -> AMapWalkingRouteSearchRequest
+	TGHomeViewController -> AMapGeoPoint
+	TGHomeViewController -> TGNOParkingAnnotation
+	TGHomeViewController -> TGPolygon
+	TGHomeViewController -> TGMyLocationAnnotation
+	TGHomeViewController -> TGCircle
+	TGHomeViewController -> TGCityAnnotation
+	BLYJceInputStreamV2 [label=BLYJceInputStreamV2]
+	BLYJceInputStreamV2 -> BLYJceObject
+	BLYJceInputStreamV2 -> BLYJCEPair
+	TDATSDKManager [label=TDATSDKManager]
+	TDATSDKManager -> TDATDCLConfig
+	TDATSDKManager -> TDATExceptionCatch
+	TDATSDKManager -> TDATAction
+	TDATSDKManager -> TDATQueueManager
+	TDATSDKManager -> TDATConsole
+	GXLogin_Object [label=GXLogin_Object]
+	TDAACodeless [label=TDAACodeless]
+	TDAACodeless -> TDAAConsole
+	APAutoRotateView [label=APAutoRotateView]
+	TGRadarScanAnnotationView [label=TGRadarScanAnnotationView]
+	TGOpenDoorRightButton [label=TGOpenDoorRightButton]
+	MASLayoutConstraint [label=MASLayoutConstraint]
+	Amapbase_TIMER [label=Amapbase_TIMER]
+	AMapLocationPOIAroundRequestReformer [label=AMapLocationPOIAroundRequestReformer]
+	AMapLocationPOIAroundRequestReformer -> AMapLocationServiceProvider
+	JCORESDKControlResponse [label=JCORESDKControlResponse]
+	TGCustomCameraVC [label=TGCustomCameraVC]
+	DRPhoto [label=DRPhoto]
+	DRPhoto -> DRCardConfig
+	MAWorldMapTileOverlayRequestReformer [label=MAWorldMapTileOverlayRequestReformer]
+	MAWorldMapTileOverlayRequestReformer -> MAServiceProvider
+	AMapNetworkStackManager [label=AMapNetworkStackManager]
+	GXActionPoint [label=GXActionPoint]
+	GXActionPoint -> GXActionPoint
+	BLYSummaryInfo [label=BLYSummaryInfo]
+	BLYSummaryInfo -> BLYSummaryInfo
+	MAOfflineItem [label=MAOfflineItem]
+	ASSLogger [label=ASSLogger]
+	ASSLogger -> ASSCommonUtils
+	ASSLogger -> ASSSecurityGTMBase64
+	ASSLogger -> ASSLogUpdater
+	JCOREClientController [label=JCOREClientController]
+	JCOREClientController -> JPUSHASLLogger
+	JCOREClientController -> JPUSHThread
+	JCOREClientController -> JPUSHPageFlowSession
+	JCOREClientController -> JPUSHThreadController
+	JCOREClientController -> JCORESDKVersionRequest
+	CreateChatRoomReq [label=CreateChatRoomReq]
+	AMapDrivingRouteSearchRequest [label=AMapDrivingRouteSearchRequest]
+	AMapDrivingRouteSearchRequest -> AMapGeoPoint
+	BLYMainRunloopMonitorManager [label=BLYMainRunloopMonitorManager]
+	BLYMainRunloopMonitorManager -> BLYAppInfo
+	TDAABaseStation [label=TDAABaseStation]
+	MATileOverlayRenderer [label=MATileOverlayRenderer]
+	MATileOverlayRenderer -> MATileDownloadItem
+	MATileOverlayRenderer -> MATileRenderObj
+	MATileOverlayRenderer -> MATileObj
+	BLYBinaryImage [label=BLYBinaryImage]
+	AMapReGeocode [label=AMapReGeocode]
+	AMapReGeocode -> AMapRoadInter
+	AMapReGeocode -> AMapGeoPoint
+	AMapReGeocode -> AMapAOI
+	AMapReGeocode -> AMapRoad
+	MATileOverlay [label=MATileOverlay]
+	MATileOverlay -> AMapNetworkStackManager
+	MATileOverlay -> MATileRenderObj
+	BPushNetworkInfoData [label=BPushNetworkInfoData]
+	TGLookImageView [label=TGLookImageView]
+	TDAACloudControl [label=TDAACloudControl]
+	TDAACloudControl -> TDAAUniqueIdentifier
+	TDAACloudControl -> TDAACrypto
+	TDAACloudControl -> TDAAQueueManager
+	TDAACloudControl -> TDAAConsole
+	JPUSHLogFileFormatterDefault [label=JPUSHLogFileFormatterDefault]
+	TDATExceptionCatch [label=TDATExceptionCatch]
+	KSCrashReportFilterConcatenate [label=KSCrashReportFilterConcatenate]
+	AMapWalkingRouteRequestReformer [label=AMapWalkingRouteRequestReformer]
+	AMapWalkingRouteRequestReformer -> AMapSearchServiceProvider
+	IDCameraController [label=IDCameraController]
+	IDCameraController -> EXOCRIDCardInfo
+	TDAASafeDictionary [label=TDAASafeDictionary]
+	AMapAOI [label=AMapAOI]
+	AMapAOI -> AMapGeoPoint
+	WXOMTAStoreEvent [label=WXOMTAStoreEvent]
+	GTXGzipTool [label=GTXGzipTool]
+	RACSequenceEnumerator [label=RACSequenceEnumerator]
+	DRCardConfig [label=DRCardConfig]
+	TGRadarView [label=TGRadarView]
+	TGRadarView -> TGButton
+	MAOfflineItemMunicipality [label=MAOfflineItemMunicipality]
+	JPUSHAliasResponse [label=JPUSHAliasResponse]
+	JPUSHReceipt [label=JPUSHReceipt]
+	TGExpanInfoViewLeft [label=TGExpanInfoViewLeft]
+	JPUSHTTYLogger [label=JPUSHTTYLogger]
+	AFHTTPRequestSerializer [label=AFHTTPRequestSerializer]
+	BLYAbstractModule [label=BLYAbstractModule]
+	TDAAFeatureExtractor [label=TDAAFeatureExtractor]
+	TDAAFeatureExtractor -> TDAAConsole
+	HttpManager [label=HttpManager]
+	HttpManager -> AFHTTPSessionManager
+	GtkmSdkUser [label=GtkmSdkUser]
+	GtkmSdkUser -> GtkDBColumnDes
+	CardConfig [label=CardConfig]
+	IQPreviousNextView [label=IQPreviousNextView]
+	IQToolbar [label=IQToolbar]
+	TGCommonButton [label=TGCommonButton]
+	MAAnimationTaskManager [label=MAAnimationTaskManager]
+	MAAnimationTaskManager -> MAAnimationParameter
+	TDAADesignerConnection [label=TDAADesignerConnection]
+	TDAADesignerConnection -> TDAADesignerEventBindingRequestMesssage
+	TDAADesignerConnection -> TDAAConsole
+	MATileDownloadItem [label=MATileDownloadItem]
+	TDAAObjectSelector [label=TDAAObjectSelector]
+	TDAAObjectSelector -> TDAAObjectFilter
+	AliSecXSSKeychainQuery [label=AliSecXSSKeychainQuery]
+	MMApiRegister [label=MMApiRegister]
+	MMApiRegister -> MMApiRegister
+	MMApiRegister -> MTAWX
+	TGMoneyPacketView [label=TGMoneyPacketView]
+	GXMessage_Object [label=GXMessage_Object]
+	GXMessage_Object -> GXMessage_Object
+	AMapLocationUploadUtility [label=AMapLocationUploadUtility]
+	AMapManifest [label=AMapManifest]
+	AMapManifest -> AMapManifestRequestReformer
+	AMapManifest -> AMapFoundationServiceProvider
+	TDATFormatter [label=TDATFormatter]
+	TDATFormatter -> TDATConsole
+	TGPushHandleObject [label=TGPushHandleObject]
+	TGPushHandleObject -> TGPushHandleObject
+	AMapNearbyClearReformer [label=AMapNearbyClearReformer]
+	AMapNearbyClearReformer -> AMapSearchServiceProvider
+	TDATLocationManager [label=TDATLocationManager]
+	JPUSHDeviceTokenReportResponse [label=JPUSHDeviceTokenReportResponse]
+	TDAADataManager [label=TDAADataManager]
+	TDAADataManager -> TDAACrypto
+	TDAADataManager -> TDAAAccountManager
+	TDAADataManager -> TDAAExceptionCatch
+	ASSCommonUtils [label=ASSCommonUtils]
+	ASSCommonUtils -> ASSSecurityGTMBase64
+	SAMKeychain [label=SAMKeychain]
+	BLYJceObject [label=BLYJceObject]
+	SDWebImageCoderHelper [label=SDWebImageCoderHelper]
+	RACDynamicSignal [label=RACDynamicSignal]
+	RACDynamicSignal -> RACDynamicSignal
+	RACDynamicSignal -> RACCompoundDisposable
+	RACDynamicSignal -> RACPassthroughSubscriber
+	KSCrashInstallationEmail [label=KSCrashInstallationEmail]
+	SDWebImageGIFCoder [label=SDWebImageGIFCoder]
+	SDWebImageGIFCoder -> SDWebImageCoderHelper
+	SDWebImageGIFCoder -> SDWebImageFrame
+	AMapURLGetAMapAPPComponent [label=AMapURLGetAMapAPPComponent]
+	AMapSearchComponent [label=AMapSearchComponent]
+	AMapSearchComponent -> AMapSearchCategoryLoader
+	TDAADesignerDeviceInfoRequestMessage [label=TDAADesignerDeviceInfoRequestMessage]
+	WXOMTADataConfig [label=WXOMTADataConfig]
+	AMapServices [label=AMapServices]
+	AMapServices -> AMapInitRequestReformer
+	AMapServices -> AMapFoundationServiceProvider
+	AMapServices -> AMapFoundationComponent
+	AMapServices -> AMapFoundationCategoryLoader
+	AMapServices -> AMapAuthRequestReformer
+	AMapServices -> AMapFoundationReachability
+	JPUSHReceivedPacketController [label=JPUSHReceivedPacketController]
+	JPUSHReceivedPacketController -> JPUSHDeviceTokenReportResponse
+	JPUSHReceivedPacketController -> JCORESDKControlResponse
+	JPUSHReceivedPacketController -> JPUSHIDFAReportResponse
+	JPUSHReceivedPacketController -> JPUSHLoginResponse
+	JPUSHReceivedPacketController -> JPUSHIMDispatchController
+	JPUSHReceivedPacketController -> JPUSHAck
+	JPUSHReceivedPacketController -> JPUSHRegistrationResponse
+	BaiduMobStatTraceHelper [label=BaiduMobStatTraceHelper]
+	WXOMTAHelper [label=WXOMTAHelper]
+	WXOMTAHelper -> WXOMTAEnv
+	APJSONRequestOperation [label=APJSONRequestOperation]
+	GTXUploadLogFileOperation [label=GTXUploadLogFileOperation]
+	GTXUploadLogFileOperation -> GTXDeviceID
+	GTXConfiguratorBuilder [label=GTXConfiguratorBuilder]
+	GTXConfiguratorBuilder -> GTXLoggerConfigurator
+	BPushReachability [label=BPushReachability]
+	MATraceRequest [label=MATraceRequest]
+	MATraceRequest -> MATraceUtils
+	MATraceRequest -> MATraceComponent
+	MATraceRequest -> MAServiceProvider
+	GtGbdKeyInfoTable [label=GtGbdKeyInfoTable]
+	SoundObject [label=SoundObject]
+	TDAAHuamnActivity [label=TDAAHuamnActivity]
+	TGScrollView [label=TGScrollView]
+	TGOrderDetialView [label=TGOrderDetialView]
+	BaiduMtjCUIDUtility [label=BaiduMtjCUIDUtility]
+	AMapRequestReformer [label=AMapRequestReformer]
+	AMapRequestReformer -> AMapWeatherRequestReformer
+	AMapRequestReformer -> AMapSearchServiceProvider
+	AMapRequestReformer -> AMapWalkingRouteRequestReformer
+	AMapRequestReformer -> AMapNearbyClearReformer
+	AMapRequestReformer -> AMapGeocodeRequestReformer
+	AMapRequestReformer -> AMapBusLineIDRequestReformer
+	AMapRequestReformer -> AMapBusLineNameRequestReformer
+	JPUSHReportCacheController [label=JPUSHReportCacheController]
+	TDATSystemCPU [label=TDATSystemCPU]
+	SelectedCityPickerView [label=SelectedCityPickerView]
+	SelectedCityPickerView -> Province
+	JPUSHTTYLoggerColorProfile [label=JPUSHTTYLoggerColorProfile]
+	TGLoadingView [label=TGLoadingView]
+	TGIllegalModel [label=TGIllegalModel]
+	PayResp [label=PayResp]
+	TimeSelView [label=TimeSelView]
+	MJRefreshHeader [label=MJRefreshHeader]
+	JPUSHFileData [label=JPUSHFileData]
+	JPUSHFileData -> JPUSHFileDataBody
+	GtGbdLbsClient [label=GtGbdLbsClient]
+	AMapPOIShareSearchRequest [label=AMapPOIShareSearchRequest]
+	GtkDbStore [label=GtkDbStore]
+	GtkDbStore -> GtSdkDataUtils
+	GtkDbStore -> GtkmMessage
+	GtkDbStore -> GtkDBColumnDes
+	GtkDbStore -> GtkmSdkUser
+	GtkDbStore -> GtkmReportcache
+	GtkDbStore -> GtkDBSqlState
+	KSJSONCodec [label=KSJSONCodec]
+	MAScaleUnitsView [label=MAScaleUnitsView]
+	MACommonTool [label=MACommonTool]
+	MACommonTool -> MAPolygon
+	PhoneModifyViewController [label=PhoneModifyViewController]
+	TGRefreshAutoFooter [label=TGRefreshAutoFooter]
+	AboutViewController [label=AboutViewController]
+	AMapCloudPOISearchResponse [label=AMapCloudPOISearchResponse]
+	MABaseMapRequestReformer [label=MABaseMapRequestReformer]
+	MABaseMapRequestReformer -> MAServiceProvider
+	AMapLocationUtility [label=AMapLocationUtility]
+	AMapLocationUtility -> AMapLocationUploadResponse
+	AMapLocationUtility -> AMapLocationReGeocode
+	AMapLocationUtility -> AMapLocationComponent
+	TDAADesignerEventBindingRequestMesssage [label=TDAADesignerEventBindingRequestMesssage]
+	LSConsoleWindow [label=LSConsoleWindow]
+	MAMapRequestLogger [label=MAMapRequestLogger]
+	MAMapRequestLogger -> MAMapRequestLoggerItem
+	JPUSHFileDataBody [label=JPUSHFileDataBody]
+	JPUSHFileDataBody -> JPUSHFileDataBody
+	DTJsonDecoder [label=DTJsonDecoder]
+	DTJsonDecoder -> DTJsonHelper
+	TDATLocation [label=TDATLocation]
+	LineDashPolyline [label=LineDashPolyline]
+	MapStatus [label=MapStatus]
+	TDAACGAffineTransformToNSDictionaryValueTransformer [label=TDAACGAffineTransformToNSDictionaryValueTransformer]
+	JSONAPIRPCErrorModel [label=JSONAPIRPCErrorModel]
+	TGCityModel [label=TGCityModel]
+	RACQueueScheduler [label=RACQueueScheduler]
+	TGResponse [label=TGResponse]
+	TDAAUtility [label=TDAAUtility]
+	TDAAUtility -> TDAAUniqueIdentifier
+	TDAAUtility -> TDAACrypto
+	TDAAUtility -> TDAAReachability
+	TDAAUtility -> TDAAConsole
+	MyWalletCell [label=MyWalletCell]
+	PoiModel [label=PoiModel]
+	PoiModel -> PoiModel
+	AFRefreshControlNotificationObserver [label=AFRefreshControlNotificationObserver]
+	TDATWifiAP [label=TDATWifiAP]
+	AFPropertyListResponseSerializer [label=AFPropertyListResponseSerializer]
+	MBProgressHUD [label=MBProgressHUD]
+	WXMediaInternalMessage [label=WXMediaInternalMessage]
+	WXMediaInternalMessage -> WXMediaInternalMessage
+	GXGotoAction [label=GXGotoAction]
+	EditSignatureViewController [label=EditSignatureViewController]
+	AMapTrafficEvaluation [label=AMapTrafficEvaluation]
+	UseCarRecordViewController [label=UseCarRecordViewController]
+	UseCarRecordViewController -> MJRefreshNormalHeader
+	UseCarRecordViewController -> TGRefreshAutoFooter
+	UseCarRecordViewController -> TGPayModel
+	CardMainPhoto [label=CardMainPhoto]
+	TDATWifiListManager [label=TDATWifiListManager]
+	TDATWifiListManager -> TDATQueueManager
+	TDAACGColorRefToNSStringValueTransformer [label=TDAACGColorRefToNSStringValueTransformer]
+	AMapRoutePOISearchRequest [label=AMapRoutePOISearchRequest]
+	AMapRoutePOISearchRequest -> AMapGeoPoint
+	TDAAReachability [label=TDAAReachability]
+	LSConsoleCell [label=LSConsoleCell]
+	MATraceLocation [label=MATraceLocation]
+	JPUSHLogFileManagerDefault [label=JPUSHLogFileManagerDefault]
+	AliSecXCryptoGTMBase64 [label=AliSecXCryptoGTMBase64]
+	ASSStorageAccesser [label=ASSStorageAccesser]
+	ASSStorageAccesser -> ASSStorageModel
+	ASSStorageAccesser -> ASSCommonUtils
+	ASSStorageAccesser -> ASSSecurityGTMBase64
+	specialCell [label=specialCell]
+	JPUSHVersionTwoFileParser [label=JPUSHVersionTwoFileParser]
+	JPUSHRegisterEntity [label=JPUSHRegisterEntity]
+	GtGbdCacheManager [label=GtGbdCacheManager]
+	GtGbdCacheManager -> GtGbdDbManager
+	GtGbdCacheManager -> GtGbdHttpNetWork
+	AFMultipartBodyStream [label=AFMultipartBodyStream]
+	AMapURLNaviSearchComponent [label=AMapURLNaviSearchComponent]
+	JCORESDKControlRequest [label=JCORESDKControlRequest]
+	TGPopTool [label=TGPopTool]
+	AMapRouteSearchResponse [label=AMapRouteSearchResponse]
+	AMapGeoFenceDistrictRegion [label=AMapGeoFenceDistrictRegion]
+	TGDepQuestionViewController [label=TGDepQuestionViewController]
+	TGDepQuestionViewController -> ApplyWithDrawViewController
+	AlertTool [label=AlertTool]
+	WXChooseInvoiceResp [label=WXChooseInvoiceResp]
+	APH5Toolbar [label=APH5Toolbar]
+	UTDIDMain [label=UTDIDMain]
+	UTDIDMain -> UTDIDBaseUtils
+	UTDIDMain -> UTDIDTypeConvert
+	UTDIDMain -> UTDIDStringUtils
+	TGCityWelcomeView [label=TGCityWelcomeView]
+	TGIllegalCell [label=TGIllegalCell]
+	WXAppExtendObject [label=WXAppExtendObject]
+	WXAppExtendObject -> WXAppExtendObject
+	TGPunishBrandCell [label=TGPunishBrandCell]
+	MATraceResponse [label=MATraceResponse]
+	UIToast [label=UIToast]
+	TDAAPropertySelectorParameterDescription [label=TDAAPropertySelectorParameterDescription]
+	TDATAction [label=TDATAction]
+	LprMainCardViewController [label=LprMainCardViewController]
+	AMapLocationSingleComponent [label=AMapLocationSingleComponent]
+	GtSdkTimerManager [label=GtSdkTimerManager]
+	GtSdkTimerManager -> GtSdkTimerManager
+	GtSdkTimerManager -> TargetInfo
+	MyWalletViewController [label=MyWalletViewController]
+	MyWalletViewController -> UILoading
+	MyWalletViewController -> ExchDiscoCodeViewController
+	GtGbdT36Task [label=GtGbdT36Task]
+	GtGbdT36Task -> GtGbdMemoryVariables
+	JPUSHMessageReceipt [label=JPUSHMessageReceipt]
+	WXSubscribeMsgResp [label=WXSubscribeMsgResp]
+	APH5ProgressView [label=APH5ProgressView]
+	AFSecurityPolicy [label=AFSecurityPolicy]
+	SendMessageToWXResp [label=SendMessageToWXResp]
+	AMapGeocodeRequestReformer [label=AMapGeocodeRequestReformer]
+	AMapGeocodeRequestReformer -> AMapSearchServiceProvider
+	MACoreDataGridList [label=MACoreDataGridList]
+	AMapNearbySearchRequestReformer [label=AMapNearbySearchRequestReformer]
+	AMapNearbySearchRequestReformer -> AMapSearchServiceProvider
+	KSCrashReportFilterJSONEncode [label=KSCrashReportFilterJSONEncode]
+	KSCrashReportFilterJSONEncode -> KSJSONCodec
+	AMapTransitRouteRequestReformer [label=AMapTransitRouteRequestReformer]
+	AMapTransitRouteRequestReformer -> AMapSearchServiceProvider
+	TGRoutePolylineRenderer [label=TGRoutePolylineRenderer]
+	KSCrashReportSinkConsole [label=KSCrashReportSinkConsole]
+	KSCrashReportSinkConsole -> KSCrashReportFilterPipeline
+	GTXMsgLayout [label=GTXMsgLayout]
+	GTXMsgLayout -> GTXMsgLayout
+	AMapLocationUploadSwitchRequest [label=AMapLocationUploadSwitchRequest]
+	KSCrashInstReportField [label=KSCrashInstReportField]
+	KSCrashInstReportField -> KSJSONCodec
+	KSCrashInstReportField -> KSCString
+	TDAAAppProfile [label=TDAAAppProfile]
+	MAMapLocationManagerBinding [label=MAMapLocationManagerBinding]
+	TDATDeviceProfile [label=TDATDeviceProfile]
+	UTDIDPersistentFile [label=UTDIDPersistentFile]
+	UTDIDPersistentFile -> UTDIDPersistentFile
+	UTDIDPersistentFile -> UTDIDStringUtils
+	MATileRenderObj [label=MATileRenderObj]
+	JumpToBizWebviewReq [label=JumpToBizWebviewReq]
+	EXOCRDRCardRecoManager [label=EXOCRDRCardRecoManager]
+	EXOCRDRCardRecoManager -> DRPhoto
+	EXOCRDRCardRecoManager -> DRCardConfig
+	TDAASystemMemory [label=TDAASystemMemory]
+	OpenWebviewReq [label=OpenWebviewReq]
+	TGAMAPSearchManager [label=TGAMAPSearchManager]
+	TGAMAPSearchManager -> AMapWalkingRouteSearchRequest
+	TGAMAPSearchManager -> AMapGeoPoint
+	HBReq [label=HBReq]
+	BPushSettingManager [label=BPushSettingManager]
+	UseGuideViewController [label=UseGuideViewController]
+	KSCrashDoctorFunctionCall [label=KSCrashDoctorFunctionCall]
+	BLYLoggerInfo [label=BLYLoggerInfo]
+	BLYLoggerInfo -> BLYLoggerInfo
+	GtGbdT27Task [label=GtGbdT27Task]
+	GtGbdT27Task -> GtGbdMemoryVariables
+	JSONModel [label=JSONModel]
+	JSONModel -> JSONModelClassProperty
+	BLYRequestPkg [label=BLYRequestPkg]
+	BLYRequestPkg -> BLYRequestPkg
+	TGIllegaDetainViewController [label=TGIllegaDetainViewController]
+	TGIllegaDetainViewController -> TGPayUtilityClass
+	TGIllegaDetainViewController -> PayReq
+	LSConsoleListViewController [label=LSConsoleListViewController]
+	LSConsoleListViewController -> LSConsole
+	BPushBaseRequest [label=BPushBaseRequest]
+	LPRFrameView [label=LPRFrameView]
+	AccountSetViewController [label=AccountSetViewController]
+	TDAAAppContext [label=TDAAAppContext]
+	DRCameraController [label=DRCameraController]
+	DRCameraController -> DRCardConfig
+	AMapResponseBuilder [label=AMapResponseBuilder]
+	AMapResponseBuilder -> AMapReGeocodeSearchResponse
+	AMapRouteConfig [label=AMapRouteConfig]
+	GTXBaseLogEvent [label=GTXBaseLogEvent]
+	GTXBaseLogEvent -> GTXBaseLogEvent
+	AMapResourceReader [label=AMapResourceReader]
+	LaunchFromWXReq [label=LaunchFromWXReq]
+	TGVipCenterViewController [label=TGVipCenterViewController]
+	TGVipCenterViewController -> TGVipLevelModel
+	BuglyConfig [label=BuglyConfig]
+	AMapRailwayStation [label=AMapRailwayStation]
+	AMapRailwayStation -> AMapGeoPoint
+	AMapLocationUploadSwitchRequestReformer [label=AMapLocationUploadSwitchRequestReformer]
+	AMapRoad [label=AMapRoad]
+	AMapRoad -> AMapGeoPoint
+	KSCrashReportFilterDataToString [label=KSCrashReportFilterDataToString]
+	KSCrashInstallationStandard [label=KSCrashInstallationStandard]
+	KSCrashInstallationStandard -> KSCrashReportFilterPipeline
+	EXOCRCardEngineManager [label=EXOCRCardEngineManager]
+	EXOCRCardEngineManager -> CardConfig
+	GtSdkContent [label=GtSdkContent]
+	TDAAShake [label=TDAAShake]
+	CardMainCardViewController [label=CardMainCardViewController]
+	LSSoundId [label=LSSoundId]
+	RACChannel [label=RACChannel]
+	RACChannel -> RACChannelTerminal
+	GtkDatabaseQueue [label=GtkDatabaseQueue]
+	KSCrashReportFilterPipeline [label=KSCrashReportFilterPipeline]
+	MAMultiPointOverlay [label=MAMultiPointOverlay]
+	MAMultiPointOverlay -> MAQuadTree2
+	MAAnimationParameter [label=MAAnimationParameter]
+	BPushStatisticsManager [label=BPushStatisticsManager]
+	BPushStatisticsManager -> BPushStatisticsManager
+	MATileOverlayRequestReformer [label=MATileOverlayRequestReformer]
+	TDATCrypto [label=TDATCrypto]
+	BLYRqdSecurity [label=BLYRqdSecurity]
+	BLYRqdSecurity -> BLYRqdSecurity
+	WXApiRequestHandler [label=WXApiRequestHandler]
+	WXApiRequestHandler -> SendMessageToWXReq
+	WXApiRequestHandler -> WXAppExtendObject
+	WXApiRequestHandler -> OpenWebviewReq
+	WXApiRequestHandler -> JumpToBizProfileReq
+	WXApiRequestHandler -> JumpToBizWebviewReq
+	WXApiRequestHandler -> WXVideoObject
+	WXApiRequestHandler -> SendAuthReq
+	WXApiRequestHandler -> WXCardItem
+	WXApiRequestHandler -> WXChooseInvoiceReq
+	WXApiRequestHandler -> WXFileObject
+	WXApiRequestHandler -> WXWebpageObject
+	WXApiRequestHandler -> WXMiniProgramObject
+	WXApiRequestHandler -> WXImageObject
+	WXApiRequestHandler -> WXMediaMessage
+	WXApiRequestHandler -> AddCardToWXCardPackageReq
+	WXApiRequestHandler -> WXMusicObject
+	WXApiRequestHandler -> WXEmoticonObject
+	WXApiRequestHandler -> WXChooseCardReq
+	TGFeedbackViewController [label=TGFeedbackViewController]
+	GTXSecurityUtils [label=GTXSecurityUtils]
+	TGUploadImageView [label=TGUploadImageView]
+	LprMainCameraController [label=LprMainCameraController]
+	AMapWeatherSearchRequest [label=AMapWeatherSearchRequest]
+	JPUSHTagAlias [label=JPUSHTagAlias]
+	JPUSHTagAlias -> JPUSHTagAliasValidation
+	JPUSHTagAlias -> JCOREInterface
+	DTJsonHelper [label=DTJsonHelper]
+	LPRCameraViewController [label=LPRCameraViewController]
+	WechatAuthSDK [label=WechatAuthSDK]
+	TDAARoleProfile [label=TDAARoleProfile]
+	TDAARoleProfile -> TDAARoleProfile
+	MAHeatMapNode [label=MAHeatMapNode]
+	JPUSHUserDeviceReportResponse [label=JPUSHUserDeviceReportResponse]
+	TGPraiseView [label=TGPraiseView]
+	TDAAUIImageToNSDictionaryValueTransformer [label=TDAAUIImageToNSDictionaryValueTransformer]
+	TGPublicPayView [label=TGPublicPayView]
+	TGButton [label=TGButton]
+	CouponViewController [label=CouponViewController]
+	CouponViewController -> TGCoupon
+	TDAAEventAccount [label=TDAAEventAccount]
+	TDAAEventAccount -> TDAAQueueManager
+	MJFoundation [label=MJFoundation]
+	TDAASendTDID [label=TDAASendTDID]
+	AMapWalking [label=AMapWalking]
+	AMapWalking -> AMapGeoPoint
+	KSCrashAlertViewProcess [label=KSCrashAlertViewProcess]
+	TDAANSAttributedStringToNSDictionaryValueTransformer [label=TDAANSAttributedStringToNSDictionaryValueTransformer]
+	TDAANSAttributedStringToNSDictionaryValueTransformer -> TDAAConsole
+	GXDataManager [label=GXDataManager]
+	GXDataManager -> GtSdkDataUtils
+	AMapBusLineNameSearchRequest [label=AMapBusLineNameSearchRequest]
+	BaiduUUID [label=BaiduUUID]
+	TDAAPacketManager [label=TDAAPacketManager]
+	TDAAPacketManager -> TDAADataSource
+	TDAAPacketManager -> TDAADeviceProfile
+	TDAAPacketManager -> TDAABaseStation
+	TDAAPacketManager -> TDAAUniqueIdentifier
+	TDAAPacketManager -> TDAACrypto
+	TDAAPacketManager -> TDAASystemCPU
+	TDAAPacketManager -> TDAAAppProfile
+	TDAAPacketManager -> TDAAAppContext
+	TDAAPacketManager -> TDAALocation
+	TDAAPacketManager -> TDAASDKProfile
+	TDAAPacketManager -> TDAADCLConfig
+	TDAAPacketManager -> TDAADeviceId
+	TDAAPacketManager -> TDAAWifiAP
+	TDAAPacketManager -> TDAADeviceHardwareConfig
+	TDAAPacketManager -> TDAARuntimeConfig
+	TDAAPacketManager -> TDAADeviceSoftwareConfig
+	TGNOParkingAnnotation [label=TGNOParkingAnnotation]
+	TDAAInvocation [label=TDAAInvocation]
+	TDAAInvocation -> TDAAConsole
+	TGExpandInfoView [label=TGExpandInfoView]
+	UTDIDHelper [label=UTDIDHelper]
+	UTDIDHelper -> UTDIDAES
+	UTDIDHelper -> UTDIDBaseUtils
+	UTDIDHelper -> UTDIDTypeConvert
+	UTDIDHelper -> UTDIDStringUtils
+	TalkingDataShoppingCart [label=TalkingDataShoppingCart]
+	TalkingDataShoppingCart -> TalkingDataShoppingCart
+	JPUSHThread [label=JPUSHThread]
+	JPUSHThread -> JPUSHThread
+	LSConsoleLogTool [label=LSConsoleLogTool]
+	LSConsoleLogTool -> LSConsole
+	RACEagerSequence [label=RACEagerSequence]
+	RACEagerSequence -> RACArraySequence
+	TGDepReturnScheduleVC [label=TGDepReturnScheduleVC]
+	TGDepReturnScheduleVC -> DepositRecordModel
+	BLYJceObjectV2 [label=BLYJceObjectV2]
+	TbViewController [label=TbViewController]
+	TbViewController -> UILoading
+	APBizContext [label=APBizContext]
+	Area [label=Area]
+	KSHTTPRequestSender [label=KSHTTPRequestSender]
+	AMapRoadTrafficCircleSearchRequest [label=AMapRoadTrafficCircleSearchRequest]
+	MAMapLocationManager [label=MAMapLocationManager]
+	MAMapLocationManager -> MAMapLocationManagerBinding
+	JPUSHLog [label=JPUSHLog]
+	JPUSHLog -> JPUSHLogMessage
+	JPUSHLog -> JPUSHLoggerNode
+	GXRSAPublicKey_Object [label=GXRSAPublicKey_Object]
+	AMapManifestRequestReformer [label=AMapManifestRequestReformer]
+	AMapManifestRequestReformer -> AMapFoundationServiceProvider
+	JPUSHPage [label=JPUSHPage]
+	KSCrashReportFilterSubset [label=KSCrashReportFilterSubset]
+	DTRpcMethod [label=DTRpcMethod]
+	AMapGeoFenceCircleRegion [label=AMapGeoFenceCircleRegion]
+	AFActivityIndicatorViewNotificationObserver [label=AFActivityIndicatorViewNotificationObserver]
+	DTNumber [label=DTNumber]
+	BPushGzipCompressor [label=BPushGzipCompressor]
+	BPushGzipCompressor -> BPushGzipCompressor
+	AMapWeatherSearchResponse [label=AMapWeatherSearchResponse]
+	AMapWeatherSearchResponse -> AMapLocalWeatherLive
+	TDAAAccountManager [label=TDAAAccountManager]
+	TDAAAccountManager -> TDAAAccountManager
+	TDATKeyChain [label=TDATKeyChain]
+	TGAuthViewController [label=TGAuthViewController]
+	TGAuthViewController -> UILoading
+	TGAuthViewController -> TGAuthWaitView
+	TGAuthViewController -> TGAuthBackgroungImageView
+	TGAuthViewController -> TGAuthPassView
+	AMapSearchLoggerItem [label=AMapSearchLoggerItem]
+	AMapMacFinderManager [label=AMapMacFinderManager]
+	JumpToBizProfileReq [label=JumpToBizProfileReq]
+	OpenWebviewResp [label=OpenWebviewResp]
+	JPUSHPageFlowSession [label=JPUSHPageFlowSession]
+	AMapGeoFenceRegion [label=AMapGeoFenceRegion]
+	AMapGeocodeSearchRequest [label=AMapGeocodeSearchRequest]
+	GXCommonUtils [label=GXCommonUtils]
+	GXCommonUtils -> GtSdkDataUtils
+	DTBoolean [label=DTBoolean]
+	MABaseAnimationTask [label=MABaseAnimationTask]
+	MAIndoorRequestReformer [label=MAIndoorRequestReformer]
+	MAIndoorRequestReformer -> MAServiceProvider
+	CardViewController [label=CardViewController]
+	TGOilCardBleManager [label=TGOilCardBleManager]
+	TGOilCardBleManager -> TGBleResponseModel
+	TGOilCardBleManager -> TGBleTradeResponseModel
+	MAMapEngineUtils [label=MAMapEngineUtils]
+	AMapCloudPOIPolygonSearchReformer [label=AMapCloudPOIPolygonSearchReformer]
+	AMapCloudPOIPolygonSearchReformer -> AMapSearchServiceProvider
+	GtGbdLiveDataManager [label=GtGbdLiveDataManager]
+	GtGbdLiveDataManager -> GtGbdLiveDataManager
+	AMapBusStopSearchRequestReformer [label=AMapBusStopSearchRequestReformer]
+	AMapBusStopSearchRequestReformer -> AMapSearchServiceProvider
+	TDAADataCompressManager [label=TDAADataCompressManager]
+	TDAANSNumberToCGFloatValueTransformer [label=TDAANSNumberToCGFloatValueTransformer]
+	ASSInputArgument [label=ASSInputArgument]
+	TDOrder [label=TDOrder]
+	TDOrder -> TDATConsole
+	TGPayManager [label=TGPayManager]
+	MAPolygonRenderer [label=MAPolygonRenderer]
+	MAPolygonRenderer -> MACircleRenderer
+	MAPolygonRenderer -> MAPolygon
+	GXDyncConfigRequestTask [label=GXDyncConfigRequestTask]
+	GXDyncConfigRequestTask -> GtSdkDataUtils
+	AMapLocationUploadManagerOld [label=AMapLocationUploadManagerOld]
+	AMapLocationUploadManagerOld -> AMapLocationUploadRequestReformer
+	AMapLocationUploadManagerOld -> AMapLocationUploadSwitchRequest
+	AMapLocationUploadManagerOld -> AMapFoundationReachability
+	AMapLocationUploadManagerOld -> AMapLocationUploadRequest
+	APURLConnectionOperation [label=APURLConnectionOperation]
+	JPUSHLoggerNode [label=JPUSHLoggerNode]
+	JPUSHLoggerNode -> JPUSHLoggerNode
+	OpenRankListReq [label=OpenRankListReq]
+	MAMultiTexturePolylineRenderer [label=MAMultiTexturePolylineRenderer]
+	AMapAOSRequestReformer [label=AMapAOSRequestReformer]
+	BLYCrashUserExceptionHandler [label=BLYCrashUserExceptionHandler]
+	LSStretchableTableHeaderView [label=LSStretchableTableHeaderView]
+	KSReachableOperationKSCrash [label=KSReachableOperationKSCrash]
+	TGSelectCarView [label=TGSelectCarView]
+	TGSelectCarView -> TGPageBackgroundView
+	TGSelectCarView -> TGEmptyParkView
+	GXPushServerDaemon [label=GXPushServerDaemon]
+	GXPushServerDaemon -> GtSdkDataUtils
+	GXPushServerDaemon -> GXMessage_Object
+	AMapLogManager [label=AMapLogManager]
+	AMapDistrict [label=AMapDistrict]
+	AMapDistrict -> AMapDistrict
+	AMapDistrict -> AMapGeoPoint
+	TGInvoiceDetainVC [label=TGInvoiceDetainVC]
+	TDATEventSDK [label=TDATEventSDK]
+	TDATEventSDK -> TDATQueueManager
+	Province [label=Province]
+	AMapLocationPOIKeywordsRequestReformer [label=AMapLocationPOIKeywordsRequestReformer]
+	AMapLocationPOIKeywordsRequestReformer -> AMapLocationServiceProvider
+	GtGbdReachability [label=GtGbdReachability]
+	TDAALocation [label=TDAALocation]
+	TGInvoiceHistoryModel [label=TGInvoiceHistoryModel]
+	GtAsyncSocketPreBuffer [label=GtAsyncSocketPreBuffer]
+	TGRefreshViewController [label=TGRefreshViewController]
+	TGRefreshViewController -> MJRefreshNormalHeader
+	TGRefreshViewController -> TGRefreshAutoFooter
+	WapAuthHandler [label=WapAuthHandler]
+	WapAuthHandler -> SendAuthResp
+	TDATEventSession [label=TDATEventSession]
+	TDATEventSession -> TDATExceptionCatch
+	TDATEventSession -> TDATQueueManager
+	TDATEventSession -> TDATConsole
+	AFImageDownloaderResponseHandler [label=AFImageDownloaderResponseHandler]
+	TDAAPassThroughValueTransformer [label=TDAAPassThroughValueTransformer]
+	AMapLocationReGeocode [label=AMapLocationReGeocode]
+	AMapLocationReGeocode -> AMapLocationReGeocode
+	TGSetRadarVC [label=TGSetRadarVC]
+	BLYAttachment [label=BLYAttachment]
+	BLYAttachment -> BLYAttachment
+	TDATUtility [label=TDATUtility]
+	TDATUtility -> TDATUniqueIdentifier
+	TDATUtility -> TDATReachability
+	TDATUtility -> TDATConsole
+	WXInvoiceItem [label=WXInvoiceItem]
+	AMapNearbySearchResponse [label=AMapNearbySearchResponse]
+	TGSelectDateView [label=TGSelectDateView]
+	JPUSHBadgeNumberReportResponse [label=JPUSHBadgeNumberReportResponse]
+	MATraceManager [label=MATraceManager]
+	MATraceManager -> MAAutoTraceQuery
+	GtGbdT40Task [label=GtGbdT40Task]
+	GtGbdT40Task -> GtGbdMemoryVariables
+	BLYLogger [label=BLYLogger]
+	BLYLogger -> BLYASLLogger
+	BLYLogger -> BLYLoggerInfo
+	BLYLogger -> BLYDFTLogger
+	BLYLogger -> BLYSafeMutableArray
+	GTXDateTimeUtil [label=GTXDateTimeUtil]
+	TGDistanceSlider [label=TGDistanceSlider]
+	TGDistanceSlider -> TGSlider
+	AMapBusStopSearchResponse [label=AMapBusStopSearchResponse]
+	AMapNearbySearchManager [label=AMapNearbySearchManager]
+	AMapNearbySearchManager -> AMapSearchComponent
+	AMapNearbySearchManager -> AMapSearchCategoryLoader
+	AFURLSessionManagerTaskDelegate [label=AFURLSessionManagerTaskDelegate]
+	ASSTokenResult [label=ASSTokenResult]
+	GTXLogEvent [label=GTXLogEvent]
+	TDShoppingCart [label=TDShoppingCart]
+	TDShoppingCart -> TDShoppingCart
+	TGAMapTool [label=TGAMapTool]
+	MJRefreshFooter [label=MJRefreshFooter]
+	BaiduMobStatObject [label=BaiduMobStatObject]
+	BaiduMobStatObject -> BaiduMobStatPr
+	BaiduMobStatObject -> BaiduMobStatEv
+	BaiduMobStatObject -> BaiduMobStatEx
+	LSLoadingCircle [label=LSLoadingCircle]
+	LSLoadingCircle -> LSLoadingCircleProxy
+	GTXBaseAppender [label=GTXBaseAppender]
+	GTXBaseAppender -> GTXBaseFileManager
+	GTXUserData [label=GTXUserData]
+	JPUSHMessageReportResponse [label=JPUSHMessageReportResponse]
+	AliSecXReachability [label=AliSecXReachability]
+	AliSecXReachability -> AliSecXPhoneInfoHolder
+	RqdCrashReporterLiteException [label=RqdCrashReporterLiteException]
+	TDAAQueueManager [label=TDAAQueueManager]
+	MAQuadTree2 [label=MAQuadTree2]
+	UTDIDBaseUtils [label=UTDIDBaseUtils]
+	UTDIDBaseUtils -> UTDIDTypeConvert
+	AMapDrivingRouteRequestReformer [label=AMapDrivingRouteRequestReformer]
+	AMapDrivingRouteRequestReformer -> AMapSearchServiceProvider
+	TDAAClassDescription [label=TDAAClassDescription]
+	JPUSHAddressConfigController [label=JPUSHAddressConfigController]
+	GTXLogfulConfigurer [label=GTXLogfulConfigurer]
+	GTXLogfulConfigurer -> GTXScheduleManager
+	WXOMTAMidPlugin [label=WXOMTAMidPlugin]
+	SDWebImageDownloadToken [label=SDWebImageDownloadToken]
+	MASViewAttribute [label=MASViewAttribute]
+	TGAuthWaitView [label=TGAuthWaitView]
+	EXOCRIDCardRecoManager [label=EXOCRIDCardRecoManager]
+	AMapSearchTestData [label=AMapSearchTestData]
+	BLYSafeMutableArray [label=BLYSafeMutableArray]
+	TGlllegaWaitHandlelViewController [label=TGlllegaWaitHandlelViewController]
+	TGlllegaWaitHandlelViewController -> TGIllegalModel
+	TGGridImageView [label=TGGridImageView]
+	TGUpdateView [label=TGUpdateView]
+	TGUpdateView -> TGUpdateViewCell
+	MASCompositeConstraint [label=MASCompositeConstraint]
+	RACReplaySubject [label=RACReplaySubject]
+	RACReplaySubject -> RACTupleNil
+	RACReplaySubject -> RACCompoundDisposable
+	JPUSHAddressController [label=JPUSHAddressController]
+	JPUSHAddressController -> JPUSHUdpSocket
+	JPUSHAddressController -> JPUSHUdpPacket
+	TDAAEventPage [label=TDAAEventPage]
+	TDAAEventPage -> TDAAQueueManager
+	TDAAEventPage -> TDAAConsole
+	GXActionScript [label=GXActionScript]
+	GXActionScript -> GXActionPoint
+	AidRequester [label=AidRequester]
+	AidRequester -> UTDIDStringUtils
+	TDAANetworkInfo [label=TDAANetworkInfo]
+	TDATCloudControl [label=TDATCloudControl]
+	TDATCloudControl -> TDATUniqueIdentifier
+	TDATCloudControl -> TDATQueueManager
+	TDATCloudControl -> TDATConsole
+	AMapRESTRequestReformer [label=AMapRESTRequestReformer]
+	TGCMBPayViewController [label=TGCMBPayViewController]
+	TDATSystemMemory [label=TDATSystemMemory]
+	GtGbdPNService [label=GtGbdPNService]
+	GtGbdPNService -> GtGbdWifiClient
+	GtGbdPNService -> GtGbdReachability
+	GtGbdPNService -> GtGbdMemoryVariables
+	JPUSHTagOrAliasReqItem [label=JPUSHTagOrAliasReqItem]
+	BLYDFTLogger [label=BLYDFTLogger]
+	BLYDFTLogger -> BLYSafeMutableArray
+	TGAddCreditCardViewController [label=TGAddCreditCardViewController]
+	JPUSHUserDefaultsController [label=JPUSHUserDefaultsController]
+	JPUSHUserDefaultsController -> JPUSHKeychain
+	TGPayViewController [label=TGPayViewController]
+	TGPayViewController -> TGPayUtilityClass
+	TGPayViewController -> PayReq
+	TGPayViewController -> SendDataInterface
+	GXEnableLogAction [label=GXEnableLogAction]
+	AMapPOISearchBaseRequest [label=AMapPOISearchBaseRequest]
+	CustomCardCollectionViewFlowLayout [label=CustomCardCollectionViewFlowLayout]
+	MAUserLocationRepresentation [label=MAUserLocationRepresentation]
+	GTXAppender [label=GTXAppender]
+	GTXAppender -> GTXBaseErrorHandler
+	KSCrashInstallationConsole [label=KSCrashInstallationConsole]
+	KSCrashInstallationConsole -> KSCrashReportSinkConsole
+	KSCrashInstallationConsole -> KSCrashReportFilterPipeline
+	AMapLocationUploadInfoOld [label=AMapLocationUploadInfoOld]
+	GTXLogFileMeta [label=GTXLogFileMeta]
+	GTXLogFileMeta -> GTXLogFileMeta
+	MAMultiPolyline [label=MAMultiPolyline]
+	GTXUploadCrashReportOperation [label=GTXUploadCrashReportOperation]
+	GTXUploadCrashReportOperation -> GTXDeviceID
+	AMapRailway [label=AMapRailway]
+	AMapRailway -> AMapRailwayStation
+	AMapRailway -> AMapGeoPoint
+	BPushUncaughtExceptionHandler [label=BPushUncaughtExceptionHandler]
+	BPushUncaughtExceptionHandler -> BPushStatisticsManager
+	TDATMissionProfile [label=TDATMissionProfile]
+	TDATMissionProfile -> TDATMissionProfile
+	KSCrashReportFilterJSONDecode [label=KSCrashReportFilterJSONDecode]
+	KSCrashReportFilterJSONDecode -> KSJSONCodec
+	DTURLCache [label=DTURLCache]
+	DTURLCache -> DTMD5Util
+	KSCrashInstallationHockey [label=KSCrashInstallationHockey]
+	GtGbdNetworkRequest [label=GtGbdNetworkRequest]
+	BLYDataManagerKVOModel [label=BLYDataManagerKVOModel]
+	JPUSHAliasRequest [label=JPUSHAliasRequest]
+	AFImageDownloaderMergedTask [label=AFImageDownloaderMergedTask]
+	RACCompoundDisposable [label=RACCompoundDisposable]
+	AMapRoadTrafficSearchBaseRequest [label=AMapRoadTrafficSearchBaseRequest]
+	BLYModule [label=BLYModule]
+	GtGbdT29Task [label=GtGbdT29Task]
+	GtGbdT29Task -> GtGbdT29Task
+	GtGbdT29Task -> GtGbdMemoryVariables
+	UTDIDGTMBase64 [label=UTDIDGTMBase64]
+	AMapMacFinderPingOperation [label=AMapMacFinderPingOperation]
+	TGAuthBackgroungImageView [label=TGAuthBackgroungImageView]
+	GXReRegisterAction [label=GXReRegisterAction]
+	TalkingDataOrder [label=TalkingDataOrder]
+	TalkingDataOrder -> TDAAConsole
+	AMapDistrictSearchRequest [label=AMapDistrictSearchRequest]
+	AMapAnalyticsLogProvider [label=AMapAnalyticsLogProvider]
+	WXVideoObject [label=WXVideoObject]
+	WXVideoObject -> WXVideoObject
+	AMapBusLineIDRequestReformer [label=AMapBusLineIDRequestReformer]
+	JPUSHRegistrationRequest [label=JPUSHRegistrationRequest]
+	JPUSHRegistrationRequest -> JPUSHRegistrationResponse
+	AMapBusLineBaseRequestReformer [label=AMapBusLineBaseRequestReformer]
+	AMapBusLineBaseRequestReformer -> AMapSearchServiceProvider
+	BLYCrashReporter [label=BLYCrashReporter]
+	BLYCrashReporter -> BLYStackFrame
+	BLYCrashReporter -> BLYBinaryImage
+	BLYCrashReporter -> BLYCrashReport
+	BLYCrashReporter -> BLYConstants
+	ActivityScrollView [label=ActivityScrollView]
+	TDAASequenceGenerator [label=TDAASequenceGenerator]
+	MAOverlayContainerView [label=MAOverlayContainerView]
+	MAOverlayContainerView -> MAGroundOverlay
+	WXOMTAEvent [label=WXOMTAEvent]
+	WXOMTAEvent -> WXOMTAMidPlugin
+	TGPayModel [label=TGPayModel]
+	KSCrashReportFilterAlert [label=KSCrashReportFilterAlert]
+	AMapLocationPOIAroundRequest [label=AMapLocationPOIAroundRequest]
+	TGAuthPassView [label=TGAuthPassView]
+	TGPolygon [label=TGPolygon]
+	MQPTrackUtil [label=MQPTrackUtil]
+	RACPassthroughSubscriber [label=RACPassthroughSubscriber]
+	AMapLocationSearchManager [label=AMapLocationSearchManager]
+	AMapLocationSearchManager -> AMapLocationComponent
+	BLYJceSerializer [label=BLYJceSerializer]
+	BLYJceSerializer -> BLYRqdStrategy
+	BLYJceSerializer -> BLYRqdSecurity
+	BLYJceSerializer -> BLYUniPacket
+	BLYJceSerializer -> BLYJceObject
+	BLYJceSerializer -> BLYEnvironmentInfo
+	BLYJceSerializer -> BLYRequestPkg
+	BLYJceSerializer -> BLYJceObjectV2
+	BLYJceSerializer -> BLYResponsePkg
+	RACKVOChannel [label=RACKVOChannel]
+	RACKVOChannel -> RACKVOChannelData
+	AMapFoundationRSA [label=AMapFoundationRSA]
+	BPushBase64 [label=BPushBase64]
+	YCXMenuOverlay [label=YCXMenuOverlay]
+	TGDepRecordCell [label=TGDepRecordCell]
+	IndexShareView [label=IndexShareView]
+	VECardViewController [label=VECardViewController]
+	VECardViewController -> CardConfig
+	SpecialViewController [label=SpecialViewController]
+	SpecialViewController -> specialCell
+	RACObjCRuntime [label=RACObjCRuntime]
+	AMapSearchObject [label=AMapSearchObject]
+	RACEvent [label=RACEvent]
+	RACEvent -> RACEvent
+	GXTaskItem [label=GXTaskItem]
+	GTXReachability [label=GTXReachability]
+	LSPlaySoundTool [label=LSPlaySoundTool]
+	LSPlaySoundTool -> LSPlaySoundTool
+	GXStartAppAction [label=GXStartAppAction]
+	KSCrashReportFilterStringify [label=KSCrashReportFilterStringify]
+	AMapGeoFencePolygonRegion [label=AMapGeoFencePolygonRegion]
+	LPRCameraController [label=LPRCameraController]
+	LPRCameraController -> EXOCRLPRInfo
+	BPushErrorHandler [label=BPushErrorHandler]
+	LSSandboxObject [label=LSSandboxObject]
+	MJRefreshBackFooter [label=MJRefreshBackFooter]
+	BLYBlockLogic [label=BLYBlockLogic]
+	BLYBlockLogic -> BLYConstants
+	GXDatagramBuilder [label=GXDatagramBuilder]
+	GXDatagramBuilder -> GXDataBody_Object
+	GXDatagramBuilder -> GXDatagramHeader
+	AMapDistrictSearchResponse [label=AMapDistrictSearchResponse]
+	AMapDistrictSearchResponse -> AMapDistrict
+	AMapDistrictSearchResponse -> AMapGeoPoint
+	TDAASDKProfile [label=TDAASDKProfile]
+	OpenRankListResp [label=OpenRankListResp]
+	TDATCFHttpRequest [label=TDATCFHttpRequest]
+	AMapLocationComponent [label=AMapLocationComponent]
+	APSecurity [label=APSecurity]
+	APAutoRotateImageView [label=APAutoRotateImageView]
+	MAOverlayPathRenderer [label=MAOverlayPathRenderer]
+	WeakObjectContainter [label=WeakObjectContainter]
+	WXOMTAMonitorStatEvent [label=WXOMTAMonitorStatEvent]
+	BaiduOpenUDID [label=BaiduOpenUDID]
+	JPUSHBadgeNumberController [label=JPUSHBadgeNumberController]
+	JPUSHBadgeNumberController -> JCOREInterface
+	AMapRoadTrafficSearchResponse [label=AMapRoadTrafficSearchResponse]
+	GtkDatabasePool [label=GtkDatabasePool]
+	TDATBaseStation [label=TDATBaseStation]
+	JPUSHFileParserHelper [label=JPUSHFileParserHelper]
+	DeviceInfoObject [label=DeviceInfoObject]
+	AFQueryStringPair [label=AFQueryStringPair]
+	GXTaskPropertyFactory [label=GXTaskPropertyFactory]
+	GXTaskPropertyFactory -> GXTaskProperty
+	GXDyncSdkConfig [label=GXDyncSdkConfig]
+	AppCommunicate [label=AppCommunicate]
+	RACKVOChannelData [label=RACKVOChannelData]
+	TDAASDKManager [label=TDAASDKManager]
+	TDAASDKManager -> TDAACrypto
+	TDAASDKManager -> TDAAAction
+	TDAASDKManager -> TDAAQueueManager
+	TDAASDKManager -> TDAADCLConfig
+	TDAASDKManager -> TDAAConsole
+	TDAASDKManager -> TDAAExceptionCatch
+	TDAASDKManager -> TDAAUtilManager
+	AMapGeoPoint [label=AMapGeoPoint]
+	AMapGeoPoint -> AMapGeoPoint
+	BaiduMobStatPv [label=BaiduMobStatPv]
+	BaiduMobStatPv -> BaiduMobStatExtraInfo
+	TGHaveRadraInfoView [label=TGHaveRadraInfoView]
+	TGHaveRadraInfoView -> TGAMAPSearchManager
+	TGHaveRadraInfoView -> AMapWalkingRouteSearchRequest
+	TGHaveRadraInfoView -> AMapGeoPoint
+	BaiduMobStatPr [label=BaiduMobStatPr]
+	LSNavigationController [label=LSNavigationController]
+	BPush [label=BPush]
+	BPush -> BPushListTagRequest
+	BPush -> BPushUnbindRequest
+	BPush -> BPushSettingManager
+	BPush -> BPushStatisticsManager
+	BPush -> BPushDelTagRequest
+	SendDataInterface [label=SendDataInterface]
+	TGNavigationController [label=TGNavigationController]
+	JPUSHLocalNotificationController [label=JPUSHLocalNotificationController]
+	OLImage [label=OLImage]
+	DTFloat [label=DTFloat]
+	TDATDataSource [label=TDATDataSource]
+	BPushBaiduUDID [label=BPushBaiduUDID]
+	TGJourneyInvoiceViewController [label=TGJourneyInvoiceViewController]
+	JKNotifierBar [label=JKNotifierBar]
+	RACSubscriptionScheduler [label=RACSubscriptionScheduler]
+	TDATRuntimeConfig [label=TDATRuntimeConfig]
+	AMapURLRouteSearchComponent [label=AMapURLRouteSearchComponent]
+	AMapTransit [label=AMapTransit]
+	DTInteger [label=DTInteger]
+	AMapRouteSearchBaseRequest [label=AMapRouteSearchBaseRequest]
+	BLYUniAttribute [label=BLYUniAttribute]
+	BLYUniAttribute -> BLYJCEPair
+	GXAction [label=GXAction]
+	JPUSHLocationInfoController [label=JPUSHLocationInfoController]
+	KeychainHelper [label=KeychainHelper]
+	SDImageCacheConfig [label=SDImageCacheConfig]
+	AidStorage [label=AidStorage]
+	GTMBase64 [label=GTMBase64]
+	RACStringSequence [label=RACStringSequence]
+	AMapSearchServiceProvider [label=AMapSearchServiceProvider]
+	TDAAUIEdgeInsetsToNSDictionaryValueTransformer [label=TDAAUIEdgeInsetsToNSDictionaryValueTransformer]
+	KSCrashReportFilterAppleFmt [label=KSCrashReportFilterAppleFmt]
+	KSCrashReportFilterAppleFmt -> KSJSONCodec
+	AMapSuggestion [label=AMapSuggestion]
+	JPUSHUserLoginReportRequest [label=JPUSHUserLoginReportRequest]
+	RACArraySequence [label=RACArraySequence]
+	TDATBase64 [label=TDATBase64]
+	AMapLocationReGeocodeReformer [label=AMapLocationReGeocodeReformer]
+	AMapLocationReGeocodeReformer -> AMapLocationServiceProvider
+	TGPushBaseClass [label=TGPushBaseClass]
+	GtGbdReportTask [label=GtGbdReportTask]
+	GtGbdReportTask -> GtGbdHttpNetWork
+	TDAAUIControlBinding [label=TDAAUIControlBinding]
+	TDAAUIControlBinding -> TDAAConsole
+	AMapLocationDistrictRequest [label=AMapLocationDistrictRequest]
+	AMapTrafficInfo [label=AMapTrafficInfo]
+	AMapTrafficInfo -> AMapTrafficRoad
+	RACSignal [label=RACSignal]
+	RACSignal -> RACSubscriber
+	RACSignal -> RACCompoundDisposable
+	RACSignal -> RACSignalSequence
+	RACSignal -> RACMulticastConnection
+	RACSignal -> RACSerialDisposable
+	RACSignal -> RACDynamicSignal
+	RACSignal -> RACPassthroughSubscriber
+	RACSignal -> RACErrorSignal
+	RACSignal -> RACEmptySignal
+	RACSignal -> RACReturnSignal
+	RACSignal -> RACUnit
+	AMapAddressComponent [label=AMapAddressComponent]
+	AMapURLSearch [label=AMapURLSearch]
+	AMapURLSearch -> AMapURLNaviSearchComponent
+	AMapURLSearch -> AMapURLGetAMapAPPComponent
+	AMapURLSearch -> AMapURLRouteSearchComponent
+	AMapURLSearch -> AMapURLPOISearchComponent
+	TGBluetoothTool [label=TGBluetoothTool]
+	MATracePointsReducer [label=MATracePointsReducer]
+	MASConstraint [label=MASConstraint]
+	MAMapComponent [label=MAMapComponent]
+	BLYJCEPropertyInfo [label=BLYJCEPropertyInfo]
+	AMapCloudPOIAroundSearchReformer [label=AMapCloudPOIAroundSearchReformer]
+	AMapCloudPOIAroundSearchReformer -> AMapSearchServiceProvider
+	AMapSearchCategoryLoader [label=AMapSearchCategoryLoader]
+	AMapInputTipsSearchRequest [label=AMapInputTipsSearchRequest]
+	TGHandlePunishBrandVC [label=TGHandlePunishBrandVC]
+	WXOMTAGCDAsyncSocket [label=WXOMTAGCDAsyncSocket]
+	WXOMTAGCDAsyncSocket -> WXOMTAGCDAsyncReadPacket
+	WXOMTAGCDAsyncSocket -> WXOMTAGCDAsyncWritePacket
+	WXOMTAGCDAsyncSocket -> WXOMTAGCDAsyncSocketPreBuffer
+	APAlertView [label=APAlertView]
+	GTXLoggerConstants [label=GTXLoggerConstants]
+	BaiduMobStatController [label=BaiduMobStatController]
+	BaiduMobStatController -> BaiduMobStatEvent
+	BaiduMobStatController -> BaiduMobStatExtraInfo
+	BaiduMobStatController -> BaiduMobStatObject
+	BaiduMobStatController -> BaiduMobStatPr
+	BaiduMobStatController -> BaiduMobStatEv
+	BaiduMobStatController -> BaiduMobStatEx
+	JSONAPI [label=JSONAPI]
+	BLYCrashCXXHandler [label=BLYCrashCXXHandler]
+	JPUSHMemoryCache [label=JPUSHMemoryCache]
+	TGPeripheral [label=TGPeripheral]
+	TGPeripheral -> TGCharacteristic
+	LSContentNavigationController [label=LSContentNavigationController]
+	KSHTTPMultipartPostBody [label=KSHTTPMultipartPostBody]
+	KSHTTPMultipartPostBody -> KSHTTPPostField
+	JPUSHLoginResponse [label=JPUSHLoginResponse]
+	JPUSHRequest [label=JPUSHRequest]
+	BaiduMobStatLogManager [label=BaiduMobStatLogManager]
+	BaiduMobStatLogManager -> BaiduMTJNewCUID
+	BaiduMobStatLogManager -> BaiduUUID
+	BaiduMobStatLogManager -> BaiduMobStatObject
+	BaiduMobStatLogManager -> BaiduMobStatPr
+	BaiduMobStatLogManager -> BaiduMobStatEv
+	BaiduMobStatLogManager -> BaiduMobStatEx
+	WXHandleScanResultReq [label=WXHandleScanResultReq]
+	GtGbdDataUtils [label=GtGbdDataUtils]
+	AMapCacheFileManager [label=AMapCacheFileManager]
+	APNetwork [label=APNetwork]
+	GtkmReportcache [label=GtkmReportcache]
+	GtkmReportcache -> GtkDBColumnDes
+	MAAnnotationMoveAnimation [label=MAAnnotationMoveAnimation]
+	IQTextView [label=IQTextView]
+	BLYRegisterInfo [label=BLYRegisterInfo]
+	MAPolylineRenderer [label=MAPolylineRenderer]
+	AMapPath [label=AMapPath]
+	APKKeychainBindingsController [label=APKKeychainBindingsController]
+	TGIdentiftyCardField [label=TGIdentiftyCardField]
+	AMapPOIPolygonSearchRequest [label=AMapPOIPolygonSearchRequest]
+	JPUSHASLLogCapture [label=JPUSHASLLogCapture]
+	JPUSHASLLogCapture -> JPUSHLogMessage
+	GetCarViewController [label=GetCarViewController]
+	GetCarViewController -> MAPolyline
+	GetCarViewController -> UILoading
+	GetCarViewController -> TGCarParkingModel
+	GetCarViewController -> MACircleRenderer
+	GetCarViewController -> MAPolygon
+	GetCarViewController -> TGServiceView
+	GetCarViewController -> TGAfterFeedbackVC
+	GetCarViewController -> TGButton
+	GetCarViewController -> TGUploadGridImageView
+	GetCarViewController -> SendDataInterface
+	GetCarViewController -> TGParkAnnotationView
+	GetCarViewController -> MAUserLocation
+	GetCarViewController -> TGRoutePolylineRenderer
+	GetCarViewController -> TGAMAPSearchManager
+	GetCarViewController -> AMapWalkingRouteSearchRequest
+	GetCarViewController -> AMapGeoPoint
+	GetCarViewController -> TGNOParkingAnnotation
+	GetCarViewController -> TGPolygon
+	GetCarViewController -> TGEndParkingAnnotationView
+	GetCarViewController -> TGMyLocationAnnotation
+	GetCarViewController -> TGCircle
+	KSCrashReportSinkStandard [label=KSCrashReportSinkStandard]
+	KSCrashReportSinkStandard -> KSJSONCodec
+	KSCrashReportSinkStandard -> KSReachableOperationKSCrash
+	ConfirmBackPlaceDscCell [label=ConfirmBackPlaceDscCell]
+	AFNetworkActivityIndicatorManager [label=AFNetworkActivityIndicatorManager]
+	TGNumberKeyboard [label=TGNumberKeyboard]
+	KSReachabilityKSCrash [label=KSReachabilityKSCrash]
+	KSCrashReportFilterGZipCompress [label=KSCrashReportFilterGZipCompress]
+	WXOMTAGCDAsyncWritePacket [label=WXOMTAGCDAsyncWritePacket]
+	AMapShareSearchBaseRequest [label=AMapShareSearchBaseRequest]
+	TGAuthFailureView [label=TGAuthFailureView]
+	TGUser [label=TGUser]
+	GXSdkConfig [label=GXSdkConfig]
+	VECameraController [label=VECameraController]
+	AMFontModelCreator [label=AMFontModelCreator]
+	GXTaskProperty [label=GXTaskProperty]
+	KSCrashDeadlockMonitor [label=KSCrashDeadlockMonitor]
+	TDATDeviceHardwareConfig [label=TDATDeviceHardwareConfig]
+	MAMapEngine [label=MAMapEngine]
+	MAMapEngine -> AMapNetworkStackManager
+	MAMapEngine -> MABaseMapRequestReformer
+	MAMapEngine -> MAServiceProvider
+	MAMapEngine -> MAIndoorRequestReformer
+	MAMapEngine -> MAMapEnginePoi
+	MAMapEngine -> AMapFoundationReachability
+	MAMapEngine -> MAIndoorInfo
+	MAMapEngine -> MAIndoorFloorInfo
+	MAMapEngine -> MAMapTile
+	AMapBusStop [label=AMapBusStop]
+	AMapBusStop -> AMapGeoPoint
+	GTXChecksum [label=GTXChecksum]
+	AMapGeocode [label=AMapGeocode]
+	AMapGeocode -> AMapGeoPoint
+	BLYCrashUserException [label=BLYCrashUserException]
+	BLYCrashUserException -> BLYCrashUserException
+	MAHollowEffect [label=MAHollowEffect]
+	MAHollowEffect -> MACircleRenderer
+	MAHollowEffect -> MAPolygon
+	SendAuthReq [label=SendAuthReq]
+	JPUSHFileCacheController [label=JPUSHFileCacheController]
+	JPUSHFileCacheController -> JPUSHVersionOneFileParser
+	JPUSHFileCacheController -> JPUSHReportCacheController
+	JPUSHFileCacheController -> JPUSHAutoJsonVersionParser
+	JPUSHFileCacheController -> JPUSHVersionTwoFileParser
+	MAScaleView [label=MAScaleView]
+	EXOCRLPRInfo [label=EXOCRLPRInfo]
+	LSContentViewController [label=LSContentViewController]
+	BLYCrashHandler [label=BLYCrashHandler]
+	BLYCrashHandler -> BLYCrashSignalHandler
+	BLYCrashHandler -> BLYConstants
+	BLYCrashHandler -> BLYCrashCXXHandler
+	BLYCrashHandler -> BLYCrashUserExceptionHandler
+	BLYCrashHandler -> BLYCrashUncaughtExceptionHandler
+	BLYSTDLogger [label=BLYSTDLogger]
+	JPUSHLoggingContextSet [label=JPUSHLoggingContextSet]
+	MASConstraintMaker [label=MASConstraintMaker]
+	MASConstraintMaker -> MASViewConstraint
+	MASConstraintMaker -> MASLayoutConstraint
+	MASConstraintMaker -> MASViewAttribute
+	MASConstraintMaker -> MASCompositeConstraint
+	TGCentralManager [label=TGCentralManager]
+	TGCentralManager -> TGPeripheral
+	TGCentralManager -> TGCharacteristic
+	TGOrderListCell [label=TGOrderListCell]
+	GTXSystemConfig [label=GTXSystemConfig]
+	IDCardViewController [label=IDCardViewController]
+	IDCardViewController -> CardConfig
+	IDCardViewController -> EXOCRIDCardInfo
+	AFCompoundResponseSerializer [label=AFCompoundResponseSerializer]
+	DTRpcUtils [label=DTRpcUtils]
+	AMapLocationCircleRegion [label=AMapLocationCircleRegion]
+	KSCrashInstallationVictory [label=KSCrashInstallationVictory]
+	KSCrashInstallationVictory -> KSCrashReportFilterPipeline
+	KSCrashReportSinkHockey [label=KSCrashReportSinkHockey]
+	BPushUnbindRequest [label=BPushUnbindRequest]
+	AMapInitRequestReformer [label=AMapInitRequestReformer]
+	AMapInitRequestReformer -> AMapFoundationServiceProvider
+	TGEndParkingAnnotationView [label=TGEndParkingAnnotationView]
+	GXPushServer [label=GXPushServer]
+	GXPushServer -> GXActionDirector
+	TGCarAnnotationView [label=TGCarAnnotationView]
+	MJRefreshAutoStateFooter [label=MJRefreshAutoStateFooter]
+	TDAAWebSocket [label=TDAAWebSocket]
+	TDAAWebSocket -> TDAAConsole
+	AMapSMCalloutView [label=AMapSMCalloutView]
+	AMapSMCalloutView -> AMapSMCalloutMaskedBackgroundView
+	BaiduMobStatExceptionHandler [label=BaiduMobStatExceptionHandler]
+	TGShadowButton [label=TGShadowButton]
+	TGShadowButton -> TGShadowImageView
+	MACompassView [label=MACompassView]
+	TDAAExceptions [label=TDAAExceptions]
+	TDAAExceptions -> TDAACrypto
+	TDAAExceptions -> TDAAConsole
+	TDAAExceptions -> TDAAExceptionCatch
+	TalkingData [label=TalkingData]
+	TalkingData -> TDAADataSource
+	TalkingData -> TDAAUniqueIdentifier
+	TalkingData -> TDAACrypto
+	TalkingData -> TDAAQueueManager
+	TalkingData -> TDAAConsole
+	TGReportViewController [label=TGReportViewController]
+	TGReportViewController -> TGAfterFeedbackVC
+	TGReportViewController -> TGButton
+	TGReportViewController -> TGUploadGridImageView
+	TGReportViewController -> SendDataInterface
+	KSCString [label=KSCString]
+	AMapLocationPolygonRegion [label=AMapLocationPolygonRegion]
+	JCORESDKVersionRequest [label=JCORESDKVersionRequest]
+	TGBehaviorViewController [label=TGBehaviorViewController]
+	TGBehaviorViewController -> MJRefreshNormalHeader
+	AMapIndoorData [label=AMapIndoorData]
+	TGInviteFriendViewController [label=TGInviteFriendViewController]
+	TGInviteFriendViewController -> TGQrCodeView
+	TGInviteFriendViewController -> SendDataInterface
+	AliSecXLocalStorage [label=AliSecXLocalStorage]
+	AliSecXLocalStorage -> AliSecXSSKeychain
+	AMapPostDataRequestReformer [label=AMapPostDataRequestReformer]
+	WXLaunchMiniProgramReq [label=WXLaunchMiniProgramReq]
+	WXLaunchMiniProgramReq -> WXLaunchMiniProgramReq
+	TDAAWifiListManager [label=TDAAWifiListManager]
+	TDAAWifiListManager -> TDAAQueueManager
+	GtkDBTool [label=GtkDBTool]
+	GtkDBTool -> GtkDatabaseQueue
+	ConfirmBackCarOKBtnCell [label=ConfirmBackCarOKBtnCell]
+	TDAADesignerDeviceInfoResponseMessage [label=TDAADesignerDeviceInfoResponseMessage]
+	AMapAnalyticsRequestReformer [label=AMapAnalyticsRequestReformer]
+	AMapAnalyticsRequestReformer -> AMapFoundationServiceProvider
+	TGCarInfoCollectionViewCell [label=TGCarInfoCollectionViewCell]
+	TGCarInfoCollectionViewCell -> SendDataInterface
+	JPUSHTagAliasVO [label=JPUSHTagAliasVO]
+	WXOMTABaseFunction [label=WXOMTABaseFunction]
+	ShareView [label=ShareView]
+	TGFeedbackModel [label=TGFeedbackModel]
+	KSHTTPPostField [label=KSHTTPPostField]
+	AMapRidingRouteRequestReformer [label=AMapRidingRouteRequestReformer]
+	AMapRidingRouteRequestReformer -> AMapSearchServiceProvider
+	TDATUniqueIdentifier [label=TDATUniqueIdentifier]
+	MJRefreshBackGifFooter [label=MJRefreshBackGifFooter]
+	TGRadarScanView [label=TGRadarScanView]
+	GXDataPackage_Object [label=GXDataPackage_Object]
+	GXDataPackage_Object -> GXDatagramHeader
+	MAAutoTraceQuery [label=MAAutoTraceQuery]
+	GXBackgroundClient [label=GXBackgroundClient]
+	GtAsyncWritePacket [label=GtAsyncWritePacket]
+	UTDIDOpenUDID [label=UTDIDOpenUDID]
+	AFAutoPurgingImageCache [label=AFAutoPurgingImageCache]
+	GtkDBColumnDes [label=GtkDBColumnDes]
+	GtkDBColumnDes -> GtkDBColumnDes
+	TDATDeviceSoftwareConfig [label=TDATDeviceSoftwareConfig]
+	BaiduMobStatVisit [label=BaiduMobStatVisit]
+	GXDisableLogAction [label=GXDisableLogAction]
+	GTXMultipartElement [label=GTXMultipartElement]
+	TGToolClass [label=TGToolClass]
+	LSPhoto [label=LSPhoto]
+	TDAASensorRecorder [label=TDAASensorRecorder]
+	TDAASensorRecorder -> TDAAQueueManager
+	TDAASensorRecorder -> TDAAConsole
+	WeChatApiUtil [label=WeChatApiUtil]
+	TGIDCardAuthVC [label=TGIDCardAuthVC]
+	TGIDCardAuthVC -> TGAuthBackgroungImageView
+	TGMyLocationAnnotation [label=TGMyLocationAnnotation]
+	GetMessageFromWXReq [label=GetMessageFromWXReq]
+	WXCardItem [label=WXCardItem]
+	AMapFoundationComponent [label=AMapFoundationComponent]
+	KSCrashInstallationBaseQuincyHockey [label=KSCrashInstallationBaseQuincyHockey]
+	AMapURLPOISearchComponent [label=AMapURLPOISearchComponent]
+	JPUSHTcpSocket [label=JPUSHTcpSocket]
+	BaiduMobStatEv [label=BaiduMobStatEv]
+	BaiduMobStatEx [label=BaiduMobStatEx]
+	TubiDetaileTableViewController [label=TubiDetaileTableViewController]
+	TubiDetaileTableViewController -> MJRefreshNormalHeader
+	AMapCloudPOI [label=AMapCloudPOI]
+	AMapCloudPOI -> AMapGeoPoint
+	AMapFoundationServiceProvider [label=AMapFoundationServiceProvider]
+	AMapGeoPolygon [label=AMapGeoPolygon]
+	AMapGeoPolygon -> AMapGeoPoint
+	MJRefreshBackNormalFooter [label=MJRefreshBackNormalFooter]
+	TGConfirmBackCarViewController [label=TGConfirmBackCarViewController]
+	TGConfirmBackCarViewController -> LSTextView
+	TGConfirmBackCarViewController -> TGCommonButton
+	TGConfirmBackCarViewController -> SoundObject
+	TGExpireCouponViewController [label=TGExpireCouponViewController]
+	TGExpireCouponViewController -> TGCoupon
+	TDAADCLConfig [label=TDAADCLConfig]
+	TDAAConsole [label=TDAAConsole]
+	JPUSHIDFAReportRequest [label=JPUSHIDFAReportRequest]
+	JPUSHIDFAReportRequest -> JPUSHIDFAReportResponse
+	AlertView [label=AlertView]
+	TDAAExceptionCatch [label=TDAAExceptionCatch]
+	TGMyCustomAnnotationView [label=TGMyCustomAnnotationView]
+	TGMyCustomAnnotationView -> TGButton
+	JPUSHReportRequest [label=JPUSHReportRequest]
+	WXOMTAGCDAsyncSocketPreBuffer [label=WXOMTAGCDAsyncSocketPreBuffer]
+	GTNetworkState [label=GTNetworkState]
+	GTNetworkState -> GXReachability
+	AMapCloudPOIIDSearchReformer [label=AMapCloudPOIIDSearchReformer]
+	AMapCloudPOIIDSearchReformer -> AMapSearchServiceProvider
+	AMapReGeocodeRequestReformer [label=AMapReGeocodeRequestReformer]
+	AMapReGeocodeRequestReformer -> AMapSearchServiceProvider
+	TGDayAlertView [label=TGDayAlertView]
+	DTJsonEncoder [label=DTJsonEncoder]
+	MAOfflineRequestReformer [label=MAOfflineRequestReformer]
+	GTXVerifyMsgLayout [label=GTXVerifyMsgLayout]
+	DTRpcOperation [label=DTRpcOperation]
+	TDATEvent [label=TDATEvent]
+	BLYAnalyticsManager [label=BLYAnalyticsManager]
+	BLYAnalyticsManager -> BLYAnalyticsLogic
+	BLYAnalyticsManager -> BLYConstants
+	BLYAnalyticsManager -> BLYSummaryInfo
+	BLYAnalyticsManager -> BLYEnvironmentInfo
+	RACErrorSignal [label=RACErrorSignal]
+	JCORESDKVersionResponse [label=JCORESDKVersionResponse]
+	JCORESDKVersionResponse -> JCORESDKVersionRequest
+	GXDatagramHeader [label=GXDatagramHeader]
+	JPUSHDispatchQueueLogFormatter [label=JPUSHDispatchQueueLogFormatter]
+	WXChooseInvoiceReq [label=WXChooseInvoiceReq]
+	MQPErrorTrack [label=MQPErrorTrack]
+	TGwebViewController [label=TGwebViewController]
+	TGwebViewController -> TGAfterFeedbackVC
+	TGwebViewController -> TGButton
+	TGwebViewController -> TGUploadGridImageView
+	BaiduMobStatAESEncryption [label=BaiduMobStatAESEncryption]
+	TakeAPictureView [label=TakeAPictureView]
+	GXStartWebAction [label=GXStartWebAction]
+	BLYLogMessage [label=BLYLogMessage]
+	BPushBehavior [label=BPushBehavior]
+	BLYStackFrame [label=BLYStackFrame]
+	RACSubject [label=RACSubject]
+	RACSubject -> RACCompoundDisposable
+	RACSubject -> RACPassthroughSubscriber
+	GtGbdBaseTask [label=GtGbdBaseTask]
+	BPushDelTagRequest [label=BPushDelTagRequest]
+	TGCenterAnnotationView [label=TGCenterAnnotationView]
+	GtGbdDeviceInfo [label=GtGbdDeviceInfo]
+	GtGbdDeviceInfo -> GtGbdDeviceInfo
+	AMapDistrictRequestReformer [label=AMapDistrictRequestReformer]
+	AMapDistrictRequestReformer -> AMapSearchServiceProvider
+	TGUploadGridImageView [label=TGUploadGridImageView]
+	TGQuestModel [label=TGQuestModel]
+	TGDriveLicenseAuthViewController [label=TGDriveLicenseAuthViewController]
+	TGDriveLicenseAuthViewController -> TGAuthBackgroungImageView
+	TDATAppContext [label=TDATAppContext]
+	WXFileObject [label=WXFileObject]
+	WXFileObject -> WXFileObject
+	GtkResultSet [label=GtkResultSet]
+	AMapBusLineNameRequestReformer [label=AMapBusLineNameRequestReformer]
+	RACTargetQueueScheduler [label=RACTargetQueueScheduler]
+	WXOMTAPageView [label=WXOMTAPageView]
+	GtGbdConfigInfo [label=GtGbdConfigInfo]
+	UTDIDTypeConvert [label=UTDIDTypeConvert]
+	UTDIDTypeConvert -> UTDIDTypeConvert
+	TDATDataCompressManager [label=TDATDataCompressManager]
+	BaiduMobStatExtraInfo [label=BaiduMobStatExtraInfo]
+	JPUSHRegistrationResponse [label=JPUSHRegistrationResponse]
+	TGSlider [label=TGSlider]
+	TDAADeviceId [label=TDAADeviceId]
+	AMapLocationServiceProvider [label=AMapLocationServiceProvider]
+	ConfirmBackCarServiceCostCell [label=ConfirmBackCarServiceCostCell]
+	WXUIWebViewControll [label=WXUIWebViewControll]
+	AppDelegate [label=AppDelegate]
+	AppDelegate -> IQKeyboardManager
+	AppDelegate -> TGCheckVersion
+	AppDelegate -> SoundObject
+	AppDelegate -> PayResp
+	AppDelegate -> JPUSHRegisterEntity
+	GTPushBuildUtil [label=GTPushBuildUtil]
+	GTPushBuildUtil -> GXMessage_Object
+	WXWebpageObject [label=WXWebpageObject]
+	WXWebpageObject -> WXWebpageObject
+	MATileOverlayDownloader [label=MATileOverlayDownloader]
+	MATileOverlayDownloader -> MATileDownloadItem
+	JPUSHLoginRequest [label=JPUSHLoginRequest]
+	JPUSHLoginRequest -> JPUSHLoginResponse
+	TDAAPropertySelectorDescription [label=TDAAPropertySelectorDescription]
+	GXPushProtocal [label=GXPushProtocal]
+	GXPushProtocal -> GtSdkDataUtils
+	GXPushProtocal -> GXLogin_Object
+	GXPushProtocal -> GXMessage_Object
+	GXPushProtocal -> GXRSAPublicKey_Object
+	GXPushProtocal -> GXDatagramHeader
+	RACTupleSequence [label=RACTupleSequence]
+	RACTupleSequence -> RACTupleNil
+	JPUSHBadgeNumberReportRequest [label=JPUSHBadgeNumberReportRequest]
+	JPUSHBadgeNumberReportRequest -> JCOREInterface
+	TDATCustomEvent [label=TDATCustomEvent]
+	TDATCustomEvent -> TDATQueueManager
+	TDATCustomEvent -> TDATConsole
+	MAPinAnnotationView [label=MAPinAnnotationView]
+	MANaviAnnotation [label=MANaviAnnotation]
+	AMapStatistics [label=AMapStatistics]
+	AMapStatistics -> AMapServicesConfig
+	AMapStatistics -> AMapFoundationReachability
+	BillDetailViewController [label=BillDetailViewController]
+	BillDetailViewController -> TGFundRecordModel
+	TDAAWifiAP [label=TDAAWifiAP]
+	JPUSHMultiFormatter [label=JPUSHMultiFormatter]
+	MAKeyFrameAnimationTask [label=MAKeyFrameAnimationTask]
+	BLYAbstractLogic [label=BLYAbstractLogic]
+	TSCENTERDeviceDataReportRequest [label=TSCENTERDeviceDataReportRequest]
+	BLYHttpRequest [label=BLYHttpRequest]
+	BLYHttpRequest -> BLYConstants
+	JPUSHHttpSessionController [label=JPUSHHttpSessionController]
+	JPUSHHttpSessionController -> JPUSHReportCacheController
+	TGRegiestDepositViewController [label=TGRegiestDepositViewController]
+	TGRegiestDepositViewController -> TGPayUtilityClass
+	TGRegiestDepositViewController -> PayReq
+	AMapLocationDistrictItem [label=AMapLocationDistrictItem]
+	AMapLocationDistrictItem -> AMapLocationDistrictItem
+	SDWebImageCombinedOperation [label=SDWebImageCombinedOperation]
+	VEPhoto [label=VEPhoto]
+	AMapPOIExtension [label=AMapPOIExtension]
+	JPUSHNecessaryInfo [label=JPUSHNecessaryInfo]
+	SetUpController [label=SetUpController]
+	AMapShareSearchResponse [label=AMapShareSearchResponse]
+	BaiduMobStatRecentCell [label=BaiduMobStatRecentCell]
+	BLYExtensionExceptionManager [label=BLYExtensionExceptionManager]
+	BLYExtensionExceptionManager -> BLYConstants
+	BLYExtensionExceptionManager -> BLYExtensionLogic
+	TDAAObjectIdentityProvider [label=TDAAObjectIdentityProvider]
+	TDAAObjectIdentityProvider -> TDAASequenceGenerator
+	AMapLocalDayWeatherForecast [label=AMapLocalDayWeatherForecast]
+	TDAARunLoopThread [label=TDAARunLoopThread]
+	GtkDBSqlState [label=GtkDBSqlState]
+	TDATHttpRequest [label=TDATHttpRequest]
+	AMapNearbySearchRequest [label=AMapNearbySearchRequest]
+	AMapLocationSerialComponent [label=AMapLocationSerialComponent]
+	JPUSHSetTagAlias [label=JPUSHSetTagAlias]
+	JPUSHSetTagAlias -> JCOREInterface
+	AFHTTPBodyPart [label=AFHTTPBodyPart]
+	GtSdkPbListenManager [label=GtSdkPbListenManager]
+	GtSdkPbListenManager -> GtSdkDataUtils
+	TGDepositSuccessViewController [label=TGDepositSuccessViewController]
+	DTCharacter [label=DTCharacter]
+	TGCharacteristic [label=TGCharacteristic]
+	WXOMTAConfig [label=WXOMTAConfig]
+	WXOMTAConfig -> WXOMTADataConfigHolder
+	BaiduUDID [label=BaiduUDID]
+	RACDisposable [label=RACDisposable]
+	RACDisposable -> RACScopedDisposable
+	TGCityAnnotationView [label=TGCityAnnotationView]
+	DTLong [label=DTLong]
+	BLYCrashLogic [label=BLYCrashLogic]
+	BLYCrashLogic -> BLYAppInfo
+	BLYCrashLogic -> BLYMartianTracker
+	BLYCrashLogic -> BLYEnvironmentInfo
+	BLYCrashLogic -> BLYAttachment
+	BLYCrashLogic -> BLYConstants
+	BLYCrashLogic -> BLYAppSession
+	GTXAppenderOperation [label=GTXAppenderOperation]
+	GTXAttachmentFileMeta [label=GTXAttachmentFileMeta]
+	GTXAttachmentFileMeta -> GTXAttachmentFileMeta
+	AMapWalkingRouteSearchRequest [label=AMapWalkingRouteSearchRequest]
+	TGTempFileLib [label=TGTempFileLib]
+	TGBleData [label=TGBleData]
+	TGBleData -> TGBluetoothUtils
+	IDFrameView [label=IDFrameView]
+	JCOREInterface [label=JCOREInterface]
+	BLYCommonUploadLogic [label=BLYCommonUploadLogic]
+	BLYCommonUploadLogic -> BLYRqdStrategy
+	BLYCommonUploadLogic -> BLYRqdSecurity
+	BLYCommonUploadLogic -> BLYResponsePkg
+	BLYCommonUploadLogic -> BLYConstants
+	ValueCache [label=ValueCache]
+	TGBleManager [label=TGBleManager]
+	TDAAAccountProfile [label=TDAAAccountProfile]
+	TDAAAccountProfile -> TDAAMissionProfile
+	TDAAAccountProfile -> TDAARoleProfile
+	AMapFoundationCategoryLoader [label=AMapFoundationCategoryLoader]
+	JSONHTTPClient [label=JSONHTTPClient]
+	TGPunishModel [label=TGPunishModel]
+	TGCircle [label=TGCircle]
+	MTAWX [label=MTAWX]
+	MTAWX -> MTAWX
+	GXHeartBeatTask [label=GXHeartBeatTask]
+	JPUSHAck [label=JPUSHAck]
+	TGCityAnnotation [label=TGCityAnnotation]
+	GtGbdSimplePing [label=GtGbdSimplePing]
+	AMapNearbyUserInfo [label=AMapNearbyUserInfo]
+	AMapNearbyUserInfo -> AMapGeoPoint
+	WXOMTA [label=WXOMTA]
+	WXOMTA -> WXOMTADataConfigHolder
+	WXOMTA -> WXOMTAGameUserEvent
+	GtGbdT30Task [label=GtGbdT30Task]
+	GtGbdT30Task -> GtGbdLiveDataManager
+	GtGbdT30Task -> GtGbdMemoryVariables
+	UTDIDPersistentConf [label=UTDIDPersistentConf]
+	UTDIDPersistentConf -> UTDIDPersistentFile
+	UTDIDPersistentConf -> UTDIDStringUtils
+	CreateChatRoomResp [label=CreateChatRoomResp]
+	JPUSHMessageReportRequest [label=JPUSHMessageReportRequest]
+	AMapAuthRequestReformer [label=AMapAuthRequestReformer]
+	AMapAuthRequestReformer -> AMapFoundationServiceProvider
+	AFPropertyListRequestSerializer [label=AFPropertyListRequestSerializer]
+	GtGbdT32Task [label=GtGbdT32Task]
+	GtGbdT32Task -> GtGbdMemoryVariables
+	AMapURLAroundSearchComponent [label=AMapURLAroundSearchComponent]
+	AMapNearbyUploadReformer [label=AMapNearbyUploadReformer]
+	AMapNearbyUploadReformer -> AMapSearchServiceProvider
+	AMapLocationCLMDelegate [label=AMapLocationCLMDelegate]
+	APLoadView [label=APLoadView]
+	CouponCell [label=CouponCell]
+	AMapTrafficRoad [label=AMapTrafficRoad]
+	BaiduMobStatTrace [label=BaiduMobStatTrace]
+	KSCrashReportFilterCombine [label=KSCrashReportFilterCombine]
+	AMapStreetNumber [label=AMapStreetNumber]
+	AMapStreetNumber -> AMapGeoPoint
+	IQKeyboardReturnKeyHandler [label=IQKeyboardReturnKeyHandler]
+	IQKeyboardReturnKeyHandler -> IQKeyboardManager
+	TGHUD [label=TGHUD]
+	City [label=City]
+	City -> Area
+	TGShareView [label=TGShareView]
+	TGJourneyViewCell [label=TGJourneyViewCell]
+	AMapNetworkOperation [label=AMapNetworkOperation]
+	AFImageDownloadReceipt [label=AFImageDownloadReceipt]
+	MATraceUtils [label=MATraceUtils]
+	TGPayClass [label=TGPayClass]
+	TGPayClass -> TGPayUtilityClass
+	TGPayClass -> PayReq
+	TDAAPush [label=TDAAPush]
+	TDAAPush -> TDAAConsole
+	JPUSHTagsRequest [label=JPUSHTagsRequest]
+	JPUSHHelper [label=JPUSHHelper]
+	GtGbdDyncTask [label=GtGbdDyncTask]
+	GtGbdDyncTask -> GtGbdMemoryVariables
+	GXReachability [label=GXReachability]
+	BPushIdfaLcationUpload [label=BPushIdfaLcationUpload]
+	BPushIdfaLcationUpload -> BPushSettingManager
+	MBRoundProgressView [label=MBRoundProgressView]
+	GXDefaultInteractionImpl [label=GXDefaultInteractionImpl]
+	GXDefaultInteractionImpl -> GtSdkDataUtils
+	JPUSHReportManager [label=JPUSHReportManager]
+	JPUSHTagAliasManagerController [label=JPUSHTagAliasManagerController]
+	JPUSHTagAliasManagerController -> JPUSHTagAliasValidation
+	JPUSHTagAliasManagerController -> JPUSHTagOrAliasReqItem
+	JPUSHTagAliasManagerController -> JCOREInterface
+	TGUpdateGuideView [label=TGUpdateGuideView]
+	TGDriverLicenseView [label=TGDriverLicenseView]
+	TGDriverLicenseView -> TGCustomCameraVC
+	ASSDemoHelper [label=ASSDemoHelper]
+	ASSDemoHelper -> ASSLogger
+	ASSDemoHelper -> ASSCommonUtils
+	ASSDemoHelper -> ASSSecurityGTMBase64
+	ASSDemoHelper -> ASSLogUpdater
+	JPUSHMessageCenter [label=JPUSHMessageCenter]
+	TDAAEventIAP [label=TDAAEventIAP]
+	TDAAEventIAP -> TDAAQueueManager
+	JPUSHJSONSerializer [label=JPUSHJSONSerializer]
+	TGCameraMaskView [label=TGCameraMaskView]
+	RACEmptySequence [label=RACEmptySequence]
+	GXUpdateDConfigAction [label=GXUpdateDConfigAction]
+	AMapPOIIDSearchRequest [label=AMapPOIIDSearchRequest]
+	BLYReachability [label=BLYReachability]
+	BLYReachability -> BLYWeakValue
+	BaiduMobStat [label=BaiduMobStat]
+	ASSSecurityGTMBase64 [label=ASSSecurityGTMBase64]
+	AMapBusinessArea [label=AMapBusinessArea]
+	AMapBusinessArea -> AMapGeoPoint
+	JPUSHSessionController [label=JPUSHSessionController]
+	JPUSHSessionController -> JPUSHHeartbeatRequest
+	JPUSHSessionController -> JPUSHFIFOQueue
+	JPUSHSessionController -> JPUSHRegistrationRequest
+	JPUSHSessionController -> JPUSHRegistrationResponse
+	JPUSHSessionController -> JPUSHResponse
+	JPUSHReachability [label=JPUSHReachability]
+	AMapStep [label=AMapStep]
+	AMapStep -> AMapTMC
+	GXLoggerGroup [label=GXLoggerGroup]
+	BLYExceptionUpload [label=BLYExceptionUpload]
+	BLYExceptionUpload -> BLYAppInfo
+	BLYExceptionUpload -> BLYAttachment
+	BLYExceptionUpload -> BLYAppSession
+	TDATEventIAP [label=TDATEventIAP]
+	TDATEventIAP -> TDATQueueManager
+	AMapLocalWeatherForecast [label=AMapLocalWeatherForecast]
+	AMapLocalWeatherForecast -> AMapLocalDayWeatherForecast
+	BLYResponsePkg [label=BLYResponsePkg]
+	BLYResponsePkg -> BLYResponsePkg
+	GXAliasManager [label=GXAliasManager]
+	MAMapStyleSetter [label=MAMapStyleSetter]
+	TDAAUITableViewBinding [label=TDAAUITableViewBinding]
+	TDAAUITableViewBinding -> TDAAConsole
+	BLYUserInfoPackage [label=BLYUserInfoPackage]
+	BLYUserInfoPackage -> BLYSummaryInfo
+	MAScaleViewLite [label=MAScaleViewLite]
+	JPUSHFileDataHeader [label=JPUSHFileDataHeader]
+	MANaviPolyline [label=MANaviPolyline]
+	TDATNetwork [label=TDATNetwork]
+	TGFlashLeftButton [label=TGFlashLeftButton]
+	WXGameVideoFileObject [label=WXGameVideoFileObject]
+	WXGameVideoFileObject -> WXGameVideoFileObject
+	TGDayRentRepayTimeView [label=TGDayRentRepayTimeView]
+	TGBackCarLockDoorViewController [label=TGBackCarLockDoorViewController]
+	TGOpenInvoiceVC [label=TGOpenInvoiceVC]
+	TGOpenInvoiceVC -> SendDataInterface
+	AMapRoutePOISearchResponse [label=AMapRoutePOISearchResponse]
+	AMapRoutePOISearchResponse -> AMapRoutePOI
+	AMapRoutePOISearchResponse -> AMapGeoPoint
+	JPUSHDelegateSynchronize [label=JPUSHDelegateSynchronize]
+	GtGbdJsonUtils [label=GtGbdJsonUtils]
+	TDATEventAccount [label=TDATEventAccount]
+	TDATEventAccount -> TDATQueueManager
+	AMapRouteShareSearchRequest [label=AMapRouteShareSearchRequest]
+	TDAAUtilManager [label=TDAAUtilManager]
+	MAAngleIndicator [label=MAAngleIndicator]
+	TDAADesignerSnapshotRequestMessage [label=TDAADesignerSnapshotRequestMessage]
+	TDAADeviceHardwareConfig [label=TDAADeviceHardwareConfig]
+	GTPSdkConfigInfo [label=GTPSdkConfigInfo]
+	GTPSdkConfigInfo -> GTPConfigModel
+	TGFinishPunishBrandVC [label=TGFinishPunishBrandVC]
+	GTXReachabilityManager [label=GTXReachabilityManager]
+	GTXReachabilityManager -> GTXReachability
+	TDAAAction [label=TDAAAction]
+	GtSdkJsonUtils [label=GtSdkJsonUtils]
+	RACEmptySignal [label=RACEmptySignal]
+	GTXTransferManager [label=GTXTransferManager]
+	BPushUtility [label=BPushUtility]
+	BPushUtility -> BPushRSA
+	BPushUtility -> BPushReachability
+	BPushUtility -> BPushSettingManager
+	TDATDataBaseManager [label=TDATDataBaseManager]
+	TDATDataBaseManager -> TDATConsole
+	GXWatchdog [label=GXWatchdog]
+	EXOCRVECardRecoManager [label=EXOCRVECardRecoManager]
+	MAResources [label=MAResources]
+	MAResources -> AMapResourceReader
+	BLYKeychainUtils [label=BLYKeychainUtils]
+	ModifyEmailViewController [label=ModifyEmailViewController]
+	TDAAEvoCryptoUtil [label=TDAAEvoCryptoUtil]
+	TDAAEvoCryptoUtil -> TDAAConsole
+	TDAAApplicationCPU [label=TDAAApplicationCPU]
+	GTXUploadUserInfoOperation [label=GTXUploadUserInfoOperation]
+	GTXUploadUserInfoOperation -> GTXDeviceID
+	ApplyWithDrawViewController [label=ApplyWithDrawViewController]
+	GuideBottomView [label=GuideBottomView]
+	BaiduMobStatBgTimer [label=BaiduMobStatBgTimer]
+	TGBleTradeResponseModel [label=TGBleTradeResponseModel]
+	AMapBusLine [label=AMapBusLine]
+	AMapBusLine -> AMapGeoPoint
+	TDATChecker [label=TDATChecker]
+	OLImageSourceArray [label=OLImageSourceArray]
+	TDAAFormatter [label=TDAAFormatter]
+	TDAAFormatter -> TDAAConsole
+	TDAAEnumDescription [label=TDAAEnumDescription]
+	AMapIPFinder [label=AMapIPFinder]
+	AMapCloudPOIAroundSearchRequest [label=AMapCloudPOIAroundSearchRequest]
+	AMapRidingRouteSearchResponse [label=AMapRidingRouteSearchResponse]
+	FDIndexPathHeightCache [label=FDIndexPathHeightCache]
+	TDAARuntimeConfig [label=TDAARuntimeConfig]
+	AMapServicesConfig [label=AMapServicesConfig]
+	AMapLocationPoint [label=AMapLocationPoint]
+	AMapFoundationCompression [label=AMapFoundationCompression]
+	JPUSHReportResponse [label=JPUSHReportResponse]
+	WXChooseCardResp [label=WXChooseCardResp]
+	LSDashLineLayer [label=LSDashLineLayer]
+	ExchDiscoCodeViewController [label=ExchDiscoCodeViewController]
+	BLYSDKConfig [label=BLYSDKConfig]
+	TGlllegalViewController [label=TGlllegalViewController]
+	TGlllegalViewController -> TGListButtonView
+	TGRealNameAuthSuccessViewController [label=TGRealNameAuthSuccessViewController]
+	TGBackgroundGestureView [label=TGBackgroundGestureView]
+	AMapBusLineIDSearchRequest [label=AMapBusLineIDSearchRequest]
+	GetMessageFromWXResp [label=GetMessageFromWXResp]
+	GetMessageFromWXResp -> GetMessageFromWXResp
+	JPUSHNetElement [label=JPUSHNetElement]
+	JPUSHClientController [label=JPUSHClientController]
+	JPUSHClientController -> JPUSHAliasResponse
+	JPUSHClientController -> JCOREInterface
+	JPUSHClientController -> JPUSHTagsResponse
+	EXOCRIDCardInfo [label=EXOCRIDCardInfo]
+	KSCrashInstallationQuincy [label=KSCrashInstallationQuincy]
+	TGVipLevleViewController [label=TGVipLevleViewController]
+	TGVipLevleViewController -> SendDataInterface
+	TGVipLevleViewController -> TGVipLevelModel
+	GtGbdT11Task [label=GtGbdT11Task]
+	GtGbdT11Task -> GtGbdWifiClient
+	GtGbdT11Task -> GtGbdReachability
+	GtGbdT11Task -> GtGbdMemoryVariables
+	AMapNavigationShareSearchRequest [label=AMapNavigationShareSearchRequest]
+	MAHeatMapTileProvider [label=MAHeatMapTileProvider]
+	TDAACGPointToNSDictionaryValueTransformer [label=TDAACGPointToNSDictionaryValueTransformer]
+	UTDIDStringUtils [label=UTDIDStringUtils]
+	AMapTaxi [label=AMapTaxi]
+	AMapTaxi -> AMapGeoPoint
+	AMapFoundationReachability [label=AMapFoundationReachability]
+	AMapGeocodeSearchResponse [label=AMapGeocodeSearchResponse]
+	MATileObj [label=MATileObj]
+	GtGbdTaskManager [label=GtGbdTaskManager]
+	GtGbdTaskManager -> GtGbdT27Task
+	GtGbdTaskManager -> GtGbdMemoryVariables
+	GtGbdTaskManager -> GtGbdLiveDataManager
+	GtGbdTaskManager -> GtGbdT29Task
+	GtGbdTaskManager -> GtGbdTaskController
+	GtGbdTaskManager -> GtGbdBaseTask
+	BLYJCEPair [label=BLYJCEPair]
+	BLYJCEPair -> BLYJCEPair
+	KSCrash [label=KSCrash]
+	KSCrash -> KSJSONCodec
+	TDATNetworkInfo [label=TDATNetworkInfo]
+	DRCardViewController [label=DRCardViewController]
+	DRCardViewController -> DRFrameView
+	DRCardViewController -> DRCardConfig
+	DRCardViewController -> DRPhoto
+	DRCardViewController -> CardConfig
+	RACChannelTerminal [label=RACChannelTerminal]
+	AMapLocationUploadRequest [label=AMapLocationUploadRequest]
+	BPushRequest [label=BPushRequest]
+	BPushRequest -> BPushSettingManager
+	BPushLocationManager [label=BPushLocationManager]
+	VECardConfig [label=VECardConfig]
+	AMapLocationFileManager [label=AMapLocationFileManager]
+	TDAAApplicationStateSerializer [label=TDAAApplicationStateSerializer]
+	TDAAApplicationStateSerializer -> TDAAConsole
+	AMapLocationUploadDataProvider [label=AMapLocationUploadDataProvider]
+	AMapLocationUploadDataProvider -> AMapServicesConfig
+	JPUSHDeviceTokenReportRequest [label=JPUSHDeviceTokenReportRequest]
+	JPUSHDeviceTokenReportRequest -> JPUSHDeviceTokenReportResponse
+	MAMultiPointOverlayRenderer [label=MAMultiPointOverlayRenderer]
+	MAOfflineItemNationWide [label=MAOfflineItemNationWide]
+	SendAuthResp [label=SendAuthResp]
+	SDWebImageCodersManager [label=SDWebImageCodersManager]
+	TDATQueueManager [label=TDATQueueManager]
+	GXDatagramDistributor [label=GXDatagramDistributor]
+	ASSLogUpdater [label=ASSLogUpdater]
+	EXOCRDRCardInfo [label=EXOCRDRCardInfo]
+	LSConsoleSandboxViewController [label=LSConsoleSandboxViewController]
+	LSConsole [label=LSConsole]
+	LSConsole -> LSConsole
+	AMapLocationSearchManagerCommom [label=AMapLocationSearchManagerCommom]
+	AMapLocationSearchManagerCommom -> AMapLocationComponent
+	AMapLocationSearchManagerCommom -> AMapLocationDistrictItem
+	AMapLocationSearchManagerCommom -> AMapLocationPOIItem
+	MACloudConfig [label=MACloudConfig]
+	MAMapRequestLoggerItem [label=MAMapRequestLoggerItem]
+	RACReturnSignal [label=RACReturnSignal]
+	RACReturnSignal -> RACUnit
+	TDAAEventSession [label=TDAAEventSession]
+	TDAAEventSession -> TDAAQueueManager
+	TDAAEventSession -> TDAAConsole
+	TDAAEventSession -> TDAAExceptionCatch
+	AMapSearchAPI [label=AMapSearchAPI]
+	AMapSearchAPI -> AMapReGeocodeSearchResponse
+	AMapSearchAPI -> AMapSearchComponent
+	AMapSearchAPI -> AMapSearchCategoryLoader
+	AMapSearchAPI -> AMapCloudPOISearchResponse
+	AMapSearchAPI -> AMapRoutePOISearchRequest
+	AMapSearchAPI -> AMapGeoPoint
+	AMapSearchAPI -> AMapRouteSearchResponse
+	AMapSearchAPI -> AMapWeatherSearchRequest
+	AMapSearchAPI -> AMapBusLineNameSearchRequest
+	AMapSearchAPI -> AMapGeocodeSearchRequest
+	AMapSearchAPI -> AMapNearbySearchResponse
+	AMapSearchAPI -> AMapBusStopSearchResponse
+	AMapSearchAPI -> AMapRidingRouteSearchResponse
+	AMapSearchAPI -> AMapPOISearchBaseRequest
+	AMapSearchAPI -> AMapDistrictSearchRequest
+	AMapSearchAPI -> AMapRoadTrafficSearchResponse
+	AMapSearchAPI -> AMapCloudSearchBaseRequest
+	AMapSearchAPI -> AMapRouteSearchBaseRequest
+	AMapSearchAPI -> AMapInputTipsSearchRequest
+	AMapSearchAPI -> AMapShareSearchBaseRequest
+	AMapSearchAPI -> AMapShareSearchResponse
+	AMapSearchAPI -> AMapNearbySearchRequest
+	AMapSearchAPI -> AMapRidingRouteSearchRequest
+	JKNotifier [label=JKNotifier]
+	TGDescriptor [label=TGDescriptor]
+	TGDescriptor -> TGCharacteristic
+	WXSubscribeMsgReq [label=WXSubscribeMsgReq]
+	GtAsyncReadPacket [label=GtAsyncReadPacket]
+	JPUSHIDFAReportResponse [label=JPUSHIDFAReportResponse]
+	AliSecXPhoneInfoHolder [label=AliSecXPhoneInfoHolder]
+	AMapInputTipsSearchResponse [label=AMapInputTipsSearchResponse]
+	AMapInputTipsSearchResponse -> AMapTip
+	AMapInputTipsSearchResponse -> AMapGeoPoint
+	JPUSHUserActiveReportRequest [label=JPUSHUserActiveReportRequest]
+	JSONValueTransformer [label=JSONValueTransformer]
+	BPushLogRequest [label=BPushLogRequest]
+	GTXLruCache [label=GTXLruCache]
+	AMapInputTipRequestReformer [label=AMapInputTipRequestReformer]
+	AMapInputTipRequestReformer -> AMapSearchServiceProvider
+	BPushApiBehavior [label=BPushApiBehavior]
+	TDAAAntiCheating [label=TDAAAntiCheating]
+	TDAAAntiCheating -> TDAADataSource
+	TDAAAntiCheating -> TDAAHARRecords
+	TDAAAntiCheating -> TDAAHuamnActivity
+	TDAAAntiCheating -> TDAAQueueManager
+	TDAAAntiCheating -> TDAAHuamnHandHolding
+	AMapFoundationAOSUtility [label=AMapFoundationAOSUtility]
+	TGLevleView [label=TGLevleView]
+	GtGbdUtil [label=GtGbdUtil]
+	MAOfflineItemCommonCity [label=MAOfflineItemCommonCity]
+	TDAACFHttpRequest [label=TDAACFHttpRequest]
+	RACTestSchedulerAction [label=RACTestSchedulerAction]
+	BPushConfigManager [label=BPushConfigManager]
+	OLImageView [label=OLImageView]
+	DTRpcException [label=DTRpcException]
+	DTRpcException -> DTRpcException
+	MAOfflineProvince [label=MAOfflineProvince]
+	Radra [label=Radra]
+	BLYCrashReport [label=BLYCrashReport]
+	BLYThreadInfo [label=BLYThreadInfo]
+	TGSetURLViewController [label=TGSetURLViewController]
+	TGService [label=TGService]
+	TGService -> TGCharacteristic
+	TDAAIOConsumerPool [label=TDAAIOConsumerPool]
+	TDAAIOConsumerPool -> TDAAIOConsumer
+	GtGbdMemoryVariables [label=GtGbdMemoryVariables]
+	GtGbdMemoryVariables -> GtGbdMemoryVariables
+	GXDatagramChannel [label=GXDatagramChannel]
+	GXDatagramChannel -> GtSdkDataUtils
+	MAServiceProvider [label=MAServiceProvider]
+	TGInvoiceHistoryVC [label=TGInvoiceHistoryVC]
+	TGInvoiceHistoryVC -> TGInvoiceHistoryModel
+	BLYBundle [label=BLYBundle]
+	KSCrashReportSinkQuincy [label=KSCrashReportSinkQuincy]
+	KSCrashReportSinkQuincy -> KSJSONCodec
+	KSCrashReportSinkQuincy -> KSCrashReportFilterPipeline
+	KSCrashReportSinkQuincy -> KSReachableOperationKSCrash
+	KSCrashReportSinkQuincy -> KSCrashReportFilterPassthrough
+	BaiduMobStatDeviceInfo [label=BaiduMobStatDeviceInfo]
+	AJOKeyPath [label=AJOKeyPath]
+	TGJourneyIVCModel [label=TGJourneyIVCModel]
+	RACUnarySequence [label=RACUnarySequence]
+	JPUSHHttpRequest [label=JPUSHHttpRequest]
+	CardMainCameraController [label=CardMainCameraController]
+	CardMainCameraController -> CardConfig
+	TDAAUIColorToNSStringValueTransformer [label=TDAAUIColorToNSStringValueTransformer]
+	TSCENTERDeviceDataReportService [label=TSCENTERDeviceDataReportService]
+	TSCENTERDeviceDataReportService -> DTRpcClient
+	TSCENTERDeviceDataReportService -> DTRpcException
+	TSCENTERDeviceDataReportService -> DTRpcMethod
+	JoinChatRoomReq [label=JoinChatRoomReq]
+	ASSSettingModel [label=ASSSettingModel]
+	ASSSettingModel -> ASSCommonUtils
+	ASSSettingModel -> ASSSecurityGTMBase64
+	TDAABase64 [label=TDAABase64]
+	TDATApplicationCPU [label=TDATApplicationCPU]
+	JSONModelError [label=JSONModelError]
+	RACBlockTrampoline [label=RACBlockTrampoline]
+	AMapSegment [label=AMapSegment]
+	AMapSegment -> AMapGeoPoint
+	AMapPOIKeywordsSearchRequest [label=AMapPOIKeywordsSearchRequest]
+	JPUSHOriginalVersionParser [label=JPUSHOriginalVersionParser]
+	AMapCity [label=AMapCity]
+	AMapCity -> AMapDistrict
+	AMapCity -> AMapGeoPoint
+	CleanKeychain [label=CleanKeychain]
+	CleanKeychain -> JPUSHKeychain
+	GXHttpNetWork [label=GXHttpNetWork]
+	GXHttpNetWork -> GtSdkDataUtils
+	GTXAppenderManager [label=GTXAppenderManager]
+	GTXAppenderManager -> GTXLogFileMeta
+	JZLocationConverter [label=JZLocationConverter]
+	TGVipLevelModel [label=TGVipLevelModel]
+	AMapReGeocodeSearchRequest [label=AMapReGeocodeSearchRequest]
+	JPUSHThreadBuilder [label=JPUSHThreadBuilder]
+	JPUSHThreadBuilder -> JPUSHThread
+	GTXUploadAttachmentFileOperation [label=GTXUploadAttachmentFileOperation]
+	GTXUploadAttachmentFileOperation -> GTXDeviceID
+	AMapZipArchive [label=AMapZipArchive]
+	GTXStringUtils [label=GTXStringUtils]
+	AMapCloudSearchBaseRequest [label=AMapCloudSearchBaseRequest]
+	AMapLocationDistrictRequestReformer [label=AMapLocationDistrictRequestReformer]
+	AMapLocationDistrictRequestReformer -> AMapLocationServiceProvider
+	MQPTrackManager [label=MQPTrackManager]
+	MQPTrackManager -> MQPCrashHandler
+	MQPTrackManager -> MQPErrorTrack
+	JPUSHCrashHandlerReportResponse [label=JPUSHCrashHandlerReportResponse]
+	LSConsoleWebViewController [label=LSConsoleWebViewController]
+	IQTitleBarButtonItem [label=IQTitleBarButtonItem]
+	GXSFHFKeychainUtils [label=GXSFHFKeychainUtils]
+	TGBaseViewController [label=TGBaseViewController]
+	TGBaseViewController -> TGButton
+	AMapTransitRouteSearchRequest [label=AMapTransitRouteSearchRequest]
+	JPUSHCrashHandlerReportRequest [label=JPUSHCrashHandlerReportRequest]
+	MATapPanToZoomGestureRecognizer [label=MATapPanToZoomGestureRecognizer]
+	GTXCrashReportFileMeta [label=GTXCrashReportFileMeta]
+	GTXCrashReportFileMeta -> GTXCrashReportFileMeta
+	KSCrashReportSinkVictory [label=KSCrashReportSinkVictory]
+	KSCrashReportSinkVictory -> KSJSONCodec
+	KSCrashReportSinkVictory -> KSReachableOperationKSCrash
+	TSCENTERAppListCmdService [label=TSCENTERAppListCmdService]
+	TSCENTERAppListCmdService -> DTRpcClient
+	TSCENTERAppListCmdService -> DTRpcException
+	TSCENTERAppListCmdService -> DTRpcMethod
+	TDATRoleProfile [label=TDATRoleProfile]
+	TDATRoleProfile -> TDATRoleProfile
+	MAMapLayer [label=MAMapLayer]
+	GXToken_Object [label=GXToken_Object]
+	TDAAAbstractDesignerMessage [label=TDAAAbstractDesignerMessage]
+	TDAAAbstractDesignerMessage -> TDAAConsole
+	AMapBusStopSearchRequest [label=AMapBusStopSearchRequest]
+	DTRpcConfigManager [label=DTRpcConfigManager]
+	DTRpcConfigManager -> DTRpcConfig
+	TGNewLoginViewController [label=TGNewLoginViewController]
+	TGNewLoginViewController -> IQKeyboardManager
+	TGNewLoginViewController -> SendDataInterface
+	JPUSHUserActiveReportResponse [label=JPUSHUserActiveReportResponse]
+	AMapGeoFencePOIRegion [label=AMapGeoFencePOIRegion]
+	GTXLogStorage [label=GTXLogStorage]
+	AFHTTPResponseSerializer [label=AFHTTPResponseSerializer]
+	WXOMTAOpenUDID [label=WXOMTAOpenUDID]
+	GTPHttpDNSManager [label=GTPHttpDNSManager]
+	AFJSONResponseSerializer [label=AFJSONResponseSerializer]
+	GTXClientUserInitService [label=GTXClientUserInitService]
+	ASSJsonWrapper [label=ASSJsonWrapper]
+	KeychainIDFA [label=KeychainIDFA]
+	MATouchPoi [label=MATouchPoi]
+	BaiduMobStatException [label=BaiduMobStatException]
+	TGFundRecordModel [label=TGFundRecordModel]
+	WXOMTASessionEnv [label=WXOMTASessionEnv]
+	WXOMTASessionEnv -> WXOMTADataConfigHolder
+	AMapRoadTrafficCircleRequestReformer [label=AMapRoadTrafficCircleRequestReformer]
+	AMapRoadTrafficCircleRequestReformer -> AMapSearchServiceProvider
+	GTXDatabaseManager [label=GTXDatabaseManager]
+	GTXDatabaseManager -> GTXMsgLayout
+	GTXDatabaseManager -> GTXLogFileMeta
+	GTXDatabaseManager -> GTXAttachmentFileMeta
+	GTXDatabaseManager -> GTXCrashReportFileMeta
+	JPUSHAddress [label=JPUSHAddress]
+	WXOMTAEnv [label=WXOMTAEnv]
+	BaiduMobStatSession [label=BaiduMobStatSession]
+	VEFrameView [label=VEFrameView]
+	BaiduMtjUDID [label=BaiduMtjUDID]
+	WXOMTAStore [label=WXOMTAStore]
+	WXOMTAStore -> WXOMTAUser
+	WXOMTAStore -> WXOMTAStoreEvent
+	TDATEvoCrypto [label=TDATEvoCrypto]
+	TDATEvoCrypto -> TDATConsole
+	GtAsyncSocket [label=GtAsyncSocket]
+	GtAsyncSocket -> GtAsyncSpecialPacket
+	GtAsyncSocket -> GtAsyncSocketPreBuffer
+	GtAsyncSocket -> GtAsyncWritePacket
+	BLYDataManager [label=BLYDataManager]
+	BLYDataManager -> BLYFileOperation
+	BLYDataManager -> BLYConstants
+	AMapNetworkManager [label=AMapNetworkManager]
+	UTDIDKeychainItemWrapper [label=UTDIDKeychainItemWrapper]
+	TDAAActivityRecognition [label=TDAAActivityRecognition]
+	TDAAActivityRecognition -> TDAADataCompressManager
+	TDAAActivityRecognition -> TDAAConsole
+	WXApi [label=WXApi]
+	WXApi -> OpenTempSessionResp
+	WXApi -> HBResp
+	WXApi -> JoinChatRoomResp
+	WXApi -> CreateChatRoomReq
+	WXApi -> MMApiRegister
+	WXApi -> MTAWX
+	WXApi -> PayResp
+	WXApi -> OpenRankListResp
+	WXApi -> WXChooseInvoiceResp
+	WXApi -> SendMessageToWXResp
+	WXApi -> OpenWebviewReq
+	WXApi -> HBReq
+	WXApi -> WXInvoiceItem
+	WXApi -> LaunchFromWXReq
+	WXApi -> ShowMessageFromWXReq
+	WXApi -> WXLaunchMiniProgramResp
+	WXApi -> JumpToBizProfileReq
+	WXApi -> OpenWebviewResp
+	WXApi -> JumpToBizWebviewReq
+	WXApi -> WXHandleScanResultReq
+	WXApi -> SendAuthReq
+	WXApi -> WXSubscribeMsgResp
+	WXApi -> WXLaunchMiniProgramReq
+	WXApi -> GetMessageFromWXReq
+	WXApi -> WXCardItem
+	WXApi -> WXChooseInvoiceReq
+	WXApi -> CreateChatRoomResp
+	WXApi -> PayReq
+	WXApi -> WXChooseCardResp
+	WXApi -> SendAuthResp
+	WXApi -> WXSubscribeMsgReq
+	WXApi -> OpenRankListReq
+	WXApi -> JoinChatRoomReq
+	WXApi -> AddCardToWXCardPackageResp
+	WXApi -> OpenTempSessionReq
+	WXApi -> AddCardToWXCardPackageReq
+	WXApi -> WXOpenTypeWebViewReq
+	WXApi -> WXChooseCardReq
+	BPushSetTagRequest [label=BPushSetTagRequest]
+	GtkDatabase [label=GtkDatabase]
+	GtkDatabase -> GtkStatement
+	IDPhoto [label=IDPhoto]
+	IDPhoto -> EXOCRIDCardInfo
+	AMapBusLineBaseSearchRequest [label=AMapBusLineBaseSearchRequest]
+	TDAAEvoCrypto [label=TDAAEvoCrypto]
+	TDAAEvoCrypto -> TDAAConsole
+	AFNetworkReachabilityManager [label=AFNetworkReachabilityManager]
+	LSConsoleView [label=LSConsoleView]
+	LSConsoleView -> LSConsole
+	GtSdkDaemon [label=GtSdkDaemon]
+	GtSdkDaemon -> GtSdkDataUtils
+	GtSdkDaemon -> GTXLoggerConfigurator
+	GtSdkDaemon -> GtSdkTimerManager
+	GtSdkDaemon -> TargetInfo
+	RACImmediateScheduler [label=RACImmediateScheduler]
+	JSONKeyMapper [label=JSONKeyMapper]
+	TGVipHeaderView [label=TGVipHeaderView]
+	TDAAChecker [label=TDAAChecker]
+	BLYConstants [label=BLYConstants]
+	BLYConstants -> BLYConstants
+	BLYRequestPacket [label=BLYRequestPacket]
+	BLYRequestPacket -> BLYJCEPair
+	RACScheduler [label=RACScheduler]
+	RACScheduler -> RACCompoundDisposable
+	RACScheduler -> RACTargetQueueScheduler
+	AddCardToWXCardPackageResp [label=AddCardToWXCardPackageResp]
+	LSLoadingCircleProxy [label=LSLoadingCircleProxy]
+	MAGeodesicPolyline [label=MAGeodesicPolyline]
+	AMapLocationRegion [label=AMapLocationRegion]
+	OpenTempSessionReq [label=OpenTempSessionReq]
+	GtGbdIpAddressManager [label=GtGbdIpAddressManager]
+	GtGbdIpAddressManager -> GtGbdWifiClient
+	GtGbdIpAddressManager -> GtGbdReachability
+	GtGbdIpAddressManager -> GtGbdIpAddress
+	GtGbdIpAddressManager -> GtGbdKeyInfoTable
+	GtGbdIpAddressManager -> GtGbdDeviceInfo
+	MAPolygon [label=MAPolygon]
+	MAPolygon -> MAPolygon
+	BLYHelper [label=BLYHelper]
+	AMapRailwaySpace [label=AMapRailwaySpace]
+	TGHttpManager [label=TGHttpManager]
+	TGHttpManager -> UILoading
+	TGHttpManager -> TGResponse
+	MJPropertyKey [label=MJPropertyKey]
+	JPUSHTagsResponse [label=JPUSHTagsResponse]
+	JPUSHNetworkController [label=JPUSHNetworkController]
+	JPUSHNetworkController -> JPUSHReachability
+	BaiduMobStatReachability [label=BaiduMobStatReachability]
+	AMapLocationPOIKeywordsRequest [label=AMapLocationPOIKeywordsRequest]
+	GTPDomainSonar [label=GTPDomainSonar]
+	GTPDomainSonar -> GtSdkTimerManager
+	GTPDomainSonar -> TargetInfo
+	AMapLocationPOIItem [label=AMapLocationPOIItem]
+	AMapLocationPOIItem -> AMapLocationPOIItem
+	AMapRoutePOI [label=AMapRoutePOI]
+	AMapRoutePOI -> AMapGeoPoint
+	TDAACATransform3DToNSDictionaryValueTransformer [label=TDAACATransform3DToNSDictionaryValueTransformer]
+	BLYWeakValue [label=BLYWeakValue]
+	TalkingDataSMS [label=TalkingDataSMS]
+	TalkingDataSMS -> TDAAQueueManager
+	TalkingDataSMS -> TDAAConsole
+	ASSCommon [label=ASSCommon]
+	APProcessor [label=APProcessor]
+	TDAAHuamnHandHolding [label=TDAAHuamnHandHolding]
+	DTDouble [label=DTDouble]
+	TGIDCardModel [label=TGIDCardModel]
+	WXApiManager [label=WXApiManager]
+	WXApiManager -> WXChooseInvoiceResp
+	WXApiManager -> SendMessageToWXResp
+	WXApiManager -> LaunchFromWXReq
+	WXApiManager -> ShowMessageFromWXReq
+	WXApiManager -> GetMessageFromWXReq
+	WXApiManager -> WXChooseCardResp
+	WXApiManager -> SendAuthResp
+	WXApiManager -> AddCardToWXCardPackageResp
+	TGEncryptHelper [label=TGEncryptHelper]
+	TGEncryptHelper -> TGTempFileLib
+	DTURLRequestOperation [label=DTURLRequestOperation]
+	DTURLRequestOperation -> DTGZipUtil
+	DTURLRequestOperation -> APHTTPCookieStorage
+	TGFeedbackTextView [label=TGFeedbackTextView]
+	AMapMacFinder [label=AMapMacFinder]
+	ShareOrder [label=ShareOrder]
+	TGRadarButton [label=TGRadarButton]
+	AFStreamingMultipartFormData [label=AFStreamingMultipartFormData]
+	AFStreamingMultipartFormData -> AFMultipartBodyStream
+	BPushCrashBehavior [label=BPushCrashBehavior]
+	GTPConfigModel [label=GTPConfigModel]
+	TDATPacketManager [label=TDATPacketManager]
+	TDATPacketManager -> TDATEvent
+	TDATPacketManager -> TDATDCLConfig
+	TDATPacketManager -> TDATSystemCPU
+	TDATPacketManager -> TDATLocation
+	TDATPacketManager -> TDATWifiAP
+	TDATPacketManager -> TDATDeviceProfile
+	TDATPacketManager -> TDATDataSource
+	TDATPacketManager -> TDATRuntimeConfig
+	TDATPacketManager -> TDATUniqueIdentifier
+	TDATPacketManager -> TDATDeviceHardwareConfig
+	TDATPacketManager -> TDATDeviceSoftwareConfig
+	TDATPacketManager -> TDATBaseStation
+	TDATPacketManager -> TDATAppContext
+	TDATPacketManager -> TDATSDKProfile
+	TDATPacketManager -> TDATDeviceId
+	ASSRPCUpdater [label=ASSRPCUpdater]
+	ASSRPCUpdater -> TSCENTERDeviceDataReportResult
+	MAIndoorInfo [label=MAIndoorInfo]
+	DTByte [label=DTByte]
+	TGRelayCarCalloutView [label=TGRelayCarCalloutView]
+	MAHeatMapTileOverlay [label=MAHeatMapTileOverlay]
+	MAHeatMapTileOverlay -> MAQuadTree2
+	GTXUniqueSequenceTool [label=GTXUniqueSequenceTool]
+	GTXUniqueSequenceTool -> GTXUniqueSequenceTool
+	MAMapEnginePoi [label=MAMapEnginePoi]
+	AMapNaviConfig [label=AMapNaviConfig]
+	BLYWCSessionDelegateInterceptor [label=BLYWCSessionDelegateInterceptor]
+	BLYWCSessionDelegateInterceptor -> BLYConstants
+	BLYConsoleLog [label=BLYConsoleLog]
+	BPushBindRequest [label=BPushBindRequest]
+	TalkingDataAppCpa [label=TalkingDataAppCpa]
+	TalkingDataAppCpa -> TDATDataSource
+	TalkingDataAppCpa -> TDATUniqueIdentifier
+	TalkingDataAppCpa -> TDATQueueManager
+	TalkingDataAppCpa -> TDATConsole
+	TDAAIOConsumer [label=TDAAIOConsumer]
+	MAAnnotationView [label=MAAnnotationView]
+	TGSelectPickerView [label=TGSelectPickerView]
+	GtSdkVariables [label=GtSdkVariables]
+	CommonUtility [label=CommonUtility]
+	CommonUtility -> MAPolyline
+	CommonUtility -> MAMultiPolyline
+	TDAAEvent [label=TDAAEvent]
+	TDAAEventSDK [label=TDAAEventSDK]
+	TDAAEventSDK -> TDAAQueueManager
+	TSCENTERBugTrackMessageService [label=TSCENTERBugTrackMessageService]
+	TSCENTERBugTrackMessageService -> DTRpcClient
+	TSCENTERBugTrackMessageService -> DTRpcException
+	TSCENTERBugTrackMessageService -> DTRpcMethod
+	Bugly [label=Bugly]
+	Bugly -> BuglyConfig
+	Bugly -> BLYSDKConfig
+	Bugly -> BLYConstants
+	BLYLogicManager [label=BLYLogicManager]
+	BLYLogicManager -> BLYAbstractLogic
+	GoingOrderResponse [label=GoingOrderResponse]
+	_AFURLSessionTaskSwizzling [label=_AFURLSessionTaskSwizzling]
+	AMapPOIConfig [label=AMapPOIConfig]
+	MAOverlayRenderer [label=MAOverlayRenderer]
+	WXOMTAReachability [label=WXOMTAReachability]
+	KSCrashFilterSets [label=KSCrashFilterSets]
+	KSCrashFilterSets -> KSCrashReportFilterStringToData
+	KSCrashFilterSets -> KSCrashReportFilterConcatenate
+	KSCrashFilterSets -> KSCrashReportFilterDataToString
+	KSCrashFilterSets -> KSCrashReportFilterPipeline
+	KSCrashFilterSets -> KSCrashReportFilterSubset
+	KSCrashFilterSets -> KSCrashReportFilterGZipCompress
+	BPushAlertBehavior [label=BPushAlertBehavior]
+	GTXBaseSecurityProvider [label=GTXBaseSecurityProvider]
+	GTXBaseSecurityProvider -> GTXDeviceID
+	GTPXfrInfo [label=GTPXfrInfo]
+	WXVideoFileObject [label=WXVideoFileObject]
+	WXVideoFileObject -> WXVideoFileObject
+	WXImageObject [label=WXImageObject]
+	WXImageObject -> WXImageObject
+	BLYCrashManager [label=BLYCrashManager]
+	BLYCrashManager -> BLYAppInfo
+	BLYCrashManager -> BLYEnvironmentInfo
+	BLYCrashManager -> BLYBinaryImage
+	BLYCrashManager -> BLYCrashReport
+	BLYCrashManager -> BLYConstants
+	ASSSecureSdk [label=ASSSecureSdk]
+	TDATDataManager [label=TDATDataManager]
+	TDATDataManager -> TDATAccountManager
+	TDATDataManager -> TDATAccountProfile
+	TDATDataManager -> TDATMissionProfile
+	TDATDataManager -> TDATRoleProfile
+	TDATDataManager -> TDATExceptionCatch
+	TargetInfo [label=TargetInfo]
+	TargetInfo -> TargetInfo
+	SDWebImageDownloader [label=SDWebImageDownloader]
+	TGAMAPLocationManager [label=TGAMAPLocationManager]
+	BLYUniPacket [label=BLYUniPacket]
+	BLYUniPacket -> BLYJceObject
+	TDATReachability [label=TDATReachability]
+	JPUSHSRVResolver [label=JPUSHSRVResolver]
+	TGConnectBluetoothView [label=TGConnectBluetoothView]
+	TGConnectBluetoothView -> TGPriceInfoView
+	TGConnectBluetoothView -> TGOpenDoorRightButton
+	AMapShareRequestReformer [label=AMapShareRequestReformer]
+	AMapShareRequestReformer -> AMapSearchServiceProvider
+	AMapPOIRequestReformer [label=AMapPOIRequestReformer]
+	AMapPOIRequestReformer -> AMapPOIAroundSearchRequest
+	AMapPOIRequestReformer -> AMapPOIKeywordsSearchRequest
+	AMapPOIRequestReformer -> AMapSearchServiceProvider
+	AMapPOIRequestReformer -> AMapPOIPolygonSearchRequest
+	TDATSendTDID [label=TDATSendTDID]
+	AliSecXFileOp [label=AliSecXFileOp]
+	KSCrashReportFilterPassthrough [label=KSCrashReportFilterPassthrough]
+	MAWorldMapTileOverlay [label=MAWorldMapTileOverlay]
+	MAWorldMapTileOverlay -> MADiskCache
+	GTXInitializeTask [label=GTXInitializeTask]
+	WXMediaMessage [label=WXMediaMessage]
+	WXMediaMessage -> WXMediaMessage
+	MAIndoorFloorInfo [label=MAIndoorFloorInfo]
+	JPUSHPushConfigController [label=JPUSHPushConfigController]
+	EXOCRVECardInfo [label=EXOCRVECardInfo]
+	ASSPhotoInfoCollector [label=ASSPhotoInfoCollector]
+	PopReturnCarTipView [label=PopReturnCarTipView]
+	GtGbdCommonUtil [label=GtGbdCommonUtil]
+	DTRpcBaseOperation [label=DTRpcBaseOperation]
+	TGRedTipView [label=TGRedTipView]
+	JPUSHLogFileInfo [label=JPUSHLogFileInfo]
+	MAMapTile [label=MAMapTile]
+	MANaviRoute [label=MANaviRoute]
+	MANaviRoute -> MAPolyline
+	MANaviRoute -> LineDashPolyline
+	MANaviRoute -> MAMultiPolyline
+	MANaviRoute -> MANaviAnnotation
+	MANaviRoute -> MANaviPolyline
+	AddCardToWXCardPackageReq [label=AddCardToWXCardPackageReq]
+	TGOrderDetialController [label=TGOrderDetialController]
+	TGOrderDetialController -> OrderDetialModel
+	TGOrderDetialController -> MAMultiPolyline
+	TGOrderDetialController -> TGMyLocationAnnotation
+	TGOrderDetialController -> JZLocationConverter
+	AMapGeoFenceManager [label=AMapGeoFenceManager]
+	AMapGeoFenceManager -> AMapLocationSearchManager
+	AMapGeoFenceManager -> AMapLocationComponent
+	AMapGeoFenceManager -> AMapGeoFencePolygonRegion
+	AMapGeoFenceManager -> AMapLocationPOIAroundRequest
+	AMapGeoFenceManager -> AMapLocationDistrictRequest
+	AMapGeoFenceManager -> AMapLocationPOIKeywordsRequest
+	TGHandleAuditClass [label=TGHandleAuditClass]
+	TDAAMissionProfile [label=TDAAMissionProfile]
+	TDAAMissionProfile -> TDAAMissionProfile
+	UTDIDIntUtils [label=UTDIDIntUtils]
+	JPUSHFileLogger [label=JPUSHFileLogger]
+	JPUSHFileLogger -> JPUSHLogFileFormatterDefault
+	JPUSHFileLogger -> JPUSHLogFileManagerDefault
+	BLYAppSession [label=BLYAppSession]
+	BLYAppSession -> BLYAppSession
+	TGEmptyParkView [label=TGEmptyParkView]
+	AMapCloudImage [label=AMapCloudImage]
+	MAGLESUnity [label=MAGLESUnity]
+	MAGLESUnity -> MAGLES2Shader
+	TGTimeCircleView [label=TGTimeCircleView]
+	AMapFoundationUtility [label=AMapFoundationUtility]
+	AMapFoundationUtility -> AMapResourceReader
+	AMapFoundationUtility -> AMapFoundationRSA
+	AMapAuthData [label=AMapAuthData]
+	TGBeforeFeedbackVC [label=TGBeforeFeedbackVC]
+	TGBeforeFeedbackVC -> TGMarginField
+	TGBeforeFeedbackVC -> EXOCRLPRRecoManager
+	TGBeforeFeedbackVC -> TGUploadGridImageView
+	SDWebImageDownloaderOperation [label=SDWebImageDownloaderOperation]
+	JPUSHService [label=JPUSHService]
+	JPUSHService -> JPUSHTagAliasValidation
+	JPUSHService -> JPUSHTagAliasVO
+	JPUSHService -> JCOREInterface
+	TGPayWayShowView [label=TGPayWayShowView]
+	BaiduMobStatHe [label=BaiduMobStatHe]
+	TDAADeviceSoftwareConfig [label=TDAADeviceSoftwareConfig]
+	KSCrashInstallation [label=KSCrashInstallation]
+	KSCrashInstallation -> KSCrashReportFilterPipeline
+	KSCrashInstallation -> KSCrashReportFilterAlert
+	BLYExceptionUploadPackage [label=BLYExceptionUploadPackage]
+	JPUSHFileHelper [label=JPUSHFileHelper]
+	AMapRoutePOIRequestReformer [label=AMapRoutePOIRequestReformer]
+	AMapRoutePOIRequestReformer -> AMapSearchServiceProvider
+	SAMKeychainQuery [label=SAMKeychainQuery]
+	SAMKeychainQuery -> SAMKeychain
+	IQBarButtonItem [label=IQBarButtonItem]
+	AMapRidingRouteSearchRequest [label=AMapRidingRouteSearchRequest]
+	DepositRecordModel [label=DepositRecordModel]
+	MJRefreshStateHeader [label=MJRefreshStateHeader]
+	TDAAApplicationMemory [label=TDAAApplicationMemory]
+	GTXMutableDictionary [label=GTXMutableDictionary]
+	AddressViewController [label=AddressViewController]
+	TGTimeUtilityClass [label=TGTimeUtilityClass]
+	TGRadarSetView [label=TGRadarSetView]
+	TGRadarSetView -> TGAMAPSearchManager
+	TGRadarSetView -> AMapWalkingRouteSearchRequest
+	TGRadarSetView -> AMapGeoPoint
+	GTXPlainTextLayout [label=GTXPlainTextLayout]
+	TDAACGSizeToNSDictionaryValueTransformer [label=TDAACGSizeToNSDictionaryValueTransformer]
+	TGModifiPhoneVNoViewController [label=TGModifiPhoneVNoViewController]
+	JPUSHAES [label=JPUSHAES]
+	TDAANetwork [label=TDAANetwork]
+	ASSSettingAccesser [label=ASSSettingAccesser]
+	ASSSettingAccesser -> ASSApplistModel
+	ASSSettingAccesser -> ASSCommonUtils
+	ASSSettingAccesser -> ASSSecurityGTMBase64
+	JPUSHIMDispatchController [label=JPUSHIMDispatchController]
+	TDATSDKProfile [label=TDATSDKProfile]
+	BaiduMtjCuidSDK [label=BaiduMtjCuidSDK]
+	BaiduMtjCuidSDK -> BaiduMtjCUIDUtility
+	AMapCloudComponent [label=AMapCloudComponent]
+	TDAAEventTriggeredResponseMessage [label=TDAAEventTriggeredResponseMessage]
+	AFJSONRequestSerializer [label=AFJSONRequestSerializer]
+	MAOfflineCity [label=MAOfflineCity]
+	RACUnit [label=RACUnit]
+	MASViewConstraint [label=MASViewConstraint]
+	MASViewConstraint -> MASViewConstraint
+	MASViewConstraint -> MASLayoutConstraint
+	MASViewConstraint -> MASViewAttribute
+	AliSecXDeviceInfo [label=AliSecXDeviceInfo]
+	AliSecXDeviceInfo -> internal_DeviceInfo
+	AliSecXDeviceInfo -> AliSecXSafeUtils
+	AliSecXDeviceInfo -> AliSecXPhoneInfoHolder
+	RACTuple [label=RACTuple]
+	RACTuple -> RACTupleNil
+	LPRConfig [label=LPRConfig]
+	MAMapView [label=MAMapView]
+	MAMapView -> MAPointAnnotation
+	MAMapView -> MACircleRenderer
+	MAMapView -> MAPolygon
+	MAMapView -> MAMapLocationManager
+	MAMapView -> MAMapLocationManagerBinding
+	MAMapView -> MAViewRecycler
+	MAMapView -> MAMapStatus
+	MAMapView -> MAUserLocation
+	MAMapView -> MAAnimationTaskManager
+	MAMapView -> MAAnimationParameter
+	MAMapView -> MapStatus
+	MAMapView -> MAMapEngineUtils
+	MAMapView -> MAMapLayer
+	MAMapView -> MAIndoorInfo
+	MAMapView -> MAMediaTimingFunction
+	TDAABOOLToNSNumberValueTransformer [label=TDAABOOLToNSNumberValueTransformer]
+	WXMusicObject [label=WXMusicObject]
+	WXMusicObject -> WXMusicObject
+	GTXMultipartInputStream [label=GTXMultipartInputStream]
+	GTXMultipartInputStream -> GTXMultipartElement
+	TDAAObjectSerializerConfig [label=TDAAObjectSerializerConfig]
+	TDAAObjectSerializerConfig -> TDAAClassDescription
+	AMapPOI [label=AMapPOI]
+	AMapPOI -> AMapSubPOI
+	AMapPOI -> AMapGeoPoint
+	UTDevice [label=UTDevice]
+	UTDevice -> AidManager
+	UTDevice -> UTDIDStringUtils
+	TDATDeviceId [label=TDATDeviceId]
+	GXSdkConfigTask [label=GXSdkConfigTask]
+	GXSdkConfigTask -> GtSdkDataUtils
+	MAIndoorView [label=MAIndoorView]
+	MAIndoorView -> MAIndoorFloorInfo
+	AMapLocationManager [label=AMapLocationManager]
+	AMapLocationManager -> AMapLocationRequest
+	AMapLocationManager -> AMapLocationCLMDelegate
+	AMapLocationManager -> AMapLocationSingleComponent
+	AMapLocationManager -> AMapLocationSerialComponent
+	AMapLocationManager -> AMapLocationComponent
+	AMapLocationManager -> AMapLocationReGeocodeReformer
+	AMapLocationManager -> AMapLocationServiceProvider
+	MAMapRender [label=MAMapRender]
+	GtGbdTimeSyncTask [label=GtGbdTimeSyncTask]
+	WXEmoticonObject [label=WXEmoticonObject]
+	WXEmoticonObject -> WXEmoticonObject
+	MJRefreshBackStateFooter [label=MJRefreshBackStateFooter]
+	GTXUploadOperation [label=GTXUploadOperation]
+	TDAAHttpRequest [label=TDAAHttpRequest]
+	BPushOpenUDID [label=BPushOpenUDID]
+	TGDayNoOrderModel [label=TGDayNoOrderModel]
+	BLYMemoryMonitorManager [label=BLYMemoryMonitorManager]
+	AMapRoadTrafficRequestReformer [label=AMapRoadTrafficRequestReformer]
+	AMapRoadTrafficRequestReformer -> AMapSearchServiceProvider
+	AMapPOISearchResponse [label=AMapPOISearchResponse]
+	TubiModel [label=TubiModel]
+	APKKeychainBindings [label=APKKeychainBindings]
+	APKKeychainBindings -> APKKeychainBindingsController
+	KSCrashDoctor [label=KSCrashDoctor]
+	KSCrashDoctor -> KSCrashDoctorFunctionCall
+	KSCrashDoctor -> KSCrashDoctorParam
+	GtGbdTaskController [label=GtGbdTaskController]
+	GtGbdTaskController -> GtGbdBaseTask
+	TGAlertView [label=TGAlertView]
+	TGCommitSuccessVC [label=TGCommitSuccessVC]
+	SDWebImageFrame [label=SDWebImageFrame]
+	SDWebImageFrame -> SDWebImageFrame
+	GtGbdT31Task [label=GtGbdT31Task]
+	GtGbdT31Task -> GtGbdWifiClient
+	GtGbdT31Task -> GtGbdReachability
+	GtGbdT31Task -> GtGbdMemoryVariables
+	WXOMTACustomEvent [label=WXOMTACustomEvent]
+	TDAACustomEvent [label=TDAACustomEvent]
+	TDAACustomEvent -> TDAAQueueManager
+	TDAACustomEvent -> TDAAConsole
+	RACSequence [label=RACSequence]
+	RACSequence -> RACDynamicSequence
+	RACSequence -> RACSequenceEnumerator
+	RACSequence -> RACEagerSequence
+	RACSequence -> RACArraySequence
+	RACSequence -> RACEmptySequence
+	MQPTrackModel [label=MQPTrackModel]
+	TGCollectionViewFlowLayout [label=TGCollectionViewFlowLayout]
+	RACSerialDisposable [label=RACSerialDisposable]
+	TGRentDaysSelView [label=TGRentDaysSelView]
+	GTXLoggerFactory [label=GTXLoggerFactory]
+	GTXLoggerFactory -> GTXBaseLogger
+	GTXLoggerFactory -> GTXBaseLogEvent
+	GTXLoggerFactory -> GTXCaptureTool
+	GTXLoggerFactory -> GTXLoggerConfigurator
+	GTXLoggerFactory -> GTXInitializeTask
+	TDAASwizzler [label=TDAASwizzler]
+	TDAASwizzler -> TDAASwizzle
+	TDAASwizzler -> TDAAConsole
+	APH5ViewController [label=APH5ViewController]
+	APH5ViewController -> APH5Toolbar
+	APH5ViewController -> APH5ProgressView
+	TGMainViewController [label=TGMainViewController]
+	AMapRoute [label=AMapRoute]
+	AMapRoute -> AMapGeoPoint
+	AMapRoute -> AMapTransit
+	AMapRoute -> AMapPath
+	JPUSHCustomFormatter [label=JPUSHCustomFormatter]
+	TGGuideViewController [label=TGGuideViewController]
+	GTXBaseErrorHandler [label=GTXBaseErrorHandler]
+	KSCrashDoctorParam [label=KSCrashDoctorParam]
+	BaiduMtjKeychain [label=BaiduMtjKeychain]
+	ActivityModel [label=ActivityModel]
+	TGCustomHeaderView [label=TGCustomHeaderView]
+	AMapBusLineSearchResponse [label=AMapBusLineSearchResponse]
+	CarParkChangeView [label=CarParkChangeView]
+	TGDepositViewController [label=TGDepositViewController]
+	TGDepositViewController -> TGDepositRecordViewController
+	TGDepositViewController -> DepositRecordModel
+	TGDepositViewController -> TGPayUtilityClass
+	TGDepositViewController -> PayReq
+	MJPropertyType [label=MJPropertyType]
+	MAOfflinePackage [label=MAOfflinePackage]
+	MAOfflinePackage -> MAOfflineItemNationWide
+	GtGbdHttpCacheInfo [label=GtGbdHttpCacheInfo]
+	GtGbdHttpCacheInfo -> GtkDBColumnDes
+	TGBalanceViewController [label=TGBalanceViewController]
+	TGBalanceViewController -> TGPayUtilityClass
+	TGBalanceViewController -> PayReq
+	TGBalanceViewController -> SendDataInterface
+	TGBalanceViewController -> BillDetailViewController
+	TGBalanceViewController -> TGFundRecordModel
+	GtGbdPgInfo [label=GtGbdPgInfo]
+	TDAAObjectSerializerContext [label=TDAAObjectSerializerContext]
+	WXApiResponseHandler [label=WXApiResponseHandler]
+	WXApiResponseHandler -> WXAppExtendObject
+	WXApiResponseHandler -> WXVideoObject
+	WXApiResponseHandler -> WXFileObject
+	WXApiResponseHandler -> WXWebpageObject
+	WXApiResponseHandler -> GetMessageFromWXResp
+	WXApiResponseHandler -> WXImageObject
+	WXApiResponseHandler -> WXMediaMessage
+	WXApiResponseHandler -> WXMusicObject
+	WXApiResponseHandler -> WXEmoticonObject
+	MAUserLocationView [label=MAUserLocationView]
+	JPUSHLocationReportRequest [label=JPUSHLocationReportRequest]
+	APayAuthInfo [label=APayAuthInfo]
+	WXOpenTypeWebViewReq [label=WXOpenTypeWebViewReq]
+	WXOMTAAdditionEvent [label=WXOMTAAdditionEvent]
+	MAMediaTimingFunction [label=MAMediaTimingFunction]
+	MAMediaTimingFunction -> MAMediaTimingFunction
+	TGFillEmailViewController [label=TGFillEmailViewController]
+	TGFillEmailViewController -> IQKeyboardManager
+	TGFillEmailViewController -> SendDataInterface
+	JPUSHUserDeviceReportRequest [label=JPUSHUserDeviceReportRequest]
+	AMapFoundationAES [label=AMapFoundationAES]
+	WXChooseCardReq [label=WXChooseCardReq]
+	JPUSHPageFlow [label=JPUSHPageFlow]
+	ShowMessageFromWXReq [label=ShowMessageFromWXReq]
+	MACircle [label=MACircle]
+	MACircle -> MAPolygon
+	GTXScheduleManager [label=GTXScheduleManager]
+	GTXScheduleManager -> GTXScheduleManager
+	AutoPurgeCache [label=AutoPurgeCache]
+	DZNWeakObjectContainer [label=DZNWeakObjectContainer]
+	TGCustomCalloutView [label=TGCustomCalloutView]
+	TGNavCustomCalloutView [label=TGNavCustomCalloutView]
+	ASSNetworkCoordinator [label=ASSNetworkCoordinator]
+	ASSNetworkCoordinator -> TSCENTERAppListCmdRequest
+	ASSNetworkCoordinator -> ASSApplistModel
+	ASSNetworkCoordinator -> ASSCommonUtils
+	ASSNetworkCoordinator -> ASSSecurityGTMBase64
+	ASSNetworkCoordinator -> TSCENTERDeviceDataReportRequest
+	GtGbdT43Task [label=GtGbdT43Task]
+	GtGbdT43Task -> GtGbdMemoryVariables
+	IDCardConfig [label=IDCardConfig]
+	MSWeakTimer [label=MSWeakTimer]
+	JPUSHResponse [label=JPUSHResponse]
+	WXLocationObject [label=WXLocationObject]
+	WXLocationObject -> WXLocationObject
+	BLYJceStream [label=BLYJceStream]
+	TDAADataBaseManager [label=TDAADataBaseManager]
+	TDAADataBaseManager -> TDAACrypto
+	TDAADataBaseManager -> TDAAConsole
+	MAAnimatedAnnotation [label=MAAnimatedAnnotation]
+	JPUSHSetTagAliasArg [label=JPUSHSetTagAliasArg]
+	JPUSHSetTagAliasArg -> JCOREInterface
+	MAGLES2Shader [label=MAGLES2Shader]
+	TDATConsole [label=TDATConsole]
+	BaiduMobStatExMem [label=BaiduMobStatExMem]
+	CardEngineManager [label=CardEngineManager]
+	JPUSHCLIColor [label=JPUSHCLIColor]
+	JPUSHCLIColor -> JPUSHCLIColor
+	BLYJceOutputStreamV2 [label=BLYJceOutputStreamV2]
+	BLYJceOutputStreamV2 -> BLYJceObject
+	AMapCloudPOIPolygonSearchRequest [label=AMapCloudPOIPolygonSearchRequest]
+	MJRefreshGifHeader [label=MJRefreshGifHeader]
+	MAENInlandMapTileOverlay [label=MAENInlandMapTileOverlay]
+	MAENInlandMapTileOverlay -> MADiskCache
+	GeTuiSdk [label=GeTuiSdk]
+}

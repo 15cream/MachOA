@@ -1,25 +1,23 @@
-from angrTest.analyzer import Analyzer
+from angrTest.atask import ATask
 import time
 from visualize.CallGraph import CallGraph
 from tools.utils import *
 
 def analyzer_test():
-    analyzer = Analyzer('samples/AlipaySDK_arm64', store=True, visualize=False)
-    # analyzer.analyze_class_dds(classname='BaiduMobStat')
-    # analyzer.analyze_class(classref=0x1000c39d4)
-    analyzer.analyze_function(0x1009932D8)
-    # analyzer.analyze_bin()
+    analyzer = ATask('/home/gjy/Desktop/MachOA/samples/ToGoProject', store=True, visualize=False)
+    # analyzer.analyze_function(0x10033B544)
+    # analyzer.analyze_function(0x1003E1328)
+    analyzer.analyze_function(0x1001F9E00)
 
     print time.strftime("-END-%Y-%m-%d %H:%M:%S", time.localtime())
 
     # print find_refs(refed='AlipaySDK')
-    # analyzer.analyze_function(start_addr=0x1000C232C)
-    # analyzer.analyze_function(name="+[TGHttpManager queryStringFromParameters:]")
 
-def meth_call_visualize_graph():
-    cg = CallGraph('/home/gjy/Desktop/MachOA/xmls/+[TGHttpManager TGEncryptPOSTWithURLString:parameters:name:type:showLoading:showError:loginInvalid:success:failure:].xml')
+
+def meth_call_visualize_graph(f):
+    cg = CallGraph(f)
     cg.build()
-    cg.output('/home/gjy/Desktop/MachOA/visualize/cgs/+[TGHttpManager TGEncryptPOSTWithURLString:parameters:name:type:showLoading:showError:loginInvalid:success:failure:].pdf')
+    cg.output('/home/gjy/Desktop/MachOA/visualize/cgs/rsa.pdf')
 
 
 def class_ref_test():
@@ -29,3 +27,4 @@ def class_ref_test():
 
 # class_ref_test()
 analyzer_test()
+# meth_call_visualize_graph('/home/gjy/Desktop/MachOA/xmls/ToGoProject/+[WeChatApiUtil isAppInstalledWithCatchException:].xml')

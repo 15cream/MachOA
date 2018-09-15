@@ -7,7 +7,7 @@ def ret_cond(state):
     return state.solver.eval(state.ip) not in hooks and state.inspect.exit_jumpkind == 'Ijk_Ret'
 
 def loop_filter(state):
-    function_start = MachO.pd.analyzer.current_f.start
+    function_start = MachO.pd.task.current_f.start
     history = state.history
     jmp_target = state.solver.eval(state.inspect.exit_target)
     while (history.addr != function_start):
@@ -25,26 +25,25 @@ def log_jmp(state):
     # print 'guard', state.inspect.exit_guard,
     # print 'jumpkind', state.inspect.exit_jumpkind
     # print "return value: ", state.solver.eval(state.regs.x0)
-    print "from {} to {}, guard {}".format(hex(state.solver.eval(state.ip)), hex(state.solver.eval(state.inspect.exit_target)), state.inspect.exit_guard)
-    print state.regs.w21
+    # print "from {} to {}, guard {}".format(hex(state.solver.eval(state.ip)), hex(state.solver.eval(state.inspect.exit_target)), state.inspect.exit_guard)
+    if state.solver.eval(state.ip) < MachO.pd.task.next_func_addr and state.solver.eval(state.inspect.exit_target) < MachO.pd.task.next_func_addr:
+        print state.regs.w21
 
 
 def branch(state):
-    # log_jmp(state)
+    log_jmp(state)
     text = MachO.pd.macho.get_segment_by_name('__TEXT').get_section_by_name('__text')
     jmp_target = state.solver.eval(state.inspect.exit_target)
 
     if state.inspect.exit_jumpkind == 'Ijk_Boring' and jmp_target < text.max_addr:
         loop_filter(state)
 
-    if jmp_target == MachO.pd.analyzer.next_func_addr:
-        # print "Log ret value at {} : {}".format(state.ip, state.solver.eval(state.regs.x0))
+    if jmp_target == MachO.pd.task.next_func_addr:
         MachO.pd.analyzer.current_f.setRetVal(state.solver.eval(state.regs.x0))
         # state.inspect.exit_guard = state.solver.BVV(0, 64)
         state.solver.BVV(int(state.inspect.exit_guard.is_false()), 64)
     if state.solver.eval(state.inspect.exit_target) == 0:
-        # print "Log ret value : {}".format(state.solver.eval(state.regs.x0))
-        MachO.pd.analyzer.current_f.setRetVal(state.solver.eval(state.regs.x0))
+        MachO.pd.task.current_f.setRetVal(state.solver.eval(state.regs.x0))
 
 def stubs_construct(state):
     # print "mem read at: ", state.inspect.mem_read_address
