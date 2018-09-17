@@ -1,16 +1,16 @@
-__author__ = 'gjy'
-#coding=utf-8
+# coding=utf-8
 from visualize.CallGraph import CallGraph
 from binary import MachO
 from Data.invokenode import InvokeNode
 import re
 from class_o import class_o
 import xml.etree.ElementTree as ET
+import networkx as nx
 import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
 
-C_FUNC_ARGC = 2
+C_FUNC_ARGC = 0
 
 class Function:
 
@@ -31,6 +31,7 @@ class Function:
         self.retVal = []
         self.dds = []
         self.init_state()
+        self.G = nx.DiGraph()
 
     @staticmethod
     def build_meth_list(pd):
@@ -74,11 +75,10 @@ class Function:
                 if receiver not in class_o.classes_indexed_by_name:
                     return None
                 selector = m.group('selector')
-                return receiver if ret & 0b10000 and receiver else None
-                return selector if ret & 0b1000 and selector else None
-            else:
-                print "NOT FOUND" + name
-                return None
+                if ret & 0b10000 and receiver:
+                    return receiver
+                if ret & 0b1000 and selector:
+                    return selector
 
         results = []
         if name:
@@ -134,14 +134,19 @@ class Function:
         else:
             return None
 
-    def insert_invoke(self, state, ins_addr, selector=None, receiver=None, symbol=None):
+    def insert_invoke(self, state, ins_addr, selector=None, receiver=None, symbol=None, type=None):
         node = InvokeNode(ins_addr)
+        for f in sorted(self.analyzer.macho.lc_function_starts):
+            if ins_addr < f:
+                break
+        node.context = self.analyzer.macho.lc_function_starts[self.analyzer.macho.lc_function_starts.index(f) - 1]
+
         if symbol:
             argc = C_FUNC_ARGC
             args = []
             for i in range(0, argc):
                 reg_name = 'x{}'.format(i)
-                reg_val = MachO.resolve_arg(state, reg_name)
+                reg_val = MachO.resolve_reg(state, state.regs.get(reg_name))
                 args.append(reg_val)
             node.set_args(args)
             node.set_description(symbol)
@@ -153,8 +158,7 @@ class Function:
             args = []
             for c in range(0, argc):
                 reg_name = 'x{}'.format(c + 2)
-                # args.append(state.regs.get(reg_name))
-                reg_val = MachO.resolve_arg(state, reg_name)
+                reg_val = MachO.pd.resolve_reg(state, state.regs.get(reg_name))
                 args.append(reg_val)
             node.set_args(args)
 
@@ -165,12 +169,17 @@ class Function:
             node.set_description(d)
 
         history = state.history
+        guard = state.solver.constraints.pop() if state.solver.constraints else ''
         if history not in self.invokes:
             self.invokes[history] = node
         while True:
             history = history.parent
             if history in self.invokes:
+                color = 'red' if self.invokes[history].context != node.context else 'green'
                 self.invokes[history].add_child(node)
+                src = "{} {}".format(hex(self.invokes[history].addr), self.invokes[history].show_description(detailed=True))
+                des = "{} {}".format(hex(node.addr), node.show_description(detailed=True))
+                self.G.add_edge(src, des, label=guard, color=color)
                 break
 
     def godown(self, node, callstring):
@@ -209,6 +218,8 @@ class Function:
             cg.build()
             cg.output('/home/gjy/Desktop/MachOA/visualize/cgs/rsa.pdf')
             print "\n".join(self.dds)
+            nx.drawing.nx_agraph.view_pygraphviz(self.G)
+            nx.drawing.nx_agraph.write_dot(self.G, 'callG.dot')
         except UnicodeDecodeError:
             print "UnicodeDecodeError at {}".format(hex(self.start))
 

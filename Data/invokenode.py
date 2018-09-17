@@ -3,10 +3,13 @@ __author__ = 'gjy'
 import xml.etree.ElementTree as ET
 from binary import MachO
 
+
 class InvokeNode:
 
     def __init__(self, addr):
-        self.addr = addr
+        self.addr = addr  # the exact address the invoke happened
+        self.context = None  # where the invoke happened
+        self.type = None  # imp; or lazy_bind_symbol; or OC msg
         self.description = ''
         self.next = []
         self.parents = []

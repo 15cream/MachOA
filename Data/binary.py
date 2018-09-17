@@ -4,6 +4,8 @@ import angr
 import archinfo
 from Data.class_o import class_o
 import os
+import function
+from Data.CONSTANTS import *
 
 
 class MachO:
@@ -20,6 +22,8 @@ class MachO:
         angr.types.define_struct('struct methlist{int entrysize; int count;}')
         angr.types.define_struct('struct meth{char* name; long type; long imp;}')
         self.stubs = dict()  # stub_code -> symbol_name
+        self.segdata = dict()
+        self.build_segdata()
 
     def build_classdata(self, state):
         db = "{}{}.pkl".format(self.task.configs.get('PATH', 'dbs'), self.macho.provides)
@@ -41,72 +45,86 @@ class MachO:
                 class_o(addr).build(state)
         class_o.dump(db)
 
+
+    def build_segdata(self):
+        self.segdata['cfstring'] = MachO.pd.macho.get_segment_by_name('__DATA').get_section_by_name('__cfstring')
+        self.segdata['cstring'] = MachO.pd.macho.get_segment_by_name('__TEXT').get_section_by_name('__cstring')
+        self.segdata['data_const'] = MachO.pd.macho.get_segment_by_name('__DATA').get_section_by_name('__const')
+        self.segdata['text_const'] = MachO.pd.macho.get_segment_by_name('__TEXT').get_section_by_name('__const')
+        self.segdata['classref'] = MachO.pd.macho.get_segment_by_name('__DATA').get_section_by_name('__objc_classrefs')
+        self.segdata['classdata'] = MachO.pd.macho.get_segment_by_name('__DATA').get_section_by_name('__objc_data')
+        self.segdata['methname'] = MachO.pd.macho.get_segment_by_name('__TEXT').get_section_by_name('__objc_methname')
+
+    @staticmethod
+    def resolve_invoke(state, type=None):
+
+        src_state = state.history.parent.parent
+        addr = src_state.addr + src_state.recent_instruction_count * 4
+        symbol = MachO.pd.stubs[state.history.parent.addr]
+
+        if type == LAZY_BIND_F:
+            MachO.pd.task.current_f.insert_invoke(state, addr, symbol=symbol)
+        elif type == MSGSEND:
+            receiver = MachO.pd.resolve_reg(state, state.regs.x0)
+            selector = MachO.pd.resolve_reg(state, state.regs.x1)
+            if 'instance' in receiver:
+                receiver = receiver.split('_')[0]
+                meth_type = '-'
+            else:
+                meth_type = '+'
+            imp = function.Function.retrieve_f("{}[{} {}]".format(meth_type, receiver, selector), ret=0b00100)
+            if imp:
+                MachO.pd.task.current_f.insert_invoke(state, addr, selector, receiver, type=INTERINVOKE)
+                return imp.pop()
+            MachO.pd.task.current_f.insert_invoke(state, addr, selector, receiver)
+
+        return "RetFrom_" + hex(addr)
+
+    def resolve_reg(self, state, reg):
+        op = reg.op
+        args = reg.args
+        if op == 'BVV':
+            repr = self.resolve_addr(state, args[0])
+        elif op == 'BVS':
+            repr = '_'.join(args[0].split('_')[0:-2])
+        else:
+            repr = str(reg)
+        return repr
+
+    def resolve_addr(self, state, addr):
+        datatype = None
+        for segname, seg in self.segdata.items():
+            if addr in range(seg.min_addr, seg.max_addr):
+                datatype = segname
+                break
+        if datatype == 'classref':
+            return class_o.classes_indexed_by_ref[addr].name
+        elif datatype == 'classdata':
+            return class_o.binary_class_set[addr].name
+        elif datatype == 'cfstring':
+            return MachO.read_cfstring(state, addr)
+        elif datatype in ['cstring', 'data_const', 'text_const', 'methname']:
+            return state.mem[addr].string.concrete
+        else:
+            return str(addr)
+
+    @staticmethod
+    def read_cfstring(state, addr):
+        return state.mem[addr+16].deref.string.concrete
+
     def read_str_from_cfstring(self, state, addr):
         str = state.memory.load(addr + 0x10, 8, endness=archinfo.Endness.LE).args[0] - 0x100000000
         length = state.memory.load(addr + 0x18, 8, endness=archinfo.Endness.LE).args[0]
         str = self.macho._read(self.macho.binary_stream, str, length)
         return str
 
-    @staticmethod
-    def resolve_invoke(state, addr, symbol=None):
-        if symbol:
-            MachO.pd.task.current_f.insert_invoke(state, addr, symbol=symbol)
-        else:
-            receiver = MachO.resolve_receiver(state, state.regs.x0.args[0])
-            selector = MachO.resolve_selector(state, state.regs.x1.args[0])
-            MachO.pd.task.current_f.insert_invoke(state, addr, selector, receiver)
-            description = '[' + receiver + ' ' + selector + ']'
-            # print hex(addr), "bl _objc_msgSend: {}".format(description)
-
-    @staticmethod
-    def resolve_receiver(state, receiver):
-        cfstring = MachO.pd.macho.get_segment_by_name('__DATA').get_section_by_name('__cfstring')
-        cstring = MachO.pd.macho.get_segment_by_name('__TEXT').get_section_by_name('__cstring')
-        data_const = MachO.pd.macho.get_segment_by_name('__DATA').get_section_by_name('__const')
-        text_const = MachO.pd.macho.get_segment_by_name('__TEXT').get_section_by_name('__const')
-        if receiver in class_o.classes_indexed_by_ref:
-            receiver = class_o.classes_indexed_by_ref[receiver].name
-        elif receiver in class_o.binary_class_set:
-            receiver = class_o.binary_class_set[receiver].name
-        elif receiver in range(cfstring.min_addr, cfstring.max_addr):
-            receiver = MachO.read_cfstring(state, receiver)
-        elif receiver in range(cstring.min_addr, cfstring.max_addr):
-            receiver = state.mem[receiver].string.concrete
-        elif receiver in range(data_const.min_addr, data_const.max_addr):
-            receiver = state.mem[receiver].string.concrete
-        elif receiver in range(text_const.min_addr, text_const.max_addr):
-            receiver = state.mem[receiver].string.concrete
-        elif type(receiver) == str:
-            receiver = '_'.join(receiver.split('_')[0:-2])
-            # val = MachO.pd.read_str_from_cfstring(state, val)
-        # print "reveiver name :".format(receiver.name)
-        return str(receiver)
-
-    @staticmethod
-    def resolve_arg(state, reg_name):
-        reg = state.regs.get(reg_name)
-        # reg = state.solver.eval()
-        return MachO.resolve_receiver(state, reg.args[0])
-        # elif val in MachO.pd.cstring:
-        #     val = MachO.pd.cstring[val]
-
-
-    @staticmethod
-    def resolve_selector(state, selector):
-        return state.mem[selector].string.concrete
-
-    @staticmethod
-    def read_cfstring(state, addr):
-        return state.mem[addr+16].deref.string.concrete
-
-    @staticmethod
-    def hook_stubs(state):
-        __stubs = MachO.pd.macho.get_segment_by_name('__TEXT').get_section_by_name('__stubs')
-        st = state.copy()
-        for ptr in range(__stubs.min_addr, __stubs.max_addr, 12):
-            st.regs.ip = ptr
-            st.step(num_inst=1)
-            pass
+    # @staticmethod
+    # def hook_stubs(state):
+    #     __stubs = MachO.pd.macho.get_segment_by_name('__TEXT').get_section_by_name('__stubs')
+    #     st = state.copy()
+    #     for ptr in range(__stubs.min_addr, __stubs.max_addr, 12):
+    #         st.regs.ip = ptr
+    #         st.step(num_inst=1)
 
 
 
