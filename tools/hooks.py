@@ -2,55 +2,34 @@ __author__ = 'gjy'
 from angr import SimProcedure
 from Data.binary import MachO
 import claripy
+from Data.CONSTANTS import *
 
-
-class msgSend(SimProcedure):
-    def run(self):
-        state = self.state
-        src_state = state.history.parent.parent
-        bl_addr = src_state.addr + src_state.recent_instruction_count * 4
-        invoke = MachO.resolve_invoke(state, bl_addr)
-        # x0 = state.registers.load('x0')
-        x0_name = "RetFrom_" + hex(bl_addr)
-        newval = claripy.BVS(x0_name, 64)
-        # state.registers.store('x0', newval)
-        return newval
-
+objc_symbols = ['_objc_retainAutoreleasedReturnValue',
+                '_objc_autoreleaseReturnValue',
+                '_objc_retain',
+                '_objc_release',
+                ]
 
 class stubHelper(SimProcedure):
+
+
     def run(self):
-        # print "Stub helper"
         state = self.state
         symbol = MachO.pd.stubs[state.history.parent.addr]
-        if symbol.name == '_objc_retainAutoreleasedReturnValue':
+        if symbol.name in objc_symbols:
             return state.registers.load('x0')
-        elif symbol.name == '_objc_autoreleaseReturnValue':
-            return state.registers.load('x0')
-        elif symbol.name == '_objc_retain':
-            return state.registers.load('x0')
-        elif symbol.name == '_objc_release':
-            return state.registers.load('x0')
-        elif symbol.name == '_objc_msgSend':
-            src_state = state.history.parent.parent
-            bl_addr = src_state.addr + src_state.recent_instruction_count * 4
-            MachO.resolve_invoke(state, bl_addr)
-            x0_name = "RetFrom_" + hex(bl_addr)
-            return claripy.BVS(x0_name, 64, uninitialized=True)
         else:
-            src_state = state.history.parent.parent
-            bl_addr = src_state.addr + src_state.recent_instruction_count * 4
-            x0_name = "RetFrom_" + hex(bl_addr)
-            newval = claripy.BVS(x0_name, 64, uninitialized=True)
-            MachO.resolve_invoke(state, bl_addr, symbol.name)
-            return newval
-            # state.registers.store('x0', newval)
+            if symbol.name == '_objc_msgSend':
+                imp = MachO.resolve_invoke(state, type=MSGSEND)
+            else:
+                imp = MachO.resolve_invoke(state, type=LAZY_BIND_F)
 
+            if type(imp) == int:
+                # self.call(imp, args=[], continue_at='ret_from_msgSend', cc=None)
+                self.jump(imp)
+            elif type(imp) == str:
+                return claripy.BVS(imp, 64, uninitialized=True)
 
-class ReturnHook(SimProcedure):
-    def run(self):
-        state = self.state
-        src_state = state.history.parent.parent
-        ret_addr = src_state.addr + src_state.recent_instruction_count * 4
-        x0 = state.registers.load('x0')
-        # print '{} return value: {} .'.format(hex(ret_addr), state.solver.eval(x0))
-        return x0
+    def ret_from_msgSend(self):
+        print 'I just jumped to a meth_imp and returned'
+

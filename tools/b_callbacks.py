@@ -13,8 +13,6 @@ def loop_filter(state):
     while (history.addr != function_start):
         state_addr = history.addr
         if jmp_target == state_addr:
-            # print "Loop at {}".format(jmp_target)
-            # state.inspect.exit_guard = state.solver.BVV(0, 64)
             state.inspect.exit_guard = state.solver.BVV(int(state.inspect.exit_guard.is_false()), 64) # reverse
             break
         history = history.parent
@@ -26,8 +24,7 @@ def log_jmp(state):
     # print 'jumpkind', state.inspect.exit_jumpkind
     # print "return value: ", state.solver.eval(state.regs.x0)
     # print "from {} to {}, guard {}".format(hex(state.solver.eval(state.ip)), hex(state.solver.eval(state.inspect.exit_target)), state.inspect.exit_guard)
-    if state.solver.eval(state.ip) < MachO.pd.task.next_func_addr and state.solver.eval(state.inspect.exit_target) < MachO.pd.task.next_func_addr:
-        print state.regs.w21
+    pass
 
 
 def branch(state):
@@ -40,14 +37,10 @@ def branch(state):
 
     if jmp_target == MachO.pd.task.next_func_addr:
         MachO.pd.analyzer.current_f.setRetVal(state.solver.eval(state.regs.x0))
-        # state.inspect.exit_guard = state.solver.BVV(0, 64)
         state.solver.BVV(int(state.inspect.exit_guard.is_false()), 64)
+
     if state.solver.eval(state.inspect.exit_target) == 0:
         MachO.pd.task.current_f.setRetVal(state.solver.eval(state.regs.x0))
 
-def stubs_construct(state):
-    # print "mem read at: ", state.inspect.mem_read_address
-    stub_code_addr = state.addr - 4
-    if stub_code_addr not in MachO.pd.stubs:
-        MachO.pd.stubs[stub_code_addr] = MachO.pd.macho.get_symbol_by_address_fuzzy(state.solver.eval(state.inspect.mem_read_address))
+
 

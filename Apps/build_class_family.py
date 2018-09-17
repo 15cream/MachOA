@@ -11,6 +11,7 @@ class OCClass:
         self.name = name
         self._in = []
         self._out = []
+        self.cluster_id = None
 
     def insert_callee(self, c):
         if c not in self._out:
@@ -58,8 +59,22 @@ class OCClass:
                 for cl in cc.find_convergence():
                     if cl.name in OCClass.classlist:
                         G.add_edge(c, cl.name)
-        nx.drawing.nx_agraph.view_pygraphviz(G)
+        # nx.drawing.nx_agraph.view_pygraphviz(G)
         nx.drawing.nx_agraph.write_dot(G, 'refs.dot')
+
+        g = nx.to_undirected(G)
+        nx.drawing.nx_agraph.view_pygraphviz(g)
+        nx.drawing.nx_agraph.write_dot(g, 'refs2.dot')
+
+        c = nx.clustering(g)
+
+    @staticmethod
+    def find_cluster():
+        pass
+
+
+
+
 
 
 OCClass.buildRefs('/home/gjy/Desktop/idapython/crefs.pkl')
