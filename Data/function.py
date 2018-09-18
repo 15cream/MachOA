@@ -203,22 +203,22 @@ class Function:
 
     def dump(self):
         try:
-            self.resolve_dependencies()
-            f = ET.Element('FUNCTION')
-            f.set('name', self.name)
-            f.set('address', hex(self.start))
-
-            # self.dump_node(f, self.start_node)
-            for node in self.invokes.values():
-                f.append(node.xmlNode())
-            f = ET.ElementTree(f)
-            output = "{}{}/{}.xml".format(self.analyzer.configs.get('PATH', 'xmls'), self.analyzer.macho.provides, self.name)
-            f.write(output)
-            cg = CallGraph(output)
-            cg.build()
-            cg.output('/home/gjy/Desktop/MachOA/visualize/cgs/rsa.pdf')
-            print "\n".join(self.dds)
-            nx.drawing.nx_agraph.view_pygraphviz(self.G)
+            # self.resolve_dependencies()
+            # f = ET.Element('FUNCTION')
+            # f.set('name', self.name)
+            # f.set('address', hex(self.start))
+            #
+            # # self.dump_node(f, self.start_node)
+            # for node in self.invokes.values():
+            #     f.append(node.xmlNode())
+            # f = ET.ElementTree(f)
+            # output = "{}{}/{}.xml".format(self.analyzer.configs.get('PATH', 'xmls'), self.analyzer.macho.provides, self.name)
+            # f.write(output)
+            # cg = CallGraph(output)
+            # cg.build()
+            # cg.output('/home/gjy/Desktop/MachOA/visualize/cgs/rsa.pdf')
+            # print "\n".join(self.dds)
+            # nx.drawing.nx_agraph.view_pygraphviz(self.G)
             nx.drawing.nx_agraph.write_dot(self.G, 'callG.dot')
         except UnicodeDecodeError:
             print "UnicodeDecodeError at {}".format(hex(self.start))

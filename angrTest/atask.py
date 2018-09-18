@@ -79,6 +79,7 @@ class ATask:
             self.next_func_addr = None
 
         st.inspect.b('exit', when=angr.BP_BEFORE, action=branch)
+        st.inspect.b('address_concretization', when=angr.BP_AFTER, action=mem_resolve)
 
         # cfg = self.p.analyses.CFGAccurate(keep_state=True, starts=[start_addr,], initial_state=st, call_depth=2, context_sensitivity_level=3)
         # plot_cfg(cfg, "ais4_cfg", asminst=True, remove_imports=True, remove_path_terminator=True)

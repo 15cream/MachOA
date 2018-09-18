@@ -5,6 +5,7 @@ import claripy
 from Data.CONSTANTS import *
 
 objc_symbols = ['_objc_retainAutoreleasedReturnValue',
+                '_objc_retainAutoreleaseReturnValue',
                 '_objc_autoreleaseReturnValue',
                 '_objc_retain',
                 '_objc_release',

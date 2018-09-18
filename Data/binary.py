@@ -6,6 +6,7 @@ from Data.class_o import class_o
 import os
 import function
 from Data.CONSTANTS import *
+import claripy
 
 
 class MachO:
@@ -70,6 +71,9 @@ class MachO:
             if 'instance' in receiver:
                 receiver = receiver.split('_')[0]
                 meth_type = '-'
+            elif '@' in receiver:
+                receiver = receiver.split('@')[-1].strip('"')
+                meth_type = '-'
             else:
                 meth_type = '+'
             imp = function.Function.retrieve_f("{}[{} {}]".format(meth_type, receiver, selector), ret=0b00100)
@@ -125,6 +129,18 @@ class MachO:
     #     for ptr in range(__stubs.min_addr, __stubs.max_addr, 12):
     #         st.regs.ip = ptr
     #         st.step(num_inst=1)
+
+    def resolve_var(self, state, classname=None, offset=None):
+        c = class_o.classes_indexed_by_name[classname]
+        if c.imported:
+            pass
+        else:
+            class_data = state.memory.load(c.class_addr + 32, 8, endness=archinfo.Endness.LE)
+            ivars = state.memory.load(class_data + 0x30, 8, endness=archinfo.Endness.LE)
+            ivar = ivars + (offset / 8 - 1) * 0x20 + 8
+            name = state.mem[state.mem[ivar+8].long.concrete].string.concrete
+            type = state.mem[state.mem[ivar+16].long.concrete].string.concrete
+        return claripy.BVS(classname + name + type, 64).reversed
 
 
 

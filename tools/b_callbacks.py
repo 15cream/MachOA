@@ -1,11 +1,6 @@
 from Data.binary import MachO
 
 
-def ret_cond(state):
-    # return state.eval(state.regs.rax, cast_to=str) == 'AAAA' and 0x8004 in state.inspect.backtrace
-    hooks = [0x100b4ab20, 0x100B4ABD8, 0x1007D8578]
-    return state.solver.eval(state.ip) not in hooks and state.inspect.exit_jumpkind == 'Ijk_Ret'
-
 def loop_filter(state):
     function_start = MachO.pd.task.current_f.start
     history = state.history
@@ -13,22 +8,12 @@ def loop_filter(state):
     while (history.addr != function_start):
         state_addr = history.addr
         if jmp_target == state_addr:
-            state.inspect.exit_guard = state.solver.BVV(int(state.inspect.exit_guard.is_false()), 64) # reverse
+            state.inspect.exit_guard = state.solver.BVV(int(state.inspect.exit_guard.is_false()), 64)  # add reversed constraint
             break
         history = history.parent
 
-def log_jmp(state):
-    # print "ip:", state.ip,
-    # print 'target', hex(state.solver.eval(state.inspect.exit_target)),
-    # print 'guard', state.inspect.exit_guard,
-    # print 'jumpkind', state.inspect.exit_jumpkind
-    # print "return value: ", state.solver.eval(state.regs.x0)
-    # print "from {} to {}, guard {}".format(hex(state.solver.eval(state.ip)), hex(state.solver.eval(state.inspect.exit_target)), state.inspect.exit_guard)
-    pass
-
 
 def branch(state):
-    log_jmp(state)
     text = MachO.pd.macho.get_segment_by_name('__TEXT').get_section_by_name('__text')
     jmp_target = state.solver.eval(state.inspect.exit_target)
 
@@ -41,6 +26,30 @@ def branch(state):
 
     if state.solver.eval(state.inspect.exit_target) == 0:
         MachO.pd.task.current_f.setRetVal(state.solver.eval(state.regs.x0))
+
+
+def mem_resolve(state):
+    expr = state.inspect.address_concretization_expr
+    result = state.inspect.address_concretization_result
+    if result and len(result) == 1:
+        if expr.op == '__add__':
+            # Not complete
+            instance = expr.args[0]
+            var_offset = expr.args[1]
+            if instance.op == 'BVS' and var_offset.op == 'BVV':
+                classname = None
+                if '@' in instance.args[0]:
+                    classname = instance.args[0].split('"')[-2]
+                elif 'instance' in instance.args[0]:
+                    classname = instance.args[0].split('_')[0]
+                if classname:
+                    state.memory.store(result[0], MachO.pd.resolve_var(state, classname=classname, offset=state.solver.eval(var_offset)))
+
+
+
+
+
+
 
 
 
