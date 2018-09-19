@@ -1,5 +1,4 @@
 # coding=utf-8
-from visualize.CallGraph import CallGraph
 from binary import MachO
 from Data.invokenode import InvokeNode
 import re
@@ -18,8 +17,10 @@ class Function:
     meth_data = dict()
     function_symbols = dict()
     callgraph = None
+    subroutines = []
 
     def __init__(self, addr, state, analyzer):
+        self.G = nx.DiGraph()
         self.analyzer = analyzer
         self.name = Function.meth_data[addr]['name']
         self.start = addr
@@ -31,18 +32,10 @@ class Function:
         self.retVal = []
         self.dds = []
         self.init_state()
-        self.G = nx.DiGraph()
+
 
     @staticmethod
     def build_meth_list(pd):
-        # Function.meth_list = sorted(class_o.classes_indexed_by_meth.keys())
-        # for meth_imp in Function.meth_list:
-        #     if meth_imp not in Function.meth_data:
-        #         Function.meth_data[meth_imp] = {'name':class_o.classes_indexed_by_meth[meth_imp][0],
-        #                                         'class':class_o.classes_indexed_by_meth[meth_imp][1]}
-        #     name = class_o.classes_indexed_by_meth[meth_imp][0]
-        #     if name not in Function.function_symbols:
-        #         Function.function_symbols[name] = meth_imp
 
         Function.meth_list = pd.macho.lc_function_starts
         for meth_imp in Function.meth_list:
@@ -57,6 +50,8 @@ class Function:
                 if meth_imp not in Function.meth_data:
                     Function.meth_data[meth_imp] = {'name': name,
                                                     'class': None}
+                if meth_imp not in Function.subroutines:
+                    Function.subroutines.append(meth_imp)
 
             if name not in Function.function_symbols:
                 Function.function_symbols[name] = meth_imp
@@ -113,8 +108,6 @@ class Function:
                 # subroutine
                 pass
 
-
-
     def build_start_node(self):
         start_node = InvokeNode(self.start)
         if self.type == 'meth':
@@ -122,6 +115,7 @@ class Function:
             start_node.set_selector(self.retrieve_f(self.name, ret=0b1000))
         start_node.set_description(self.name)
         self.invokes[self.state.history] = start_node
+        self.G.add_node(hex(start_node.addr), label=start_node.show_description(detailed=True), constraints=self.state.solver.constraints)
         return start_node
 
     def resolve_dependency(self, receiver):
@@ -134,7 +128,7 @@ class Function:
         else:
             return None
 
-    def insert_invoke(self, state, ins_addr, selector=None, receiver=None, symbol=None, type=None):
+    def insert_invoke(self, state, ins_addr, selector=None, receiver=None, symbol=None):
         node = InvokeNode(ins_addr)
         for f in sorted(self.analyzer.macho.lc_function_starts):
             if ins_addr < f:
@@ -169,18 +163,38 @@ class Function:
             node.set_description(d)
 
         history = state.history
-        guard = state.solver.constraints.pop() if state.solver.constraints else ''
         if history not in self.invokes:
             self.invokes[history] = node
+            if state.solver.constraints:
+                for c in state.solver.constraints:
+                    node.constraints.append(str(c).replace('<', '').replace('>', ''))
         while True:
             history = history.parent
             if history in self.invokes:
                 color = 'red' if self.invokes[history].context != node.context else 'green'
                 self.invokes[history].add_child(node)
-                src = "{} {}".format(hex(self.invokes[history].addr), self.invokes[history].show_description(detailed=True))
+                # src = hex(self.invokes[history].addr)
+                # des = hex(node.addr)
+                # self.G.add_node(des, label=node.show_description(detailed=True), constraints=state.solver.constraints)
+                # cons_addition = []
+                # for c in self.G.nodes[des]['constraints']:
+                #     if c not in self.G.nodes[src]['constraints']:
+                #         cons_addition.append(str(c))
+                #
+                # self.G.add_edge(src, des, color=color)
+                src = "{} {}".format(hex(self.invokes[history].addr),
+                                     self.invokes[history].show_description(detailed=True))
                 des = "{} {}".format(hex(node.addr), node.show_description(detailed=True))
-                self.G.add_edge(src, des, label=guard, color=color)
+                self.G.add_node(des, label=hex(node.addr))
+                self.G.add_edge(src, des, label='\n'.join(self.find_constrint_addtion(self.invokes[history], node)), color=color)
                 break
+
+    def find_constrint_addtion(self, src, des):
+        constraints = []
+        for c in des.constraints:
+            if c not in src.constraints:
+                constraints.append(c)
+        return constraints
 
     def godown(self, node, callstring):
         callstring.append(node)
@@ -220,6 +234,7 @@ class Function:
             # print "\n".join(self.dds)
             # nx.drawing.nx_agraph.view_pygraphviz(self.G)
             nx.drawing.nx_agraph.write_dot(self.G, 'callG.dot')
+            nx.draw(self.G, with_labels=True)
         except UnicodeDecodeError:
             print "UnicodeDecodeError at {}".format(hex(self.start))
 

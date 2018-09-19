@@ -1,4 +1,6 @@
 from Data.binary import MachO
+from Data.function import Function
+import claripy
 
 
 def loop_filter(state):
@@ -24,8 +26,14 @@ def branch(state):
         MachO.pd.analyzer.current_f.setRetVal(state.solver.eval(state.regs.x0))
         state.solver.BVV(int(state.inspect.exit_guard.is_false()), 64)
 
-    if state.solver.eval(state.inspect.exit_target) == 0:
+    if jmp_target == 0:
         MachO.pd.task.current_f.setRetVal(state.solver.eval(state.regs.x0))
+
+    if jmp_target in Function.subroutines:
+        print 'BREAK DOWN AT SUB_{}'.format(hex(jmp_target))
+        state.inspect.exit_guard = claripy.false
+
+
 
 
 def mem_resolve(state):

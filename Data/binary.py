@@ -14,11 +14,11 @@ class MachO:
     pd = None
 
     def __init__(self, binary, loader, project, task):
+        MachO.pd = self
         self.macho = binary
         self.loader = loader
         self.project = project
         self.task = task
-        MachO.pd = self
         self.functions = dict()
         angr.types.define_struct('struct methlist{int entrysize; int count;}')
         angr.types.define_struct('struct meth{char* name; long type; long imp;}')
@@ -37,7 +37,7 @@ class MachO:
         for s in symbols:
             for addr in s.bind_xrefs:
                 if addr in range(classrefs.min_addr, classrefs.max_addr):
-                    class_o(addr, imported=True, name=s.name).build(state)
+                    class_o(addr, imported=True, name=s.name.split('$_')[-1]).build(state)
         # binary classes
         for addr in range(classrefs.min_addr, classrefs.max_addr, 8):
             if addr in class_o.imported_class_set:
@@ -64,7 +64,9 @@ class MachO:
         symbol = MachO.pd.stubs[state.history.parent.addr]
 
         if type == LAZY_BIND_F:
-            MachO.pd.task.current_f.insert_invoke(state, addr, symbol=symbol)
+            # MachO.pd.task.current_f.insert_invoke(state, addr, symbol=symbol)
+            return "RetFrom_" + hex(addr)
+            # MachO.pd.task.cg.insert_invoke(addr, symbol, state)
         elif type == MSGSEND:
             receiver = MachO.pd.resolve_reg(state, state.regs.x0)
             selector = MachO.pd.resolve_reg(state, state.regs.x1)
@@ -76,11 +78,14 @@ class MachO:
                 meth_type = '-'
             else:
                 meth_type = '+'
-            imp = function.Function.retrieve_f("{}[{} {}]".format(meth_type, receiver, selector), ret=0b00100)
+
+            description = "{}[{} {}]".format(meth_type, receiver, selector)
+            MachO.pd.task.cg.insert_invoke(addr, description, state)
+            # MachO.pd.task.current_f.insert_invoke(state, addr, selector, receiver)
+            imp = function.Function.retrieve_f(description, ret=0b00100)
             if imp:
-                MachO.pd.task.current_f.insert_invoke(state, addr, selector, receiver, type=INTERINVOKE)
                 return imp.pop()
-            MachO.pd.task.current_f.insert_invoke(state, addr, selector, receiver)
+            # MachO.pd.task.current_f.insert_invoke(state, addr, selector, receiver)
 
         return "RetFrom_" + hex(addr)
 
@@ -122,14 +127,6 @@ class MachO:
         str = self.macho._read(self.macho.binary_stream, str, length)
         return str
 
-    # @staticmethod
-    # def hook_stubs(state):
-    #     __stubs = MachO.pd.macho.get_segment_by_name('__TEXT').get_section_by_name('__stubs')
-    #     st = state.copy()
-    #     for ptr in range(__stubs.min_addr, __stubs.max_addr, 12):
-    #         st.regs.ip = ptr
-    #         st.step(num_inst=1)
-
     def resolve_var(self, state, classname=None, offset=None):
         c = class_o.classes_indexed_by_name[classname]
         if c.imported:
@@ -141,6 +138,14 @@ class MachO:
             name = state.mem[state.mem[ivar+8].long.concrete].string.concrete
             type = state.mem[state.mem[ivar+16].long.concrete].string.concrete
         return claripy.BVS(classname + name + type, 64).reversed
+
+    @staticmethod
+    def resolve_context(ea):
+        # find which function this ea resides in
+        for f in sorted(MachO.pd.macho.lc_function_starts, reverse=True):
+            if ea >= f:
+                break
+        return f
 
 
 

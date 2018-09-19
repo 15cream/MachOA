@@ -9,6 +9,7 @@ objc_symbols = ['_objc_retainAutoreleasedReturnValue',
                 '_objc_autoreleaseReturnValue',
                 '_objc_retain',
                 '_objc_release',
+                '_objc_retainAutorelease',
                 ]
 
 class stubHelper(SimProcedure):

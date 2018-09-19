@@ -48,14 +48,6 @@ class CallGraph:
 # cg.build()
 # cg.output('/home/gjy/Desktop/MachOA/visualize/cgs/+[TGHttpManager TGEncryptPOSTWithURLString:parameters:name:type:showLoading:showError:loginInvalid:success:failure:].pdf')
 
-# rootDir = '/home/gjy/Desktop/MachOA/xmls/'
-# for filename in os.listdir(rootDir):
-#     if 'BaiduMobStat' in filename:
-#         path = os.path.join(rootDir, filename)
-#         if (os.path.isfile(path)):
-#             cg = CallGraph(path)
-#             cg.build()
-#             cg.output('cgs/' + filename.split('.')[0])
 
 
 

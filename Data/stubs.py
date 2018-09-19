@@ -11,12 +11,12 @@ import angr
 
 def hook_stubs(state):
     stubs_to_symbols(state)
-    stub_helper = MachO.pd.macho.get_segment_by_name('__TEXT').get_section_by_name('__stub_helper').min_addr + 20
+    stub_helper = MachO.pd.macho.get_segment_by_name('__TEXT').get_section_by_name('__stub_helper').min_addr
+    bv = state.solver.BVV(stub_helper, 64).reversed
     __la_symbol_ptr = MachO.pd.macho.get_segment_by_name('__DATA').get_section_by_name('__la_symbol_ptr')
     for ptr in range(__la_symbol_ptr.min_addr, __la_symbol_ptr.max_addr, 8):
         symbol = MachO.pd.macho.get_symbol_by_address_fuzzy(ptr)
         if symbol:
-            bv = state.solver.BVV(stub_helper, 64).reversed
             state.memory.store(ptr, bv)
         else:
             pass

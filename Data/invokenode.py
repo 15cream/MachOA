@@ -18,6 +18,7 @@ class InvokeNode:
         self.selector = None
         self.args = []
         self.expr = None  # used for dependency
+        self.constraints = []
 
     def add_child(self, invoke):
         self.next.append(invoke)
