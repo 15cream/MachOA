@@ -65,8 +65,8 @@ class MachO:
 
         if type == LAZY_BIND_F:
             # MachO.pd.task.current_f.insert_invoke(state, addr, symbol=symbol)
-            return "RetFrom_" + hex(addr)
-            # MachO.pd.task.cg.insert_invoke(addr, symbol, state)
+            # return "RetFrom_" + hex(addr)
+            MachO.pd.task.cg.insert_invoke(addr, symbol, state)
         elif type == MSGSEND:
             receiver = MachO.pd.resolve_reg(state, state.regs.x0)
             selector = MachO.pd.resolve_reg(state, state.regs.x1)
@@ -80,7 +80,7 @@ class MachO:
                 meth_type = '+'
 
             description = "{}[{} {}]".format(meth_type, receiver, selector)
-            MachO.pd.task.cg.insert_invoke(addr, description, state)
+            MachO.pd.task.cg.insert_invoke(addr, description, state, args=MachO.resolve_args(state, selector=selector))
             # MachO.pd.task.current_f.insert_invoke(state, addr, selector, receiver)
             imp = function.Function.retrieve_f(description, ret=0b00100)
             if imp:
@@ -88,6 +88,18 @@ class MachO:
             # MachO.pd.task.current_f.insert_invoke(state, addr, selector, receiver)
 
         return "RetFrom_" + hex(addr)
+
+    @staticmethod
+    def resolve_args(state, selector=None, symbol=None):
+        args = []
+        if selector:
+            args.append(MachO.pd.resolve_reg(state, state.regs.get('x0')))
+            argc = selector.count(':')
+            for c in range(1, argc + 2):
+                reg_name = 'x{}'.format(c)
+                reg_val = MachO.pd.resolve_reg(state, state.regs.get(reg_name))
+                args.append(reg_val)
+        return args
 
     def resolve_reg(self, state, reg):
         op = reg.op
