@@ -66,7 +66,7 @@ class MachO:
         if type == LAZY_BIND_F:
             # MachO.pd.task.current_f.insert_invoke(state, addr, symbol=symbol)
             # return "RetFrom_" + hex(addr)
-            MachO.pd.task.cg.insert_invoke(addr, symbol, state)
+            MachO.pd.task.cg.insert_invoke(addr, symbol, state, args=MachO.resolve_args(state, symbol=symbol))
         elif type == MSGSEND:
             receiver = MachO.pd.resolve_reg(state, state.regs.x0)
             selector = MachO.pd.resolve_reg(state, state.regs.x1)
@@ -85,7 +85,6 @@ class MachO:
             imp = function.Function.retrieve_f(description, ret=0b00100)
             if imp:
                 return imp.pop()
-            # MachO.pd.task.current_f.insert_invoke(state, addr, selector, receiver)
 
         return "RetFrom_" + hex(addr)
 
@@ -99,6 +98,9 @@ class MachO:
                 reg_name = 'x{}'.format(c)
                 reg_val = MachO.pd.resolve_reg(state, state.regs.get(reg_name))
                 args.append(reg_val)
+        elif symbol:
+            args.append(MachO.pd.resolve_reg(state, state.regs.get('x0')))
+            args.append(MachO.pd.resolve_reg(state, state.regs.get('x1')))
         return args
 
     def resolve_reg(self, state, reg):

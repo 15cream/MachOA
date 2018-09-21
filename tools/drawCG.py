@@ -14,7 +14,7 @@ class CG:
         # description could be function name or symbol name
         context = MachO.resolve_context(ea)
         context_name = Function.meth_data[context]['name']
-        node = INVOKEFS.format(hex(context), context_name, hex(ea), description, self.expr_args(args))
+        node = INVOKEFS.format(hex(context), context_name, state.history.depth, hex(ea), description, self.expr_args(args))
         if node not in self.g.nodes:
             self.g.add_node(node, des=description, context=context)
         else:
@@ -57,7 +57,7 @@ class CG:
     def add_simple_node(self, ea, description, state):
         context = MachO.resolve_context(ea)
         context_name = Function.meth_data[context]['name']
-        node = INVOKEFS.format(hex(context), context_name, hex(ea), description, '')
+        node = INVOKEFS.format(hex(context), context_name, state.history.depth, hex(ea), description, '')
         if node not in self.g.nodes:
             self.g.add_node(node, des=description, context=context)
             state.history.invoke_addr = ea

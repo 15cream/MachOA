@@ -7,7 +7,8 @@ def analyzer_test():
     analyzer = ATask('/home/gjy/Desktop/MachOA/samples/ToGoProject', store=True, visualize=False)
     # analyzer.analyze_function(0x10033B544)
     # analyzer.analyze_function(0x1003E1328)
-    analyzer.analyze_function(0x10049CEA0)
+    # analyzer.analyze_function(0x10049CEA0)
+    analyzer.analyze_function(0x1006C9C10)
     print time.strftime("-END-%Y-%m-%d %H:%M:%S", time.localtime())
 
     # print find_refs(refed='AlipaySDK')

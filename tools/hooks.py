@@ -26,9 +26,10 @@ class stubHelper(SimProcedure):
             else:
                 imp = MachO.resolve_invoke(state, type=LAZY_BIND_F)
 
-            if type(imp) == int:
+            if type(imp) == int or type(imp) == long:
                 # self.call(imp, args=[], continue_at='ret_from_msgSend', cc=None)
-                self.jump(imp)
+                # self.jump(imp)
+                return claripy.BVS("RetFrom_" + hex(imp), 64, uninitialized=True)
             elif type(imp) == str:
                 return claripy.BVS(imp, 64, uninitialized=True)
 
