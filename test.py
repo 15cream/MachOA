@@ -8,7 +8,12 @@ def analyzer_test():
     # analyzer.analyze_function(0x10033B544)
     # analyzer.analyze_function(0x1003E1328)
     # analyzer.analyze_function(0x10049CEA0)
-    analyzer.analyze_function(0x1006C9C10)
+    # analyzer.analyze_function(0x1006C9C10)
+    # analyzer.analyze_function(0x10071D158)
+    # analyzer.analyze_function(0x1007C4964)  # -[BPushBindRequest HttpBody]
+    # analyzer.analyze_function(0x100722488)
+    analyzer.analyze_class(classname='TDATUtility')
+    analyzer.analyze_function(0x100722488)
     print time.strftime("-END-%Y-%m-%d %H:%M:%S", time.localtime())
 
     # print find_refs(refed='AlipaySDK')

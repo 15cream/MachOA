@@ -3,6 +3,7 @@ from angr import SimProcedure
 from Data.binary import MachO
 import claripy
 from Data.CONSTANTS import *
+from Data.func import Func
 
 objc_symbols = ['_objc_retainAutoreleasedReturnValue',
                 '_objc_retainAutoreleaseReturnValue',
@@ -22,16 +23,20 @@ class stubHelper(SimProcedure):
             return state.registers.load('x0')
         else:
             if symbol.name == '_objc_msgSend':
-                imp = MachO.resolve_invoke(state, type=MSGSEND)
+                ret = MachO.resolve_invoke(state, type=MSGSEND)
             else:
-                imp = MachO.resolve_invoke(state, type=LAZY_BIND_F)
+                ret = MachO.resolve_invoke(state, type=LAZY_BIND_F)
 
-            if type(imp) == int or type(imp) == long:
-                # self.call(imp, args=[], continue_at='ret_from_msgSend', cc=None)
+            if type(ret) == int or type(ret) == long:
+
+                # self.call(ret, args=[], continue_at='ret_from_msgSend', cc=None)
                 # self.jump(imp)
-                return claripy.BVS("RetFrom_" + hex(imp), 64, uninitialized=True)
-            elif type(imp) == str:
-                return claripy.BVS(imp, 64, uninitialized=True)
+                # f = Func(ret, MachO.pd.macho, MachO.pd.task, state)
+                # f.analyze()
+                # return claripy.BVS("RetFrom_" + hex(ret), 64, uninitialized=True)
+                return claripy.BVS(ret, 64, uninitialized=True)
+            elif type(ret) == str:
+                return claripy.BVS(ret, 64, uninitialized=True)
 
     def ret_from_msgSend(self):
         print 'I just jumped to a meth_imp and returned'

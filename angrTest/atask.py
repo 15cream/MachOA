@@ -8,6 +8,7 @@ import ConfigParser
 
 from Data.class_o import class_o
 from Data.function import Function
+from Data.func import Func
 from Data.stubs import *
 from tools.utils import *
 from tools.b_callbacks import *
@@ -61,28 +62,34 @@ class ATask:
         hook_stubs(self.init_state)
 
     def analyze_function(self, start_addr=None, name=None):
+        self.cg = CG()
         if name:
             start_addr = Function.retrieve_f(name=name, ret=0b100)[0]
         if start_addr in self.meth_blacklist:
             return
         st = self.init_state.copy()
-        self.cg.add_simple_node(start_addr, 'Start', st)
-        st.regs.ip = start_addr
-        self.current_f = Function(start_addr, st, self)
-        try:
-            self.next_func_addr = self.macho.lc_function_starts[self.macho.lc_function_starts.index(start_addr) + 1]
-        except IndexError:
-            self.next_func_addr = None
+        # self.cg.add_simple_node(start_addr, 'Start', st)
+        # st.regs.ip = start_addr
+        # self.current_f = Function(start_addr, st, self)
+        # try:
+        #     self.next_func_addr = self.macho.lc_function_starts[self.macho.lc_function_starts.index(start_addr) + 1]
+        # except IndexError:
+        #     self.next_func_addr = None
 
         st.inspect.b('exit', when=angr.BP_BEFORE, action=branch)
         st.inspect.b('address_concretization', when=angr.BP_AFTER, action=mem_resolve)
 
-        self.simgr = sm = self.p.factory.simgr(st)
-        while sm.active:
-            sm.step()
-        if self.store:
-            # self.current_f.dump()
-            self.cg.view()
+        # self.simgr = sm = self.p.factory.simgr(st)
+        # while sm.active:
+        #     sm.step()
+        # if self.store:
+        #     # self.current_f.dump()
+        #     self.cg.view()
+
+        f = Func(start_addr, self.macho, self, st)
+        f.init_regs()
+        f.analyze()
+        self.cg.view()
 
     def analyze_bin(self):
         for ref in class_o.classes_indexed_by_ref.keys():
@@ -104,6 +111,22 @@ class ATask:
                 self.analyze_function(start_addr=meth)
                 f.write("\n---------{}----------\n".format(self.current_f.name))
                 f.write("\n".join(self.current_f.dds))
+
+    def analyze_class(self, classref=None, classname=None):
+        class_obj = class_o.retrieve(classref=classref, classname=classname)
+        if class_obj.imported:
+            return
+        if class_obj.name in self.checked:
+            return
+        for meth in class_obj.class_meths:
+            if meth in self.meth_blacklist:
+                continue
+            self.analyze_function(start_addr=meth)
+        for meth in class_obj.instance_meths:
+            if meth in self.meth_blacklist:
+                continue
+            self.analyze_function(start_addr=meth)
+
 
 print time.strftime("-START-%Y-%m-%d %H:%M:%S", time.localtime())
 

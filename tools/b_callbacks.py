@@ -4,10 +4,9 @@ import claripy
 
 
 def loop_filter(state):
-    function_start = MachO.pd.task.current_f.start
     history = state.history
     jmp_target = state.solver.eval(state.inspect.exit_target)
-    while (history.addr != function_start):
+    while history:
         state_addr = history.addr
         if jmp_target == state_addr:
             if jmp_target in MachO.pd.macho.lc_function_starts:
@@ -26,12 +25,13 @@ def branch(state):
     if state.inspect.exit_jumpkind == 'Ijk_Boring' and jmp_target < text.max_addr:
         loop_filter(state)
 
-    if jmp_target == MachO.pd.task.next_func_addr:
-        MachO.pd.task.current_f.setRetVal(state.solver.eval(state.regs.x0))
+    if jmp_target in MachO.pd.macho.lc_function_starts:
+        # MachO.pd.task.current_f.setRetVal(state.solver.eval(state.regs.x0))
         state.solver.BVV(int(state.inspect.exit_guard.is_false()), 64)
 
     if jmp_target == 0:
-        MachO.pd.task.current_f.setRetVal(state.solver.eval(state.regs.x0))
+        # MachO.pd.task.current_f.setRetVal(state.solver.eval(state.regs.x0))
+        return
 
     if jmp_target in Function.subroutines:
         print 'BREAK DOWN AT SUB_{}'.format(hex(jmp_target))
