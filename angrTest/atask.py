@@ -9,6 +9,7 @@ import ConfigParser
 from Data.class_o import class_o
 from Data.function import Function
 from Data.func import Func
+from angrutils import *
 from Data.stubs import *
 from tools.utils import *
 from tools.b_callbacks import *
@@ -90,6 +91,10 @@ class ATask:
         f.init_regs()
         f.analyze()
         self.cg.view()
+
+        cfg = self.p.analyses.CFGAccurate(keep_state=True, starts=[start_addr, ], initial_state=st, call_depth=2,
+                                      context_sensitivity_level=3)
+        plot_cfg(cfg, "ais4_cfg", asminst=True, remove_imports=True, remove_path_terminator=True)
 
     def analyze_bin(self):
         for ref in class_o.classes_indexed_by_ref.keys():

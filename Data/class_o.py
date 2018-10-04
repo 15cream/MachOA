@@ -50,6 +50,7 @@ class class_o:
 
         class_o.classes_indexed_by_name[self.name] = class_o.classes_indexed_by_ref[self.classref_addr] = self
         class_o.class_set.append(self.__dict__)
+        print hex(self.classref_addr), self.name
 
     def resolve_methods_imp(self, state, addr, instance_m=None, class_m=None):
         meths = dict()

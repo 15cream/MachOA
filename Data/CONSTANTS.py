@@ -6,3 +6,5 @@ INVOKEFS = "Context:{} {}\nDepth:{}\nInvoke:{} {}\n{}"
 
 # about instance variable
 IVAR_FORMAT = "{classname}{var_name}{var_typr}"
+
+dispatch = ['_dispatch_async', '_dispatch_once']

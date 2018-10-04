@@ -27,15 +27,16 @@ def branch(state):
 
     if jmp_target in MachO.pd.macho.lc_function_starts:
         # MachO.pd.task.current_f.setRetVal(state.solver.eval(state.regs.x0))
-        state.solver.BVV(int(state.inspect.exit_guard.is_false()), 64)
+        # state.solver.BVV(int(state.inspect.exit_guard.is_false()), 64)
+        return
 
     if jmp_target == 0:
         # MachO.pd.task.current_f.setRetVal(state.solver.eval(state.regs.x0))
         return
 
-    if jmp_target in Function.subroutines:
-        print 'BREAK DOWN AT SUB_{}'.format(hex(jmp_target))
-        state.inspect.exit_guard = claripy.false
+    # if jmp_target in Function.subroutines:
+    #     print 'BREAK DOWN AT SUB_{}'.format(hex(jmp_target))
+    #     state.inspect.exit_guard = claripy.false
 
 
 

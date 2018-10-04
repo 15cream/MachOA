@@ -29,15 +29,18 @@ class stubHelper(SimProcedure):
 
             if type(ret) == int or type(ret) == long:
 
-                # self.call(ret, args=[], continue_at='ret_from_msgSend', cc=None)
-                # self.jump(imp)
+                self.call(ret, args=[], continue_at='ret_from_msgSend', cc=None)
+                # self.jump(ret)
                 # f = Func(ret, MachO.pd.macho, MachO.pd.task, state)
                 # f.analyze()
-                # return claripy.BVS("RetFrom_" + hex(ret), 64, uninitialized=True)
-                return claripy.BVS(ret, 64, uninitialized=True)
+                # src_state = state.history.parent.parent
+                # addr = src_state.addr + src_state.recent_instruction_count * 4
+                # return claripy.BVS("RetFrom_" + hex(addr), 64, uninitialized=True)
+
             elif type(ret) == str:
                 return claripy.BVS(ret, 64, uninitialized=True)
 
     def ret_from_msgSend(self):
-        print 'I just jumped to a meth_imp and returned'
+        # print 'I just jumped to a meth_imp and returned'
+        pass
 

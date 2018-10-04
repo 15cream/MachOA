@@ -1,4 +1,6 @@
 [PATH]
-dds=/Users/gjy/Documents/git_workspace/MachOA/dds
-dbs=/Users/gjy/Documents/git_workspace/MachOA/dbs
-xmls=/Users/gjy/Documents/git_workspace/MachOA/xmls
+binary = ../samples/
+dds = ../dds/
+xmls = ../xmls/
+dbs = ../dbs/
+

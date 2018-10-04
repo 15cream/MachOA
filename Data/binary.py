@@ -7,7 +7,7 @@ import os
 import function
 from Data.CONSTANTS import *
 import claripy
-
+from CONSTANTS import *
 
 class MachO:
 
@@ -33,13 +33,19 @@ class MachO:
             return
         # imported
         classrefs = self.macho.get_segment_by_name('__DATA').get_section_by_name('__objc_classrefs')
+        superrefs = self.macho.get_segment_by_name('__DATA').get_section_by_name('__objc_superrefs')
         symbols = self.macho.symbols
         for s in symbols:
             for addr in s.bind_xrefs:
-                if addr in range(classrefs.min_addr, classrefs.max_addr):
+                if addr in range(classrefs.min_addr, classrefs.max_addr) or addr in range(superrefs.min_addr, superrefs.max_addr):
                     class_o(addr, imported=True, name=s.name.split('$_')[-1]).build(state)
         # binary classes
         for addr in range(classrefs.min_addr, classrefs.max_addr, 8):
+            if addr in class_o.imported_class_set:
+                continue
+            else:
+                class_o(addr).build(state)
+        for addr in range(superrefs.min_addr, superrefs.max_addr, 8):
             if addr in class_o.imported_class_set:
                 continue
             else:
@@ -66,6 +72,12 @@ class MachO:
         if type == LAZY_BIND_F:
             # MachO.pd.task.current_f.insert_invoke(state, addr, symbol=symbol)
             MachO.pd.task.cg.insert_invoke(addr, symbol, state, args=MachO.resolve_args(state, symbol=symbol))
+            if symbol.name in dispatch:
+                base = state.regs.x1
+                for i in range(1, 6):
+                    ea = state.mem[base + 8 * i].long.concrete
+                    if ea in MachO.pd.macho.lc_function_starts:
+                        return ea
             return "RetFrom_" + hex(addr)
         elif type == MSGSEND:
             receiver = MachO.pd.resolve_reg(state, state.regs.x0)
@@ -80,16 +92,18 @@ class MachO:
                 meth_type = '+'
             description = "{}[{} {}]".format(meth_type, receiver, selector)
             imp = function.Function.retrieve_f(description, ret=0b00100)
+            args = MachO.resolve_args(state, selector=selector)
+
             if imp:
-                # MachO.pd.task.cg.insert_invoke(addr, description, state,
-                #                                args=MachO.resolve_args(state, selector=selector))
-                #
+                MachO.pd.task.cg.insert_invoke(addr, description, state,
+                                               args=args, receiver=receiver, selector=selector)
+
                 # # MachO.pd.task.current_f.insert_invoke(state, addr, selector, receiver)
-                # return imp.pop()
-                pass
+                return imp.pop()
+                # return addr
             else:
                 MachO.pd.task.cg.insert_invoke(addr, description, state,
-                                       args=MachO.resolve_args(state, selector=selector))
+                                       args=args, receiver=receiver, selector=selector)
 
                 return "RetFrom_" + hex(addr)
 
@@ -103,6 +117,13 @@ class MachO:
                 reg_name = 'x{}'.format(c)
                 reg_val = MachO.pd.resolve_reg(state, state.regs.get(reg_name))
                 args.append(reg_val)
+            if selector == 'stringWithFormat:':
+                formatString = args[2]
+                fs_args = formatString.count("@")
+                for c in range(3, fs_args + 3):
+                    reg_name = 'x{}'.format(c)
+                    reg_val = MachO.pd.resolve_reg(state, state.regs.get(reg_name))
+                    args.append(reg_val)
         elif symbol:
             args.append(MachO.pd.resolve_reg(state, state.regs.get('x0')))
             args.append(MachO.pd.resolve_reg(state, state.regs.get('x1')))
