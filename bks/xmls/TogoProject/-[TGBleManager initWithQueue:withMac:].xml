@@ -1,0 +1,1 @@
+<FUNCTION address="0x1000faa1cL" name="-[TGBleManager initWithQueue:withMac:]"><NODE addr="0x1000faa1cL">Start<NEXT addr="0x1000faa78L" /></NODE><NODE addr="0x1000faa78L">[TGCentralManager alloc]<NEXT addr="0x1000faa8cL" /></NODE><NODE addr="0x1000faa8cL">[ret_from_0x1000faa78L_2122_64 initWithQueue:withMac:]</NODE></FUNCTION>

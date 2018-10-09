@@ -1,0 +1,1 @@
+<FUNCTION address="0x1007a09e8L" name="+[TDAAUtility getKeyboards]"><NODE addr="0x1007a09e8L">Start<NEXT addr="0x1007a0a04L" /></NODE><NODE addr="0x1007a0a04L">[_OBJC_CLASS_$_NSUserDefaults standardUserDefaults]<NEXT addr="0x1007a0a24L" /></NODE><NODE addr="0x1007a0a24L">[ret_from_0x1007a0a04L_13057_64 objectForKey:]</NODE></FUNCTION>

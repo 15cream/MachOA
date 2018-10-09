@@ -1,0 +1,1 @@
+<FUNCTION address="0x1000e949cL" name="-[TGNewLoginViewController applicationWillEnterForeground:]"><NODE addr="0x1000e94ecL">[ret_from_0x1000e94c0L_10958_64 endBackgroundTask:]</NODE><NODE addr="0x1000e949cL">Start<NEXT addr="0x1000e94c0L" /></NODE><NODE addr="0x1000e94c0L">[_OBJC_CLASS_$_UIApplication sharedApplication]<NEXT addr="0x1000e94ecL" /></NODE></FUNCTION>

@@ -1,0 +1,1 @@
+<FUNCTION address="0x10078abccL" name="-[TDAASDKManager startBackgroundTask]"><NODE addr="0x10078ac14L">[_OBJC_CLASS_$_UIApplication sharedApplication]<NEXT addr="0x10078ac78L" /></NODE><NODE addr="0x10078abccL">Start<NEXT addr="0x10078ac14L" /></NODE><NODE addr="0x10078ac78L">[ret_from_0x10078ac14L_5744_64 beginBackgroundTaskWithExpirationHandler:]</NODE></FUNCTION>

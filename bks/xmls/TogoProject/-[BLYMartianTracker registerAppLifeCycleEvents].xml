@@ -1,0 +1,1 @@
+<FUNCTION address="0x1003c8190L" name="-[BLYMartianTracker registerAppLifeCycleEvents]"><NODE addr="0x1003c81b0L">[_OBJC_CLASS_$_NSNotificationCenter defaultCenter]<NEXT addr="0x1003c81e4L" /></NODE><NODE addr="0x1003c8190L">Start<NEXT addr="0x1003c81b0L" /></NODE><NODE addr="0x1003c81e4L">[ret_from_0x1003c81b0L_15968_64 addObserver:selector:name:object:]</NODE></FUNCTION>

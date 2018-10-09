@@ -1,0 +1,1 @@
+<FUNCTION address="0x1007442fcL" name="+[TDAADesignerEventBindingRequestMesssage message]"><NODE addr="0x1007442fcL">Start<NEXT addr="0x10074430cL" /></NODE><NODE addr="0x10074430cL">[TDAADesignerEventBindingRequestMesssage alloc]<NEXT addr="0x100744320L" /></NODE><NODE addr="0x100744320L">[ret_from_0x10074430cL_3832_64 initWithType:]</NODE></FUNCTION>

@@ -1,0 +1,1 @@
+<FUNCTION address="0x1004a3504L" name="-[MAMapView setLimitMapRect:]"><NODE addr="0x1004a3510L">[MAMapView_instance_6695_64 setLimitMapRect:fitSize:]</NODE><NODE addr="0x1004a3504L">Start<NEXT addr="0x1004a3510L" /></NODE></FUNCTION>

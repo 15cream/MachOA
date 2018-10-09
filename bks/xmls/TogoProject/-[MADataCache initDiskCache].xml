@@ -1,0 +1,1 @@
+<FUNCTION address="0x1004bd348L" name="-[MADataCache initDiskCache]"><NODE addr="0x1004bd368L">[MADiskCache new]<NEXT addr="0x1004bd384L" /></NODE><NODE addr="0x1004bd348L">Start<NEXT addr="0x1004bd368L" /></NODE><NODE addr="0x1004bd384L">[MADataCache_instance_10538_64 addCache:]</NODE></FUNCTION>

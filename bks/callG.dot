@@ -1,0 +1,215 @@
+strict digraph  {
+	"Context:0x10049cea0 -[MAMapView tapPanToZoomAction:]
+Depth:13
+Invoke:0x10049cf14L -[MAMapView internalSetZoomLevel:atPivot:animated:\
+duration:mediaFunctionType:completeBlock:]
+x0: MAMapView_instance
+x1: internalSetZoomLevel:atPivot:animated:duration:mediaFunctionType:\
+completeBlock:
+x2: 0
+x3: 0
+x4: 0
+x5: reg_x5
+x6: reg_x6
+x7: reg_x7
+"	 [context=4299804320,
+		des="-[MAMapView internalSetZoomLevel:atPivot:animated:duration:mediaFunctionType:completeBlock:]"];
+	"Context:0x10049cea0 -[MAMapView tapPanToZoomAction:]
+Depth:6
+Invoke:0x10049ceccL +[P0 state]
+x0: P0
+x1: state
+"	 [context=4299804320,
+		des="+[P0 state]"];
+	"Context:0x10049cea0 -[MAMapView tapPanToZoomAction:]
+Depth:10
+Invoke:0x10049cee4L +[P0 scale]
+x0: P0
+x1: scale
+"	 [context=4299804320,
+		des="+[P0 scale]"];
+	"Context:0x10049cea0 -[MAMapView tapPanToZoomAction:]
+Depth:6
+Invoke:0x10049ceccL +[P0 state]
+x0: P0
+x1: state
+" -> "Context:0x10049cea0 -[MAMapView tapPanToZoomAction:]
+Depth:10
+Invoke:0x10049cee4L +[P0 scale]
+x0: P0
+x1: scale
+"	 [color=green,
+		label="Bool RetFrom_0x10049ceccL_8_64 == 0x2"];
+	"Context:0x10049cea0 -[MAMapView tapPanToZoomAction:]
+Depth:10
+Invoke:0x10049cf24L +[P0 state]
+x0: P0
+x1: state
+"	 [context=4299804320,
+		des="+[P0 state]"];
+	"Context:0x10049cea0 -[MAMapView tapPanToZoomAction:]
+Depth:6
+Invoke:0x10049ceccL +[P0 state]
+x0: P0
+x1: state
+" -> "Context:0x10049cea0 -[MAMapView tapPanToZoomAction:]
+Depth:10
+Invoke:0x10049cf24L +[P0 state]
+x0: P0
+x1: state
+"	 [color=green,
+		label="Bool RetFrom_0x10049ceccL_8_64 != 0x2"];
+	"Context:0x10049cea0 -[MAMapView tapPanToZoomAction:]
+Depth:21
+Invoke:0x10049cf6cL -[MAScaleViewLite setOriginalScale:]
+x0: MAMapView_\
+scaleView@\"MAScaleViewLite\"
+x1: setOriginalScale:
+x2: P0
+"	 [context=4299804320,
+		des="-[MAScaleViewLite setOriginalScale:]"];
+	"Context:0x10049cea0 -[MAMapView tapPanToZoomAction:]
+Depth:14
+Invoke:0x10049cf38L +[P0 state]
+x0: P0
+x1: state
+"	 [context=4299804320,
+		des="+[P0 state]"];
+	"Context:0x10049cea0 -[MAMapView tapPanToZoomAction:]
+Depth:18
+Invoke:0x10049cf5cL -[MAMapView currentZoomLevel]
+x0: MAMapView_instance
+\
+x1: currentZoomLevel
+"	 [context=4299804320,
+		des="-[MAMapView currentZoomLevel]"];
+	"Context:0x10049cea0 -[MAMapView tapPanToZoomAction:]
+Depth:14
+Invoke:0x10049cf38L +[P0 state]
+x0: P0
+x1: state
+" -> "Context:0x10049cea0 -[MAMapView tapPanToZoomAction:]
+Depth:18
+Invoke:0x10049cf5cL -[MAMapView currentZoomLevel]
+x0: MAMapView_instance
+\
+x1: currentZoomLevel
+"	 [color=green,
+		label="Bool True
+Bool !(RetFrom_0x10049ceccL_8_64 == 0x2)
+Bool RetFrom_0x10049cf38L_19_64 == 0x4
+Bool !(RetFrom_0x10049cf24L_9_64 == 0x3)
+\
+Bool (MAMapView_instance_0_64 + 0xc0) = 0xffffffffffffffff
+Bool (MAMapView_instance_0_64 + 0xc0) == 0xffffffffffe000c0"];
+	"Context:0x10049cea0 -[MAMapView tapPanToZoomAction:]
+Depth:0
+Invoke:0x10049cea0 Start
+"	 [context=4299804320,
+		des=Start];
+	"Context:0x10049cea0 -[MAMapView tapPanToZoomAction:]
+Depth:0
+Invoke:0x10049cea0 Start
+" -> "Context:0x10049cea0 -[MAMapView tapPanToZoomAction:]
+Depth:6
+Invoke:0x10049ceccL +[P0 state]
+x0: P0
+x1: state
+"	 [color=green];
+	"Context:0x10049cea0 -[MAMapView tapPanToZoomAction:]
+Depth:17
+Invoke:0x10049cf6cL -[MAScaleViewLite setOriginalScale:]
+x0: MAMapView_\
+scaleView@\"MAScaleViewLite\"
+x1: setOriginalScale:
+x2: P0
+"	 [context=4299804320,
+		des="-[MAScaleViewLite setOriginalScale:]"];
+	"Context:0x10049cea0 -[MAMapView tapPanToZoomAction:]
+Depth:10
+Invoke:0x10049cee4L +[P0 scale]
+x0: P0
+x1: scale
+" -> "Context:0x10049cea0 -[MAMapView tapPanToZoomAction:]
+Depth:13
+Invoke:0x10049cf14L -[MAMapView internalSetZoomLevel:atPivot:animated:\
+duration:mediaFunctionType:completeBlock:]
+x0: MAMapView_instance
+x1: internalSetZoomLevel:atPivot:animated:duration:mediaFunctionType:\
+completeBlock:
+x2: 0
+x3: 0
+x4: 0
+x5: reg_x5
+x6: reg_x6
+x7: reg_x7
+"	 [color=green,
+		label="Bool MAMapView_instance_0_64 == 0xffffffffffe00000
+Bool __add__(MAMapView_instance_0_64, 0x240, 0x8) == 0xffffffffffe00248"];
+	"Context:0x10049cea0 -[MAMapView tapPanToZoomAction:]
+Depth:14
+Invoke:0x10049cf5cL -[MAMapView currentZoomLevel]
+x0: MAMapView_instance
+\
+x1: currentZoomLevel
+"	 [context=4299804320,
+		des="-[MAMapView currentZoomLevel]"];
+	"Context:0x10049cea0 -[MAMapView tapPanToZoomAction:]
+Depth:14
+Invoke:0x10049cf5cL -[MAMapView currentZoomLevel]
+x0: MAMapView_instance
+\
+x1: currentZoomLevel
+" -> "Context:0x10049cea0 -[MAMapView tapPanToZoomAction:]
+Depth:17
+Invoke:0x10049cf6cL -[MAScaleViewLite setOriginalScale:]
+x0: MAMapView_\
+scaleView@\"MAScaleViewLite\"
+x1: setOriginalScale:
+x2: P0
+"	 [color=green];
+	"Context:0x10049cea0 -[MAMapView tapPanToZoomAction:]
+Depth:18
+Invoke:0x10049cf5cL -[MAMapView currentZoomLevel]
+x0: MAMapView_instance
+\
+x1: currentZoomLevel
+" -> "Context:0x10049cea0 -[MAMapView tapPanToZoomAction:]
+Depth:21
+Invoke:0x10049cf6cL -[MAScaleViewLite setOriginalScale:]
+x0: MAMapView_\
+scaleView@\"MAScaleViewLite\"
+x1: setOriginalScale:
+x2: P0
+"	 [color=green];
+	"Context:0x10049cea0 -[MAMapView tapPanToZoomAction:]
+Depth:10
+Invoke:0x10049cf24L +[P0 state]
+x0: P0
+x1: state
+" -> "Context:0x10049cea0 -[MAMapView tapPanToZoomAction:]
+Depth:14
+Invoke:0x10049cf38L +[P0 state]
+x0: P0
+x1: state
+"	 [color=green,
+		label="Bool RetFrom_0x10049cf24L_9_64 != 0x3"];
+	"Context:0x10049cea0 -[MAMapView tapPanToZoomAction:]
+Depth:10
+Invoke:0x10049cf24L +[P0 state]
+x0: P0
+x1: state
+" -> "Context:0x10049cea0 -[MAMapView tapPanToZoomAction:]
+Depth:14
+Invoke:0x10049cf5cL -[MAMapView currentZoomLevel]
+x0: MAMapView_instance
+\
+x1: currentZoomLevel
+"	 [color=green,
+		label="Bool True
+Bool !(RetFrom_0x10049ceccL_8_64 == 0x2)
+Bool RetFrom_0x10049cf24L_9_64 == 0x3
+Bool (MAMapView_instance_0_64 + 0xc0) = \
+0xffffffffffffffff
+Bool (MAMapView_instance_0_64 + 0xc0) == 0xffffffffffe000c0"];
+}

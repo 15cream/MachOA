@@ -1,0 +1,1 @@
+<FUNCTION address="0x100092950L" name="-[TGCoverView initWithFrame:]"><NODE addr="0x1000929c4L">[ret_from__objc_msgSendSuper2_197_64 setBackgroundColor:]</NODE><NODE addr="0x100092950L">Start<NEXT addr="0x1000929a4L" /></NODE><NODE addr="0x1000929a4L">[_OBJC_CLASS_$_UIColor colorWithRed:green:blue:alpha:]<NEXT addr="0x1000929c4L" /></NODE></FUNCTION>

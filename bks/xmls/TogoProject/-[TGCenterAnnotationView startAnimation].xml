@@ -1,0 +1,1 @@
+<FUNCTION address="0x1000fe730L" name="-[TGCenterAnnotationView startAnimation]"><NODE addr="0x1000fe730L">Start<NEXT addr="0x1000fe7acL" /></NODE><NODE addr="0x1000fe7acL">[_OBJC_CLASS_$_UIView animateWithDuration:animations:completion:]</NODE></FUNCTION>

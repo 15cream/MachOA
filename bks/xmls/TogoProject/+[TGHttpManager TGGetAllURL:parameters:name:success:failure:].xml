@@ -1,0 +1,1 @@
+<FUNCTION address="0x1000c20dcL" name="+[TGHttpManager TGGetAllURL:parameters:name:success:failure:]"><NODE addr="0x1000c20dcL">Start<NEXT addr="0x1000c2164L" /></NODE><NODE addr="0x1000c2164L">[TGHttpManager TGEncryptPOSTWithURLString:parameters:name:type:showLoading:showError:loginInvalid:success:failure:]</NODE></FUNCTION>

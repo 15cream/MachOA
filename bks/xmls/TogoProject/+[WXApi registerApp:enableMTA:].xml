@@ -1,0 +1,1 @@
+<FUNCTION address="0x100288af4L" name="+[WXApi registerApp:enableMTA:]"><NODE addr="0x100288af4L">Start<NEXT addr="0x100288b18L" /></NODE><NODE addr="0x100288b18L">[reg_x2_2941_64 retain]<NEXT addr="0x100288b40L" /></NODE><NODE addr="0x100288b40L">[MMApiRegister registerApp:andAppSupportContentFlag:enableMTA:]</NODE></FUNCTION>

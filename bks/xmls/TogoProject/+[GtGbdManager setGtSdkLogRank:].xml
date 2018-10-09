@@ -1,0 +1,1 @@
+<FUNCTION address="0x100442dd8L" name="+[GtGbdManager setGtSdkLogRank:]"><NODE addr="0x100442dd8L">Start<NEXT addr="0x100442df8L" /></NODE><NODE addr="0x100442e18L">[ret_from_0x100442df8L_6206_64 setGtSdkLogRank:]</NODE><NODE addr="0x100442df8L">[GtGbdMemoryVariables sharedInstance]<NEXT addr="0x100442e18L" /></NODE></FUNCTION>

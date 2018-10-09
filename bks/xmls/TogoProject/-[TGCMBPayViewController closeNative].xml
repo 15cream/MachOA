@@ -1,0 +1,1 @@
+<FUNCTION address="0x100069464L" name="-[TGCMBPayViewController closeNative]"><NODE addr="0x100069464L">Start<NEXT addr="0x100069478L" /></NODE><NODE addr="0x100069478L">[TGCMBPayViewController_instance_274_64 navigationController]<NEXT addr="0x100069494L" /></NODE><NODE addr="0x100069494L">[ret_from_0x100069478L_279_64 popViewControllerAnimated:]</NODE></FUNCTION>

@@ -1,0 +1,1 @@
+<FUNCTION address="0x10009a6b0L" name="-[TGPersonView pushVC:]"><NODE addr="0x10009a6b0L">Start<NEXT addr="0x10009a6e0L" /></NODE><NODE addr="0x10009a6e0L">[TGPersonView_instance_107_64 viewController]<NEXT addr="0x10009a700L" /></NODE><NODE addr="0x10009a700L">[ret_from_0x10009a6e0L_115_64 pushViewController:animated:]</NODE></FUNCTION>

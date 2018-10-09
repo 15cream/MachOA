@@ -1,0 +1,1 @@
+<FUNCTION address="0x10078ae30L" name="-[TDAASDKManager endBackgroundTask]"><NODE addr="0x10078ae90L">[ret_from_0x10078ae74L_5498_64 endBackgroundTask:]</NODE><NODE addr="0x10078ae30L">Start<NEXT addr="0x10078ae74L" /></NODE><NODE addr="0x10078ae74L">[_OBJC_CLASS_$_UIApplication sharedApplication]<NEXT addr="0x10078ae90L" /></NODE></FUNCTION>

@@ -1,0 +1,1 @@
+<FUNCTION address="0x1004f0744L" name="-[MAOverlayRenderer getOffsetPoint]"><NODE addr="0x1004f075cL">[MAOverlayRenderer_instance_790_64 rendererDelegate]<NEXT addr="0x1004f0774L" /></NODE><NODE addr="0x1004f0744L">Start<NEXT addr="0x1004f075cL" /></NODE><NODE addr="0x1004f0774L">[ret_from_0x1004f075cL_797_64 getCurrentOffsetPoint]</NODE></FUNCTION>

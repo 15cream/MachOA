@@ -1,0 +1,1 @@
+<FUNCTION address="0x100138f58L" name="-[TGlllegaCompleteViewController tableView:heightForFooterInSection:]"><NODE addr="0x100138f58L">Start<NEXT addr="0x100138f74L" /></NODE><NODE addr="0x100138f8cL">[ret_from_0x100138f74L_2472_64 count]</NODE><NODE addr="0x100138f74L">[TGlllegaCompleteViewController_instance_2464_64 dataList]<NEXT addr="0x100138f8cL" /></NODE></FUNCTION>

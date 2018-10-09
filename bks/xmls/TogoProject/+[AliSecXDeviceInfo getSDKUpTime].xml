@@ -1,0 +1,1 @@
+<FUNCTION address="0x1006e2df4L" name="+[AliSecXDeviceInfo getSDKUpTime]"><NODE addr="0x1006e2e1cL">[internal_DeviceInfo getSDKUpTimeInterval]</NODE><NODE addr="0x1006e2df4L">Start<NEXT addr="0x1006e2e1cL" /></NODE></FUNCTION>

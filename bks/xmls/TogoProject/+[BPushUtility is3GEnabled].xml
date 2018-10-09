@@ -1,0 +1,1 @@
+<FUNCTION address="0x1007c7838L" name="+[BPushUtility is3GEnabled]"><NODE addr="0x1007c7838L">Start<NEXT addr="0x1007c7854L" /></NODE><NODE addr="0x1007c786cL">[ret_from_0x1007c7854L_4471_64 currentReachabilityStatus]</NODE><NODE addr="0x1007c7854L">[BPushReachability reachabilityForInternetConnection]<NEXT addr="0x1007c786cL" /></NODE></FUNCTION>

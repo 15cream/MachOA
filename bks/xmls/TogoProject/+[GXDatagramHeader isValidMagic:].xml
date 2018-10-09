@@ -1,0 +1,1 @@
+<FUNCTION address="0x100414d5cL" name="+[GXDatagramHeader isValidMagic:]"><NODE addr="0x100414d5cL">Start<NEXT addr="0x100414d7cL" /></NODE><NODE addr="0x100414d7cL">[reg_x2_20559_64 length]<NEXT addr="0x100414d98L" /></NODE><NODE addr="0x100414d98L">[ret_from__objc_retainAutorelease_20561_64 bytes]</NODE></FUNCTION>

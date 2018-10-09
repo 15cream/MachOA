@@ -1,0 +1,1 @@
+<FUNCTION address="0x1006c55b8L" name="-[ASSStaticInfoCollector getOtherAppToken]"><NODE addr="0x1006c5610L">[ret_from__NSClassFromString_9260_64 respondsToSelector:]<NEXT addr="0x1006c5628L" /></NODE><NODE addr="0x1006c55b8L">Start<NEXT addr="0x1006c5610L" /></NODE><NODE addr="0x1006c5628L">[ret_from__NSClassFromString_9260_64 performSelector:]</NODE></FUNCTION>

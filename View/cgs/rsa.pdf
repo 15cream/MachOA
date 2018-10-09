@@ -1,0 +1,78 @@
+// -[MAMapView tapPanToZoomAction:]
+digraph {
+	"0x10049cf6cL" [label="0x10049cf6cL [MAMapView_scaleView@\"MAScaleViewLite\" setOriginalScale:] 
+(p0)"]
+	"0x1004a438cL" [label="0x1004a438cL [MAMapView_render@\"MAMapRender\" mapEngine]"]
+	"0x1004a8bdcL" [label="0x1004a8bdcL -[MAMapView limitRegionMinZoomLevel]"]
+	"0x1004a8bc4L" [label="0x1004a8bc4L -[MAMapView minZoomLevel]"]
+	"0x10049cf6cL" [label="0x10049cf6cL [MAMapView_scaleView@\"MAScaleViewLite\" setOriginalScale:] 
+(p0)"]
+	"0x10049ceccL" [label="0x10049ceccL [p0 state]"]
+	"0x1004a8bdcL" [label="0x1004a8bdcL -[MAMapView limitRegionMinZoomLevel]"]
+	"0x1004a43acL" [label="0x1004a43acL [MAMapView_render@\"MAMapRender\" mapEngine]"]
+	"0x1004a8bdcL" [label="0x1004a8bdcL -[MAMapView limitRegionMinZoomLevel]"]
+	"0x10049cf6cL" [label="0x10049cf6cL [MAMapView_scaleView@\"MAScaleViewLite\" setOriginalScale:] 
+(p0)"]
+	"0x10049cf24L" [label="0x10049cf24L [p0 state]"]
+	"0x10049cee4L" [label="0x10049cee4L [p0 scale]"]
+	"0x1004a4d24L" [label="0x1004a4d24L [MAMapView_render@\"MAMapRender\" mapEngine]"]
+	"0x1004a43c4L" [label="0x1004a43c4L [RetFrom_0x1004a43acL getMapMinZoomLevel]"]
+	"0x10049cf5cL" [label="0x10049cf5cL -[MAMapView currentZoomLevel]"]
+	"0x1004a438cL" [label="0x1004a438cL [MAMapView_render@\"MAMapRender\" mapEngine]"]
+	"0x10049cf6cL" [label="0x10049cf6cL [MAMapView_scaleView@\"MAScaleViewLite\" setOriginalScale:] 
+(p0)"]
+	"0x1004a8bdcL" [label="0x1004a8bdcL -[MAMapView limitRegionMinZoomLevel]"]
+	"0x10049cea0" [label="0x10049cea0 -[MAMapView tapPanToZoomAction:]"]
+	"0x1004a47e8L" [label="0x1004a47e8L [MAMapView_render@\"MAMapRender\" resumeFrequency]"]
+	"0x1004a4d04L" [label="0x1004a4d04L [MAMapView_render@\"MAMapRender\" mapEngine]"]
+	"0x10049b82cL" [label="0x10049b82cL [MAMapView_scaleCalculated removeAnimationTaskWithKeyPath:finished:] 
+(kMAMapLayerZoomLevelKey,0)"]
+	"0x10049cf14L" [label="0x10049cf14L -[MAMapView internalSetZoomLevel:atPivot:animated:duration:mediaFunctionType:completeBlock:] 
+(0,0,0,reg_x5,reg_x6,reg_x7)"]
+	"0x1004a8bdcL" [label="0x1004a8bdcL -[MAMapView limitRegionMinZoomLevel]"]
+	"0x1004a4d3cL" [label="0x1004a4d3cL [RetFrom_0x1004a4d24L mapZoomLevel]"]
+	"0x10049cf38L" [label="0x10049cf38L [p0 state]"]
+	"0x1004a4d04L" [label="0x1004a4d04L [MAMapView_render@\"MAMapRender\" mapEngine]"]
+	"0x10049cf6cL" [label="0x10049cf6cL [MAMapView_scaleView@\"MAScaleViewLite\" setOriginalScale:] 
+(p0)"]
+	"0x1004a43c4L" [label="0x1004a43c4L [RetFrom_0x1004a43acL getMapMinZoomLevel]"]
+	"0x1004a4820L" [label="0x1004a4820L -[MAMapView normalizeZoomLevel:] 
+(kMAMapLayerZoomLevelKey)"]
+	"0x1004a4d24L" [label="0x1004a4d24L [MAMapView_render@\"MAMapRender\" mapEngine]"]
+	"0x1004a4820L" [label="0x1004a4820L -[MAMapView normalizeZoomLevel:] 
+(kMAMapLayerZoomLevelKey)"]
+	"0x10049cf5cL" [label="0x10049cf5cL -[MAMapView currentZoomLevel]"]
+	"0x1004a4d3cL" [label="0x1004a4d3cL [RetFrom_0x1004a4d24L mapZoomLevel]"]
+	"0x1004a8bdcL" [label="0x1004a8bdcL -[MAMapView limitRegionMinZoomLevel]"]
+	"0x10049cf6cL" [label="0x10049cf6cL [MAMapView_scaleView@\"MAScaleViewLite\" setOriginalScale:] 
+(p0)"]
+	"0x1004a43acL" [label="0x1004a43acL [MAMapView_render@\"MAMapRender\" mapEngine]"]
+	"0x1004a8bc4L" [label="0x1004a8bc4L -[MAMapView minZoomLevel]"]
+	"0x1004a480cL" [label="0x1004a480cL -[MAMapView removeAnimationTaskWithKeyPath:] 
+(kMAMapLayerZoomLevelKey)"]
+	"0x1004a438cL" -> "0x1004a43acL"
+	"0x1004a438cL" -> "0x1004a8bdcL"
+	"0x1004a8bc4L" -> "0x1004a438cL"
+	"0x1004a8bc4L" -> "0x1004a8bdcL"
+	"0x10049ceccL" -> "0x10049cf24L"
+	"0x10049ceccL" -> "0x10049cee4L"
+	"0x1004a43acL" -> "0x1004a43c4L"
+	"0x10049cf24L" -> "0x10049cf5cL"
+	"0x10049cf24L" -> "0x10049cf38L"
+	"0x10049cee4L" -> "0x10049cf14L"
+	"0x1004a4d24L" -> "0x1004a4d3cL"
+	"0x1004a43c4L" -> "0x1004a8bdcL"
+	"0x10049cf5cL" -> "0x1004a4d04L"
+	"0x10049cf5cL" -> "0x10049cf6cL"
+	"0x10049cea0" -> "0x10049ceccL"
+	"0x1004a47e8L" -> "0x1004a480cL"
+	"0x1004a4d04L" -> "0x1004a4d24L"
+	"0x1004a4d04L" -> "0x10049cf6cL"
+	"0x10049b82cL" -> "0x1004a4820L"
+	"0x10049cf14L" -> "0x1004a47e8L"
+	"0x1004a4d3cL" -> "0x10049cf6cL"
+	"0x10049cf38L" -> "0x10049cf5cL"
+	"0x1004a4820L" -> "0x1004a8bc4L"
+	"0x1004a480cL" -> "0x10049b82cL"
+	"0x1004a480cL" -> "0x1004a4820L"
+}

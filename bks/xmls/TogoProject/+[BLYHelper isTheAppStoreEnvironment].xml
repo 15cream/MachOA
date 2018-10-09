@@ -1,0 +1,1 @@
+<FUNCTION address="0x1003a3268L" name="+[BLYHelper isTheAppStoreEnvironment]"><NODE addr="0x1003a3268L">Start<NEXT addr="0x1003a3284L" /></NODE><NODE addr="0x1003a3284L">[_OBJC_CLASS_$_NSBundle mainBundle]<NEXT addr="0x1003a32acL" /></NODE><NODE addr="0x1003a32acL">[ret_from_0x1003a3284L_810_64 pathForResource:ofType:]</NODE></FUNCTION>

@@ -1,0 +1,1 @@
+<FUNCTION address="0x10038c018L" name="-[AMapSearchComponent init]"><NODE addr="0x10038c018L">Start<NEXT addr="0x10038c060L" /></NODE><NODE addr="0x10038c060L">[AMapSearchCategoryLoader loadCategories]</NODE></FUNCTION>

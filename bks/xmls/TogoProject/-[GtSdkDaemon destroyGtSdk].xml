@@ -1,0 +1,1 @@
+<FUNCTION address="0x1003f83c4L" name="-[GtSdkDaemon destroyGtSdk]"><NODE addr="0x1003f83e4L">[GtSdkDaemon sharedInstance]<NEXT addr="0x1003f83fcL" /></NODE><NODE addr="0x1003f83c4L">Start<NEXT addr="0x1003f83e4L" /></NODE><NODE addr="0x1003f83fcL">[ret_from_0x1003f83e4L_1350_64 destroySdkOnMain]</NODE></FUNCTION>

@@ -1,0 +1,1 @@
+<FUNCTION address="0x1000c6e64L" name="-[TGIllegaDetainViewController weizhangPay:withType:]"><NODE addr="0x1000c6e64L">Start<NEXT addr="0x1000c6ec0L" /></NODE><NODE addr="0x1000c6ec0L">[TGPayUtilityClass TGPayParams:withWay:withSuccess:withFaild:]</NODE></FUNCTION>

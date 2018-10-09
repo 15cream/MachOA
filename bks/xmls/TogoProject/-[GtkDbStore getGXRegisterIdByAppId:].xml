@@ -1,0 +1,1 @@
+<FUNCTION address="0x10040a5bcL" name="-[GtkDbStore getGXRegisterIdByAppId:]"><NODE addr="0x10040a5bcL">Start<NEXT addr="0x10040a5d0L" /></NODE><NODE addr="0x10040a5d0L">[GtkDbStore_instance_5223_64 findSdkUserByAppId:]<NEXT addr="0x10040a5e8L" /></NODE><NODE addr="0x10040a5e8L">[ret_from_0x10040a5d0L_5229_64 regid]</NODE></FUNCTION>

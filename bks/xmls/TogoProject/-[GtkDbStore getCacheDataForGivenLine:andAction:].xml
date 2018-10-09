@@ -1,0 +1,1 @@
+<FUNCTION address="0x10040ab2cL" name="-[GtkDbStore getCacheDataForGivenLine:andAction:]"><NODE addr="0x10040ab64L">[GtkmReportcache findWithFormat:]<NEXT addr="0x10040ab7cL" /></NODE><NODE addr="0x10040ab2cL">Start<NEXT addr="0x10040ab64L" /></NODE><NODE addr="0x10040ab7cL">[ret_from_0x10040ab64L_5149_64 mutableCopy]</NODE></FUNCTION>

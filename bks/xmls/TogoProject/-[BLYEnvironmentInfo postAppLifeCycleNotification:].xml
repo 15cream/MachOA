@@ -1,0 +1,1 @@
+<FUNCTION address="0x1003c5d34L" name="-[BLYEnvironmentInfo postAppLifeCycleNotification:]"><NODE addr="0x1003c5d34L">Start<NEXT addr="0x1003c5d54L" /></NODE><NODE addr="0x1003c5d78L">[ret_from_0x1003c5d54L_15365_64 postNotificationName:object:]</NODE><NODE addr="0x1003c5d54L">[_OBJC_CLASS_$_NSNotificationCenter defaultCenter]<NEXT addr="0x1003c5d78L" /></NODE></FUNCTION>

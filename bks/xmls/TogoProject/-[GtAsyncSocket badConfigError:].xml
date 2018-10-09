@@ -1,0 +1,1 @@
+<FUNCTION address="0x1003e95b0L" name="-[GtAsyncSocket badConfigError:]"><NODE addr="0x1003e95d8L">[_OBJC_CLASS_$_NSDictionary dictionaryWithObject:forKey:]<NEXT addr="0x1003e9608L" /></NODE><NODE addr="0x1003e95b0L">Start<NEXT addr="0x1003e95d8L" /></NODE><NODE addr="0x1003e9608L">[_OBJC_CLASS_$_NSError errorWithDomain:code:userInfo:]</NODE></FUNCTION>

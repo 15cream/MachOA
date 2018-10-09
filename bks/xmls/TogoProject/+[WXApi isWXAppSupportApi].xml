@@ -1,0 +1,1 @@
+<FUNCTION address="0x100288bd4L" name="+[WXApi isWXAppSupportApi]"><NODE addr="0x100288bd4L">Start<NEXT addr="0x100288be4L" /></NODE><NODE addr="0x100288be4L">[WeChatApiUtil isWXAppSupportApi]</NODE></FUNCTION>

@@ -1,0 +1,415 @@
+strict digraph  {
+	"Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:48
+Invoke:0x1006c9db8L -[ASSSecurityManager prevApdid]
+x0: ASSSecurityManager_\
+instance
+x1: prevApdid
+"	 [context=4302085136,
+		des="-[ASSSecurityManager prevApdid]"];
+	"Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:32
+Invoke:0x1006c9d7cL -[ASSSecurityManager init:parameters:callback:]
+\
+x0: ASSSecurityManager_instance
+x1: init:parameters:callback:
+x2: 0
+x3: RetFrom_0x1006c9d54L
+x4: 0
+"	 [context=4302085136,
+		des="-[ASSSecurityManager init:parameters:callback:]"];
+	"Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:38
+Invoke:0x1006c9d98L -[ASSSecurityManager prevApdid]
+x0: ASSSecurityManager_\
+instance
+x1: prevApdid
+"	 [context=4302085136,
+		des="-[ASSSecurityManager prevApdid]"];
+	"Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:32
+Invoke:0x1006c9d7cL -[ASSSecurityManager init:parameters:callback:]
+\
+x0: ASSSecurityManager_instance
+x1: init:parameters:callback:
+x2: 0
+x3: RetFrom_0x1006c9d54L
+x4: 0
+" -> "Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:38
+Invoke:0x1006c9d98L -[ASSSecurityManager prevApdid]
+x0: ASSSecurityManager_\
+instance
+x1: prevApdid
+"	 [color=green];
+	"Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:6
+Invoke:0x1006c9c58L -[ASSSecurityManager modelCache]
+x0: ASSSecurityManager_\
+instance
+x1: modelCache
+"	 [context=4302085136,
+		des="-[ASSSecurityManager modelCache]"];
+	"Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:16
+Invoke:0x1006c9c78L -[ASSSecurityManager modelCache]
+x0: ASSSecurityManager_\
+instance
+x1: modelCache
+"	 [context=4302085136,
+		des="-[ASSSecurityManager modelCache]"];
+	"Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:6
+Invoke:0x1006c9c58L -[ASSSecurityManager modelCache]
+x0: ASSSecurityManager_\
+instance
+x1: modelCache
+" -> "Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:16
+Invoke:0x1006c9c78L -[ASSSecurityManager modelCache]
+x0: ASSSecurityManager_\
+instance
+x1: modelCache
+"	 [color=green,
+		label="Bool RetFrom_0x1006cb070_11_64 != 0x0"];
+	"Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:16
+Invoke:0x1006c9cb4L +[p0 objectForKey:]
+x0: p0
+x1: objectForKey:
+\
+x2: tid
+"	 [context=4302085136,
+		des="+[p0 objectForKey:]"];
+	"Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:6
+Invoke:0x1006c9c58L -[ASSSecurityManager modelCache]
+x0: ASSSecurityManager_\
+instance
+x1: modelCache
+" -> "Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:16
+Invoke:0x1006c9cb4L +[p0 objectForKey:]
+x0: p0
+x1: objectForKey:
+\
+x2: tid
+"	 [color=green,
+		label="Bool RetFrom_0x1006cb070_11_64 == 0x0"];
+	"Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:48
+Invoke:0x1006c9dd0L -[ASSSecurityManager randomIC4]
+x0: ASSSecurityManager_\
+instance
+x1: randomIC4
+"	 [context=4302085136,
+		des="-[ASSSecurityManager randomIC4]"];
+	"Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:26
+Invoke:0x1006c9d54L +[NSDictionary dictionaryWithObjects:forKeys:\
+count:]
+x0: NSDictionary
+x1: dictionaryWithObjects:forKeys:count:
+x2: 576460752303357872
+x3: 576460752303357864
+x4: 1
+"	 [context=4302085136,
+		des="+[NSDictionary dictionaryWithObjects:forKeys:count:]"];
+	"Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:26
+Invoke:0x1006c9d54L +[NSDictionary dictionaryWithObjects:forKeys:\
+count:]
+x0: NSDictionary
+x1: dictionaryWithObjects:forKeys:count:
+x2: 576460752303357872
+x3: 576460752303357864
+x4: 1
+" -> "Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:32
+Invoke:0x1006c9d7cL -[ASSSecurityManager init:parameters:callback:]
+\
+x0: ASSSecurityManager_instance
+x1: init:parameters:callback:
+x2: 0
+x3: RetFrom_0x1006c9d54L
+x4: 0
+"	 [color=green];
+	"Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:22
+Invoke:0x1006c9c90L +[RetFrom_0x1006cb070 apdid]
+x0: RetFrom_\
+0x1006cb070
+x1: apdid
+"	 [context=4302085136,
+		des="+[RetFrom_0x1006cb070 apdid]"];
+	"Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:16
+Invoke:0x1006c9c78L -[ASSSecurityManager modelCache]
+x0: ASSSecurityManager_\
+instance
+x1: modelCache
+" -> "Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:22
+Invoke:0x1006c9c90L +[RetFrom_0x1006cb070 apdid]
+x0: RetFrom_\
+0x1006cb070
+x1: apdid
+"	 [color=green];
+	"Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:50
+Invoke:0x1006c9d7cL -[ASSSecurityManager init:parameters:callback:]
+\
+x0: ASSSecurityManager_instance
+x1: init:parameters:callback:
+x2: 0
+x3: RetFrom_0x1006c9d54L
+x4: 0
+"	 [context=4302085136,
+		des="-[ASSSecurityManager init:parameters:callback:]"];
+	"Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:56
+Invoke:0x1006c9d98L -[ASSSecurityManager prevApdid]
+x0: ASSSecurityManager_\
+instance
+x1: prevApdid
+"	 [context=4302085136,
+		des="-[ASSSecurityManager prevApdid]"];
+	"Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:50
+Invoke:0x1006c9d7cL -[ASSSecurityManager init:parameters:callback:]
+\
+x0: ASSSecurityManager_instance
+x1: init:parameters:callback:
+x2: 0
+x3: RetFrom_0x1006c9d54L
+x4: 0
+" -> "Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:56
+Invoke:0x1006c9d98L -[ASSSecurityManager prevApdid]
+x0: ASSSecurityManager_\
+instance
+x1: prevApdid
+"	 [color=green];
+	"Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:66
+Invoke:0x1006c9dd0L -[ASSSecurityManager randomIC4]
+x0: ASSSecurityManager_\
+instance
+x1: randomIC4
+"	 [context=4302085136,
+		des="-[ASSSecurityManager randomIC4]"];
+	"Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:56
+Invoke:0x1006c9d98L -[ASSSecurityManager prevApdid]
+x0: ASSSecurityManager_\
+instance
+x1: prevApdid
+" -> "Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:66
+Invoke:0x1006c9dd0L -[ASSSecurityManager randomIC4]
+x0: ASSSecurityManager_\
+instance
+x1: randomIC4
+"	 [color=green,
+		label="Bool RetFrom_0x1006cb08c_25_64 == 0x0"];
+	"Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:66
+Invoke:0x1006c9db8L -[ASSSecurityManager prevApdid]
+x0: ASSSecurityManager_\
+instance
+x1: prevApdid
+"	 [context=4302085136,
+		des="-[ASSSecurityManager prevApdid]"];
+	"Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:56
+Invoke:0x1006c9d98L -[ASSSecurityManager prevApdid]
+x0: ASSSecurityManager_\
+instance
+x1: prevApdid
+" -> "Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:66
+Invoke:0x1006c9db8L -[ASSSecurityManager prevApdid]
+x0: ASSSecurityManager_\
+instance
+x1: prevApdid
+"	 [color=green,
+		label="Bool RetFrom_0x1006cb08c_25_64 != 0x0"];
+	"Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:26
+Invoke:0x1006c9cf0L -[ASSSecurityManager getTid]
+x0: ASSSecurityManager_\
+instance
+x1: getTid
+"	 [context=4302085136,
+		des="-[ASSSecurityManager getTid]"];
+	"Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:32
+Invoke:0x1006c9d10L +[ASSCommonUtils getValueFromProperty:]
+x0: \
+ASSCommonUtils
+x1: getValueFromProperty:
+x2: RetFrom_0x1006c9e28
+"	 [context=4302085136,
+		des="+[ASSCommonUtils getValueFromProperty:]"];
+	"Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:26
+Invoke:0x1006c9cf0L -[ASSSecurityManager getTid]
+x0: ASSSecurityManager_\
+instance
+x1: getTid
+" -> "Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:32
+Invoke:0x1006c9d10L +[ASSCommonUtils getValueFromProperty:]
+x0: \
+ASSCommonUtils
+x1: getValueFromProperty:
+x2: RetFrom_0x1006c9e28
+"	 [color=green];
+	"Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:38
+Invoke:0x1006c9d98L -[ASSSecurityManager prevApdid]
+x0: ASSSecurityManager_\
+instance
+x1: prevApdid
+" -> "Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:48
+Invoke:0x1006c9db8L -[ASSSecurityManager prevApdid]
+x0: ASSSecurityManager_\
+instance
+x1: prevApdid
+"	 [color=green,
+		label="Bool RetFrom_0x1006cb08c_20_64 != 0x0"];
+	"Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:38
+Invoke:0x1006c9d98L -[ASSSecurityManager prevApdid]
+x0: ASSSecurityManager_\
+instance
+x1: prevApdid
+" -> "Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:48
+Invoke:0x1006c9dd0L -[ASSSecurityManager randomIC4]
+x0: ASSSecurityManager_\
+instance
+x1: randomIC4
+"	 [color=green,
+		label="Bool RetFrom_0x1006cb08c_20_64 == 0x0"];
+	"Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:44
+Invoke:0x1006c9d54L +[NSDictionary dictionaryWithObjects:forKeys:\
+count:]
+x0: NSDictionary
+x1: dictionaryWithObjects:forKeys:count:
+x2: 576460752303357872
+x3: 576460752303357864
+x4: 1
+"	 [context=4302085136,
+		des="+[NSDictionary dictionaryWithObjects:forKeys:count:]"];
+	"Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:44
+Invoke:0x1006c9d54L +[NSDictionary dictionaryWithObjects:forKeys:\
+count:]
+x0: NSDictionary
+x1: dictionaryWithObjects:forKeys:count:
+x2: 576460752303357872
+x3: 576460752303357864
+x4: 1
+" -> "Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:50
+Invoke:0x1006c9d7cL -[ASSSecurityManager init:parameters:callback:]
+\
+x0: ASSSecurityManager_instance
+x1: init:parameters:callback:
+x2: 0
+x3: RetFrom_0x1006c9d54L
+x4: 0
+"	 [color=green];
+	"Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:22
+Invoke:0x1006c9cd8L +[ASSCommonUtils isBlankString:]
+x0: ASSCommonUtils
+\
+x1: isBlankString:
+x2: RetFrom_0x1006c9cb4L
+"	 [context=4302085136,
+		des="+[ASSCommonUtils isBlankString:]"];
+	"Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:22
+Invoke:0x1006c9cd8L +[ASSCommonUtils isBlankString:]
+x0: ASSCommonUtils
+\
+x1: isBlankString:
+x2: RetFrom_0x1006c9cb4L
+" -> "Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:26
+Invoke:0x1006c9d54L +[NSDictionary dictionaryWithObjects:forKeys:\
+count:]
+x0: NSDictionary
+x1: dictionaryWithObjects:forKeys:count:
+x2: 576460752303357872
+x3: 576460752303357864
+x4: 1
+"	 [color=green,
+		label="Bool RetFrom_0x1006cb2ec_14_64[31:0] == 0x0"];
+	"Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:22
+Invoke:0x1006c9cd8L +[ASSCommonUtils isBlankString:]
+x0: ASSCommonUtils
+\
+x1: isBlankString:
+x2: RetFrom_0x1006c9cb4L
+" -> "Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:26
+Invoke:0x1006c9cf0L -[ASSSecurityManager getTid]
+x0: ASSSecurityManager_\
+instance
+x1: getTid
+"	 [color=green,
+		label="Bool RetFrom_0x1006cb2ec_14_64[31:0] != 0x0"];
+	"Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:32
+Invoke:0x1006c9d10L +[ASSCommonUtils getValueFromProperty:]
+x0: \
+ASSCommonUtils
+x1: getValueFromProperty:
+x2: RetFrom_0x1006c9e28
+" -> "Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:44
+Invoke:0x1006c9d54L +[NSDictionary dictionaryWithObjects:forKeys:\
+count:]
+x0: NSDictionary
+x1: dictionaryWithObjects:forKeys:count:
+x2: 576460752303357872
+x3: 576460752303357864
+x4: 1
+"	 [color=green];
+	"Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:0
+Invoke:0x1006c9c10 Start
+"	 [context=4302085136,
+		des=Start];
+	"Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:0
+Invoke:0x1006c9c10 Start
+" -> "Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:6
+Invoke:0x1006c9c58L -[ASSSecurityManager modelCache]
+x0: ASSSecurityManager_\
+instance
+x1: modelCache
+"	 [color=green];
+	"Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:16
+Invoke:0x1006c9cb4L +[p0 objectForKey:]
+x0: p0
+x1: objectForKey:
+\
+x2: tid
+" -> "Context:0x1006c9c10 -[ASSSecurityManager getApdidResult:]
+Depth:22
+Invoke:0x1006c9cd8L +[ASSCommonUtils isBlankString:]
+x0: ASSCommonUtils
+\
+x1: isBlankString:
+x2: RetFrom_0x1006c9cb4L
+"	 [color=green];
+}

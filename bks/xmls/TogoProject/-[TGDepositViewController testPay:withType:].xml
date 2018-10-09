@@ -1,0 +1,1 @@
+<FUNCTION address="0x1000781e8L" name="-[TGDepositViewController testPay:withType:]"><NODE addr="0x100078244L">[TGPayUtilityClass TGPayParams:withWay:withSuccess:withFaild:]</NODE><NODE addr="0x1000781e8L">Start<NEXT addr="0x100078244L" /></NODE></FUNCTION>

@@ -1,0 +1,1 @@
+<FUNCTION address="0x1000f8e38L" name="-[TGCustomHeaderView setTitle:]"><NODE addr="0x1000f8e38L">Start<NEXT addr="0x1000f8e78L" /></NODE><NODE addr="0x1000f8e94L">[ret_from_0x1000f8e78L_500_64 setText:]</NODE><NODE addr="0x1000f8e78L">[TGCustomHeaderView_instance_493_64 titleLable]<NEXT addr="0x1000f8e94L" /></NODE></FUNCTION>

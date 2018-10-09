@@ -1,0 +1,1 @@
+<FUNCTION address="0x10006518cL" name="-[TGHandlePunishBrandVC downAnimation]"><NODE addr="0x10006518cL">Start<NEXT addr="0x100065208L" /></NODE><NODE addr="0x100065208L">[_OBJC_CLASS_$_UIView animateWithDuration:animations:completion:]</NODE></FUNCTION>

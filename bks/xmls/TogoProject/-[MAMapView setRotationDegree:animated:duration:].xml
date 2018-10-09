@@ -1,0 +1,1 @@
+<FUNCTION address="0x1004a4f34L" name="-[MAMapView setRotationDegree:animated:duration:]"><NODE addr="0x1004a4f4cL">[MAMapView_instance_10010_64 setRotationDegree:animated:duration:andPivot:]</NODE><NODE addr="0x1004a4f34L">Start<NEXT addr="0x1004a4f4cL" /></NODE></FUNCTION>

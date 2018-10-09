@@ -1,0 +1,1 @@
+<FUNCTION address="0x10011ec04L" name="-[TGPeripheral discoverServices:withBlock:]"><NODE addr="0x10011ec54L">[TGPeripheral_instance_7821_64 peripheral]<NEXT addr="0x10011ec70L" /></NODE><NODE addr="0x10011ec04L">Start<NEXT addr="0x10011ec54L" /></NODE><NODE addr="0x10011ec70L">[ret_from_0x10011ec54L_7832_64 discoverServices:]</NODE></FUNCTION>

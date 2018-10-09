@@ -1,0 +1,1 @@
+<FUNCTION address="0x10007e7dcL" name="-[TGInviteFriendViewController recommandDescRequest]"><NODE addr="0x10007e7dcL">Start<NEXT addr="0x10007e800L" /></NODE><NODE addr="0x10007e800L">[_OBJC_CLASS_$_NSMutableDictionary dictionary]<NEXT addr="0x10007e870L" /></NODE><NODE addr="0x10007e870L">[TGHttpManager TGPOSTAndLoading:parameters:name:success:failure:]</NODE></FUNCTION>

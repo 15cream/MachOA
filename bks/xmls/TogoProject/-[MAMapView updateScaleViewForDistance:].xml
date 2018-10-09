@@ -1,0 +1,1 @@
+<FUNCTION address="0x1004a91c8L" name="-[MAMapView updateScaleViewForDistance:]"><NODE addr="0x1004a91e8L">[MAMapView_instance_3528_64 showsScale]<NEXT addr="0x1004a9238L" /></NODE><NODE addr="0x1004a91c8L">Start<NEXT addr="0x1004a91e8L" /></NODE><NODE addr="0x1004a9238L">[mem_da_3537_64 setDistanceInMeters:]</NODE></FUNCTION>

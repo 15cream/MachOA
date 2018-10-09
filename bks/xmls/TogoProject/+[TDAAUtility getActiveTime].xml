@@ -1,0 +1,1 @@
+<FUNCTION address="0x10079f9f8L" name="+[TDAAUtility getActiveTime]"><NODE addr="0x10079f9f8L">Start<NEXT addr="0x10079fa18L" /></NODE><NODE addr="0x10079fa18L">[_OBJC_CLASS_$_NSProcessInfo processInfo]<NEXT addr="0x10079fa30L" /></NODE><NODE addr="0x10079fa30L">[ret_from_0x10079fa18L_15090_64 systemUptime]</NODE></FUNCTION>

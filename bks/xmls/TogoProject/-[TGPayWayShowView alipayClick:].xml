@@ -1,0 +1,1 @@
+<FUNCTION address="0x1000f9b54L" name="-[TGPayWayShowView alipayClick:]"><NODE addr="0x1000f9b54L">Start<NEXT addr="0x1000f9b70L" /></NODE><NODE addr="0x1000f9b70L">[TGPayWayShowView_instance_680_64 handleDefaultPay:]</NODE></FUNCTION>

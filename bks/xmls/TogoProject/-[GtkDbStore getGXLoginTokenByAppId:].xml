@@ -1,0 +1,1 @@
+<FUNCTION address="0x10040a514L" name="-[GtkDbStore getGXLoginTokenByAppId:]"><NODE addr="0x10040a514L">Start<NEXT addr="0x10040a528L" /></NODE><NODE addr="0x10040a528L">[GtkDbStore_instance_5134_64 findSdkUserByAppId:]<NEXT addr="0x10040a540L" /></NODE><NODE addr="0x10040a540L">[ret_from_0x10040a528L_5140_64 token]</NODE></FUNCTION>

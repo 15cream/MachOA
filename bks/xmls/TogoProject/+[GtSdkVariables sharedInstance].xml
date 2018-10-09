@@ -1,0 +1,1 @@
+<FUNCTION address="0x1003e0d88L" name="+[GtSdkVariables sharedInstance]"><NODE addr="0x1003e0d88L">Start<NEXT addr="0x1003e0dccL" /></NODE><NODE addr="0x1003e0dccL">[GtSdkVariables alloc]<NEXT addr="0x1003e0dd8L" /></NODE><NODE addr="0x1003e0dd8L">[ret_from_0x1003e0dccL_4589_64 init]</NODE></FUNCTION>

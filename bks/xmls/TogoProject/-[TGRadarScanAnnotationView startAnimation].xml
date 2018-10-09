@@ -1,0 +1,1 @@
+<FUNCTION address="0x100019facL" name="-[TGRadarScanAnnotationView startAnimation]"><NODE addr="0x100019facL">Start<NEXT addr="0x100019fc0L" /></NODE><NODE addr="0x100019fd8L">[ret_from_0x100019fc0L_1460_64 startAnimation]</NODE><NODE addr="0x100019fc0L">[TGRadarScanAnnotationView_instance_1455_64 radarScanView]<NEXT addr="0x100019fd8L" /></NODE></FUNCTION>

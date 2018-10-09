@@ -1,0 +1,1 @@
+<FUNCTION address="0x10013fe54L" name="-[TGJourneyInvoiceViewController numberOfSectionsInTableView:]"><NODE addr="0x10013fe54L">Start<NEXT addr="0x10013fe68L" /></NODE><NODE addr="0x10013fe68L">[TGJourneyInvoiceViewController_instance_4526_64 groupArray]<NEXT addr="0x10013fe80L" /></NODE><NODE addr="0x10013fe80L">[ret_from_0x10013fe68L_4531_64 count]</NODE></FUNCTION>

@@ -1,0 +1,1 @@
+<FUNCTION address="0x10044314cL" name="+[GtGbdManager stopIPManagerServer]"><NODE addr="0x10044314cL">Start<NEXT addr="0x100443168L" /></NODE><NODE addr="0x100443168L">[GtGbdIpAddressManager sharedInstance]<NEXT addr="0x100443180L" /></NODE><NODE addr="0x100443180L">[ret_from_0x100443168L_6199_64 gtgbd_stop_pingself]</NODE></FUNCTION>

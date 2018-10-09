@@ -1,0 +1,1 @@
+<FUNCTION address="0x1006e2760L" name="+[AliSecXDeviceInfo getScreenWidth]"><NODE addr="0x1006e2760L">Start<NEXT addr="0x1006e2788L" /></NODE><NODE addr="0x1006e2788L">[internal_DeviceInfo getScreenWidth]</NODE></FUNCTION>

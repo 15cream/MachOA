@@ -1,0 +1,1 @@
+<FUNCTION address="0x100146008L" name="-[TGPayViewController alertView:clickedButtonAtIndex:]"><NODE addr="0x100146008L">Start<NEXT addr="0x100146028L" /></NODE><NODE addr="0x100146028L">[reg_x2_2069_64 tag]<NEXT addr="0x100146050L" /></NODE><NODE addr="0x100146050L">[TGPayViewController_instance_2063_64 RePaymentRequest]</NODE></FUNCTION>

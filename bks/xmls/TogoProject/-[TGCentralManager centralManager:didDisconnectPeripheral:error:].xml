@@ -1,0 +1,1 @@
+<FUNCTION address="0x10005f254L" name="-[TGCentralManager centralManager:didDisconnectPeripheral:error:]"><NODE addr="0x10005f254L">Start<NEXT addr="0x10005f2b0L" /></NODE><NODE addr="0x10005f2b0L">[TGPeripheral alloc]<NEXT addr="0x10005f2c0L" /></NODE><NODE addr="0x10005f2c0L">[ret_from_0x10005f2b0L_1920_64 initWithPeripheral:]</NODE></FUNCTION>

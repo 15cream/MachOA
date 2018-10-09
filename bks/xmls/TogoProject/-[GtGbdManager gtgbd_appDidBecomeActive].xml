@@ -1,0 +1,1 @@
+<FUNCTION address="0x100442f8cL" name="-[GtGbdManager gtgbd_appDidBecomeActive]"><NODE addr="0x100442f8cL">Start<NEXT addr="0x100442fa8L" /></NODE><NODE addr="0x100442fa8L">[GtGbdConfigInfo sharedInstance]<NEXT addr="0x100442fc0L" /></NODE><NODE addr="0x100442fc0L">[ret_from_0x100442fa8L_6082_64 gbdT29Enable]</NODE></FUNCTION>

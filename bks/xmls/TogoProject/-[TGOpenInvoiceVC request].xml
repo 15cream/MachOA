@@ -1,0 +1,1 @@
+<FUNCTION address="0x10000ed10L" name="-[TGOpenInvoiceVC request]"><NODE addr="0x10000ed10L">Start<NEXT addr="0x10000ed80L" /></NODE><NODE addr="0x10000ed80L">[TGHttpManager TGPOST:parameters:name:success:failure:]</NODE></FUNCTION>

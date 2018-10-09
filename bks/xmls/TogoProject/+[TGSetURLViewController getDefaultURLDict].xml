@@ -1,0 +1,1 @@
+<FUNCTION address="0x100069f20L" name="+[TGSetURLViewController getDefaultURLDict]"><NODE addr="0x100069f20L">Start<NEXT addr="0x100069f3cL" /></NODE><NODE addr="0x100069f3cL">[_OBJC_CLASS_$_NSUserDefaults standardUserDefaults]<NEXT addr="0x100069f5cL" /></NODE><NODE addr="0x100069f5cL">[ret_from_0x100069f3cL_112_64 valueForKey:]</NODE></FUNCTION>

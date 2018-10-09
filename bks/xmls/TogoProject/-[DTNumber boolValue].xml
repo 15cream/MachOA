@@ -1,0 +1,1 @@
+<FUNCTION address="0x1006d8ba8L" name="-[DTNumber boolValue]"><NODE addr="0x1006d8bd4L">[ret_from_0x1006d8bbcL_19612_64 boolValue]</NODE><NODE addr="0x1006d8ba8L">Start<NEXT addr="0x1006d8bbcL" /></NODE><NODE addr="0x1006d8bbcL">[DTNumber_instance_19607_64 number]<NEXT addr="0x1006d8bd4L" /></NODE></FUNCTION>

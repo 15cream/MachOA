@@ -1,0 +1,1 @@
+<FUNCTION address="0x10049a160L" name="-[MAMapView metersPerPointForZoomLevel:]"><NODE addr="0x10049a178L">[MAMapView_instance_2123_64 normalizeZoomLevel:]<NEXT addr="0x10049a188L" /></NODE><NODE addr="0x10049a160L">Start<NEXT addr="0x10049a178L" /></NODE><NODE addr="0x10049a188L">[MAMapView_instance_2123_64 calculateDistanceInMetersForZoomLevel:]</NODE></FUNCTION>

@@ -1,0 +1,1 @@
+<FUNCTION address="0x1004f0a58L" name="-[MAOverlayRenderer glWidthForWindowWidth:]"><NODE addr="0x1004f0a90L">[ret_from_0x1004f0a74L_743_64 overlayRenderMapPointLenForWinLen:]</NODE><NODE addr="0x1004f0a58L">Start<NEXT addr="0x1004f0a74L" /></NODE><NODE addr="0x1004f0a74L">[MAOverlayRenderer_instance_735_64 rendererDelegate]<NEXT addr="0x1004f0a90L" /></NODE></FUNCTION>

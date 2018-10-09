@@ -1,0 +1,1 @@
+<FUNCTION address="0x100130004L" name="-[TGwebViewController cancel]"><NODE addr="0x100130004L">Start<NEXT addr="0x100130014L" /></NODE><NODE addr="0x100130014L">[TGwebViewController_instance_1566_64 dismissViewControllerAnimated:completion:]</NODE></FUNCTION>

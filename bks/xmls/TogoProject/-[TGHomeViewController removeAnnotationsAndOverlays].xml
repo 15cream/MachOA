@@ -1,0 +1,1 @@
+<FUNCTION address="0x1000af220L" name="-[TGHomeViewController removeAnnotationsAndOverlays]"><NODE addr="0x1000af238L">[TGHomeViewController_instance_3656_64 removeAnnotationsAction]<NEXT addr="0x1000af250L" /></NODE><NODE addr="0x1000af220L">Start<NEXT addr="0x1000af238L" /></NODE><NODE addr="0x1000af250L">[TGHomeViewController_instance_3656_64 removeOverlays]</NODE></FUNCTION>

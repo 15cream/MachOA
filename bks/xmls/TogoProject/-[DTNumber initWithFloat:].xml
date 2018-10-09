@@ -1,0 +1,1 @@
+<FUNCTION address="0x1006d8528L" name="-[DTNumber initWithFloat:]"><NODE addr="0x1006d8528L">Start<NEXT addr="0x1006d857cL" /></NODE><NODE addr="0x1006d859cL">[ret_from__objc_msgSendSuper2_19560_64 setNumber:]</NODE><NODE addr="0x1006d857cL">[_OBJC_CLASS_$_NSNumber numberWithFloat:]<NEXT addr="0x1006d859cL" /></NODE></FUNCTION>

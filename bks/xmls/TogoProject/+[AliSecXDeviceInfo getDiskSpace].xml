@@ -1,0 +1,1 @@
+<FUNCTION address="0x1006e2510L" name="+[AliSecXDeviceInfo getDiskSpace]"><NODE addr="0x1006e2510L">Start<NEXT addr="0x1006e2530L" /></NODE><NODE addr="0x1006e2530L">[_OBJC_CLASS_$_NSNumber numberWithInt:]<NEXT addr="0x1006e2550L" /></NODE><NODE addr="0x1006e2550L">[internal_DeviceInfo getDiskSpace]</NODE></FUNCTION>
