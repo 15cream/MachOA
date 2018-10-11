@@ -1,9 +1,7 @@
 import networkx as nx
-from Data.binary import MachO
-from Data.function import Function
 from Data.CONSTANTS import *
-import copy
-import claripy
+
+from BinaryPatch.Utils import *
 
 class CG:
 
@@ -15,8 +13,8 @@ class CG:
     def insert_invoke(self, ea, description, state, args=None, receiver=None, selector=None):
         # ea : where the invoke happens
         # description could be function name or symbol name
-        context = MachO.resolve_context(ea)
-        context_name = Function.meth_data[context]['name']
+        context = resolve_context(ea)
+        context_name = OCFunction.meth_data[context]['name']
         node = INVOKEFS.format(hex(context), context_name, state.history.depth, hex(ea), description, self.expr_args(args))
         if node not in self.g.nodes:
             self.g.add_node(node, des=description, context=context, addr=ea, args=args, dp=None)
@@ -34,7 +32,7 @@ class CG:
             self.g.nodes[node]['pnode'] = last_invoke_history.node
         else:
             self.g.nodes[node]['pnode'] = None
-            # print "from {} to {}".format(last_invoke_history.node, node)
+        # print "from {} to {}".format(self.g.nodes[last_invoke_history.node]['des'], description), context_name
 
         self.secheck(state, node)
         return node
@@ -69,8 +67,8 @@ class CG:
         nx.drawing.nx_agraph.write_dot(self.g, fp)
 
     def add_simple_node(self, ea, description, state):
-        context = MachO.resolve_context(ea)
-        context_name = Function.meth_data[context]['name']
+        context = resolve_context(ea)
+        context_name = OCFunction.meth_data[context]['name']
         node = INVOKEFS.format(hex(context), context_name, state.history.depth, hex(ea), description, '')
         if node not in self.g.nodes:
             self.g.add_node(node, des=description, context=context, context_name=context_name, addr=ea, args=None, dp=None, pnode=None)

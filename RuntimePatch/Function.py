@@ -1,19 +1,20 @@
-from function import Function
+from Data.OCFunction import OCFunction
+
 
 class Func:
 
     def __init__(self, addr, binary, task, state):
         self.addr = addr
         self.next_func_addr = binary.lc_function_starts[binary.lc_function_starts.index(addr) + 1]
-        self.name = Function.meth_data[addr]['name']
+        self.name = OCFunction.meth_data[addr]['name']
         self.binary = binary
         self.task = task
         self.init_state = state
         task.cg.add_start_node(addr, 'Start', self.init_state)
 
     def init_regs(self):
-        if self.addr in Function.meth_data:  # or could be subroutine
-            meth_data = Function.meth_data[self.addr]
+        if self.addr in OCFunction.meth_data:  # or could be subroutine
+            meth_data = OCFunction.meth_data[self.addr]
             class_data = meth_data['class']
             if class_data:
                 if self.addr in class_data.instance_meths:
@@ -27,7 +28,7 @@ class Func:
                     self.init_state.registers.store(reg, newval)
 
     def analyze(self):
-        if self.addr in Function.meth_list:
+        if self.addr in OCFunction.meth_list:
             self.init_state.regs.ip = self.addr
             simgr = self.task.p.factory.simgr(self.init_state)
             while simgr.active:

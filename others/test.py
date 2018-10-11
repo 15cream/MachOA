@@ -1,6 +1,6 @@
 from MachOTest.MachOTask import MachOTask
 import time
-from visualize.CallGraph import CallGraph
+from View.CallGraph import CallGraph
 from RuntimePatch.utils import *
 
 def analyzer_test():

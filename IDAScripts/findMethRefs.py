@@ -19,10 +19,10 @@ SENSITIVES = {
         'UIDevice': []
     },
     'SELECTOR':{
-        # 'loadRequest:': [],
-        # 'loadHTMLString': [],
-        # 'initWithURLString:httpMethod:': [],
-        # 'requestWithString:httpMethod:': [],
+        'loadRequest:': [],
+        'loadHTMLString': [],
+        'initWithURLString:httpMethod:': [],
+        'requestWithString:httpMethod:': [],
     },
     'VARIABLE':{
 
@@ -38,7 +38,11 @@ def parse_class(ea):
                 SENSITIVES['RECEIVER'][classname].append(fi)
 
 def parse_selector(ea):
-    sel = idc.GetDisasm(ea).split('"')[-2]
+    try:
+        sel = idc.GetDisasm(ea).split('"')[-2]
+    except IndexError as e:
+        print hex(ea), idc.GetDisasm(ea), e
+        sel = None
     if sel in SENSITIVES['SELECTOR']:
         for xref in idautils.XrefsTo(ea):
             fi = idaapi.get_func(xref.frm).startEA
