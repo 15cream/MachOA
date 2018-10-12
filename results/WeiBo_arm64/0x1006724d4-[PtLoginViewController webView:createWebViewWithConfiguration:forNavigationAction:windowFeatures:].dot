@@ -1,0 +1,136 @@
+strict digraph  {
+	"Context:0x1006724d4 -[PtLoginViewController webView:createWebViewWithConfiguration:forNavigationAction:windowFeatures:]
+Depth:9
+\
+Invoke:0x100672508L +[P2 targetFrame]
+x0: P2
+x1: targetFrame
+"	 [addr=4301726984,
+		args="['P2', 'targetFrame']",
+		context=4301726932,
+		des="+[P2 targetFrame]",
+		dp="[P2 targetFrame]",
+		pnode="Context:0x1006724d4 -[PtLoginViewController webView:createWebViewWithConfiguration:forNavigationAction:windowFeatures:]
+Depth:0
+\
+Invoke:0x1006724d4L Start
+"];
+	"Context:0x1006724d4 -[PtLoginViewController webView:createWebViewWithConfiguration:forNavigationAction:windowFeatures:]
+Depth:15
+\
+Invoke:0x100672520L -[RetFrom_0x100672508L isMainFrame]
+x0: RetFrom_0x100672508L
+x1: isMainFrame
+"	 [addr=4301727008,
+		args="['RetFrom_0x100672508L', 'isMainFrame']",
+		context=4301726932,
+		des="-[RetFrom_0x100672508L isMainFrame]",
+		dp=None,
+		pnode="Context:0x1006724d4 -[PtLoginViewController webView:createWebViewWithConfiguration:forNavigationAction:windowFeatures:]
+Depth:9
+\
+Invoke:0x100672508L +[P2 targetFrame]
+x0: P2
+x1: targetFrame
+"];
+	"Context:0x1006724d4 -[PtLoginViewController webView:createWebViewWithConfiguration:forNavigationAction:windowFeatures:]
+Depth:9
+\
+Invoke:0x100672508L +[P2 targetFrame]
+x0: P2
+x1: targetFrame
+" -> "Context:0x1006724d4 -[PtLoginViewController webView:createWebViewWithConfiguration:forNavigationAction:windowFeatures:]
+Depth:15
+\
+Invoke:0x100672520L -[RetFrom_0x100672508L isMainFrame]
+x0: RetFrom_0x100672508L
+x1: isMainFrame
+"	 [color=green];
+	"Context:0x1006724d4 -[PtLoginViewController webView:createWebViewWithConfiguration:forNavigationAction:windowFeatures:]
+Depth:0
+\
+Invoke:0x1006724d4L Start
+"	 [addr=4301726932,
+		args=None,
+		color=blue,
+		context=4301726932,
+		context_name="-[PtLoginViewController webView:createWebViewWithConfiguration:forNavigationAction:windowFeatures:]",
+		des=Start,
+		dp=None,
+		pnode=None];
+	"Context:0x1006724d4 -[PtLoginViewController webView:createWebViewWithConfiguration:forNavigationAction:windowFeatures:]
+Depth:0
+\
+Invoke:0x1006724d4L Start
+" -> "Context:0x1006724d4 -[PtLoginViewController webView:createWebViewWithConfiguration:forNavigationAction:windowFeatures:]
+Depth:9
+\
+Invoke:0x100672508L +[P2 targetFrame]
+x0: P2
+x1: targetFrame
+"	 [color=green];
+	"Context:0x1006724d4 -[PtLoginViewController webView:createWebViewWithConfiguration:forNavigationAction:windowFeatures:]
+Depth:22
+\
+Invoke:0x100672540L +[P2 request]
+x0: P2
+x1: request
+"	 [addr=4301727040,
+		args="['P2', 'request']",
+		context=4301726932,
+		des="+[P2 request]",
+		dp=None,
+		pnode="Context:0x1006724d4 -[PtLoginViewController webView:createWebViewWithConfiguration:forNavigationAction:windowFeatures:]
+Depth:15
+\
+Invoke:0x100672520L -[RetFrom_0x100672508L isMainFrame]
+x0: RetFrom_0x100672508L
+x1: isMainFrame
+"];
+	"Context:0x1006724d4 -[PtLoginViewController webView:createWebViewWithConfiguration:forNavigationAction:windowFeatures:]
+Depth:15
+\
+Invoke:0x100672520L -[RetFrom_0x100672508L isMainFrame]
+x0: RetFrom_0x100672508L
+x1: isMainFrame
+" -> "Context:0x1006724d4 -[PtLoginViewController webView:createWebViewWithConfiguration:forNavigationAction:windowFeatures:]
+Depth:22
+\
+Invoke:0x100672540L +[P2 request]
+x0: P2
+x1: request
+"	 [color=green];
+	"Context:0x1006724d4 -[PtLoginViewController webView:createWebViewWithConfiguration:forNavigationAction:windowFeatures:]
+Depth:28
+\
+Invoke:0x100672560L +[P0 loadRequest:]
+x0: P0
+x1: loadRequest:
+x2: RetFrom_0x100672540L
+"	 [addr=4301727072,
+		args="['P0', 'loadRequest:', 'RetFrom_0x100672540L']",
+		context=4301726932,
+		des="+[P0 loadRequest:]",
+		dp=None,
+		pnode="Context:0x1006724d4 -[PtLoginViewController webView:createWebViewWithConfiguration:forNavigationAction:windowFeatures:]
+Depth:22
+\
+Invoke:0x100672540L +[P2 request]
+x0: P2
+x1: request
+"];
+	"Context:0x1006724d4 -[PtLoginViewController webView:createWebViewWithConfiguration:forNavigationAction:windowFeatures:]
+Depth:22
+\
+Invoke:0x100672540L +[P2 request]
+x0: P2
+x1: request
+" -> "Context:0x1006724d4 -[PtLoginViewController webView:createWebViewWithConfiguration:forNavigationAction:windowFeatures:]
+Depth:28
+\
+Invoke:0x100672560L +[P0 loadRequest:]
+x0: P0
+x1: loadRequest:
+x2: RetFrom_0x100672540L
+"	 [color=green];
+}

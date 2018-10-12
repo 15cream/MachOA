@@ -1,0 +1,760 @@
+strict digraph  {
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:73
+Invoke:0x10064c320L +[UIApplication sharedApplication]
+x0: \
+UIApplication
+x1: sharedApplication
+"	 [addr=4301570848,
+		args="['UIApplication', 'sharedApplication']",
+		context=4301570368,
+		des="+[UIApplication sharedApplication]",
+		dp="[UIApplication sharedApplication]",
+		pnode="Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:64
+Invoke:0x10064c2f8L -[UIWebView\")TCWebViewLoadJs._webView \
+loadRequest:]
+x0: (@\"UIWebView\")TCWebViewLoadJs._webView
+x1: loadRequest:
+x2: RetFrom_0x10064c2d4L
+"];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:79
+Invoke:0x10064c33cL -[RetFrom_0x10064c320L keyWindow]
+x0: \
+RetFrom_0x10064c320L
+x1: keyWindow
+"	 [addr=4301570876,
+		args="['RetFrom_0x10064c320L', 'keyWindow']",
+		context=4301570368,
+		des="-[RetFrom_0x10064c320L keyWindow]",
+		dp="[[UIApplication sharedApplication] keyWindow]",
+		pnode="Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:73
+Invoke:0x10064c320L +[UIApplication sharedApplication]
+x0: \
+UIApplication
+x1: sharedApplication
+"];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:73
+Invoke:0x10064c320L +[UIApplication sharedApplication]
+x0: \
+UIApplication
+x1: sharedApplication
+" -> "Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:79
+Invoke:0x10064c33cL -[RetFrom_0x10064c320L keyWindow]
+x0: \
+RetFrom_0x10064c320L
+x1: keyWindow
+"	 [color=green];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:52
+Invoke:0x10064c2d4L +[NSURLRequest requestWithURL:]
+x0: NSURLRequest
+\
+x1: requestWithURL:
+x2: RetFrom_0x10064c2b0L
+"	 [addr=4301570772,
+		args="['NSURLRequest', 'requestWithURL:', 'RetFrom_0x10064c2b0L']",
+		context=4301570368,
+		des="+[NSURLRequest requestWithURL:]",
+		dp="[NSURLRequest requestWithURL:[NSURL URLWithString:http://qzs.qq.com/ ] ]",
+		pnode="Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:46
+Invoke:0x10064c2b0L +[NSURL URLWithString:]
+x0: NSURL
+x1: \
+URLWithString:
+x2: http://qzs.qq.com/
+",
+		tainted=True];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:58
+Invoke:0x10064c2f8L -[UIWebView\")TCWebViewLoadJs._webView \
+loadRequest:]
+x0: (@\"UIWebView\")TCWebViewLoadJs._webView
+x1: loadRequest:
+x2: RetFrom_0x10064c2d4L
+"	 [addr=4301570808,
+		args="['(@\"UIWebView\")TCWebViewLoadJs._webView', 'loadRequest:', 'RetFrom_0x10064c2d4L']",
+		context=4301570368,
+		des="-[UIWebView\")TCWebViewLoadJs._webView loadRequest:]",
+		dp="[(@\"UIWebView\")TCWebViewLoadJs._webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:http://qzs.qq.com/ ] ] ]",
+		pnode="Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:52
+Invoke:0x10064c2d4L +[NSURLRequest requestWithURL:]
+x0: NSURLRequest
+\
+x1: requestWithURL:
+x2: RetFrom_0x10064c2b0L
+",
+		tainted=True];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:52
+Invoke:0x10064c2d4L +[NSURLRequest requestWithURL:]
+x0: NSURLRequest
+\
+x1: requestWithURL:
+x2: RetFrom_0x10064c2b0L
+" -> "Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:58
+Invoke:0x10064c2f8L -[UIWebView\")TCWebViewLoadJs._webView \
+loadRequest:]
+x0: (@\"UIWebView\")TCWebViewLoadJs._webView
+x1: loadRequest:
+x2: RetFrom_0x10064c2d4L
+"	 [color=green];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:91
+Invoke:0x10064c374L -[RetFrom_0x10064c358L view]
+x0: RetFrom_\
+0x10064c358L
+x1: view
+"	 [addr=4301570932,
+		args="['RetFrom_0x10064c358L', 'view']",
+		context=4301570368,
+		des="-[RetFrom_0x10064c358L view]",
+		dp="[[[[UIApplication sharedApplication] keyWindow] rootViewController] view]",
+		pnode="Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:85
+Invoke:0x10064c358L -[RetFrom_0x10064c33cL rootViewController]
+\
+x0: RetFrom_0x10064c33cL
+x1: rootViewController
+"];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:97
+Invoke:0x10064c394L -[RetFrom_0x10064c374L addSubview:]
+x0: \
+RetFrom_0x10064c374L
+x1: addSubview:
+x2: (@\"UIWebView\")TCWebViewLoadJs._webView
+"	 [addr=4301570964,
+		args="['RetFrom_0x10064c374L', 'addSubview:', '(@\"UIWebView\")TCWebViewLoadJs._webView']",
+		context=4301570368,
+		des="-[RetFrom_0x10064c374L addSubview:]",
+		dp=None,
+		pnode="Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:91
+Invoke:0x10064c374L -[RetFrom_0x10064c358L view]
+x0: RetFrom_\
+0x10064c358L
+x1: view
+"];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:91
+Invoke:0x10064c374L -[RetFrom_0x10064c358L view]
+x0: RetFrom_\
+0x10064c358L
+x1: view
+" -> "Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:97
+Invoke:0x10064c394L -[RetFrom_0x10064c374L addSubview:]
+x0: \
+RetFrom_0x10064c374L
+x1: addSubview:
+x2: (@\"UIWebView\")TCWebViewLoadJs._webView
+"	 [color=green];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:67
+Invoke:0x10064c320L +[UIApplication sharedApplication]
+x0: \
+UIApplication
+x1: sharedApplication
+"	 [addr=4301570848,
+		args="['UIApplication', 'sharedApplication']",
+		context=4301570368,
+		des="+[UIApplication sharedApplication]",
+		dp="[UIApplication sharedApplication]",
+		pnode="Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:58
+Invoke:0x10064c2f8L -[UIWebView\")TCWebViewLoadJs._webView \
+loadRequest:]
+x0: (@\"UIWebView\")TCWebViewLoadJs._webView
+x1: loadRequest:
+x2: RetFrom_0x10064c2d4L
+"];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:73
+Invoke:0x10064c33cL -[RetFrom_0x10064c320L keyWindow]
+x0: \
+RetFrom_0x10064c320L
+x1: keyWindow
+"	 [addr=4301570876,
+		args="['RetFrom_0x10064c320L', 'keyWindow']",
+		context=4301570368,
+		des="-[RetFrom_0x10064c320L keyWindow]",
+		dp="[[UIApplication sharedApplication] keyWindow]",
+		pnode="Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:67
+Invoke:0x10064c320L +[UIApplication sharedApplication]
+x0: \
+UIApplication
+x1: sharedApplication
+"];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:67
+Invoke:0x10064c320L +[UIApplication sharedApplication]
+x0: \
+UIApplication
+x1: sharedApplication
+" -> "Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:73
+Invoke:0x10064c33cL -[RetFrom_0x10064c320L keyWindow]
+x0: \
+RetFrom_0x10064c320L
+x1: keyWindow
+"	 [color=green];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:85
+Invoke:0x10064c374L -[RetFrom_0x10064c358L view]
+x0: RetFrom_\
+0x10064c358L
+x1: view
+"	 [addr=4301570932,
+		args="['RetFrom_0x10064c358L', 'view']",
+		context=4301570368,
+		des="-[RetFrom_0x10064c358L view]",
+		dp="[[[[UIApplication sharedApplication] keyWindow] rootViewController] view]",
+		pnode="Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:79
+Invoke:0x10064c358L -[RetFrom_0x10064c33cL rootViewController]
+\
+x0: RetFrom_0x10064c33cL
+x1: rootViewController
+"];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:91
+Invoke:0x10064c394L -[RetFrom_0x10064c374L addSubview:]
+x0: \
+RetFrom_0x10064c374L
+x1: addSubview:
+x2: (@\"UIWebView\")TCWebViewLoadJs._webView
+"	 [addr=4301570964,
+		args="['RetFrom_0x10064c374L', 'addSubview:', '(@\"UIWebView\")TCWebViewLoadJs._webView']",
+		context=4301570368,
+		des="-[RetFrom_0x10064c374L addSubview:]",
+		dp=None,
+		pnode="Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:85
+Invoke:0x10064c374L -[RetFrom_0x10064c358L view]
+x0: RetFrom_\
+0x10064c358L
+x1: view
+"];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:85
+Invoke:0x10064c374L -[RetFrom_0x10064c358L view]
+x0: RetFrom_\
+0x10064c358L
+x1: view
+" -> "Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:91
+Invoke:0x10064c394L -[RetFrom_0x10064c374L addSubview:]
+x0: \
+RetFrom_0x10064c374L
+x1: addSubview:
+x2: (@\"UIWebView\")TCWebViewLoadJs._webView
+"	 [color=green];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:79
+Invoke:0x10064c358L -[RetFrom_0x10064c33cL rootViewController]
+\
+x0: RetFrom_0x10064c33cL
+x1: rootViewController
+"	 [addr=4301570904,
+		args="['RetFrom_0x10064c33cL', 'rootViewController']",
+		context=4301570368,
+		des="-[RetFrom_0x10064c33cL rootViewController]",
+		dp="[[[UIApplication sharedApplication] keyWindow] rootViewController]",
+		pnode="Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:73
+Invoke:0x10064c33cL -[RetFrom_0x10064c320L keyWindow]
+x0: \
+RetFrom_0x10064c320L
+x1: keyWindow
+"];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:79
+Invoke:0x10064c358L -[RetFrom_0x10064c33cL rootViewController]
+\
+x0: RetFrom_0x10064c33cL
+x1: rootViewController
+" -> "Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:85
+Invoke:0x10064c374L -[RetFrom_0x10064c358L view]
+x0: RetFrom_\
+0x10064c358L
+x1: view
+"	 [color=green];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:85
+Invoke:0x10064c358L -[RetFrom_0x10064c33cL rootViewController]
+\
+x0: RetFrom_0x10064c33cL
+x1: rootViewController
+"	 [addr=4301570904,
+		args="['RetFrom_0x10064c33cL', 'rootViewController']",
+		context=4301570368,
+		des="-[RetFrom_0x10064c33cL rootViewController]",
+		dp="[[[UIApplication sharedApplication] keyWindow] rootViewController]",
+		pnode="Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:79
+Invoke:0x10064c33cL -[RetFrom_0x10064c320L keyWindow]
+x0: \
+RetFrom_0x10064c320L
+x1: keyWindow
+"];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:79
+Invoke:0x10064c33cL -[RetFrom_0x10064c320L keyWindow]
+x0: \
+RetFrom_0x10064c320L
+x1: keyWindow
+" -> "Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:85
+Invoke:0x10064c358L -[RetFrom_0x10064c33cL rootViewController]
+\
+x0: RetFrom_0x10064c33cL
+x1: rootViewController
+"	 [color=green];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:43
+Invoke:0x10064c284L -[UIWebView\")TCWebViewLoadJs._webView \
+setDelegate:]
+x0: (@\"UIWebView\")TCWebViewLoadJs._webView
+x1: setDelegate:
+x2: TCWebViewLoadJs_instance
+"	 [addr=4301570692,
+		args="['(@\"UIWebView\")TCWebViewLoadJs._webView', 'setDelegate:', 'TCWebViewLoadJs_instance']",
+		context=4301570368,
+		des="-[UIWebView\")TCWebViewLoadJs._webView setDelegate:]",
+		dp=None,
+		pnode="Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:37
+Invoke:0x10064c25cL -[RetFrom_0x10064c23cL initWithFrame:]
+\
+x0: RetFrom_0x10064c23cL
+x1: initWithFrame:
+x2: P0
+"];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:46
+Invoke:0x10064c2b0L +[NSURL URLWithString:]
+x0: NSURL
+x1: \
+URLWithString:
+x2: http://qzs.qq.com/
+"	 [addr=4301570736,
+		args="['NSURL', 'URLWithString:', 'http://qzs.qq.com/']",
+		context=4301570368,
+		des="+[NSURL URLWithString:]",
+		dp="[NSURL URLWithString:http://qzs.qq.com/ ]",
+		pnode="Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:43
+Invoke:0x10064c284L -[UIWebView\")TCWebViewLoadJs._webView \
+setDelegate:]
+x0: (@\"UIWebView\")TCWebViewLoadJs._webView
+x1: setDelegate:
+x2: TCWebViewLoadJs_instance
+",
+		tainted=True];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:43
+Invoke:0x10064c284L -[UIWebView\")TCWebViewLoadJs._webView \
+setDelegate:]
+x0: (@\"UIWebView\")TCWebViewLoadJs._webView
+x1: setDelegate:
+x2: TCWebViewLoadJs_instance
+" -> "Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:46
+Invoke:0x10064c2b0L +[NSURL URLWithString:]
+x0: NSURL
+x1: \
+URLWithString:
+x2: http://qzs.qq.com/
+"	 [color=green];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:34
+Invoke:0x10064c218L -[UIWebView\")TCWebViewLoadJs._webView \
+setDelegate:]
+x0: (@\"UIWebView\")TCWebViewLoadJs._webView
+x1: setDelegate:
+x2: 0
+"	 [addr=4301570584,
+		args="['(@\"UIWebView\")TCWebViewLoadJs._webView', 'setDelegate:', '0']",
+		context=4301570368,
+		des="-[UIWebView\")TCWebViewLoadJs._webView setDelegate:]",
+		dp=None,
+		pnode="Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:0
+Invoke:0x10064c140L Start
+"];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:40
+Invoke:0x10064c23cL +[UIWebView alloc]
+x0: UIWebView
+x1: alloc
+"	 [addr=4301570620,
+		args="['UIWebView', 'alloc']",
+		context=4301570368,
+		des="+[UIWebView alloc]",
+		dp="[UIWebView alloc]",
+		pnode="Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:34
+Invoke:0x10064c218L -[UIWebView\")TCWebViewLoadJs._webView \
+setDelegate:]
+x0: (@\"UIWebView\")TCWebViewLoadJs._webView
+x1: setDelegate:
+x2: 0
+"];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:34
+Invoke:0x10064c218L -[UIWebView\")TCWebViewLoadJs._webView \
+setDelegate:]
+x0: (@\"UIWebView\")TCWebViewLoadJs._webView
+x1: setDelegate:
+x2: 0
+" -> "Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:40
+Invoke:0x10064c23cL +[UIWebView alloc]
+x0: UIWebView
+x1: alloc
+"	 [color=green];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:52
+Invoke:0x10064c2b0L +[NSURL URLWithString:]
+x0: NSURL
+x1: \
+URLWithString:
+x2: http://qzs.qq.com/
+"	 [addr=4301570736,
+		args="['NSURL', 'URLWithString:', 'http://qzs.qq.com/']",
+		context=4301570368,
+		des="+[NSURL URLWithString:]",
+		dp="[NSURL URLWithString:http://qzs.qq.com/ ]",
+		pnode="Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:49
+Invoke:0x10064c284L -[UIWebView\")TCWebViewLoadJs._webView \
+setDelegate:]
+x0: (@\"UIWebView\")TCWebViewLoadJs._webView
+x1: setDelegate:
+x2: TCWebViewLoadJs_instance
+",
+		tainted=True];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:58
+Invoke:0x10064c2d4L +[NSURLRequest requestWithURL:]
+x0: NSURLRequest
+\
+x1: requestWithURL:
+x2: RetFrom_0x10064c2b0L
+"	 [addr=4301570772,
+		args="['NSURLRequest', 'requestWithURL:', 'RetFrom_0x10064c2b0L']",
+		context=4301570368,
+		des="+[NSURLRequest requestWithURL:]",
+		dp="[NSURLRequest requestWithURL:[NSURL URLWithString:http://qzs.qq.com/ ] ]",
+		pnode="Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:52
+Invoke:0x10064c2b0L +[NSURL URLWithString:]
+x0: NSURL
+x1: \
+URLWithString:
+x2: http://qzs.qq.com/
+",
+		tainted=True];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:52
+Invoke:0x10064c2b0L +[NSURL URLWithString:]
+x0: NSURL
+x1: \
+URLWithString:
+x2: http://qzs.qq.com/
+" -> "Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:58
+Invoke:0x10064c2d4L +[NSURLRequest requestWithURL:]
+x0: NSURLRequest
+\
+x1: requestWithURL:
+x2: RetFrom_0x10064c2b0L
+"	 [color=green];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:43
+Invoke:0x10064c25cL -[RetFrom_0x10064c23cL initWithFrame:]
+\
+x0: RetFrom_0x10064c23cL
+x1: initWithFrame:
+x2: 0
+"	 [addr=4301570652,
+		args="['RetFrom_0x10064c23cL', 'initWithFrame:', '0']",
+		context=4301570368,
+		des="-[RetFrom_0x10064c23cL initWithFrame:]",
+		dp=None,
+		pnode="Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:40
+Invoke:0x10064c23cL +[UIWebView alloc]
+x0: UIWebView
+x1: alloc
+"];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:40
+Invoke:0x10064c23cL +[UIWebView alloc]
+x0: UIWebView
+x1: alloc
+" -> "Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:43
+Invoke:0x10064c25cL -[RetFrom_0x10064c23cL initWithFrame:]
+\
+x0: RetFrom_0x10064c23cL
+x1: initWithFrame:
+x2: 0
+"	 [color=green];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:0
+Invoke:0x10064c140L Start
+"	 [addr=4301570368,
+		args=None,
+		color=blue,
+		context=4301570368,
+		context_name="-[TCWebViewLoadJs loadJS:openId:andKey:]",
+		des=Start,
+		dp=None,
+		pnode=None];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:0
+Invoke:0x10064c140L Start
+" -> "Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:34
+Invoke:0x10064c218L -[UIWebView\")TCWebViewLoadJs._webView \
+setDelegate:]
+x0: (@\"UIWebView\")TCWebViewLoadJs._webView
+x1: setDelegate:
+x2: 0
+"	 [color=green];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:34
+Invoke:0x10064c23cL +[UIWebView alloc]
+x0: UIWebView
+x1: alloc
+"	 [addr=4301570620,
+		args="['UIWebView', 'alloc']",
+		context=4301570368,
+		des="+[UIWebView alloc]",
+		dp="[UIWebView alloc]",
+		pnode="Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:0
+Invoke:0x10064c140L Start
+"];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:0
+Invoke:0x10064c140L Start
+" -> "Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:34
+Invoke:0x10064c23cL +[UIWebView alloc]
+x0: UIWebView
+x1: alloc
+"	 [color=green];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:49
+Invoke:0x10064c284L -[UIWebView\")TCWebViewLoadJs._webView \
+setDelegate:]
+x0: (@\"UIWebView\")TCWebViewLoadJs._webView
+x1: setDelegate:
+x2: TCWebViewLoadJs_instance
+"	 [addr=4301570692,
+		args="['(@\"UIWebView\")TCWebViewLoadJs._webView', 'setDelegate:', 'TCWebViewLoadJs_instance']",
+		context=4301570368,
+		des="-[UIWebView\")TCWebViewLoadJs._webView setDelegate:]",
+		dp=None,
+		pnode="Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:43
+Invoke:0x10064c25cL -[RetFrom_0x10064c23cL initWithFrame:]
+\
+x0: RetFrom_0x10064c23cL
+x1: initWithFrame:
+x2: 0
+"];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:43
+Invoke:0x10064c25cL -[RetFrom_0x10064c23cL initWithFrame:]
+\
+x0: RetFrom_0x10064c23cL
+x1: initWithFrame:
+x2: 0
+" -> "Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:49
+Invoke:0x10064c284L -[UIWebView\")TCWebViewLoadJs._webView \
+setDelegate:]
+x0: (@\"UIWebView\")TCWebViewLoadJs._webView
+x1: setDelegate:
+x2: TCWebViewLoadJs_instance
+"	 [color=green];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:37
+Invoke:0x10064c25cL -[RetFrom_0x10064c23cL initWithFrame:]
+\
+x0: RetFrom_0x10064c23cL
+x1: initWithFrame:
+x2: P0
+"	 [addr=4301570652,
+		args="['RetFrom_0x10064c23cL', 'initWithFrame:', 'P0']",
+		context=4301570368,
+		des="-[RetFrom_0x10064c23cL initWithFrame:]",
+		dp=None,
+		pnode="Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:34
+Invoke:0x10064c23cL +[UIWebView alloc]
+x0: UIWebView
+x1: alloc
+"];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:37
+Invoke:0x10064c25cL -[RetFrom_0x10064c23cL initWithFrame:]
+\
+x0: RetFrom_0x10064c23cL
+x1: initWithFrame:
+x2: P0
+" -> "Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:43
+Invoke:0x10064c284L -[UIWebView\")TCWebViewLoadJs._webView \
+setDelegate:]
+x0: (@\"UIWebView\")TCWebViewLoadJs._webView
+x1: setDelegate:
+x2: TCWebViewLoadJs_instance
+"	 [color=green];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:46
+Invoke:0x10064c2b0L +[NSURL URLWithString:]
+x0: NSURL
+x1: \
+URLWithString:
+x2: http://qzs.qq.com/
+" -> "Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:52
+Invoke:0x10064c2d4L +[NSURLRequest requestWithURL:]
+x0: NSURLRequest
+\
+x1: requestWithURL:
+x2: RetFrom_0x10064c2b0L
+"	 [color=green];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:64
+Invoke:0x10064c2f8L -[UIWebView\")TCWebViewLoadJs._webView \
+loadRequest:]
+x0: (@\"UIWebView\")TCWebViewLoadJs._webView
+x1: loadRequest:
+x2: RetFrom_0x10064c2d4L
+"	 [addr=4301570808,
+		args="['(@\"UIWebView\")TCWebViewLoadJs._webView', 'loadRequest:', 'RetFrom_0x10064c2d4L']",
+		context=4301570368,
+		des="-[UIWebView\")TCWebViewLoadJs._webView loadRequest:]",
+		dp="[(@\"UIWebView\")TCWebViewLoadJs._webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:http://qzs.qq.com/ ] ] ]",
+		pnode="Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:58
+Invoke:0x10064c2d4L +[NSURLRequest requestWithURL:]
+x0: NSURLRequest
+\
+x1: requestWithURL:
+x2: RetFrom_0x10064c2b0L
+",
+		tainted=True];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:58
+Invoke:0x10064c2d4L +[NSURLRequest requestWithURL:]
+x0: NSURLRequest
+\
+x1: requestWithURL:
+x2: RetFrom_0x10064c2b0L
+" -> "Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:64
+Invoke:0x10064c2f8L -[UIWebView\")TCWebViewLoadJs._webView \
+loadRequest:]
+x0: (@\"UIWebView\")TCWebViewLoadJs._webView
+x1: loadRequest:
+x2: RetFrom_0x10064c2d4L
+"	 [color=green];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:58
+Invoke:0x10064c2f8L -[UIWebView\")TCWebViewLoadJs._webView \
+loadRequest:]
+x0: (@\"UIWebView\")TCWebViewLoadJs._webView
+x1: loadRequest:
+x2: RetFrom_0x10064c2d4L
+" -> "Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:67
+Invoke:0x10064c320L +[UIApplication sharedApplication]
+x0: \
+UIApplication
+x1: sharedApplication
+"	 [color=green];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:64
+Invoke:0x10064c2f8L -[UIWebView\")TCWebViewLoadJs._webView \
+loadRequest:]
+x0: (@\"UIWebView\")TCWebViewLoadJs._webView
+x1: loadRequest:
+x2: RetFrom_0x10064c2d4L
+" -> "Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:73
+Invoke:0x10064c320L +[UIApplication sharedApplication]
+x0: \
+UIApplication
+x1: sharedApplication
+"	 [color=green];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:34
+Invoke:0x10064c23cL +[UIWebView alloc]
+x0: UIWebView
+x1: alloc
+" -> "Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:37
+Invoke:0x10064c25cL -[RetFrom_0x10064c23cL initWithFrame:]
+\
+x0: RetFrom_0x10064c23cL
+x1: initWithFrame:
+x2: P0
+"	 [color=green];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:49
+Invoke:0x10064c284L -[UIWebView\")TCWebViewLoadJs._webView \
+setDelegate:]
+x0: (@\"UIWebView\")TCWebViewLoadJs._webView
+x1: setDelegate:
+x2: TCWebViewLoadJs_instance
+" -> "Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:52
+Invoke:0x10064c2b0L +[NSURL URLWithString:]
+x0: NSURL
+x1: \
+URLWithString:
+x2: http://qzs.qq.com/
+"	 [color=green];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:73
+Invoke:0x10064c33cL -[RetFrom_0x10064c320L keyWindow]
+x0: \
+RetFrom_0x10064c320L
+x1: keyWindow
+" -> "Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:79
+Invoke:0x10064c358L -[RetFrom_0x10064c33cL rootViewController]
+\
+x0: RetFrom_0x10064c33cL
+x1: rootViewController
+"	 [color=green];
+	"Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:85
+Invoke:0x10064c358L -[RetFrom_0x10064c33cL rootViewController]
+\
+x0: RetFrom_0x10064c33cL
+x1: rootViewController
+" -> "Context:0x10064c140 -[TCWebViewLoadJs loadJS:openId:andKey:]
+Depth:91
+Invoke:0x10064c374L -[RetFrom_0x10064c358L view]
+x0: RetFrom_\
+0x10064c358L
+x1: view
+"	 [color=green];
+}

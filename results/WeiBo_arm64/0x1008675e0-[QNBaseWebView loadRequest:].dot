@@ -1,0 +1,6823 @@
+strict digraph  {
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:132
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 64
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [addr=4303818880,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '64', '0', '0', '0', '4294967295', 'reg_x9', 'reg_\
+x10']",
+		context=4303818348,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:123
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"];
+	"Context:0x10081d744 +[DDLog qn_log:level:flag:context:file:function:line:tag:message:]
+Depth:142
+Invoke:0x10081d7c0L +[DDLogMessage \
+alloc]
+x0: DDLogMessage
+x1: alloc
+"	 [addr=4303476672,
+		args="['DDLogMessage', 'alloc']",
+		context=4303476548,
+		des="+[DDLogMessage alloc]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:132
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 64
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:132
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 64
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+" -> "Context:0x10081d744 +[DDLog qn_log:level:flag:context:file:function:line:tag:message:]
+Depth:142
+Invoke:0x10081d7c0L +[DDLogMessage \
+alloc]
+x0: DDLogMessage
+x1: alloc
+"	 [color=red];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:136
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 32
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [addr=4303818880,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '32', '0', '0', '0', '4294967295', 'reg_x9', 'reg_\
+x10']",
+		context=4303818348,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:125
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:129
+Invoke:0x10087120cL +[NSString \
+stringWithFormat:]
+x0: NSString
+x1: stringWithFormat:
+x2: `%s` failed: %@
+x3: ASSERTION FAILED: %s
+%@
+"	 [addr=4303819276,
+		args="['NSString', 'stringWithFormat:', '`%s` failed: %@', 'ASSERTION FAILED: %s\n%@']",
+		context=4303819004,
+		des="+[NSString stringWithFormat:]",
+		dp=None,
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:117
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:135
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+"	 [addr=4303819324,
+		args="['QNLogUtils', 'log:filename:lineNumber:method:message:', '1', '/Users/jerrychu/workstation/Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/\
+QN/Commons/UIKit+Widgets/QNBaseWebView.m', '222', '-[QNBaseWebView loadRequest:]', 'RetFrom_0x10087120cL']",
+		context=4303819004,
+		des="+[QNLogUtils log:filename:lineNumber:method:message:]",
+		dp=None,
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:129
+Invoke:0x10087120cL +[NSString \
+stringWithFormat:]
+x0: NSString
+x1: stringWithFormat:
+x2: `%s` failed: %@
+x3: ASSERTION FAILED: %s
+%@
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:129
+Invoke:0x10087120cL +[NSString \
+stringWithFormat:]
+x0: NSString
+x1: stringWithFormat:
+x2: `%s` failed: %@
+x3: ASSERTION FAILED: %s
+%@
+" -> "Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:135
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:137
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 32
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [addr=4303818880,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '32', '0', '0', '0', '4294967295', 'reg_x9', 'reg_\
+x10']",
+		context=4303818348,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:126
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:57
+Invoke:0x10087bfb0L +[NSArray arrayWithObjects:count:]
+x0: NSArray
+x1: arrayWithObjects:\
+count:
+x2: mem_7fffffffffefeb8
+x3: 0
+"	 [addr=4303863728,
+		args="['NSArray', 'arrayWithObjects:count:', 'mem_7fffffffffefeb8', '0']",
+		context=4303863564,
+		des="+[NSArray arrayWithObjects:count:]",
+		dp="[NSArray arrayWithObjects:mem_7fffffffffefeb8 count:0 ]",
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:53
+Invoke:0x10087bf74L -[RetFrom_0x100871198L isKindOfClass:]
+x0: RetFrom_0x100871198L
+\
+x1: isKindOfClass:
+x2: RetFrom_0x10087bf58L
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:75
+Invoke:0x10087bff4L -[RetFrom_0x10087bfb0L count]
+x0: RetFrom_0x10087bfb0L
+x1: count
+"	 [addr=4303863796,
+		args="['RetFrom_0x10087bfb0L', 'count']",
+		context=4303863564,
+		des="-[RetFrom_0x10087bfb0L count]",
+		dp=None,
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:57
+Invoke:0x10087bfb0L +[NSArray arrayWithObjects:count:]
+x0: NSArray
+x1: arrayWithObjects:\
+count:
+x2: mem_7fffffffffefeb8
+x3: 0
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:57
+Invoke:0x10087bfb0L +[NSArray arrayWithObjects:count:]
+x0: NSArray
+x1: arrayWithObjects:\
+count:
+x2: mem_7fffffffffefeb8
+x3: 0
+" -> "Context:0x10087bf0c sub_0x10087bf0c
+Depth:75
+Invoke:0x10087bff4L -[RetFrom_0x10087bfb0L count]
+x0: RetFrom_0x10087bfb0L
+x1: count
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:135
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 32
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [addr=4303818880,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '32', '0', '0', '0', '4294967295', 'reg_x9', 'reg_\
+x10']",
+		context=4303818348,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:124
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:129
+Invoke:0x100870ec8L +[NSString alloc]
+x0: NSString
+x1: alloc
+"	 [addr=4303818440,
+		args="['NSString', 'alloc']",
+		context=4303818348,
+		des="+[NSString alloc]",
+		dp="[NSString alloc]",
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:122
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:132
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"	 [addr=4303818460,
+		args="['RetFrom_0x100870ec8L', 'initWithFormat:arguments:', 'ASSERTION FAILED: %s\n%@', '[NSThread isMainThread]']",
+		context=4303818348,
+		des="-[RetFrom_0x100870ec8L initWithFormat:arguments:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:129
+Invoke:0x100870ec8L +[NSString alloc]
+x0: NSString
+x1: alloc
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:129
+Invoke:0x100870ec8L +[NSString alloc]
+x0: NSString
+x1: alloc
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:132
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:138
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 32
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [addr=4303818880,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '32', '0', '0', '0', '4294967295', 'reg_x9', 'reg_\
+x10']",
+		context=4303818348,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:127
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:134
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 4
+x5: 0
+x6: 0
+x7: 0
+x8: \
+4294967295
+x9: 4303818972
+x10: reg_x10
+"	 [addr=4303818880,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '4', '0', '0', '0', '4294967295', '4303818972', '\
+reg_x10']",
+		context=4303818348,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:124
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:92
+Invoke:0x10087c050L +[NSArray class]
+x0: NSArray
+x1: class
+"	 [addr=4303863888,
+		args="['NSArray', 'class']",
+		context=4303863564,
+		des="+[NSArray class]",
+		dp=None,
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:83
+Invoke:0x10087c034L -[RetFrom_0x10087bfb0L subarrayWithRange:]
+x0: RetFrom_0x10087bfb0L
+\
+x1: subarrayWithRange:
+x2: 0
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:95
+Invoke:0x10087c060L -[RetFrom_0x10087c034L isKindOfClass:]
+x0: RetFrom_0x10087c034L
+\
+x1: isKindOfClass:
+x2: RetFrom_0x10087c050L
+"	 [addr=4303863904,
+		args="['RetFrom_0x10087c034L', 'isKindOfClass:', 'RetFrom_0x10087c050L']",
+		context=4303863564,
+		des="-[RetFrom_0x10087c034L isKindOfClass:]",
+		dp=None,
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:92
+Invoke:0x10087c050L +[NSArray class]
+x0: NSArray
+x1: class
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:92
+Invoke:0x10087c050L +[NSArray class]
+x0: NSArray
+x1: class
+" -> "Context:0x10087bf0c sub_0x10087bf0c
+Depth:95
+Invoke:0x10087c060L -[RetFrom_0x10087c034L isKindOfClass:]
+x0: RetFrom_0x10087c034L
+\
+x1: isKindOfClass:
+x2: RetFrom_0x10087c050L
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:134
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 16
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [addr=4303818880,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '16', '0', '0', '0', '4294967295', 'reg_x9', 'reg_\
+x10']",
+		context=4303818348,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:125
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:142
+Invoke:0x10087120cL +[NSString \
+stringWithFormat:]
+x0: NSString
+x1: stringWithFormat:
+x2: `%s` failed: %@
+x3: [NSThread isMainThread]
+"	 [addr=4303819276,
+		args="['NSString', 'stringWithFormat:', '`%s` failed: %@', '[NSThread isMainThread]']",
+		context=4303819004,
+		des="+[NSString stringWithFormat:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:122
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:136
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 64
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [addr=4303818880,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '64', '0', '0', '0', '4294967295', 'reg_x9', 'reg_\
+x10']",
+		context=4303818348,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:127
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:132
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 16
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [addr=4303818880,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '16', '0', '0', '0', '4294967295', 'reg_x9', 'reg_\
+x10']",
+		context=4303818348,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:123
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:132
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 16
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+" -> "Context:0x10081d744 +[DDLog qn_log:level:flag:context:file:function:line:tag:message:]
+Depth:142
+Invoke:0x10081d7c0L +[DDLogMessage \
+alloc]
+x0: DDLogMessage
+x1: alloc
+"	 [color=red];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:86
+Invoke:0x10087c060L +[0 isKindOfClass:]
+x0: 0
+x1: isKindOfClass:
+x2: RetFrom_0x10087c050L
+"	 [addr=4303863904,
+		args="['0', 'isKindOfClass:', 'RetFrom_0x10087c050L']",
+		context=4303863564,
+		des="+[0 isKindOfClass:]",
+		dp=None,
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:83
+Invoke:0x10087c050L +[NSArray class]
+x0: NSArray
+x1: class
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:90
+Invoke:0x10087c094L +[NSArray arrayWithObjects:count:]
+x0: NSArray
+x1: arrayWithObjects:\
+count:
+x2: mem_7fffffffffefeb8
+x3: 0
+"	 [addr=4303863956,
+		args="['NSArray', 'arrayWithObjects:count:', 'mem_7fffffffffefeb8', '0']",
+		context=4303863564,
+		des="+[NSArray arrayWithObjects:count:]",
+		dp=None,
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:86
+Invoke:0x10087c060L +[0 isKindOfClass:]
+x0: 0
+x1: isKindOfClass:
+x2: RetFrom_0x10087c050L
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:86
+Invoke:0x10087c060L +[0 isKindOfClass:]
+x0: 0
+x1: isKindOfClass:
+x2: RetFrom_0x10087c050L
+" -> "Context:0x10087bf0c sub_0x10087bf0c
+Depth:90
+Invoke:0x10087c094L +[NSArray arrayWithObjects:count:]
+x0: NSArray
+x1: arrayWithObjects:\
+count:
+x2: mem_7fffffffffefeb8
+x3: 0
+"	 [color=green];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:90
+Invoke:0x10087c074L +[0 copy]
+x0: 0
+x1: copy
+"	 [addr=4303863924,
+		args="['0', 'copy']",
+		context=4303863564,
+		des="+[0 copy]",
+		dp=None,
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:86
+Invoke:0x10087c060L +[0 isKindOfClass:]
+x0: 0
+x1: isKindOfClass:
+x2: RetFrom_0x10087c050L
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:86
+Invoke:0x10087c060L +[0 isKindOfClass:]
+x0: 0
+x1: isKindOfClass:
+x2: RetFrom_0x10087c050L
+" -> "Context:0x10087bf0c sub_0x10087bf0c
+Depth:90
+Invoke:0x10087c074L +[0 copy]
+x0: 0
+x1: copy
+"	 [color=green];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:140
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+"	 [addr=4303819324,
+		args="['QNLogUtils', 'log:filename:lineNumber:method:message:', '1', '/Users/jerrychu/workstation/Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/\
+QN/Commons/UIKit+Widgets/QNBaseWebView.m', '222', '-[QNBaseWebView loadRequest:]', 'RetFrom_0x10087120cL']",
+		context=4303819004,
+		des="+[QNLogUtils log:filename:lineNumber:method:message:]",
+		dp=None,
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:134
+Invoke:0x10087120cL +[NSString \
+stringWithFormat:]
+x0: NSString
+x1: stringWithFormat:
+x2: `%s` failed: %@
+x3: ASSERTION FAILED: %s
+%@
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:50
+Invoke:0x10087bf58L +[NSArray class]
+x0: NSArray
+x1: class
+"	 [addr=4303863640,
+		args="['NSArray', 'class']",
+		context=4303863564,
+		des="+[NSArray class]",
+		dp=None,
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:37
+Invoke:0x100871198L +[NSThread \
+callStackSymbols]
+x0: NSThread
+x1: callStackSymbols
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:53
+Invoke:0x10087bf74L -[RetFrom_0x100871198L isKindOfClass:]
+x0: RetFrom_0x100871198L
+\
+x1: isKindOfClass:
+x2: RetFrom_0x10087bf58L
+"	 [addr=4303863668,
+		args="['RetFrom_0x100871198L', 'isKindOfClass:', 'RetFrom_0x10087bf58L']",
+		context=4303863564,
+		des="-[RetFrom_0x100871198L isKindOfClass:]",
+		dp=None,
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:50
+Invoke:0x10087bf58L +[NSArray class]
+x0: NSArray
+x1: class
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:50
+Invoke:0x10087bf58L +[NSArray class]
+x0: NSArray
+x1: class
+" -> "Context:0x10087bf0c sub_0x10087bf0c
+Depth:53
+Invoke:0x10087bf74L -[RetFrom_0x100871198L isKindOfClass:]
+x0: RetFrom_0x100871198L
+\
+x1: isKindOfClass:
+x2: RetFrom_0x10087bf58L
+"	 [color=green];
+	"Context:0x1008709ac +[QNLogUtils log:filename:lineNumber:method:message:]
+Depth:140
+Invoke:0x100870b20L +[DDLog qn_log:level:flag:\
+context:file:function:line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: \
+32
+x5: 0
+x6: /Users/jerrychu/workstation/Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x7: -[\
+QNBaseWebView loadRequest:]
+x8: 4308967424
+x9: reg_x9
+x10: reg_x10
+"	 [addr=4303817504,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '32', '0', '/Users/jerrychu/workstation/Weibo/Weibo_\
+6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m', '-[QNBaseWebView loadRequest:]', '4308967424', 'reg_x9', '\
+reg_x10']",
+		context=4303817132,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:130
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:87
+Invoke:0x10087c074L +[0 copy]
+x0: 0
+x1: copy
+"	 [addr=4303863924,
+		args="['0', 'copy']",
+		context=4303863564,
+		des="+[0 copy]",
+		dp=None,
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:83
+Invoke:0x10087c060L +[0 isKindOfClass:]
+x0: 0
+x1: isKindOfClass:
+x2: RetFrom_0x10087c050L
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:112
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+"	 [addr=4303819228,
+		args="['QNLogUtils', 'log:messageFormat:', '4', 'ASSERTION FAILED: %s\n%@']",
+		context=4303819004,
+		des="+[QNLogUtils log:messageFormat:]",
+		dp=None,
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:87
+Invoke:0x10087c074L +[0 copy]
+x0: 0
+x1: copy
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:87
+Invoke:0x10087c074L +[0 copy]
+x0: 0
+x1: copy
+" -> "Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:112
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+"	 [color=red];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:85
+Invoke:0x10087c060L +[0 isKindOfClass:]
+x0: 0
+x1: isKindOfClass:
+x2: RetFrom_0x10087c050L
+"	 [addr=4303863904,
+		args="['0', 'isKindOfClass:', 'RetFrom_0x10087c050L']",
+		context=4303863564,
+		des="+[0 isKindOfClass:]",
+		dp=None,
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:82
+Invoke:0x10087c050L +[NSArray class]
+x0: NSArray
+x1: class
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:89
+Invoke:0x10087c094L +[NSArray arrayWithObjects:count:]
+x0: NSArray
+x1: arrayWithObjects:\
+count:
+x2: mem_7fffffffffefeb8
+x3: 0
+"	 [addr=4303863956,
+		args="['NSArray', 'arrayWithObjects:count:', 'mem_7fffffffffefeb8', '0']",
+		context=4303863564,
+		des="+[NSArray arrayWithObjects:count:]",
+		dp=None,
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:85
+Invoke:0x10087c060L +[0 isKindOfClass:]
+x0: 0
+x1: isKindOfClass:
+x2: RetFrom_0x10087c050L
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:85
+Invoke:0x10087c060L +[0 isKindOfClass:]
+x0: 0
+x1: isKindOfClass:
+x2: RetFrom_0x10087c050L
+" -> "Context:0x10087bf0c sub_0x10087bf0c
+Depth:89
+Invoke:0x10087c094L +[NSArray arrayWithObjects:count:]
+x0: NSArray
+x1: arrayWithObjects:\
+count:
+x2: mem_7fffffffffefeb8
+x3: 0
+"	 [color=green];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:89
+Invoke:0x10087c074L +[0 copy]
+x0: 0
+x1: copy
+"	 [addr=4303863924,
+		args="['0', 'copy']",
+		context=4303863564,
+		des="+[0 copy]",
+		dp=None,
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:85
+Invoke:0x10087c060L +[0 isKindOfClass:]
+x0: 0
+x1: isKindOfClass:
+x2: RetFrom_0x10087c050L
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:85
+Invoke:0x10087c060L +[0 isKindOfClass:]
+x0: 0
+x1: isKindOfClass:
+x2: RetFrom_0x10087c050L
+" -> "Context:0x10087bf0c sub_0x10087bf0c
+Depth:89
+Invoke:0x10087c074L +[0 copy]
+x0: 0
+x1: copy
+"	 [color=green];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:132
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+"	 [addr=4303819324,
+		args="['QNLogUtils', 'log:filename:lineNumber:method:message:', '1', '/Users/jerrychu/workstation/Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/\
+QN/Commons/UIKit+Widgets/QNBaseWebView.m', '222', '-[QNBaseWebView loadRequest:]', 'RetFrom_0x10087120cL']",
+		context=4303819004,
+		des="+[QNLogUtils log:filename:lineNumber:method:message:]",
+		dp=None,
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:126
+Invoke:0x10087120cL +[NSString \
+stringWithFormat:]
+x0: NSString
+x1: stringWithFormat:
+x2: `%s` failed: %@
+x3: ASSERTION FAILED: %s
+%@
+"];
+	"Context:0x1008709ac +[QNLogUtils log:filename:lineNumber:method:message:]
+Depth:141
+Invoke:0x100870ba4L <Symbol \"_NSLog\" in WeiBo_\
+arm64 (import)>
+x0: SHOULD not reach here, unknown level: %zd
+x1: log:filename:lineNumber:method:message:
+"	 [addr=4303817636,
+		args="['SHOULD not reach here, unknown level: %zd', 'log:filename:lineNumber:method:message:']",
+		context=4303817132,
+		des="<Symbol \"_NSLog\" in WeiBo_arm64 (import)>",
+		dp=None,
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:130
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:132
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+" -> "Context:0x1008709ac +[QNLogUtils log:filename:lineNumber:method:message:]
+Depth:141
+Invoke:0x100870ba4L <Symbol \"_NSLog\" in WeiBo_\
+arm64 (import)>
+x0: SHOULD not reach here, unknown level: %zd
+x1: log:filename:lineNumber:method:message:
+"	 [color=red];
+	"Context:0x1008709ac +[QNLogUtils log:filename:lineNumber:method:message:]
+Depth:142
+Invoke:0x100870b20L +[DDLog qn_log:level:flag:\
+context:file:function:line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: \
+16
+x5: 0
+x6: /Users/jerrychu/workstation/Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x7: -[\
+QNBaseWebView loadRequest:]
+x8: 4308967424
+x9: reg_x9
+x10: reg_x10
+"	 [addr=4303817504,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '16', '0', '/Users/jerrychu/workstation/Weibo/Weibo_\
+6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m', '-[QNBaseWebView loadRequest:]', '4308967424', 'reg_x9', '\
+reg_x10']",
+		context=4303817132,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:132
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:132
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+" -> "Context:0x1008709ac +[QNLogUtils log:filename:lineNumber:method:message:]
+Depth:142
+Invoke:0x100870b20L +[DDLog qn_log:level:flag:\
+context:file:function:line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: \
+16
+x5: 0
+x6: /Users/jerrychu/workstation/Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x7: -[\
+QNBaseWebView loadRequest:]
+x8: 4308967424
+x9: reg_x9
+x10: reg_x10
+"	 [color=red];
+	"Context:0x1008709ac +[QNLogUtils log:filename:lineNumber:method:message:]
+Depth:143
+Invoke:0x100870ba4L <Symbol \"_NSLog\" in WeiBo_\
+arm64 (import)>
+x0: SHOULD not reach here, unknown level: %zd
+x1: log:filename:lineNumber:method:message:
+"	 [addr=4303817636,
+		args="['SHOULD not reach here, unknown level: %zd', 'log:filename:lineNumber:method:message:']",
+		context=4303817132,
+		des="<Symbol \"_NSLog\" in WeiBo_arm64 (import)>",
+		dp=None,
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:132
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:132
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+" -> "Context:0x1008709ac +[QNLogUtils log:filename:lineNumber:method:message:]
+Depth:143
+Invoke:0x100870ba4L <Symbol \"_NSLog\" in WeiBo_\
+arm64 (import)>
+x0: SHOULD not reach here, unknown level: %zd
+x1: log:filename:lineNumber:method:message:
+"	 [color=red];
+	"Context:0x1008709ac +[QNLogUtils log:filename:lineNumber:method:message:]
+Depth:143
+Invoke:0x100870b20L +[DDLog qn_log:level:flag:\
+context:file:function:line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: \
+1
+x5: 0
+x6: /Users/jerrychu/workstation/Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x7: -[QNBaseWebView \
+loadRequest:]
+x8: 4308967424
+x9: 4303817644
+x10: reg_x10
+"	 [addr=4303817504,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '1', '0', '/Users/jerrychu/workstation/Weibo/Weibo_\
+6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m', '-[QNBaseWebView loadRequest:]', '4308967424', '4303817644', '\
+reg_x10']",
+		context=4303817132,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:132
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:132
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+" -> "Context:0x1008709ac +[QNLogUtils log:filename:lineNumber:method:message:]
+Depth:143
+Invoke:0x100870b20L +[DDLog qn_log:level:flag:\
+context:file:function:line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: \
+1
+x5: 0
+x6: /Users/jerrychu/workstation/Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x7: -[QNBaseWebView \
+loadRequest:]
+x8: 4308967424
+x9: 4303817644
+x10: reg_x10
+"	 [color=red];
+	"Context:0x1008709ac +[QNLogUtils log:filename:lineNumber:method:message:]
+Depth:142
+Invoke:0x100870b20L +[DDLog qn_log:level:flag:\
+context:file:function:line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: \
+32
+x5: 0
+x6: /Users/jerrychu/workstation/Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x7: -[\
+QNBaseWebView loadRequest:]
+x8: 4308967424
+x9: reg_x9
+x10: reg_x10
+"	 [addr=4303817504,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '32', '0', '/Users/jerrychu/workstation/Weibo/Weibo_\
+6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m', '-[QNBaseWebView loadRequest:]', '4308967424', 'reg_x9', '\
+reg_x10']",
+		context=4303817132,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:132
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:132
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+" -> "Context:0x1008709ac +[QNLogUtils log:filename:lineNumber:method:message:]
+Depth:142
+Invoke:0x100870b20L +[DDLog qn_log:level:flag:\
+context:file:function:line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: \
+32
+x5: 0
+x6: /Users/jerrychu/workstation/Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x7: -[\
+QNBaseWebView loadRequest:]
+x8: 4308967424
+x9: reg_x9
+x10: reg_x10
+"	 [color=red];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:131
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+"	 [addr=4303819324,
+		args="['QNLogUtils', 'log:filename:lineNumber:method:message:', '1', '/Users/jerrychu/workstation/Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/\
+QN/Commons/UIKit+Widgets/QNBaseWebView.m', '222', '-[QNBaseWebView loadRequest:]', 'RetFrom_0x10087120cL']",
+		context=4303819004,
+		des="+[QNLogUtils log:filename:lineNumber:method:message:]",
+		dp=None,
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:125
+Invoke:0x10087120cL +[NSString \
+stringWithFormat:]
+x0: NSString
+x1: stringWithFormat:
+x2: `%s` failed: %@
+x3: ASSERTION FAILED: %s
+%@
+"];
+	"Context:0x1008709ac +[QNLogUtils log:filename:lineNumber:method:message:]
+Depth:141
+Invoke:0x100870b20L +[DDLog qn_log:level:flag:\
+context:file:function:line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: \
+16
+x5: 0
+x6: /Users/jerrychu/workstation/Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x7: -[\
+QNBaseWebView loadRequest:]
+x8: 4308967424
+x9: reg_x9
+x10: reg_x10
+"	 [addr=4303817504,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '16', '0', '/Users/jerrychu/workstation/Weibo/Weibo_\
+6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m', '-[QNBaseWebView loadRequest:]', '4308967424', 'reg_x9', '\
+reg_x10']",
+		context=4303817132,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:131
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:131
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+" -> "Context:0x1008709ac +[QNLogUtils log:filename:lineNumber:method:message:]
+Depth:141
+Invoke:0x100870b20L +[DDLog qn_log:level:flag:\
+context:file:function:line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: \
+16
+x5: 0
+x6: /Users/jerrychu/workstation/Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x7: -[\
+QNBaseWebView loadRequest:]
+x8: 4308967424
+x9: reg_x9
+x10: reg_x10
+"	 [color=red];
+	"Context:0x1008709ac +[QNLogUtils log:filename:lineNumber:method:message:]
+Depth:141
+Invoke:0x100870b20L +[DDLog qn_log:level:flag:\
+context:file:function:line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: \
+32
+x5: 0
+x6: /Users/jerrychu/workstation/Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x7: -[\
+QNBaseWebView loadRequest:]
+x8: 4308967424
+x9: reg_x9
+x10: reg_x10
+"	 [addr=4303817504,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '32', '0', '/Users/jerrychu/workstation/Weibo/Weibo_\
+6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m', '-[QNBaseWebView loadRequest:]', '4308967424', 'reg_x9', '\
+reg_x10']",
+		context=4303817132,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:131
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:131
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+" -> "Context:0x1008709ac +[QNLogUtils log:filename:lineNumber:method:message:]
+Depth:141
+Invoke:0x100870b20L +[DDLog qn_log:level:flag:\
+context:file:function:line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: \
+32
+x5: 0
+x6: /Users/jerrychu/workstation/Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x7: -[\
+QNBaseWebView loadRequest:]
+x8: 4308967424
+x9: reg_x9
+x10: reg_x10
+"	 [color=red];
+	"Context:0x1008709ac +[QNLogUtils log:filename:lineNumber:method:message:]
+Depth:142
+Invoke:0x100870ba4L <Symbol \"_NSLog\" in WeiBo_\
+arm64 (import)>
+x0: SHOULD not reach here, unknown level: %zd
+x1: log:filename:lineNumber:method:message:
+"	 [addr=4303817636,
+		args="['SHOULD not reach here, unknown level: %zd', 'log:filename:lineNumber:method:message:']",
+		context=4303817132,
+		des="<Symbol \"_NSLog\" in WeiBo_arm64 (import)>",
+		dp=None,
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:131
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:131
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+" -> "Context:0x1008709ac +[QNLogUtils log:filename:lineNumber:method:message:]
+Depth:142
+Invoke:0x100870ba4L <Symbol \"_NSLog\" in WeiBo_\
+arm64 (import)>
+x0: SHOULD not reach here, unknown level: %zd
+x1: log:filename:lineNumber:method:message:
+"	 [color=red];
+	"Context:0x1008709ac +[QNLogUtils log:filename:lineNumber:method:message:]
+Depth:140
+Invoke:0x100870ba4L <Symbol \"_NSLog\" in WeiBo_\
+arm64 (import)>
+x0: SHOULD not reach here, unknown level: %zd
+x1: log:filename:lineNumber:method:message:
+"	 [addr=4303817636,
+		args="['SHOULD not reach here, unknown level: %zd', 'log:filename:lineNumber:method:message:']",
+		context=4303817132,
+		des="<Symbol \"_NSLog\" in WeiBo_arm64 (import)>",
+		dp=None,
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:131
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:131
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+" -> "Context:0x1008709ac +[QNLogUtils log:filename:lineNumber:method:message:]
+Depth:140
+Invoke:0x100870ba4L <Symbol \"_NSLog\" in WeiBo_\
+arm64 (import)>
+x0: SHOULD not reach here, unknown level: %zd
+x1: log:filename:lineNumber:method:message:
+"	 [color=red];
+	"Context:0x1008709ac +[QNLogUtils log:filename:lineNumber:method:message:]
+Depth:142
+Invoke:0x100870b20L +[DDLog qn_log:level:flag:\
+context:file:function:line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: \
+1
+x5: 0
+x6: /Users/jerrychu/workstation/Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x7: -[QNBaseWebView \
+loadRequest:]
+x8: 4308967424
+x9: 4303817644
+x10: reg_x10
+"	 [addr=4303817504,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '1', '0', '/Users/jerrychu/workstation/Weibo/Weibo_\
+6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m', '-[QNBaseWebView loadRequest:]', '4308967424', '4303817644', '\
+reg_x10']",
+		context=4303817132,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:131
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:131
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+" -> "Context:0x1008709ac +[QNLogUtils log:filename:lineNumber:method:message:]
+Depth:142
+Invoke:0x100870b20L +[DDLog qn_log:level:flag:\
+context:file:function:line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: \
+1
+x5: 0
+x6: /Users/jerrychu/workstation/Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x7: -[QNBaseWebView \
+loadRequest:]
+x8: 4308967424
+x9: 4303817644
+x10: reg_x10
+"	 [color=red];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:127
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"	 [addr=4303818460,
+		args="['RetFrom_0x100870ec8L', 'initWithFormat:arguments:', 'ASSERTION FAILED: %s\n%@', '[NSThread isMainThread]']",
+		context=4303818348,
+		des="-[RetFrom_0x100870ec8L initWithFormat:arguments:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:124
+Invoke:0x100870ec8L +[NSString alloc]
+x0: NSString
+x1: alloc
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:127
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:138
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 32
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:127
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:136
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 64
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:139
+Invoke:0x1008710b8L +[QNLogUtils _invokeCustomLogBlock:lineNumber:\
+message:]
+x0: QNLogUtils
+x1: _invokeCustomLogBlock:lineNumber:message:
+x2: 0
+x3: 4294967295
+x4: RetFrom_0x100870edcL
+"	 [addr=4303818936,
+		args="['QNLogUtils', '_invokeCustomLogBlock:lineNumber:message:', '0', '4294967295', 'RetFrom_0x100870edcL']",
+		context=4303818348,
+		des="+[QNLogUtils _invokeCustomLogBlock:lineNumber:message:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:127
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:127
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:139
+Invoke:0x1008710b8L +[QNLogUtils _invokeCustomLogBlock:lineNumber:\
+message:]
+x0: QNLogUtils
+x1: _invokeCustomLogBlock:lineNumber:message:
+x2: 0
+x3: 4294967295
+x4: RetFrom_0x100870edcL
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:136
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 16
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [addr=4303818880,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '16', '0', '0', '0', '4294967295', 'reg_x9', 'reg_\
+x10']",
+		context=4303818348,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:127
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:127
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:136
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 16
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:137
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 4
+x5: 0
+x6: 0
+x7: 0
+x8: \
+4294967295
+x9: 4303818972
+x10: reg_x10
+"	 [addr=4303818880,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '4', '0', '0', '0', '4294967295', '4303818972', '\
+reg_x10']",
+		context=4303818348,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:127
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:127
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:137
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 4
+x5: 0
+x6: 0
+x7: 0
+x8: \
+4294967295
+x9: 4303818972
+x10: reg_x10
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:137
+Invoke:0x1008710b8L +[QNLogUtils _invokeCustomLogBlock:lineNumber:\
+message:]
+x0: QNLogUtils
+x1: _invokeCustomLogBlock:lineNumber:message:
+x2: 0
+x3: 4294967295
+x4: RetFrom_0x100870edcL
+"	 [addr=4303818936,
+		args="['QNLogUtils', '_invokeCustomLogBlock:lineNumber:message:', '0', '4294967295', 'RetFrom_0x100870edcL']",
+		context=4303818348,
+		des="+[QNLogUtils _invokeCustomLogBlock:lineNumber:message:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:125
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:127
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:137
+Invoke:0x1008710b8L +[QNLogUtils _invokeCustomLogBlock:lineNumber:\
+message:]
+x0: QNLogUtils
+x1: _invokeCustomLogBlock:lineNumber:message:
+x2: 0
+x3: 4294967295
+x4: RetFrom_0x100870edcL
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:121
+Invoke:0x100870ec8L +[NSString alloc]
+x0: NSString
+x1: alloc
+"	 [addr=4303818440,
+		args="['NSString', 'alloc']",
+		context=4303818348,
+		des="+[NSString alloc]",
+		dp="[NSString alloc]",
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:114
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:124
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"	 [addr=4303818460,
+		args="['RetFrom_0x100870ec8L', 'initWithFormat:arguments:', 'ASSERTION FAILED: %s\n%@', '[NSThread isMainThread]']",
+		context=4303818348,
+		des="-[RetFrom_0x100870ec8L initWithFormat:arguments:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:121
+Invoke:0x100870ec8L +[NSString alloc]
+x0: NSString
+x1: alloc
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:121
+Invoke:0x100870ec8L +[NSString alloc]
+x0: NSString
+x1: alloc
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:124
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"	 [color=green];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:113
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+"	 [addr=4303819228,
+		args="['QNLogUtils', 'log:messageFormat:', '4', 'ASSERTION FAILED: %s\n%@']",
+		context=4303819004,
+		des="+[QNLogUtils log:messageFormat:]",
+		dp=None,
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:88
+Invoke:0x10087c074L +[0 copy]
+x0: 0
+x1: copy
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:125
+Invoke:0x10087120cL +[NSString \
+stringWithFormat:]
+x0: NSString
+x1: stringWithFormat:
+x2: `%s` failed: %@
+x3: ASSERTION FAILED: %s
+%@
+"	 [addr=4303819276,
+		args="['NSString', 'stringWithFormat:', '`%s` failed: %@', 'ASSERTION FAILED: %s\n%@']",
+		context=4303819004,
+		des="+[NSString stringWithFormat:]",
+		dp=None,
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:113
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:113
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+" -> "Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:125
+Invoke:0x10087120cL +[NSString \
+stringWithFormat:]
+x0: NSString
+x1: stringWithFormat:
+x2: `%s` failed: %@
+x3: ASSERTION FAILED: %s
+%@
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:120
+Invoke:0x100870ec8L +[NSString alloc]
+x0: NSString
+x1: alloc
+"	 [addr=4303818440,
+		args="['NSString', 'alloc']",
+		context=4303818348,
+		des="+[NSString alloc]",
+		dp="[NSString alloc]",
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:113
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:113
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:120
+Invoke:0x100870ec8L +[NSString alloc]
+x0: NSString
+x1: alloc
+"	 [color=red];
+	"Context:0x10087142c +[QNLogUtils _invokeCustomLogBlock:lineNumber:message:]
+Depth:142
+Invoke:0x10087147cL +[QNAsyncTaskWorkQueue \
+globalLowQueue]
+x0: QNAsyncTaskWorkQueue
+x1: globalLowQueue
+"	 [addr=4303819900,
+		args="['QNAsyncTaskWorkQueue', 'globalLowQueue']",
+		context=4303819820,
+		des="+[QNAsyncTaskWorkQueue globalLowQueue]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:132
+Invoke:0x1008710b8L +[QNLogUtils _invokeCustomLogBlock:lineNumber:\
+message:]
+x0: QNLogUtils
+x1: _invokeCustomLogBlock:lineNumber:message:
+x2: 0
+x3: 4294967295
+x4: RetFrom_0x100870edcL
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:124
+Invoke:0x100870ec8L +[NSString alloc]
+x0: NSString
+x1: alloc
+"	 [addr=4303818440,
+		args="['NSString', 'alloc']",
+		context=4303818348,
+		des="+[NSString alloc]",
+		dp="[NSString alloc]",
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:117
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:124
+Invoke:0x100870ec8L +[NSString alloc]
+x0: NSString
+x1: alloc
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:127
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"	 [color=green];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:28
+Invoke:0x10087115cL +[NSString \
+alloc]
+x0: NSString
+x1: alloc
+"	 [addr=4303819100,
+		args="['NSString', 'alloc']",
+		context=4303819004,
+		des="+[NSString alloc]",
+		dp="[NSString alloc]",
+		pnode="Context:0x1008675e0 -[QNBaseWebView loadRequest:]
+Depth:21
+Invoke:0x1008676a0L +[QNLogUtils assert:statement:filename:lineNumber:\
+method:messageFormat:]
+x0: QNLogUtils
+x1: assert:statement:filename:lineNumber:method:messageFormat:
+x2: RetFrom_0x100867628L
+x3: [\
+NSThread isMainThread]
+x4: /Users/jerrychu/workstation/Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+\
+x5: 222
+x6: -[QNBaseWebView loadRequest:]
+x7: current thread is not main thread: %@, stacktrace: %@
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:31
+Invoke:0x100871170L -[RetFrom_\
+0x10087115cL initWithFormat:arguments:]
+x0: RetFrom_0x10087115cL
+x1: initWithFormat:arguments:
+x2: current thread is not main thread: %@, \
+stacktrace: %@
+x3: RetFrom_0x10086763cL
+"	 [addr=4303819120,
+		args="['RetFrom_0x10087115cL', 'initWithFormat:arguments:', 'current thread is not main thread: %@, stacktrace: %@', 'RetFrom_0x10086763cL']",
+		context=4303819004,
+		des="-[RetFrom_0x10087115cL initWithFormat:arguments:]",
+		dp=None,
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:28
+Invoke:0x10087115cL +[NSString \
+alloc]
+x0: NSString
+x1: alloc
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:28
+Invoke:0x10087115cL +[NSString \
+alloc]
+x0: NSString
+x1: alloc
+" -> "Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:31
+Invoke:0x100871170L -[RetFrom_\
+0x10087115cL initWithFormat:arguments:]
+x0: RetFrom_0x10087115cL
+x1: initWithFormat:arguments:
+x2: current thread is not main thread: %@, \
+stacktrace: %@
+x3: RetFrom_0x10086763cL
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:131
+Invoke:0x100870ec8L +[NSString alloc]
+x0: NSString
+x1: alloc
+"	 [addr=4303818440,
+		args="['NSString', 'alloc']",
+		context=4303818348,
+		des="+[NSString alloc]",
+		dp="[NSString alloc]",
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:124
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:134
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"	 [addr=4303818460,
+		args="['RetFrom_0x100870ec8L', 'initWithFormat:arguments:', 'ASSERTION FAILED: %s\n%@', '[NSThread isMainThread]']",
+		context=4303818348,
+		des="-[RetFrom_0x100870ec8L initWithFormat:arguments:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:131
+Invoke:0x100870ec8L +[NSString alloc]
+x0: NSString
+x1: alloc
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:131
+Invoke:0x100870ec8L +[NSString alloc]
+x0: NSString
+x1: alloc
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:134
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"	 [color=green];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:126
+Invoke:0x10087120cL +[NSString \
+stringWithFormat:]
+x0: NSString
+x1: stringWithFormat:
+x2: `%s` failed: %@
+x3: ASSERTION FAILED: %s
+%@
+"	 [addr=4303819276,
+		args="['NSString', 'stringWithFormat:', '`%s` failed: %@', 'ASSERTION FAILED: %s\n%@']",
+		context=4303819004,
+		des="+[NSString stringWithFormat:]",
+		dp=None,
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:114
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:126
+Invoke:0x10087120cL +[NSString \
+stringWithFormat:]
+x0: NSString
+x1: stringWithFormat:
+x2: `%s` failed: %@
+x3: ASSERTION FAILED: %s
+%@
+" -> "Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:132
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+"	 [color=green];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:125
+Invoke:0x10087120cL +[NSString \
+stringWithFormat:]
+x0: NSString
+x1: stringWithFormat:
+x2: `%s` failed: %@
+x3: ASSERTION FAILED: %s
+%@
+" -> "Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:131
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+"	 [color=green];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:53
+Invoke:0x10087bf74L -[RetFrom_0x100871198L isKindOfClass:]
+x0: RetFrom_0x100871198L
+\
+x1: isKindOfClass:
+x2: RetFrom_0x10087bf58L
+" -> "Context:0x10087bf0c sub_0x10087bf0c
+Depth:57
+Invoke:0x10087bfb0L +[NSArray arrayWithObjects:count:]
+x0: NSArray
+x1: arrayWithObjects:\
+count:
+x2: mem_7fffffffffefeb8
+x3: 0
+"	 [color=green];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:57
+Invoke:0x10087bf8cL -[RetFrom_0x100871198L copy]
+x0: RetFrom_0x100871198L
+x1: copy
+"	 [addr=4303863692,
+		args="['RetFrom_0x100871198L', 'copy']",
+		context=4303863564,
+		des="-[RetFrom_0x100871198L copy]",
+		dp="[RetFrom_0x100871198L copy]",
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:53
+Invoke:0x10087bf74L -[RetFrom_0x100871198L isKindOfClass:]
+x0: RetFrom_0x100871198L
+\
+x1: isKindOfClass:
+x2: RetFrom_0x10087bf58L
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:53
+Invoke:0x10087bf74L -[RetFrom_0x100871198L isKindOfClass:]
+x0: RetFrom_0x100871198L
+\
+x1: isKindOfClass:
+x2: RetFrom_0x10087bf58L
+" -> "Context:0x10087bf0c sub_0x10087bf0c
+Depth:57
+Invoke:0x10087bf8cL -[RetFrom_0x100871198L copy]
+x0: RetFrom_0x100871198L
+x1: copy
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:132
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 4
+x5: 0
+x6: 0
+x7: 0
+x8: \
+4294967295
+x9: 4303818972
+x10: reg_x10
+"	 [addr=4303818880,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '4', '0', '0', '0', '4294967295', '4303818972', '\
+reg_x10']",
+		context=4303818348,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:122
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:132
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 4
+x5: 0
+x6: 0
+x7: 0
+x8: \
+4294967295
+x9: 4303818972
+x10: reg_x10
+" -> "Context:0x10081d744 +[DDLog qn_log:level:flag:context:file:function:line:tag:message:]
+Depth:142
+Invoke:0x10081d7c0L +[DDLogMessage \
+alloc]
+x0: DDLogMessage
+x1: alloc
+"	 [color=red];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:124
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+"	 [addr=4303819228,
+		args="['QNLogUtils', 'log:messageFormat:', '4', 'ASSERTION FAILED: %s\n%@']",
+		context=4303819004,
+		des="+[QNLogUtils log:messageFormat:]",
+		dp=None,
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:97
+Invoke:0x10087c094L +[NSArray arrayWithObjects:count:]
+x0: NSArray
+x1: arrayWithObjects:\
+count:
+x2: mem_7fffffffffefeb8
+x3: 0
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:124
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:131
+Invoke:0x100870ec8L +[NSString alloc]
+x0: NSString
+x1: alloc
+"	 [color=red];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:136
+Invoke:0x10087120cL +[NSString \
+stringWithFormat:]
+x0: NSString
+x1: stringWithFormat:
+x2: `%s` failed: %@
+x3: ASSERTION FAILED: %s
+%@
+"	 [addr=4303819276,
+		args="['NSString', 'stringWithFormat:', '`%s` failed: %@', 'ASSERTION FAILED: %s\n%@']",
+		context=4303819004,
+		des="+[NSString stringWithFormat:]",
+		dp=None,
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:124
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:124
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+" -> "Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:136
+Invoke:0x10087120cL +[NSString \
+stringWithFormat:]
+x0: NSString
+x1: stringWithFormat:
+x2: `%s` failed: %@
+x3: ASSERTION FAILED: %s
+%@
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:135
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 4
+x5: 0
+x6: 0
+x7: 0
+x8: \
+4294967295
+x9: 4303818972
+x10: reg_x10
+"	 [addr=4303818880,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '4', '0', '0', '0', '4294967295', '4303818972', '\
+reg_x10']",
+		context=4303818348,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:125
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:142
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+"	 [addr=4303819324,
+		args="['QNLogUtils', 'log:filename:lineNumber:method:message:', '1', '/Users/jerrychu/workstation/Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/\
+QN/Commons/UIKit+Widgets/QNBaseWebView.m', '222', '-[QNBaseWebView loadRequest:]', 'RetFrom_0x10087120cL']",
+		context=4303819004,
+		des="+[QNLogUtils log:filename:lineNumber:method:message:]",
+		dp=None,
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:136
+Invoke:0x10087120cL +[NSString \
+stringWithFormat:]
+x0: NSString
+x1: stringWithFormat:
+x2: `%s` failed: %@
+x3: ASSERTION FAILED: %s
+%@
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:136
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"	 [addr=4303818460,
+		args="['RetFrom_0x100870ec8L', 'initWithFormat:arguments:', 'ASSERTION FAILED: %s\n%@', '[NSThread isMainThread]']",
+		context=4303818348,
+		des="-[RetFrom_0x100870ec8L initWithFormat:arguments:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:133
+Invoke:0x100870ec8L +[NSString alloc]
+x0: NSString
+x1: alloc
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:142
+Invoke:0x1008710b8L +[QNLogUtils _invokeCustomLogBlock:lineNumber:\
+message:]
+x0: QNLogUtils
+x1: _invokeCustomLogBlock:lineNumber:message:
+x2: 0
+x3: 4294967295
+x4: RetFrom_0x100870edcL
+"	 [addr=4303818936,
+		args="['QNLogUtils', '_invokeCustomLogBlock:lineNumber:message:', '0', '4294967295', 'RetFrom_0x100870edcL']",
+		context=4303818348,
+		des="+[QNLogUtils _invokeCustomLogBlock:lineNumber:message:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:132
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:82
+Invoke:0x10087c050L +[NSArray class]
+x0: NSArray
+x1: class
+"	 [addr=4303863888,
+		args="['NSArray', 'class']",
+		context=4303863564,
+		des="+[NSArray class]",
+		dp=None,
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:75
+Invoke:0x10087bff4L -[RetFrom_0x10087bfb0L count]
+x0: RetFrom_0x10087bfb0L
+x1: count
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:75
+Invoke:0x10087bff4L -[RetFrom_0x10087bfb0L count]
+x0: RetFrom_0x10087bfb0L
+x1: count
+" -> "Context:0x10087bf0c sub_0x10087bf0c
+Depth:82
+Invoke:0x10087c050L +[NSArray class]
+x0: NSArray
+x1: class
+"	 [color=green];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:83
+Invoke:0x10087c050L +[NSArray class]
+x0: NSArray
+x1: class
+"	 [addr=4303863888,
+		args="['NSArray', 'class']",
+		context=4303863564,
+		des="+[NSArray class]",
+		dp=None,
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:75
+Invoke:0x10087bff4L -[RetFrom_0x10087bfb0L count]
+x0: RetFrom_0x10087bfb0L
+x1: count
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:75
+Invoke:0x10087bff4L -[RetFrom_0x10087bfb0L count]
+x0: RetFrom_0x10087bfb0L
+x1: count
+" -> "Context:0x10087bf0c sub_0x10087bf0c
+Depth:83
+Invoke:0x10087c050L +[NSArray class]
+x0: NSArray
+x1: class
+"	 [color=green];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:80
+Invoke:0x10087c014L -[RetFrom_0x10087bfb0L count]
+x0: RetFrom_0x10087bfb0L
+x1: count
+"	 [addr=4303863828,
+		args="['RetFrom_0x10087bfb0L', 'count']",
+		context=4303863564,
+		des="-[RetFrom_0x10087bfb0L count]",
+		dp=None,
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:75
+Invoke:0x10087bff4L -[RetFrom_0x10087bfb0L count]
+x0: RetFrom_0x10087bfb0L
+x1: count
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:75
+Invoke:0x10087bff4L -[RetFrom_0x10087bfb0L count]
+x0: RetFrom_0x10087bfb0L
+x1: count
+" -> "Context:0x10087bf0c sub_0x10087bf0c
+Depth:80
+Invoke:0x10087c014L -[RetFrom_0x10087bfb0L count]
+x0: RetFrom_0x10087bfb0L
+x1: count
+"	 [color=green];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:88
+Invoke:0x10087c074L +[0 copy]
+x0: 0
+x1: copy
+"	 [addr=4303863924,
+		args="['0', 'copy']",
+		context=4303863564,
+		des="+[0 copy]",
+		dp=None,
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:84
+Invoke:0x10087c060L +[0 isKindOfClass:]
+x0: 0
+x1: isKindOfClass:
+x2: RetFrom_0x10087c050L
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:88
+Invoke:0x10087c074L +[0 copy]
+x0: 0
+x1: copy
+" -> "Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:113
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+"	 [color=red];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:81
+Invoke:0x10087c034L -[RetFrom_0x10087bf8cL subarrayWithRange:]
+x0: RetFrom_0x10087bf8cL
+\
+x1: subarrayWithRange:
+x2: 0
+"	 [addr=4303863860,
+		args="['RetFrom_0x10087bf8cL', 'subarrayWithRange:', '0']",
+		context=4303863564,
+		des="-[RetFrom_0x10087bf8cL subarrayWithRange:]",
+		dp="[[RetFrom_0x100871198L copy] subarrayWithRange:0 ]",
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:78
+Invoke:0x10087c014L -[RetFrom_0x10087bf8cL count]
+x0: RetFrom_0x10087bf8cL
+x1: count
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:90
+Invoke:0x10087c050L +[NSArray class]
+x0: NSArray
+x1: class
+"	 [addr=4303863888,
+		args="['NSArray', 'class']",
+		context=4303863564,
+		des="+[NSArray class]",
+		dp=None,
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:81
+Invoke:0x10087c034L -[RetFrom_0x10087bf8cL subarrayWithRange:]
+x0: RetFrom_0x10087bf8cL
+\
+x1: subarrayWithRange:
+x2: 0
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:81
+Invoke:0x10087c034L -[RetFrom_0x10087bf8cL subarrayWithRange:]
+x0: RetFrom_0x10087bf8cL
+\
+x1: subarrayWithRange:
+x2: 0
+" -> "Context:0x10087bf0c sub_0x10087bf0c
+Depth:90
+Invoke:0x10087c050L +[NSArray class]
+x0: NSArray
+x1: class
+"	 [color=green];
+	"Context:0x1008709ac +[QNLogUtils log:filename:lineNumber:method:message:]
+Depth:139
+Invoke:0x100870ba4L <Symbol \"_NSLog\" in WeiBo_\
+arm64 (import)>
+x0: SHOULD not reach here, unknown level: %zd
+x1: log:filename:lineNumber:method:message:
+"	 [addr=4303817636,
+		args="['SHOULD not reach here, unknown level: %zd', 'log:filename:lineNumber:method:message:']",
+		context=4303817132,
+		des="<Symbol \"_NSLog\" in WeiBo_arm64 (import)>",
+		dp=None,
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:130
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:136
+Invoke:0x10087120cL +[NSString \
+stringWithFormat:]
+x0: NSString
+x1: stringWithFormat:
+x2: `%s` failed: %@
+x3: ASSERTION FAILED: %s
+%@
+" -> "Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:142
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+"	 [color=green];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:99
+Invoke:0x10087c074L -[RetFrom_0x10087c034L copy]
+x0: RetFrom_0x10087c034L
+x1: copy
+"	 [addr=4303863924,
+		args="['RetFrom_0x10087c034L', 'copy']",
+		context=4303863564,
+		des="-[RetFrom_0x10087c034L copy]",
+		dp=None,
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:95
+Invoke:0x10087c060L -[RetFrom_0x10087c034L isKindOfClass:]
+x0: RetFrom_0x10087c034L
+\
+x1: isKindOfClass:
+x2: RetFrom_0x10087c050L
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:99
+Invoke:0x10087c074L -[RetFrom_0x10087c034L copy]
+x0: RetFrom_0x10087c034L
+x1: copy
+" -> "Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:124
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+"	 [color=red];
+	"Context:0x1008675e0 -[QNBaseWebView loadRequest:]
+Depth:0
+Invoke:0x1008675e0L Start
+"	 [addr=4303779296,
+		args=None,
+		color=blue,
+		context=4303779296,
+		context_name="-[QNBaseWebView loadRequest:]",
+		des=Start,
+		dp=None,
+		pnode=None];
+	"Context:0x1008675e0 -[QNBaseWebView loadRequest:]
+Depth:6
+Invoke:0x100867628L +[NSThread isMainThread]
+x0: NSThread
+x1: isMainThread
+"	 [addr=4303779368,
+		args="['NSThread', 'isMainThread']",
+		context=4303779296,
+		des="+[NSThread isMainThread]",
+		dp=None,
+		pnode="Context:0x1008675e0 -[QNBaseWebView loadRequest:]
+Depth:0
+Invoke:0x1008675e0L Start
+"];
+	"Context:0x1008675e0 -[QNBaseWebView loadRequest:]
+Depth:0
+Invoke:0x1008675e0L Start
+" -> "Context:0x1008675e0 -[QNBaseWebView loadRequest:]
+Depth:6
+Invoke:0x100867628L +[NSThread isMainThread]
+x0: NSThread
+x1: isMainThread
+"	 [color=green];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:116
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+"	 [addr=4303819228,
+		args="['QNLogUtils', 'log:messageFormat:', '4', 'ASSERTION FAILED: %s\n%@']",
+		context=4303819004,
+		des="+[QNLogUtils log:messageFormat:]",
+		dp=None,
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:89
+Invoke:0x10087c094L +[NSArray arrayWithObjects:count:]
+x0: NSArray
+x1: arrayWithObjects:\
+count:
+x2: mem_7fffffffffefeb8
+x3: 0
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:89
+Invoke:0x10087c094L +[NSArray arrayWithObjects:count:]
+x0: NSArray
+x1: arrayWithObjects:\
+count:
+x2: mem_7fffffffffefeb8
+x3: 0
+" -> "Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:116
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+"	 [color=red];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:133
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 16
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [addr=4303818880,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '16', '0', '0', '0', '4294967295', 'reg_x9', 'reg_\
+x10']",
+		context=4303818348,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:124
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"];
+	"Context:0x10081d744 +[DDLog qn_log:level:flag:context:file:function:line:tag:message:]
+Depth:143
+Invoke:0x10081d7c0L +[DDLogMessage \
+alloc]
+x0: DDLogMessage
+x1: alloc
+"	 [addr=4303476672,
+		args="['DDLogMessage', 'alloc']",
+		context=4303476548,
+		des="+[DDLogMessage alloc]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:133
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 32
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:133
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 16
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+" -> "Context:0x10081d744 +[DDLog qn_log:level:flag:context:file:function:line:tag:message:]
+Depth:143
+Invoke:0x10081d7c0L +[DDLogMessage \
+alloc]
+x0: DDLogMessage
+x1: alloc
+"	 [color=red];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:133
+Invoke:0x100870ec8L +[NSString alloc]
+x0: NSString
+x1: alloc
+"	 [addr=4303818440,
+		args="['NSString', 'alloc']",
+		context=4303818348,
+		des="+[NSString alloc]",
+		dp="[NSString alloc]",
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:126
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:133
+Invoke:0x100870ec8L +[NSString alloc]
+x0: NSString
+x1: alloc
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:136
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"	 [color=green];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:117
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+"	 [addr=4303819228,
+		args="['QNLogUtils', 'log:messageFormat:', '4', 'ASSERTION FAILED: %s\n%@']",
+		context=4303819004,
+		des="+[QNLogUtils log:messageFormat:]",
+		dp=None,
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:90
+Invoke:0x10087c094L +[NSArray arrayWithObjects:count:]
+x0: NSArray
+x1: arrayWithObjects:\
+count:
+x2: mem_7fffffffffefeb8
+x3: 0
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:90
+Invoke:0x10087c094L +[NSArray arrayWithObjects:count:]
+x0: NSArray
+x1: arrayWithObjects:\
+count:
+x2: mem_7fffffffffefeb8
+x3: 0
+" -> "Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:117
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+"	 [color=red];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:133
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+"	 [addr=4303819324,
+		args="['QNLogUtils', 'log:filename:lineNumber:method:message:', '1', '/Users/jerrychu/workstation/Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/\
+QN/Commons/UIKit+Widgets/QNBaseWebView.m', '222', '-[QNBaseWebView loadRequest:]', 'RetFrom_0x10087120cL']",
+		context=4303819004,
+		des="+[QNLogUtils log:filename:lineNumber:method:message:]",
+		dp=None,
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:127
+Invoke:0x10087120cL +[NSString \
+stringWithFormat:]
+x0: NSString
+x1: stringWithFormat:
+x2: `%s` failed: %@
+x3: ASSERTION FAILED: %s
+%@
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:133
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+" -> "Context:0x1008709ac +[QNLogUtils log:filename:lineNumber:method:message:]
+Depth:142
+Invoke:0x100870ba4L <Symbol \"_NSLog\" in WeiBo_\
+arm64 (import)>
+x0: SHOULD not reach here, unknown level: %zd
+x1: log:filename:lineNumber:method:message:
+"	 [color=red];
+	"Context:0x1008709ac +[QNLogUtils log:filename:lineNumber:method:message:]
+Depth:143
+Invoke:0x100870b20L +[DDLog qn_log:level:flag:\
+context:file:function:line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: \
+16
+x5: 0
+x6: /Users/jerrychu/workstation/Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x7: -[\
+QNBaseWebView loadRequest:]
+x8: 4308967424
+x9: reg_x9
+x10: reg_x10
+"	 [addr=4303817504,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '16', '0', '/Users/jerrychu/workstation/Weibo/Weibo_\
+6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m', '-[QNBaseWebView loadRequest:]', '4308967424', 'reg_x9', '\
+reg_x10']",
+		context=4303817132,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:133
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:133
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+" -> "Context:0x1008709ac +[QNLogUtils log:filename:lineNumber:method:message:]
+Depth:143
+Invoke:0x100870b20L +[DDLog qn_log:level:flag:\
+context:file:function:line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: \
+16
+x5: 0
+x6: /Users/jerrychu/workstation/Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x7: -[\
+QNBaseWebView loadRequest:]
+x8: 4308967424
+x9: reg_x9
+x10: reg_x10
+"	 [color=red];
+	"Context:0x1008709ac +[QNLogUtils log:filename:lineNumber:method:message:]
+Depth:143
+Invoke:0x100870b20L +[DDLog qn_log:level:flag:\
+context:file:function:line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: \
+32
+x5: 0
+x6: /Users/jerrychu/workstation/Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x7: -[\
+QNBaseWebView loadRequest:]
+x8: 4308967424
+x9: reg_x9
+x10: reg_x10
+"	 [addr=4303817504,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '32', '0', '/Users/jerrychu/workstation/Weibo/Weibo_\
+6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m', '-[QNBaseWebView loadRequest:]', '4308967424', 'reg_x9', '\
+reg_x10']",
+		context=4303817132,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:133
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:133
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+" -> "Context:0x1008709ac +[QNLogUtils log:filename:lineNumber:method:message:]
+Depth:143
+Invoke:0x100870b20L +[DDLog qn_log:level:flag:\
+context:file:function:line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: \
+32
+x5: 0
+x6: /Users/jerrychu/workstation/Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x7: -[\
+QNBaseWebView loadRequest:]
+x8: 4308967424
+x9: reg_x9
+x10: reg_x10
+"	 [color=red];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:117
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+" -> "Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:129
+Invoke:0x10087120cL +[NSString \
+stringWithFormat:]
+x0: NSString
+x1: stringWithFormat:
+x2: `%s` failed: %@
+x3: ASSERTION FAILED: %s
+%@
+"	 [color=green];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:117
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:124
+Invoke:0x100870ec8L +[NSString alloc]
+x0: NSString
+x1: alloc
+"	 [color=red];
+	"Context:0x1008675e0 -[QNBaseWebView loadRequest:]
+Depth:9
+Invoke:0x10086763cL +[NSThread currentThread]
+x0: NSThread
+x1: currentThread
+"	 [addr=4303779388,
+		args="['NSThread', 'currentThread']",
+		context=4303779296,
+		des="+[NSThread currentThread]",
+		dp=None,
+		pnode="Context:0x1008675e0 -[QNBaseWebView loadRequest:]
+Depth:6
+Invoke:0x100867628L +[NSThread isMainThread]
+x0: NSThread
+x1: isMainThread
+"];
+	"Context:0x1008675e0 -[QNBaseWebView loadRequest:]
+Depth:15
+Invoke:0x100867658L +[NSThread callStackSymbols]
+x0: NSThread
+x1: callStackSymbols
+"	 [addr=4303779416,
+		args="['NSThread', 'callStackSymbols']",
+		context=4303779296,
+		des="+[NSThread callStackSymbols]",
+		dp=None,
+		pnode="Context:0x1008675e0 -[QNBaseWebView loadRequest:]
+Depth:9
+Invoke:0x10086763cL +[NSThread currentThread]
+x0: NSThread
+x1: currentThread
+"];
+	"Context:0x1008675e0 -[QNBaseWebView loadRequest:]
+Depth:9
+Invoke:0x10086763cL +[NSThread currentThread]
+x0: NSThread
+x1: currentThread
+" -> "Context:0x1008675e0 -[QNBaseWebView loadRequest:]
+Depth:15
+Invoke:0x100867658L +[NSThread callStackSymbols]
+x0: NSThread
+x1: callStackSymbols
+"	 [color=green];
+	"Context:0x10081d744 +[DDLog qn_log:level:flag:context:file:function:line:tag:message:]
+Depth:141
+Invoke:0x10081d7c0L +[DDLogMessage \
+alloc]
+x0: DDLogMessage
+x1: alloc
+"	 [addr=4303476672,
+		args="['DDLogMessage', 'alloc']",
+		context=4303476548,
+		des="+[DDLogMessage alloc]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:131
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 64
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:73
+Invoke:0x10087bff4L -[RetFrom_0x10087bf8cL count]
+x0: RetFrom_0x10087bf8cL
+x1: count
+"	 [addr=4303863796,
+		args="['RetFrom_0x10087bf8cL', 'count']",
+		context=4303863564,
+		des="-[RetFrom_0x10087bf8cL count]",
+		dp=None,
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:57
+Invoke:0x10087bf8cL -[RetFrom_0x100871198L copy]
+x0: RetFrom_0x100871198L
+x1: copy
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:57
+Invoke:0x10087bf8cL -[RetFrom_0x100871198L copy]
+x0: RetFrom_0x100871198L
+x1: copy
+" -> "Context:0x10087bf0c sub_0x10087bf0c
+Depth:73
+Invoke:0x10087bff4L -[RetFrom_0x10087bf8cL count]
+x0: RetFrom_0x10087bf8cL
+x1: count
+"	 [color=green];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:82
+Invoke:0x10087c050L +[NSArray class]
+x0: NSArray
+x1: class
+" -> "Context:0x10087bf0c sub_0x10087bf0c
+Depth:85
+Invoke:0x10087c060L +[0 isKindOfClass:]
+x0: 0
+x1: isKindOfClass:
+x2: RetFrom_0x10087c050L
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:136
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 4
+x5: 0
+x6: 0
+x7: 0
+x8: \
+4294967295
+x9: 4303818972
+x10: reg_x10
+"	 [addr=4303818880,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '4', '0', '0', '0', '4294967295', '4303818972', '\
+reg_x10']",
+		context=4303818348,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:126
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:124
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:135
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 32
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:124
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:134
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 4
+x5: 0
+x6: 0
+x7: 0
+x8: \
+4294967295
+x9: 4303818972
+x10: reg_x10
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:124
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:133
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 16
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:133
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 64
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [addr=4303818880,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '64', '0', '0', '0', '4294967295', 'reg_x9', 'reg_\
+x10']",
+		context=4303818348,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:124
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:124
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:133
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 64
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:136
+Invoke:0x1008710b8L +[QNLogUtils _invokeCustomLogBlock:lineNumber:\
+message:]
+x0: QNLogUtils
+x1: _invokeCustomLogBlock:lineNumber:message:
+x2: 0
+x3: 4294967295
+x4: RetFrom_0x100870edcL
+"	 [addr=4303818936,
+		args="['QNLogUtils', '_invokeCustomLogBlock:lineNumber:message:', '0', '4294967295', 'RetFrom_0x100870edcL']",
+		context=4303818348,
+		des="+[QNLogUtils _invokeCustomLogBlock:lineNumber:message:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:124
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:124
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:136
+Invoke:0x1008710b8L +[QNLogUtils _invokeCustomLogBlock:lineNumber:\
+message:]
+x0: QNLogUtils
+x1: _invokeCustomLogBlock:lineNumber:message:
+x2: 0
+x3: 4294967295
+x4: RetFrom_0x100870edcL
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:134
+Invoke:0x1008710b8L +[QNLogUtils _invokeCustomLogBlock:lineNumber:\
+message:]
+x0: QNLogUtils
+x1: _invokeCustomLogBlock:lineNumber:message:
+x2: 0
+x3: 4294967295
+x4: RetFrom_0x100870edcL
+"	 [addr=4303818936,
+		args="['QNLogUtils', '_invokeCustomLogBlock:lineNumber:message:', '0', '4294967295', 'RetFrom_0x100870edcL']",
+		context=4303818348,
+		des="+[QNLogUtils _invokeCustomLogBlock:lineNumber:message:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:122
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:124
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:134
+Invoke:0x1008710b8L +[QNLogUtils _invokeCustomLogBlock:lineNumber:\
+message:]
+x0: QNLogUtils
+x1: _invokeCustomLogBlock:lineNumber:message:
+x2: 0
+x3: 4294967295
+x4: RetFrom_0x100870edcL
+"	 [color=green];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:115
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+"	 [addr=4303819228,
+		args="['QNLogUtils', 'log:messageFormat:', '4', 'ASSERTION FAILED: %s\n%@']",
+		context=4303819004,
+		des="+[QNLogUtils log:messageFormat:]",
+		dp=None,
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:88
+Invoke:0x10087c094L +[NSArray arrayWithObjects:count:]
+x0: NSArray
+x1: arrayWithObjects:\
+count:
+x2: mem_7fffffffffefeb8
+x3: 0
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:90
+Invoke:0x10087c074L +[0 copy]
+x0: 0
+x1: copy
+" -> "Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:115
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+"	 [color=red];
+	"Context:0x1008709ac +[QNLogUtils log:filename:lineNumber:method:message:]
+Depth:141
+Invoke:0x100870b20L +[DDLog qn_log:level:flag:\
+context:file:function:line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: \
+1
+x5: 0
+x6: /Users/jerrychu/workstation/Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x7: -[QNBaseWebView \
+loadRequest:]
+x8: 4308967424
+x9: 4303817644
+x10: reg_x10
+"	 [addr=4303817504,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '1', '0', '/Users/jerrychu/workstation/Weibo/Weibo_\
+6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m', '-[QNBaseWebView loadRequest:]', '4308967424', '4303817644', '\
+reg_x10']",
+		context=4303817132,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:130
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:124
+Invoke:0x10087120cL +[NSString \
+stringWithFormat:]
+x0: NSString
+x1: stringWithFormat:
+x2: `%s` failed: %@
+x3: ASSERTION FAILED: %s
+%@
+"	 [addr=4303819276,
+		args="['NSString', 'stringWithFormat:', '`%s` failed: %@', 'ASSERTION FAILED: %s\n%@']",
+		context=4303819004,
+		des="+[NSString stringWithFormat:]",
+		dp=None,
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:112
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:112
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+" -> "Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:124
+Invoke:0x10087120cL +[NSString \
+stringWithFormat:]
+x0: NSString
+x1: stringWithFormat:
+x2: `%s` failed: %@
+x3: ASSERTION FAILED: %s
+%@
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:119
+Invoke:0x100870ec8L +[NSString alloc]
+x0: NSString
+x1: alloc
+"	 [addr=4303818440,
+		args="['NSString', 'alloc']",
+		context=4303818348,
+		des="+[NSString alloc]",
+		dp="[NSString alloc]",
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:112
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:112
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:119
+Invoke:0x100870ec8L +[NSString alloc]
+x0: NSString
+x1: alloc
+"	 [color=red];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:134
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+"	 [addr=4303819324,
+		args="['QNLogUtils', 'log:filename:lineNumber:method:message:', '1', '/Users/jerrychu/workstation/Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/\
+QN/Commons/UIKit+Widgets/QNBaseWebView.m', '222', '-[QNBaseWebView loadRequest:]', 'RetFrom_0x10087120cL']",
+		context=4303819004,
+		des="+[QNLogUtils log:filename:lineNumber:method:message:]",
+		dp=None,
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:128
+Invoke:0x10087120cL +[NSString \
+stringWithFormat:]
+x0: NSString
+x1: stringWithFormat:
+x2: `%s` failed: %@
+x3: ASSERTION FAILED: %s
+%@
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:134
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+" -> "Context:0x1008709ac +[QNLogUtils log:filename:lineNumber:method:message:]
+Depth:143
+Invoke:0x100870ba4L <Symbol \"_NSLog\" in WeiBo_\
+arm64 (import)>
+x0: SHOULD not reach here, unknown level: %zd
+x1: log:filename:lineNumber:method:message:
+"	 [color=red];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:123
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"	 [addr=4303818460,
+		args="['RetFrom_0x100870ec8L', 'initWithFormat:arguments:', 'ASSERTION FAILED: %s\n%@', '[NSThread isMainThread]']",
+		context=4303818348,
+		des="-[RetFrom_0x100870ec8L initWithFormat:arguments:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:120
+Invoke:0x100870ec8L +[NSString alloc]
+x0: NSString
+x1: alloc
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:123
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:132
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 64
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:123
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:132
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 16
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:135
+Invoke:0x1008710b8L +[QNLogUtils _invokeCustomLogBlock:lineNumber:\
+message:]
+x0: QNLogUtils
+x1: _invokeCustomLogBlock:lineNumber:message:
+x2: 0
+x3: 4294967295
+x4: RetFrom_0x100870edcL
+"	 [addr=4303818936,
+		args="['QNLogUtils', '_invokeCustomLogBlock:lineNumber:message:', '0', '4294967295', 'RetFrom_0x100870edcL']",
+		context=4303818348,
+		des="+[QNLogUtils _invokeCustomLogBlock:lineNumber:message:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:123
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:123
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:135
+Invoke:0x1008710b8L +[QNLogUtils _invokeCustomLogBlock:lineNumber:\
+message:]
+x0: QNLogUtils
+x1: _invokeCustomLogBlock:lineNumber:message:
+x2: 0
+x3: 4294967295
+x4: RetFrom_0x100870edcL
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:134
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 32
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [addr=4303818880,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '32', '0', '0', '0', '4294967295', 'reg_x9', 'reg_\
+x10']",
+		context=4303818348,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:123
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:123
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:134
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 32
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:133
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 4
+x5: 0
+x6: 0
+x7: 0
+x8: \
+4294967295
+x9: 4303818972
+x10: reg_x10
+"	 [addr=4303818880,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '4', '0', '0', '0', '4294967295', '4303818972', '\
+reg_x10']",
+		context=4303818348,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:123
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:123
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:133
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 4
+x5: 0
+x6: 0
+x7: 0
+x8: \
+4294967295
+x9: 4303818972
+x10: reg_x10
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:133
+Invoke:0x1008710b8L +[QNLogUtils _invokeCustomLogBlock:lineNumber:\
+message:]
+x0: QNLogUtils
+x1: _invokeCustomLogBlock:lineNumber:message:
+x2: 0
+x3: 4294967295
+x4: RetFrom_0x100870edcL
+"	 [addr=4303818936,
+		args="['QNLogUtils', '_invokeCustomLogBlock:lineNumber:message:', '0', '4294967295', 'RetFrom_0x100870edcL']",
+		context=4303818348,
+		des="+[QNLogUtils _invokeCustomLogBlock:lineNumber:message:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:123
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:123
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:133
+Invoke:0x1008710b8L +[QNLogUtils _invokeCustomLogBlock:lineNumber:\
+message:]
+x0: QNLogUtils
+x1: _invokeCustomLogBlock:lineNumber:message:
+x2: 0
+x3: 4294967295
+x4: RetFrom_0x100870edcL
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:123
+Invoke:0x100870ec8L +[NSString alloc]
+x0: NSString
+x1: alloc
+"	 [addr=4303818440,
+		args="['NSString', 'alloc']",
+		context=4303818348,
+		des="+[NSString alloc]",
+		dp="[NSString alloc]",
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:116
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:126
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"	 [addr=4303818460,
+		args="['RetFrom_0x100870ec8L', 'initWithFormat:arguments:', 'ASSERTION FAILED: %s\n%@', '[NSThread isMainThread]']",
+		context=4303818348,
+		des="-[RetFrom_0x100870ec8L initWithFormat:arguments:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:123
+Invoke:0x100870ec8L +[NSString alloc]
+x0: NSString
+x1: alloc
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:123
+Invoke:0x100870ec8L +[NSString alloc]
+x0: NSString
+x1: alloc
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:126
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:125
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"	 [addr=4303818460,
+		args="['RetFrom_0x100870ec8L', 'initWithFormat:arguments:', 'ASSERTION FAILED: %s\n%@', '[NSThread isMainThread]']",
+		context=4303818348,
+		des="-[RetFrom_0x100870ec8L initWithFormat:arguments:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:122
+Invoke:0x100870ec8L +[NSString alloc]
+x0: NSString
+x1: alloc
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:125
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:136
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 32
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:125
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:134
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 16
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:125
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:135
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 4
+x5: 0
+x6: 0
+x7: 0
+x8: \
+4294967295
+x9: 4303818972
+x10: reg_x10
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:125
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:135
+Invoke:0x1008710b8L +[QNLogUtils _invokeCustomLogBlock:lineNumber:\
+message:]
+x0: QNLogUtils
+x1: _invokeCustomLogBlock:lineNumber:message:
+x2: 0
+x3: 4294967295
+x4: RetFrom_0x100870edcL
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:134
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 64
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [addr=4303818880,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '64', '0', '0', '0', '4294967295', 'reg_x9', 'reg_\
+x10']",
+		context=4303818348,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:125
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:125
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:134
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 64
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:125
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:137
+Invoke:0x1008710b8L +[QNLogUtils _invokeCustomLogBlock:lineNumber:\
+message:]
+x0: QNLogUtils
+x1: _invokeCustomLogBlock:lineNumber:message:
+x2: 0
+x3: 4294967295
+x4: RetFrom_0x100870edcL
+"	 [color=green];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:80
+Invoke:0x10087c050L +[NSArray class]
+x0: NSArray
+x1: class
+"	 [addr=4303863888,
+		args="['NSArray', 'class']",
+		context=4303863564,
+		des="+[NSArray class]",
+		dp=None,
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:73
+Invoke:0x10087bff4L -[RetFrom_0x10087bf8cL count]
+x0: RetFrom_0x10087bf8cL
+x1: count
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:73
+Invoke:0x10087bff4L -[RetFrom_0x10087bf8cL count]
+x0: RetFrom_0x10087bf8cL
+x1: count
+" -> "Context:0x10087bf0c sub_0x10087bf0c
+Depth:80
+Invoke:0x10087c050L +[NSArray class]
+x0: NSArray
+x1: class
+"	 [color=green];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:81
+Invoke:0x10087c050L +[NSArray class]
+x0: NSArray
+x1: class
+"	 [addr=4303863888,
+		args="['NSArray', 'class']",
+		context=4303863564,
+		des="+[NSArray class]",
+		dp=None,
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:73
+Invoke:0x10087bff4L -[RetFrom_0x10087bf8cL count]
+x0: RetFrom_0x10087bf8cL
+x1: count
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:73
+Invoke:0x10087bff4L -[RetFrom_0x10087bf8cL count]
+x0: RetFrom_0x10087bf8cL
+x1: count
+" -> "Context:0x10087bf0c sub_0x10087bf0c
+Depth:81
+Invoke:0x10087c050L +[NSArray class]
+x0: NSArray
+x1: class
+"	 [color=green];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:78
+Invoke:0x10087c014L -[RetFrom_0x10087bf8cL count]
+x0: RetFrom_0x10087bf8cL
+x1: count
+"	 [addr=4303863828,
+		args="['RetFrom_0x10087bf8cL', 'count']",
+		context=4303863564,
+		des="-[RetFrom_0x10087bf8cL count]",
+		dp=None,
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:73
+Invoke:0x10087bff4L -[RetFrom_0x10087bf8cL count]
+x0: RetFrom_0x10087bf8cL
+x1: count
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:73
+Invoke:0x10087bff4L -[RetFrom_0x10087bf8cL count]
+x0: RetFrom_0x10087bf8cL
+x1: count
+" -> "Context:0x10087bf0c sub_0x10087bf0c
+Depth:78
+Invoke:0x10087c014L -[RetFrom_0x10087bf8cL count]
+x0: RetFrom_0x10087bf8cL
+x1: count
+"	 [color=green];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:83
+Invoke:0x10087c050L +[NSArray class]
+x0: NSArray
+x1: class
+" -> "Context:0x10087bf0c sub_0x10087bf0c
+Depth:86
+Invoke:0x10087c060L +[0 isKindOfClass:]
+x0: 0
+x1: isKindOfClass:
+x2: RetFrom_0x10087c050L
+"	 [color=green];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:122
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+"	 [addr=4303819228,
+		args="['QNLogUtils', 'log:messageFormat:', '4', 'ASSERTION FAILED: %s\n%@']",
+		context=4303819004,
+		des="+[QNLogUtils log:messageFormat:]",
+		dp=None,
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:97
+Invoke:0x10087c074L -[RetFrom_0x10087c034L copy]
+x0: RetFrom_0x10087c034L
+x1: copy
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:122
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:129
+Invoke:0x100870ec8L +[NSString alloc]
+x0: NSString
+x1: alloc
+"	 [color=red];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:134
+Invoke:0x10087120cL +[NSString \
+stringWithFormat:]
+x0: NSString
+x1: stringWithFormat:
+x2: `%s` failed: %@
+x3: ASSERTION FAILED: %s
+%@
+"	 [addr=4303819276,
+		args="['NSString', 'stringWithFormat:', '`%s` failed: %@', 'ASSERTION FAILED: %s\n%@']",
+		context=4303819004,
+		des="+[NSString stringWithFormat:]",
+		dp=None,
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:122
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:122
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+" -> "Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:134
+Invoke:0x10087120cL +[NSString \
+stringWithFormat:]
+x0: NSString
+x1: stringWithFormat:
+x2: `%s` failed: %@
+x3: ASSERTION FAILED: %s
+%@
+"	 [color=green];
+	"Context:0x1008675e0 -[QNBaseWebView loadRequest:]
+Depth:33
+Invoke:0x1008676d4L <Symbol \"_objc_msgSendSuper2\" in WeiBo_arm64 (import)>
+\
+x0: QNBaseWebView_instance
+x1: loadRequest:
+"	 [addr=4303779540,
+		args="['QNBaseWebView_instance', 'loadRequest:']",
+		context=4303779296,
+		des="<Symbol \"_objc_msgSendSuper2\" in WeiBo_arm64 (import)>",
+		dp=None,
+		pnode="Context:0x1008675e0 -[QNBaseWebView loadRequest:]
+Depth:21
+Invoke:0x1008676a0L +[QNLogUtils assert:statement:filename:lineNumber:\
+method:messageFormat:]
+x0: QNLogUtils
+x1: assert:statement:filename:lineNumber:method:messageFormat:
+x2: RetFrom_0x100867628L
+x3: [\
+NSThread isMainThread]
+x4: /Users/jerrychu/workstation/Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+\
+x5: 222
+x6: -[QNBaseWebView loadRequest:]
+x7: current thread is not main thread: %@, stacktrace: %@
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:116
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:123
+Invoke:0x100870ec8L +[NSString alloc]
+x0: NSString
+x1: alloc
+"	 [color=red];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:128
+Invoke:0x10087120cL +[NSString \
+stringWithFormat:]
+x0: NSString
+x1: stringWithFormat:
+x2: `%s` failed: %@
+x3: ASSERTION FAILED: %s
+%@
+"	 [addr=4303819276,
+		args="['NSString', 'stringWithFormat:', '`%s` failed: %@', 'ASSERTION FAILED: %s\n%@']",
+		context=4303819004,
+		des="+[NSString stringWithFormat:]",
+		dp=None,
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:116
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:116
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+" -> "Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:128
+Invoke:0x10087120cL +[NSString \
+stringWithFormat:]
+x0: NSString
+x1: stringWithFormat:
+x2: `%s` failed: %@
+x3: ASSERTION FAILED: %s
+%@
+"	 [color=green];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:138
+Invoke:0x10087120cL +[NSString \
+stringWithFormat:]
+x0: NSString
+x1: stringWithFormat:
+x2: `%s` failed: %@
+x3: ASSERTION FAILED: %s
+%@
+"	 [addr=4303819276,
+		args="['NSString', 'stringWithFormat:', '`%s` failed: %@', 'ASSERTION FAILED: %s\n%@']",
+		context=4303819004,
+		des="+[NSString stringWithFormat:]",
+		dp=None,
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:126
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:83
+Invoke:0x10087c060L +[0 isKindOfClass:]
+x0: 0
+x1: isKindOfClass:
+x2: RetFrom_0x10087c050L
+"	 [addr=4303863904,
+		args="['0', 'isKindOfClass:', 'RetFrom_0x10087c050L']",
+		context=4303863564,
+		des="+[0 isKindOfClass:]",
+		dp=None,
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:80
+Invoke:0x10087c050L +[NSArray class]
+x0: NSArray
+x1: class
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:80
+Invoke:0x10087c050L +[NSArray class]
+x0: NSArray
+x1: class
+" -> "Context:0x10087bf0c sub_0x10087bf0c
+Depth:83
+Invoke:0x10087c060L +[0 isKindOfClass:]
+x0: 0
+x1: isKindOfClass:
+x2: RetFrom_0x10087c050L
+"	 [color=green];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:93
+Invoke:0x10087c060L -[RetFrom_0x10087c034L isKindOfClass:]
+x0: RetFrom_0x10087c034L
+\
+x1: isKindOfClass:
+x2: RetFrom_0x10087c050L
+"	 [addr=4303863904,
+		args="['RetFrom_0x10087c034L', 'isKindOfClass:', 'RetFrom_0x10087c050L']",
+		context=4303863564,
+		des="-[RetFrom_0x10087c034L isKindOfClass:]",
+		dp=None,
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:90
+Invoke:0x10087c050L +[NSArray class]
+x0: NSArray
+x1: class
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:90
+Invoke:0x10087c050L +[NSArray class]
+x0: NSArray
+x1: class
+" -> "Context:0x10087bf0c sub_0x10087bf0c
+Depth:93
+Invoke:0x10087c060L -[RetFrom_0x10087c034L isKindOfClass:]
+x0: RetFrom_0x10087c034L
+\
+x1: isKindOfClass:
+x2: RetFrom_0x10087c050L
+"	 [color=green];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:84
+Invoke:0x10087c060L +[0 isKindOfClass:]
+x0: 0
+x1: isKindOfClass:
+x2: RetFrom_0x10087c050L
+"	 [addr=4303863904,
+		args="['0', 'isKindOfClass:', 'RetFrom_0x10087c050L']",
+		context=4303863564,
+		des="+[0 isKindOfClass:]",
+		dp=None,
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:81
+Invoke:0x10087c050L +[NSArray class]
+x0: NSArray
+x1: class
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:84
+Invoke:0x10087c060L +[0 isKindOfClass:]
+x0: 0
+x1: isKindOfClass:
+x2: RetFrom_0x10087c050L
+" -> "Context:0x10087bf0c sub_0x10087bf0c
+Depth:88
+Invoke:0x10087c074L +[0 copy]
+x0: 0
+x1: copy
+"	 [color=green];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:88
+Invoke:0x10087c094L +[NSArray arrayWithObjects:count:]
+x0: NSArray
+x1: arrayWithObjects:\
+count:
+x2: mem_7fffffffffefeb8
+x3: 0
+"	 [addr=4303863956,
+		args="['NSArray', 'arrayWithObjects:count:', 'mem_7fffffffffefeb8', '0']",
+		context=4303863564,
+		des="+[NSArray arrayWithObjects:count:]",
+		dp=None,
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:84
+Invoke:0x10087c060L +[0 isKindOfClass:]
+x0: 0
+x1: isKindOfClass:
+x2: RetFrom_0x10087c050L
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:84
+Invoke:0x10087c060L +[0 isKindOfClass:]
+x0: 0
+x1: isKindOfClass:
+x2: RetFrom_0x10087c050L
+" -> "Context:0x10087bf0c sub_0x10087bf0c
+Depth:88
+Invoke:0x10087c094L +[NSArray arrayWithObjects:count:]
+x0: NSArray
+x1: arrayWithObjects:\
+count:
+x2: mem_7fffffffffefeb8
+x3: 0
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:138
+Invoke:0x1008710b8L +[QNLogUtils _invokeCustomLogBlock:lineNumber:\
+message:]
+x0: QNLogUtils
+x1: _invokeCustomLogBlock:lineNumber:message:
+x2: 0
+x3: 4294967295
+x4: RetFrom_0x100870edcL
+"	 [addr=4303818936,
+		args="['QNLogUtils', '_invokeCustomLogBlock:lineNumber:message:', '0', '4294967295', 'RetFrom_0x100870edcL']",
+		context=4303818348,
+		des="+[QNLogUtils _invokeCustomLogBlock:lineNumber:message:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:126
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:126
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:137
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 32
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:126
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:136
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 4
+x5: 0
+x6: 0
+x7: 0
+x8: \
+4294967295
+x9: 4303818972
+x10: reg_x10
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:126
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:138
+Invoke:0x1008710b8L +[QNLogUtils _invokeCustomLogBlock:lineNumber:\
+message:]
+x0: QNLogUtils
+x1: _invokeCustomLogBlock:lineNumber:message:
+x2: 0
+x3: 4294967295
+x4: RetFrom_0x100870edcL
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:126
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:136
+Invoke:0x1008710b8L +[QNLogUtils _invokeCustomLogBlock:lineNumber:\
+message:]
+x0: QNLogUtils
+x1: _invokeCustomLogBlock:lineNumber:message:
+x2: 0
+x3: 4294967295
+x4: RetFrom_0x100870edcL
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:135
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 64
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [addr=4303818880,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '64', '0', '0', '0', '4294967295', 'reg_x9', 'reg_\
+x10']",
+		context=4303818348,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:126
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:126
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:135
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 64
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:135
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 16
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [addr=4303818880,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '16', '0', '0', '0', '4294967295', 'reg_x9', 'reg_\
+x10']",
+		context=4303818348,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:126
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:126
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:135
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 16
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:133
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 64
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+" -> "Context:0x10081d744 +[DDLog qn_log:level:flag:context:file:function:line:tag:message:]
+Depth:143
+Invoke:0x10081d7c0L +[DDLogMessage \
+alloc]
+x0: DDLogMessage
+x1: alloc
+"	 [color=red];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:132
+Invoke:0x1008710b8L +[QNLogUtils _invokeCustomLogBlock:lineNumber:\
+message:]
+x0: QNLogUtils
+x1: _invokeCustomLogBlock:lineNumber:message:
+x2: 0
+x3: 4294967295
+x4: RetFrom_0x100870edcL
+"	 [addr=4303818936,
+		args="['QNLogUtils', '_invokeCustomLogBlock:lineNumber:message:', '0', '4294967295', 'RetFrom_0x100870edcL']",
+		context=4303818348,
+		des="+[QNLogUtils _invokeCustomLogBlock:lineNumber:message:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:122
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:132
+Invoke:0x1008710b8L +[QNLogUtils _invokeCustomLogBlock:lineNumber:\
+message:]
+x0: QNLogUtils
+x1: _invokeCustomLogBlock:lineNumber:message:
+x2: 0
+x3: 4294967295
+x4: RetFrom_0x100870edcL
+" -> "Context:0x10087142c +[QNLogUtils _invokeCustomLogBlock:lineNumber:message:]
+Depth:142
+Invoke:0x10087147cL +[QNAsyncTaskWorkQueue \
+globalLowQueue]
+x0: QNAsyncTaskWorkQueue
+x1: globalLowQueue
+"	 [color=red];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:81
+Invoke:0x10087c050L +[NSArray class]
+x0: NSArray
+x1: class
+" -> "Context:0x10087bf0c sub_0x10087bf0c
+Depth:84
+Invoke:0x10087c060L +[0 isKindOfClass:]
+x0: 0
+x1: isKindOfClass:
+x2: RetFrom_0x10087c050L
+"	 [color=green];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:130
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+"	 [addr=4303819324,
+		args="['QNLogUtils', 'log:filename:lineNumber:method:message:', '1', '/Users/jerrychu/workstation/Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/\
+QN/Commons/UIKit+Widgets/QNBaseWebView.m', '222', '-[QNBaseWebView loadRequest:]', 'RetFrom_0x10087120cL']",
+		context=4303819004,
+		des="+[QNLogUtils log:filename:lineNumber:method:message:]",
+		dp=None,
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:124
+Invoke:0x10087120cL +[NSString \
+stringWithFormat:]
+x0: NSString
+x1: stringWithFormat:
+x2: `%s` failed: %@
+x3: ASSERTION FAILED: %s
+%@
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:130
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+" -> "Context:0x1008709ac +[QNLogUtils log:filename:lineNumber:method:message:]
+Depth:140
+Invoke:0x100870b20L +[DDLog qn_log:level:flag:\
+context:file:function:line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: \
+32
+x5: 0
+x6: /Users/jerrychu/workstation/Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x7: -[\
+QNBaseWebView loadRequest:]
+x8: 4308967424
+x9: reg_x9
+x10: reg_x10
+"	 [color=red];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:130
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+" -> "Context:0x1008709ac +[QNLogUtils log:filename:lineNumber:method:message:]
+Depth:141
+Invoke:0x100870ba4L <Symbol \"_NSLog\" in WeiBo_\
+arm64 (import)>
+x0: SHOULD not reach here, unknown level: %zd
+x1: log:filename:lineNumber:method:message:
+"	 [color=red];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:130
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+" -> "Context:0x1008709ac +[QNLogUtils log:filename:lineNumber:method:message:]
+Depth:139
+Invoke:0x100870ba4L <Symbol \"_NSLog\" in WeiBo_\
+arm64 (import)>
+x0: SHOULD not reach here, unknown level: %zd
+x1: log:filename:lineNumber:method:message:
+"	 [color=red];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:130
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+" -> "Context:0x1008709ac +[QNLogUtils log:filename:lineNumber:method:message:]
+Depth:141
+Invoke:0x100870b20L +[DDLog qn_log:level:flag:\
+context:file:function:line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: \
+1
+x5: 0
+x6: /Users/jerrychu/workstation/Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x7: -[QNBaseWebView \
+loadRequest:]
+x8: 4308967424
+x9: 4303817644
+x10: reg_x10
+"	 [color=red];
+	"Context:0x1008709ac +[QNLogUtils log:filename:lineNumber:method:message:]
+Depth:140
+Invoke:0x100870b20L +[DDLog qn_log:level:flag:\
+context:file:function:line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: \
+16
+x5: 0
+x6: /Users/jerrychu/workstation/Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x7: -[\
+QNBaseWebView loadRequest:]
+x8: 4308967424
+x9: reg_x9
+x10: reg_x10
+"	 [addr=4303817504,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '16', '0', '/Users/jerrychu/workstation/Weibo/Weibo_\
+6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m', '-[QNBaseWebView loadRequest:]', '4308967424', 'reg_x9', '\
+reg_x10']",
+		context=4303817132,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:130
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:130
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+" -> "Context:0x1008709ac +[QNLogUtils log:filename:lineNumber:method:message:]
+Depth:140
+Invoke:0x100870b20L +[DDLog qn_log:level:flag:\
+context:file:function:line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: \
+16
+x5: 0
+x6: /Users/jerrychu/workstation/Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x7: -[\
+QNBaseWebView loadRequest:]
+x8: 4308967424
+x9: reg_x9
+x10: reg_x10
+"	 [color=red];
+	"Context:0x1008709ac +[QNLogUtils log:filename:lineNumber:method:message:]
+Depth:142
+Invoke:0x100870b20L +[DDLog qn_log:level:flag:\
+context:file:function:line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: \
+64
+x5: 0
+x6: /Users/jerrychu/workstation/Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x7: -[\
+QNBaseWebView loadRequest:]
+x8: 4308967424
+x9: reg_x9
+x10: reg_x10
+"	 [addr=4303817504,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '64', '0', '/Users/jerrychu/workstation/Weibo/Weibo_\
+6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m', '-[QNBaseWebView loadRequest:]', '4308967424', 'reg_x9', '\
+reg_x10']",
+		context=4303817132,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:130
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:130
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+" -> "Context:0x1008709ac +[QNLogUtils log:filename:lineNumber:method:message:]
+Depth:142
+Invoke:0x100870b20L +[DDLog qn_log:level:flag:\
+context:file:function:line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: \
+64
+x5: 0
+x6: /Users/jerrychu/workstation/Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x7: -[\
+QNBaseWebView loadRequest:]
+x8: 4308967424
+x9: reg_x9
+x10: reg_x10
+"	 [color=red];
+	"Context:0x1008675e0 -[QNBaseWebView loadRequest:]
+Depth:6
+Invoke:0x100867628L +[NSThread isMainThread]
+x0: NSThread
+x1: isMainThread
+" -> "Context:0x1008675e0 -[QNBaseWebView loadRequest:]
+Depth:9
+Invoke:0x10086763cL +[NSThread currentThread]
+x0: NSThread
+x1: currentThread
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:133
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 32
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [addr=4303818880,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '32', '0', '0', '0', '4294967295', 'reg_x9', 'reg_\
+x10']",
+		context=4303818348,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:122
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:133
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 32
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+" -> "Context:0x10081d744 +[DDLog qn_log:level:flag:context:file:function:line:tag:message:]
+Depth:143
+Invoke:0x10081d7c0L +[DDLogMessage \
+alloc]
+x0: DDLogMessage
+x1: alloc
+"	 [color=red];
+	"Context:0x1008675e0 -[QNBaseWebView loadRequest:]
+Depth:21
+Invoke:0x1008676a0L +[QNLogUtils assert:statement:filename:lineNumber:\
+method:messageFormat:]
+x0: QNLogUtils
+x1: assert:statement:filename:lineNumber:method:messageFormat:
+x2: RetFrom_0x100867628L
+x3: [\
+NSThread isMainThread]
+x4: /Users/jerrychu/workstation/Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+\
+x5: 222
+x6: -[QNBaseWebView loadRequest:]
+x7: current thread is not main thread: %@, stacktrace: %@
+"	 [addr=4303779488,
+		args="['QNLogUtils', 'assert:statement:filename:lineNumber:method:messageFormat:', 'RetFrom_0x100867628L', '[NSThread isMainThread]', '/\
+Users/jerrychu/workstation/Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m', '222', '-[QNBaseWebView \
+loadRequest:]', 'current thread is not main thread: %@, stacktrace: %@']",
+		context=4303779296,
+		des="+[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]",
+		dp=None,
+		pnode="Context:0x1008675e0 -[QNBaseWebView loadRequest:]
+Depth:15
+Invoke:0x100867658L +[NSThread callStackSymbols]
+x0: NSThread
+x1: callStackSymbols
+"];
+	"Context:0x1008675e0 -[QNBaseWebView loadRequest:]
+Depth:21
+Invoke:0x1008676a0L +[QNLogUtils assert:statement:filename:lineNumber:\
+method:messageFormat:]
+x0: QNLogUtils
+x1: assert:statement:filename:lineNumber:method:messageFormat:
+x2: RetFrom_0x100867628L
+x3: [\
+NSThread isMainThread]
+x4: /Users/jerrychu/workstation/Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+\
+x5: 222
+x6: -[QNBaseWebView loadRequest:]
+x7: current thread is not main thread: %@, stacktrace: %@
+" -> "Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:28
+Invoke:0x10087115cL +[NSString \
+alloc]
+x0: NSString
+x1: alloc
+"	 [color=red];
+	"Context:0x1008675e0 -[QNBaseWebView loadRequest:]
+Depth:21
+Invoke:0x1008676a0L +[QNLogUtils assert:statement:filename:lineNumber:\
+method:messageFormat:]
+x0: QNLogUtils
+x1: assert:statement:filename:lineNumber:method:messageFormat:
+x2: RetFrom_0x100867628L
+x3: [\
+NSThread isMainThread]
+x4: /Users/jerrychu/workstation/Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+\
+x5: 222
+x6: -[QNBaseWebView loadRequest:]
+x7: current thread is not main thread: %@, stacktrace: %@
+" -> "Context:0x1008675e0 -[QNBaseWebView loadRequest:]
+Depth:33
+Invoke:0x1008676d4L <Symbol \"_objc_msgSendSuper2\" in WeiBo_arm64 (import)>
+\
+x0: QNBaseWebView_instance
+x1: loadRequest:
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:141
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 64
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [addr=4303818880,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '64', '0', '0', '0', '4294967295', 'reg_x9', 'reg_\
+x10']",
+		context=4303818348,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:132
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:143
+Invoke:0x10087120cL +[NSString \
+stringWithFormat:]
+x0: NSString
+x1: stringWithFormat:
+x2: `%s` failed: %@
+x3: [NSThread isMainThread]
+"	 [addr=4303819276,
+		args="['NSString', 'stringWithFormat:', '`%s` failed: %@', '[NSThread isMainThread]']",
+		context=4303819004,
+		des="+[NSString stringWithFormat:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:122
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:128
+Invoke:0x10087120cL +[NSString \
+stringWithFormat:]
+x0: NSString
+x1: stringWithFormat:
+x2: `%s` failed: %@
+x3: ASSERTION FAILED: %s
+%@
+" -> "Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:134
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+"	 [color=green];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:127
+Invoke:0x10087120cL +[NSString \
+stringWithFormat:]
+x0: NSString
+x1: stringWithFormat:
+x2: `%s` failed: %@
+x3: ASSERTION FAILED: %s
+%@
+"	 [addr=4303819276,
+		args="['NSString', 'stringWithFormat:', '`%s` failed: %@', 'ASSERTION FAILED: %s\n%@']",
+		context=4303819004,
+		des="+[NSString stringWithFormat:]",
+		dp=None,
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:115
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:127
+Invoke:0x10087120cL +[NSString \
+stringWithFormat:]
+x0: NSString
+x1: stringWithFormat:
+x2: `%s` failed: %@
+x3: ASSERTION FAILED: %s
+%@
+" -> "Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:133
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+"	 [color=green];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:83
+Invoke:0x10087c060L +[0 isKindOfClass:]
+x0: 0
+x1: isKindOfClass:
+x2: RetFrom_0x10087c050L
+" -> "Context:0x10087bf0c sub_0x10087bf0c
+Depth:87
+Invoke:0x10087c074L +[0 copy]
+x0: 0
+x1: copy
+"	 [color=green];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:87
+Invoke:0x10087c094L +[NSArray arrayWithObjects:count:]
+x0: NSArray
+x1: arrayWithObjects:\
+count:
+x2: mem_7fffffffffefeb8
+x3: 0
+"	 [addr=4303863956,
+		args="['NSArray', 'arrayWithObjects:count:', 'mem_7fffffffffefeb8', '0']",
+		context=4303863564,
+		des="+[NSArray arrayWithObjects:count:]",
+		dp=None,
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:83
+Invoke:0x10087c060L +[0 isKindOfClass:]
+x0: 0
+x1: isKindOfClass:
+x2: RetFrom_0x10087c050L
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:83
+Invoke:0x10087c060L +[0 isKindOfClass:]
+x0: 0
+x1: isKindOfClass:
+x2: RetFrom_0x10087c050L
+" -> "Context:0x10087bf0c sub_0x10087bf0c
+Depth:87
+Invoke:0x10087c094L +[NSArray arrayWithObjects:count:]
+x0: NSArray
+x1: arrayWithObjects:\
+count:
+x2: mem_7fffffffffefeb8
+x3: 0
+"	 [color=green];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:114
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+"	 [addr=4303819228,
+		args="['QNLogUtils', 'log:messageFormat:', '4', 'ASSERTION FAILED: %s\n%@']",
+		context=4303819004,
+		des="+[QNLogUtils log:messageFormat:]",
+		dp=None,
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:87
+Invoke:0x10087c094L +[NSArray arrayWithObjects:count:]
+x0: NSArray
+x1: arrayWithObjects:\
+count:
+x2: mem_7fffffffffefeb8
+x3: 0
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:89
+Invoke:0x10087c074L +[0 copy]
+x0: 0
+x1: copy
+" -> "Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:114
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+"	 [color=red];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:83
+Invoke:0x10087c034L -[RetFrom_0x10087bfb0L subarrayWithRange:]
+x0: RetFrom_0x10087bfb0L
+\
+x1: subarrayWithRange:
+x2: 0
+"	 [addr=4303863860,
+		args="['RetFrom_0x10087bfb0L', 'subarrayWithRange:', '0']",
+		context=4303863564,
+		des="-[RetFrom_0x10087bfb0L subarrayWithRange:]",
+		dp="[[NSArray arrayWithObjects:mem_7fffffffffefeb8 count:0 ] subarrayWithRange:0 ]",
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:80
+Invoke:0x10087c014L -[RetFrom_0x10087bfb0L count]
+x0: RetFrom_0x10087bfb0L
+x1: count
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:83
+Invoke:0x10087c034L -[RetFrom_0x10087bfb0L subarrayWithRange:]
+x0: RetFrom_0x10087bfb0L
+\
+x1: subarrayWithRange:
+x2: 0
+" -> "Context:0x10087bf0c sub_0x10087bf0c
+Depth:92
+Invoke:0x10087c050L +[NSArray class]
+x0: NSArray
+x1: class
+"	 [color=green];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:124
+Invoke:0x10087120cL +[NSString \
+stringWithFormat:]
+x0: NSString
+x1: stringWithFormat:
+x2: `%s` failed: %@
+x3: ASSERTION FAILED: %s
+%@
+" -> "Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:130
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:131
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 16
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [addr=4303818880,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '16', '0', '0', '0', '4294967295', 'reg_x9', 'reg_\
+x10']",
+		context=4303818348,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:122
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:131
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 16
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+" -> "Context:0x10081d744 +[DDLog qn_log:level:flag:context:file:function:line:tag:message:]
+Depth:141
+Invoke:0x10081d7c0L +[DDLogMessage \
+alloc]
+x0: DDLogMessage
+x1: alloc
+"	 [color=red];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:122
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"	 [addr=4303818460,
+		args="['RetFrom_0x100870ec8L', 'initWithFormat:arguments:', 'ASSERTION FAILED: %s\n%@', '[NSThread isMainThread]']",
+		context=4303818348,
+		des="-[RetFrom_0x100870ec8L initWithFormat:arguments:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:119
+Invoke:0x100870ec8L +[NSString alloc]
+x0: NSString
+x1: alloc
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:119
+Invoke:0x100870ec8L +[NSString alloc]
+x0: NSString
+x1: alloc
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:122
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"	 [color=green];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:134
+Invoke:0x10087120cL +[NSString \
+stringWithFormat:]
+x0: NSString
+x1: stringWithFormat:
+x2: `%s` failed: %@
+x3: ASSERTION FAILED: %s
+%@
+" -> "Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:140
+Invoke:0x10087123cL +[QNLogUtils \
+log:filename:lineNumber:method:message:]
+x0: QNLogUtils
+x1: log:filename:lineNumber:method:message:
+x2: 1
+x3: /Users/jerrychu/workstation/\
+Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+x4: 222
+x5: -[QNBaseWebView loadRequest:]
+x6: RetFrom_\
+0x10087120cL
+"	 [color=green];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:37
+Invoke:0x100871198L +[NSThread \
+callStackSymbols]
+x0: NSThread
+x1: callStackSymbols
+"	 [addr=4303819160,
+		args="['NSThread', 'callStackSymbols']",
+		context=4303819004,
+		des="+[NSThread callStackSymbols]",
+		dp="[NSThread callStackSymbols]",
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:31
+Invoke:0x100871170L -[RetFrom_\
+0x10087115cL initWithFormat:arguments:]
+x0: RetFrom_0x10087115cL
+x1: initWithFormat:arguments:
+x2: current thread is not main thread: %@, \
+stacktrace: %@
+x3: RetFrom_0x10086763cL
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:31
+Invoke:0x100871170L -[RetFrom_\
+0x10087115cL initWithFormat:arguments:]
+x0: RetFrom_0x10087115cL
+x1: initWithFormat:arguments:
+x2: current thread is not main thread: %@, \
+stacktrace: %@
+x3: RetFrom_0x10086763cL
+" -> "Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:37
+Invoke:0x100871198L +[NSThread \
+callStackSymbols]
+x0: NSThread
+x1: callStackSymbols
+"	 [color=green];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:37
+Invoke:0x100871198L +[NSThread \
+callStackSymbols]
+x0: NSThread
+x1: callStackSymbols
+" -> "Context:0x10087bf0c sub_0x10087bf0c
+Depth:50
+Invoke:0x10087bf58L +[NSArray class]
+x0: NSArray
+x1: class
+"	 [color=red];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:126
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+"	 [addr=4303819228,
+		args="['QNLogUtils', 'log:messageFormat:', '4', 'ASSERTION FAILED: %s\n%@']",
+		context=4303819004,
+		des="+[QNLogUtils log:messageFormat:]",
+		dp=None,
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:99
+Invoke:0x10087c094L +[NSArray arrayWithObjects:count:]
+x0: NSArray
+x1: arrayWithObjects:\
+count:
+x2: mem_7fffffffffefeb8
+x3: 0
+"];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:126
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:133
+Invoke:0x100870ec8L +[NSString alloc]
+x0: NSString
+x1: alloc
+"	 [color=red];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:126
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+" -> "Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:138
+Invoke:0x10087120cL +[NSString \
+stringWithFormat:]
+x0: NSString
+x1: stringWithFormat:
+x2: `%s` failed: %@
+x3: ASSERTION FAILED: %s
+%@
+"	 [color=green];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:80
+Invoke:0x10087c014L -[RetFrom_0x10087bfb0L count]
+x0: RetFrom_0x10087bfb0L
+x1: count
+" -> "Context:0x10087bf0c sub_0x10087bf0c
+Depth:83
+Invoke:0x10087c034L -[RetFrom_0x10087bfb0L subarrayWithRange:]
+x0: RetFrom_0x10087bfb0L
+\
+x1: subarrayWithRange:
+x2: 0
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:122
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:142
+Invoke:0x10087120cL +[NSString \
+stringWithFormat:]
+x0: NSString
+x1: stringWithFormat:
+x2: `%s` failed: %@
+x3: [NSThread isMainThread]
+"	 [color=red];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:122
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:132
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 4
+x5: 0
+x6: 0
+x7: 0
+x8: \
+4294967295
+x9: 4303818972
+x10: reg_x10
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:122
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:132
+Invoke:0x1008710b8L +[QNLogUtils _invokeCustomLogBlock:lineNumber:\
+message:]
+x0: QNLogUtils
+x1: _invokeCustomLogBlock:lineNumber:message:
+x2: 0
+x3: 4294967295
+x4: RetFrom_0x100870edcL
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:122
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:133
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 32
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:122
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:143
+Invoke:0x10087120cL +[NSString \
+stringWithFormat:]
+x0: NSString
+x1: stringWithFormat:
+x2: `%s` failed: %@
+x3: [NSThread isMainThread]
+"	 [color=red];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:122
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:131
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 16
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:122
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:134
+Invoke:0x1008710b8L +[QNLogUtils _invokeCustomLogBlock:lineNumber:\
+message:]
+x0: QNLogUtils
+x1: _invokeCustomLogBlock:lineNumber:message:
+x2: 0
+x3: 4294967295
+x4: RetFrom_0x100870edcL
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:131
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 64
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [addr=4303818880,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '64', '0', '0', '0', '4294967295', 'reg_x9', 'reg_\
+x10']",
+		context=4303818348,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:122
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:122
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:131
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 64
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:143
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 16
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [addr=4303818880,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '16', '0', '0', '0', '4294967295', 'reg_x9', 'reg_\
+x10']",
+		context=4303818348,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:134
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:95
+Invoke:0x10087c060L -[RetFrom_0x10087c034L isKindOfClass:]
+x0: RetFrom_0x10087c034L
+\
+x1: isKindOfClass:
+x2: RetFrom_0x10087c050L
+" -> "Context:0x10087bf0c sub_0x10087bf0c
+Depth:99
+Invoke:0x10087c074L -[RetFrom_0x10087c034L copy]
+x0: RetFrom_0x10087c034L
+x1: copy
+"	 [color=green];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:99
+Invoke:0x10087c094L +[NSArray arrayWithObjects:count:]
+x0: NSArray
+x1: arrayWithObjects:\
+count:
+x2: mem_7fffffffffefeb8
+x3: 0
+"	 [addr=4303863956,
+		args="['NSArray', 'arrayWithObjects:count:', 'mem_7fffffffffefeb8', '0']",
+		context=4303863564,
+		des="+[NSArray arrayWithObjects:count:]",
+		dp=None,
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:95
+Invoke:0x10087c060L -[RetFrom_0x10087c034L isKindOfClass:]
+x0: RetFrom_0x10087c034L
+\
+x1: isKindOfClass:
+x2: RetFrom_0x10087c050L
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:95
+Invoke:0x10087c060L -[RetFrom_0x10087c034L isKindOfClass:]
+x0: RetFrom_0x10087c034L
+\
+x1: isKindOfClass:
+x2: RetFrom_0x10087c050L
+" -> "Context:0x10087bf0c sub_0x10087bf0c
+Depth:99
+Invoke:0x10087c094L +[NSArray arrayWithObjects:count:]
+x0: NSArray
+x1: arrayWithObjects:\
+count:
+x2: mem_7fffffffffefeb8
+x3: 0
+"	 [color=green];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:78
+Invoke:0x10087c014L -[RetFrom_0x10087bf8cL count]
+x0: RetFrom_0x10087bf8cL
+x1: count
+" -> "Context:0x10087bf0c sub_0x10087bf0c
+Depth:81
+Invoke:0x10087c034L -[RetFrom_0x10087bf8cL subarrayWithRange:]
+x0: RetFrom_0x10087bf8cL
+\
+x1: subarrayWithRange:
+x2: 0
+"	 [color=green];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:97
+Invoke:0x10087c074L -[RetFrom_0x10087c034L copy]
+x0: RetFrom_0x10087c034L
+x1: copy
+"	 [addr=4303863924,
+		args="['RetFrom_0x10087c034L', 'copy']",
+		context=4303863564,
+		des="-[RetFrom_0x10087c034L copy]",
+		dp=None,
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:93
+Invoke:0x10087c060L -[RetFrom_0x10087c034L isKindOfClass:]
+x0: RetFrom_0x10087c034L
+\
+x1: isKindOfClass:
+x2: RetFrom_0x10087c050L
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:93
+Invoke:0x10087c060L -[RetFrom_0x10087c034L isKindOfClass:]
+x0: RetFrom_0x10087c034L
+\
+x1: isKindOfClass:
+x2: RetFrom_0x10087c050L
+" -> "Context:0x10087bf0c sub_0x10087bf0c
+Depth:97
+Invoke:0x10087c074L -[RetFrom_0x10087c034L copy]
+x0: RetFrom_0x10087c034L
+x1: copy
+"	 [color=green];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:97
+Invoke:0x10087c094L +[NSArray arrayWithObjects:count:]
+x0: NSArray
+x1: arrayWithObjects:\
+count:
+x2: mem_7fffffffffefeb8
+x3: 0
+"	 [addr=4303863956,
+		args="['NSArray', 'arrayWithObjects:count:', 'mem_7fffffffffefeb8', '0']",
+		context=4303863564,
+		des="+[NSArray arrayWithObjects:count:]",
+		dp=None,
+		pnode="Context:0x10087bf0c sub_0x10087bf0c
+Depth:93
+Invoke:0x10087c060L -[RetFrom_0x10087c034L isKindOfClass:]
+x0: RetFrom_0x10087c034L
+\
+x1: isKindOfClass:
+x2: RetFrom_0x10087c050L
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:93
+Invoke:0x10087c060L -[RetFrom_0x10087c034L isKindOfClass:]
+x0: RetFrom_0x10087c034L
+\
+x1: isKindOfClass:
+x2: RetFrom_0x10087c050L
+" -> "Context:0x10087bf0c sub_0x10087bf0c
+Depth:97
+Invoke:0x10087c094L +[NSArray arrayWithObjects:count:]
+x0: NSArray
+x1: arrayWithObjects:\
+count:
+x2: mem_7fffffffffefeb8
+x3: 0
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:142
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 4
+x5: 0
+x6: 0
+x7: 0
+x8: \
+4294967295
+x9: 4303818972
+x10: reg_x10
+"	 [addr=4303818880,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '4', '0', '0', '0', '4294967295', '4303818972', '\
+reg_x10']",
+		context=4303818348,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:132
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:87
+Invoke:0x10087c094L +[NSArray arrayWithObjects:count:]
+x0: NSArray
+x1: arrayWithObjects:\
+count:
+x2: mem_7fffffffffefeb8
+x3: 0
+" -> "Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:114
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+"	 [color=red];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:97
+Invoke:0x10087c074L -[RetFrom_0x10087c034L copy]
+x0: RetFrom_0x10087c034L
+x1: copy
+" -> "Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:122
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+"	 [color=red];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:114
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:121
+Invoke:0x100870ec8L +[NSString alloc]
+x0: NSString
+x1: alloc
+"	 [color=red];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:114
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+" -> "Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:126
+Invoke:0x10087120cL +[NSString \
+stringWithFormat:]
+x0: NSString
+x1: stringWithFormat:
+x2: `%s` failed: %@
+x3: ASSERTION FAILED: %s
+%@
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:122
+Invoke:0x100870ec8L +[NSString alloc]
+x0: NSString
+x1: alloc
+"	 [addr=4303818440,
+		args="['NSString', 'alloc']",
+		context=4303818348,
+		des="+[NSString alloc]",
+		dp="[NSString alloc]",
+		pnode="Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:115
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:122
+Invoke:0x100870ec8L +[NSString alloc]
+x0: NSString
+x1: alloc
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:125
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"	 [color=green];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:88
+Invoke:0x10087c094L +[NSArray arrayWithObjects:count:]
+x0: NSArray
+x1: arrayWithObjects:\
+count:
+x2: mem_7fffffffffefeb8
+x3: 0
+" -> "Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:115
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+"	 [color=red];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:143
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 64
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [addr=4303818880,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '64', '0', '0', '0', '4294967295', 'reg_x9', 'reg_\
+x10']",
+		context=4303818348,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:134
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:97
+Invoke:0x10087c094L +[NSArray arrayWithObjects:count:]
+x0: NSArray
+x1: arrayWithObjects:\
+count:
+x2: mem_7fffffffffefeb8
+x3: 0
+" -> "Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:124
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+"	 [color=red];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:120
+Invoke:0x100870ec8L +[NSString alloc]
+x0: NSString
+x1: alloc
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:123
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:134
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:143
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 16
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:134
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:143
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 64
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [color=green];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:115
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+" -> "Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:127
+Invoke:0x10087120cL +[NSString \
+stringWithFormat:]
+x0: NSString
+x1: stringWithFormat:
+x2: `%s` failed: %@
+x3: ASSERTION FAILED: %s
+%@
+"	 [color=green];
+	"Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:115
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:122
+Invoke:0x100870ec8L +[NSString alloc]
+x0: NSString
+x1: alloc
+"	 [color=red];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:132
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:142
+Invoke:0x1008710b8L +[QNLogUtils _invokeCustomLogBlock:lineNumber:\
+message:]
+x0: QNLogUtils
+x1: _invokeCustomLogBlock:lineNumber:message:
+x2: 0
+x3: 4294967295
+x4: RetFrom_0x100870edcL
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:132
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:141
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 64
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:132
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:142
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 4
+x5: 0
+x6: 0
+x7: 0
+x8: \
+4294967295
+x9: 4303818972
+x10: reg_x10
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:141
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 16
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [addr=4303818880,
+		args="['DDLog', 'qn_log:level:flag:context:file:function:line:tag:message:', '1', '0', '16', '0', '0', '0', '4294967295', 'reg_x9', 'reg_\
+x10']",
+		context=4303818348,
+		des="+[DDLog qn_log:level:flag:context:file:function:line:tag:message:]",
+		dp=None,
+		pnode="Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:132
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+"];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:132
+Invoke:0x100870edcL -[RetFrom_0x100870ec8L initWithFormat:arguments:]
+\
+x0: RetFrom_0x100870ec8L
+x1: initWithFormat:arguments:
+x2: ASSERTION FAILED: %s
+%@
+x3: [NSThread isMainThread]
+" -> "Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:141
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 16
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+"	 [color=green];
+	"Context:0x1008675e0 -[QNBaseWebView loadRequest:]
+Depth:15
+Invoke:0x100867658L +[NSThread callStackSymbols]
+x0: NSThread
+x1: callStackSymbols
+" -> "Context:0x1008675e0 -[QNBaseWebView loadRequest:]
+Depth:21
+Invoke:0x1008676a0L +[QNLogUtils assert:statement:filename:lineNumber:\
+method:messageFormat:]
+x0: QNLogUtils
+x1: assert:statement:filename:lineNumber:method:messageFormat:
+x2: RetFrom_0x100867628L
+x3: [\
+NSThread isMainThread]
+x4: /Users/jerrychu/workstation/Weibo/Weibo_6.1.2_wtlogin/QNCore/QNCore/QN/Commons/UIKit+Widgets/QNBaseWebView.m
+\
+x5: 222
+x6: -[QNBaseWebView loadRequest:]
+x7: current thread is not main thread: %@, stacktrace: %@
+"	 [color=green];
+	"Context:0x100870e6c +[QNLogUtils log:messageFormat:]
+Depth:131
+Invoke:0x100871080L +[DDLog qn_log:level:flag:context:file:function:\
+line:tag:message:]
+x0: DDLog
+x1: qn_log:level:flag:context:file:function:line:tag:message:
+x2: 1
+x3: 0
+x4: 64
+x5: 0
+x6: 0
+x7: 0
+\
+x8: 4294967295
+x9: reg_x9
+x10: reg_x10
+" -> "Context:0x10081d744 +[DDLog qn_log:level:flag:context:file:function:line:tag:message:]
+Depth:141
+Invoke:0x10081d7c0L +[DDLogMessage \
+alloc]
+x0: DDLogMessage
+x1: alloc
+"	 [color=red];
+	"Context:0x10087bf0c sub_0x10087bf0c
+Depth:99
+Invoke:0x10087c094L +[NSArray arrayWithObjects:count:]
+x0: NSArray
+x1: arrayWithObjects:\
+count:
+x2: mem_7fffffffffefeb8
+x3: 0
+" -> "Context:0x1008710fc +[QNLogUtils assert:statement:filename:lineNumber:method:messageFormat:]
+Depth:126
+Invoke:0x1008711dcL +[QNLogUtils \
+log:messageFormat:]
+x0: QNLogUtils
+x1: log:messageFormat:
+x2: 4
+x3: ASSERTION FAILED: %s
+%@
+"	 [color=red];
+}

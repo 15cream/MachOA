@@ -1,0 +1,549 @@
+strict digraph  {
+	"Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:74
+Invoke:0x100658214L -[RetFrom_0x1006580d0L setChannel:]
+x0: RetFrom_0x1006580d0L
+\
+x1: setChannel:
+x2: appstore
+"	 [addr=4301619732,
+		args="['RetFrom_0x1006580d0L', 'setChannel:', 'appstore']",
+		context=4301619360,
+		des="-[RetFrom_0x1006580d0L setChannel:]",
+		dp=None,
+		pnode="Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:69
+Invoke:0x1006581f8L -[RetFrom_0x1006580d0L setAutoExceptionCaught:]
+x0: RetFrom_\
+0x1006580d0L
+x1: setAutoExceptionCaught:
+x2: 1
+"];
+	"Context:0x100658308 +[MTA4QCConfig getInstance]
+Depth:7
+Invoke:0x100658344L -[RetFrom_0x100658334L init]
+x0: RetFrom_0x100658334L
+\
+x1: init
+"	 [addr=4301620036,
+		args="['RetFrom_0x100658334L', 'init']",
+		context=4301619976,
+		des="-[RetFrom_0x100658334L init]",
+		dp=None,
+		pnode="Context:0x100658308 +[MTA4QCConfig getInstance]
+Depth:4
+Invoke:0x100658334L +[MTA4QCConfig alloc]
+x0: MTA4QCConfig
+x1: alloc
+"];
+	"Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:10
+Invoke:0x1006580d0L <Symbol \"_objc_msgSendSuper2\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100658334L
+x1: init
+"	 [addr=4301619408,
+		args="['RetFrom_0x100658334L', 'init']",
+		context=4301619360,
+		des="<Symbol \"_objc_msgSendSuper2\" in WeiBo_arm64 (import)>",
+		dp="[[MTA4QCConfig alloc] init]",
+		pnode="Context:0x100658308 +[MTA4QCConfig getInstance]
+Depth:7
+Invoke:0x100658344L -[RetFrom_0x100658334L init]
+x0: RetFrom_0x100658334L
+\
+x1: init
+"];
+	"Context:0x100658308 +[MTA4QCConfig getInstance]
+Depth:7
+Invoke:0x100658344L -[RetFrom_0x100658334L init]
+x0: RetFrom_0x100658334L
+\
+x1: init
+" -> "Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:10
+Invoke:0x1006580d0L <Symbol \"_objc_msgSendSuper2\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100658334L
+x1: init
+"	 [color=red];
+	"Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:59
+Invoke:0x1006581c8L -[RetFrom_0x1006580d0L setMaxParallelTimingEvents:]
+x0: RetFrom_\
+0x1006580d0L
+x1: setMaxParallelTimingEvents:
+x2: 1024
+"	 [addr=4301619656,
+		args="['RetFrom_0x1006580d0L', 'setMaxParallelTimingEvents:', '1024']",
+		context=4301619360,
+		des="-[RetFrom_0x1006580d0L setMaxParallelTimingEvents:]",
+		dp=None,
+		pnode="Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:54
+Invoke:0x1006581b0L -[RetFrom_0x1006580d0L setReportStrategy:]
+x0: RetFrom_0x1006580d0L
+\
+x1: setReportStrategy:
+x2: 3
+"];
+	"Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:64
+Invoke:0x1006581e0L -[RetFrom_0x1006580d0L setSmartReporting:]
+x0: RetFrom_0x1006580d0L
+\
+x1: setSmartReporting:
+x2: 1
+"	 [addr=4301619680,
+		args="['RetFrom_0x1006580d0L', 'setSmartReporting:', '1']",
+		context=4301619360,
+		des="-[RetFrom_0x1006580d0L setSmartReporting:]",
+		dp=None,
+		pnode="Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:59
+Invoke:0x1006581c8L -[RetFrom_0x1006580d0L setMaxParallelTimingEvents:]
+x0: RetFrom_\
+0x1006580d0L
+x1: setMaxParallelTimingEvents:
+x2: 1024
+"];
+	"Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:59
+Invoke:0x1006581c8L -[RetFrom_0x1006580d0L setMaxParallelTimingEvents:]
+x0: RetFrom_\
+0x1006580d0L
+x1: setMaxParallelTimingEvents:
+x2: 1024
+" -> "Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:64
+Invoke:0x1006581e0L -[RetFrom_0x1006580d0L setSmartReporting:]
+x0: RetFrom_0x1006580d0L
+\
+x1: setSmartReporting:
+x2: 1
+"	 [color=green];
+	"Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:19
+Invoke:0x100658108L -[RetFrom_0x1006580d0L setStatEnable:]
+x0: RetFrom_0x1006580d0L
+\
+x1: setStatEnable:
+x2: 1
+"	 [addr=4301619464,
+		args="['RetFrom_0x1006580d0L', 'setStatEnable:', '1']",
+		context=4301619360,
+		des="-[RetFrom_0x1006580d0L setStatEnable:]",
+		dp=None,
+		pnode="Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:14
+Invoke:0x1006580f0L -[RetFrom_0x1006580d0L setDebugEnable:]
+x0: RetFrom_0x1006580d0L
+\
+x1: setDebugEnable:
+x2: 0
+"];
+	"Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:24
+Invoke:0x100658120L -[RetFrom_0x1006580d0L setSessionTimeoutSecs:]
+x0: RetFrom_\
+0x1006580d0L
+x1: setSessionTimeoutSecs:
+x2: 30
+"	 [addr=4301619488,
+		args="['RetFrom_0x1006580d0L', 'setSessionTimeoutSecs:', '30']",
+		context=4301619360,
+		des="-[RetFrom_0x1006580d0L setSessionTimeoutSecs:]",
+		dp=None,
+		pnode="Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:19
+Invoke:0x100658108L -[RetFrom_0x1006580d0L setStatEnable:]
+x0: RetFrom_0x1006580d0L
+\
+x1: setStatEnable:
+x2: 1
+"];
+	"Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:19
+Invoke:0x100658108L -[RetFrom_0x1006580d0L setStatEnable:]
+x0: RetFrom_0x1006580d0L
+\
+x1: setStatEnable:
+x2: 1
+" -> "Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:24
+Invoke:0x100658120L -[RetFrom_0x1006580d0L setSessionTimeoutSecs:]
+x0: RetFrom_\
+0x1006580d0L
+x1: setSessionTimeoutSecs:
+x2: 30
+"	 [color=green];
+	"Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:54
+Invoke:0x1006581b0L -[RetFrom_0x1006580d0L setReportStrategy:]
+x0: RetFrom_0x1006580d0L
+\
+x1: setReportStrategy:
+x2: 3
+"	 [addr=4301619632,
+		args="['RetFrom_0x1006580d0L', 'setReportStrategy:', '3']",
+		context=4301619360,
+		des="-[RetFrom_0x1006580d0L setReportStrategy:]",
+		dp=None,
+		pnode="Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:49
+Invoke:0x100658198L -[RetFrom_0x1006580d0L setSendPeriodMinutes:]
+x0: RetFrom_\
+0x1006580d0L
+x1: setSendPeriodMinutes:
+x2: 1440
+"];
+	"Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:54
+Invoke:0x1006581b0L -[RetFrom_0x1006580d0L setReportStrategy:]
+x0: RetFrom_0x1006580d0L
+\
+x1: setReportStrategy:
+x2: 3
+" -> "Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:59
+Invoke:0x1006581c8L -[RetFrom_0x1006580d0L setMaxParallelTimingEvents:]
+x0: RetFrom_\
+0x1006580d0L
+x1: setMaxParallelTimingEvents:
+x2: 1024
+"	 [color=green];
+	"Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:14
+Invoke:0x1006580f0L -[RetFrom_0x1006580d0L setDebugEnable:]
+x0: RetFrom_0x1006580d0L
+\
+x1: setDebugEnable:
+x2: 0
+"	 [addr=4301619440,
+		args="['RetFrom_0x1006580d0L', 'setDebugEnable:', '0']",
+		context=4301619360,
+		des="-[RetFrom_0x1006580d0L setDebugEnable:]",
+		dp=None,
+		pnode="Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:10
+Invoke:0x1006580d0L <Symbol \"_objc_msgSendSuper2\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100658334L
+x1: init
+"];
+	"Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:14
+Invoke:0x1006580f0L -[RetFrom_0x1006580d0L setDebugEnable:]
+x0: RetFrom_0x1006580d0L
+\
+x1: setDebugEnable:
+x2: 0
+" -> "Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:19
+Invoke:0x100658108L -[RetFrom_0x1006580d0L setStatEnable:]
+x0: RetFrom_0x1006580d0L
+\
+x1: setStatEnable:
+x2: 1
+"	 [color=green];
+	"Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:10
+Invoke:0x1006580d0L <Symbol \"_objc_msgSendSuper2\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100658334L
+x1: init
+" -> "Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:14
+Invoke:0x1006580f0L -[RetFrom_0x1006580d0L setDebugEnable:]
+x0: RetFrom_0x1006580d0L
+\
+x1: setDebugEnable:
+x2: 0
+"	 [color=green];
+	"Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:69
+Invoke:0x1006581f8L -[RetFrom_0x1006580d0L setAutoExceptionCaught:]
+x0: RetFrom_\
+0x1006580d0L
+x1: setAutoExceptionCaught:
+x2: 1
+"	 [addr=4301619704,
+		args="['RetFrom_0x1006580d0L', 'setAutoExceptionCaught:', '1']",
+		context=4301619360,
+		des="-[RetFrom_0x1006580d0L setAutoExceptionCaught:]",
+		dp=None,
+		pnode="Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:64
+Invoke:0x1006581e0L -[RetFrom_0x1006580d0L setSmartReporting:]
+x0: RetFrom_0x1006580d0L
+\
+x1: setSmartReporting:
+x2: 1
+"];
+	"Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:64
+Invoke:0x1006581e0L -[RetFrom_0x1006580d0L setSmartReporting:]
+x0: RetFrom_0x1006580d0L
+\
+x1: setSmartReporting:
+x2: 1
+" -> "Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:69
+Invoke:0x1006581f8L -[RetFrom_0x1006580d0L setAutoExceptionCaught:]
+x0: RetFrom_\
+0x1006580d0L
+x1: setAutoExceptionCaught:
+x2: 1
+"	 [color=green];
+	"Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:49
+Invoke:0x100658198L -[RetFrom_0x1006580d0L setSendPeriodMinutes:]
+x0: RetFrom_\
+0x1006580d0L
+x1: setSendPeriodMinutes:
+x2: 1440
+"	 [addr=4301619608,
+		args="['RetFrom_0x1006580d0L', 'setSendPeriodMinutes:', '1440']",
+		context=4301619360,
+		des="-[RetFrom_0x1006580d0L setSendPeriodMinutes:]",
+		dp=None,
+		pnode="Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:44
+Invoke:0x100658180L -[RetFrom_0x1006580d0L setMaxStoreEventCount:]
+x0: RetFrom_\
+0x1006580d0L
+x1: setMaxStoreEventCount:
+x2: 1024
+"];
+	"Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:49
+Invoke:0x100658198L -[RetFrom_0x1006580d0L setSendPeriodMinutes:]
+x0: RetFrom_\
+0x1006580d0L
+x1: setSendPeriodMinutes:
+x2: 1440
+" -> "Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:54
+Invoke:0x1006581b0L -[RetFrom_0x1006580d0L setReportStrategy:]
+x0: RetFrom_0x1006580d0L
+\
+x1: setReportStrategy:
+x2: 3
+"	 [color=green];
+	"Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:29
+Invoke:0x100658138L -[RetFrom_0x1006580d0L setMaxLoadEventCount:]
+x0: RetFrom_\
+0x1006580d0L
+x1: setMaxLoadEventCount:
+x2: 30
+"	 [addr=4301619512,
+		args="['RetFrom_0x1006580d0L', 'setMaxLoadEventCount:', '30']",
+		context=4301619360,
+		des="-[RetFrom_0x1006580d0L setMaxLoadEventCount:]",
+		dp=None,
+		pnode="Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:24
+Invoke:0x100658120L -[RetFrom_0x1006580d0L setSessionTimeoutSecs:]
+x0: RetFrom_\
+0x1006580d0L
+x1: setSessionTimeoutSecs:
+x2: 30
+"];
+	"Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:24
+Invoke:0x100658120L -[RetFrom_0x1006580d0L setSessionTimeoutSecs:]
+x0: RetFrom_\
+0x1006580d0L
+x1: setSessionTimeoutSecs:
+x2: 30
+" -> "Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:29
+Invoke:0x100658138L -[RetFrom_0x1006580d0L setMaxLoadEventCount:]
+x0: RetFrom_\
+0x1006580d0L
+x1: setMaxLoadEventCount:
+x2: 30
+"	 [color=green];
+	"Context:0x100658308 +[MTA4QCConfig getInstance]
+Depth:0
+Invoke:0x100658308 Start
+"	 [addr=4301619976,
+		args=None,
+		color=blue,
+		context=4301619976,
+		context_name="+[MTA4QCConfig getInstance]",
+		des=Start,
+		dp=None,
+		pnode=None];
+	"Context:0x100658308 +[MTA4QCConfig getInstance]
+Depth:4
+Invoke:0x100658334L +[MTA4QCConfig alloc]
+x0: MTA4QCConfig
+x1: alloc
+"	 [addr=4301620020,
+		args="['MTA4QCConfig', 'alloc']",
+		context=4301619976,
+		des="+[MTA4QCConfig alloc]",
+		dp="[MTA4QCConfig alloc]",
+		pnode="Context:0x100658308 +[MTA4QCConfig getInstance]
+Depth:0
+Invoke:0x100658308 Start
+"];
+	"Context:0x100658308 +[MTA4QCConfig getInstance]
+Depth:0
+Invoke:0x100658308 Start
+" -> "Context:0x100658308 +[MTA4QCConfig getInstance]
+Depth:4
+Invoke:0x100658334L +[MTA4QCConfig alloc]
+x0: MTA4QCConfig
+x1: alloc
+"	 [color=green];
+	"Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:39
+Invoke:0x100658168L -[RetFrom_0x1006580d0L setMinBatchReportCount:]
+x0: RetFrom_\
+0x1006580d0L
+x1: setMinBatchReportCount:
+x2: 30
+"	 [addr=4301619560,
+		args="['RetFrom_0x1006580d0L', 'setMinBatchReportCount:', '30']",
+		context=4301619360,
+		des="-[RetFrom_0x1006580d0L setMinBatchReportCount:]",
+		dp=None,
+		pnode="Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:34
+Invoke:0x100658150L -[RetFrom_0x1006580d0L setMaxSendRetryCount:]
+x0: RetFrom_\
+0x1006580d0L
+x1: setMaxSendRetryCount:
+x2: 3
+"];
+	"Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:44
+Invoke:0x100658180L -[RetFrom_0x1006580d0L setMaxStoreEventCount:]
+x0: RetFrom_\
+0x1006580d0L
+x1: setMaxStoreEventCount:
+x2: 1024
+"	 [addr=4301619584,
+		args="['RetFrom_0x1006580d0L', 'setMaxStoreEventCount:', '1024']",
+		context=4301619360,
+		des="-[RetFrom_0x1006580d0L setMaxStoreEventCount:]",
+		dp=None,
+		pnode="Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:39
+Invoke:0x100658168L -[RetFrom_0x1006580d0L setMinBatchReportCount:]
+x0: RetFrom_\
+0x1006580d0L
+x1: setMinBatchReportCount:
+x2: 30
+"];
+	"Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:39
+Invoke:0x100658168L -[RetFrom_0x1006580d0L setMinBatchReportCount:]
+x0: RetFrom_\
+0x1006580d0L
+x1: setMinBatchReportCount:
+x2: 30
+" -> "Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:44
+Invoke:0x100658180L -[RetFrom_0x1006580d0L setMaxStoreEventCount:]
+x0: RetFrom_\
+0x1006580d0L
+x1: setMaxStoreEventCount:
+x2: 1024
+"	 [color=green];
+	"Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:69
+Invoke:0x1006581f8L -[RetFrom_0x1006580d0L setAutoExceptionCaught:]
+x0: RetFrom_\
+0x1006580d0L
+x1: setAutoExceptionCaught:
+x2: 1
+" -> "Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:74
+Invoke:0x100658214L -[RetFrom_0x1006580d0L setChannel:]
+x0: RetFrom_0x1006580d0L
+\
+x1: setChannel:
+x2: appstore
+"	 [color=green];
+	"Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:34
+Invoke:0x100658150L -[RetFrom_0x1006580d0L setMaxSendRetryCount:]
+x0: RetFrom_\
+0x1006580d0L
+x1: setMaxSendRetryCount:
+x2: 3
+"	 [addr=4301619536,
+		args="['RetFrom_0x1006580d0L', 'setMaxSendRetryCount:', '3']",
+		context=4301619360,
+		des="-[RetFrom_0x1006580d0L setMaxSendRetryCount:]",
+		dp=None,
+		pnode="Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:29
+Invoke:0x100658138L -[RetFrom_0x1006580d0L setMaxLoadEventCount:]
+x0: RetFrom_\
+0x1006580d0L
+x1: setMaxLoadEventCount:
+x2: 30
+"];
+	"Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:34
+Invoke:0x100658150L -[RetFrom_0x1006580d0L setMaxSendRetryCount:]
+x0: RetFrom_\
+0x1006580d0L
+x1: setMaxSendRetryCount:
+x2: 3
+" -> "Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:39
+Invoke:0x100658168L -[RetFrom_0x1006580d0L setMinBatchReportCount:]
+x0: RetFrom_\
+0x1006580d0L
+x1: setMinBatchReportCount:
+x2: 30
+"	 [color=green];
+	"Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:29
+Invoke:0x100658138L -[RetFrom_0x1006580d0L setMaxLoadEventCount:]
+x0: RetFrom_\
+0x1006580d0L
+x1: setMaxLoadEventCount:
+x2: 30
+" -> "Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:34
+Invoke:0x100658150L -[RetFrom_0x1006580d0L setMaxSendRetryCount:]
+x0: RetFrom_\
+0x1006580d0L
+x1: setMaxSendRetryCount:
+x2: 3
+"	 [color=green];
+	"Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:44
+Invoke:0x100658180L -[RetFrom_0x1006580d0L setMaxStoreEventCount:]
+x0: RetFrom_\
+0x1006580d0L
+x1: setMaxStoreEventCount:
+x2: 1024
+" -> "Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:49
+Invoke:0x100658198L -[RetFrom_0x1006580d0L setSendPeriodMinutes:]
+x0: RetFrom_\
+0x1006580d0L
+x1: setSendPeriodMinutes:
+x2: 1440
+"	 [color=green];
+	"Context:0x100658308 +[MTA4QCConfig getInstance]
+Depth:4
+Invoke:0x100658334L +[MTA4QCConfig alloc]
+x0: MTA4QCConfig
+x1: alloc
+" -> "Context:0x100658308 +[MTA4QCConfig getInstance]
+Depth:7
+Invoke:0x100658344L -[RetFrom_0x100658334L init]
+x0: RetFrom_0x100658334L
+\
+x1: init
+"	 [color=green];
+}

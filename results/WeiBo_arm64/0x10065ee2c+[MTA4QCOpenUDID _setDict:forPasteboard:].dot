@@ -1,0 +1,77 @@
+strict digraph  {
+	"Context:0x10065ee2c +[MTA4QCOpenUDID _setDict:forPasteboard:]
+Depth:3
+Invoke:0x10065ee50L +[NSKeyedArchiver archivedDataWithRootObject:]
+\
+x0: NSKeyedArchiver
+x1: archivedDataWithRootObject:
+x2: P0
+"	 [addr=4301647440,
+		args="['NSKeyedArchiver', 'archivedDataWithRootObject:', 'P0']",
+		context=4301647404,
+		des="+[NSKeyedArchiver archivedDataWithRootObject:]",
+		dp=None,
+		pnode="Context:0x10065ee2c +[MTA4QCOpenUDID _setDict:forPasteboard:]
+Depth:0
+Invoke:0x10065ee2c Start
+"];
+	"Context:0x10065ee2c +[MTA4QCOpenUDID _setDict:forPasteboard:]
+Depth:6
+Invoke:0x10065ee78L +[P1 setData:forPasteboardType:]
+x0: P1
+\
+x1: setData:forPasteboardType:
+x2: RetFrom_0x10065ee50L
+x3: org.OpenUDID
+"	 [addr=4301647480,
+		args="['P1', 'setData:forPasteboardType:', 'RetFrom_0x10065ee50L', 'org.OpenUDID']",
+		context=4301647404,
+		des="+[P1 setData:forPasteboardType:]",
+		dp=None,
+		pnode="Context:0x10065ee2c +[MTA4QCOpenUDID _setDict:forPasteboard:]
+Depth:3
+Invoke:0x10065ee50L +[NSKeyedArchiver archivedDataWithRootObject:]
+\
+x0: NSKeyedArchiver
+x1: archivedDataWithRootObject:
+x2: P0
+"];
+	"Context:0x10065ee2c +[MTA4QCOpenUDID _setDict:forPasteboard:]
+Depth:3
+Invoke:0x10065ee50L +[NSKeyedArchiver archivedDataWithRootObject:]
+\
+x0: NSKeyedArchiver
+x1: archivedDataWithRootObject:
+x2: P0
+" -> "Context:0x10065ee2c +[MTA4QCOpenUDID _setDict:forPasteboard:]
+Depth:6
+Invoke:0x10065ee78L +[P1 setData:forPasteboardType:]
+x0: P1
+\
+x1: setData:forPasteboardType:
+x2: RetFrom_0x10065ee50L
+x3: org.OpenUDID
+"	 [color=green];
+	"Context:0x10065ee2c +[MTA4QCOpenUDID _setDict:forPasteboard:]
+Depth:0
+Invoke:0x10065ee2c Start
+"	 [addr=4301647404,
+		args=None,
+		color=blue,
+		context=4301647404,
+		context_name="+[MTA4QCOpenUDID _setDict:forPasteboard:]",
+		des=Start,
+		dp=None,
+		pnode=None];
+	"Context:0x10065ee2c +[MTA4QCOpenUDID _setDict:forPasteboard:]
+Depth:0
+Invoke:0x10065ee2c Start
+" -> "Context:0x10065ee2c +[MTA4QCOpenUDID _setDict:forPasteboard:]
+Depth:3
+Invoke:0x10065ee50L +[NSKeyedArchiver archivedDataWithRootObject:]
+\
+x0: NSKeyedArchiver
+x1: archivedDataWithRootObject:
+x2: P0
+"	 [color=green];
+}

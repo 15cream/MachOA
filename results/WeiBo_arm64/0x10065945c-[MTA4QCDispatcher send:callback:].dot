@@ -1,0 +1,3060 @@
+strict digraph  {
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:77
+Invoke:0x100659714L +[0 debugEnable]
+x0: 0
+x1: debugEnable
+"	 [addr=4301625108,
+		args="['0', 'debugEnable']",
+		context=4301624560,
+		des="+[0 debugEnable]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:69
+Invoke:0x100659704L +[MTA4QCConfig getInstance]
+x0: MTA4QCConfig
+x1: getInstance
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:80
+Invoke:0x100659724L +[MTA4QCDataConfigHolder getInstance]
+x0: MTA4QCDataConfigHolder
+\
+x1: getInstance
+"	 [addr=4301625124,
+		args="['MTA4QCDataConfigHolder', 'getInstance']",
+		context=4301624560,
+		des="+[MTA4QCDataConfigHolder getInstance]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:77
+Invoke:0x100659714L +[0 debugEnable]
+x0: 0
+x1: debugEnable
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:77
+Invoke:0x100659714L +[0 debugEnable]
+x0: 0
+x1: debugEnable
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:80
+Invoke:0x100659724L +[MTA4QCDataConfigHolder getInstance]
+x0: MTA4QCDataConfigHolder
+\
+x1: getInstance
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:102
+Invoke:0x100659738L +[0 updateOnlineConfig:]
+x0: 0
+x1: updateOnlineConfig:
+x2: RetFrom_\
+0x1006596b0L
+"	 [addr=4301625144,
+		args="['0', 'updateOnlineConfig:', 'RetFrom_0x1006596b0L']",
+		context=4301624560,
+		des="+[0 updateOnlineConfig:]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:97
+Invoke:0x100659724L +[MTA4QCDataConfigHolder getInstance]
+x0: MTA4QCDataConfigHolder
+\
+x1: getInstance
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:106
+Invoke:0x100659764L <Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100659510L
+x1: updateOnlineConfig:
+"	 [addr=4301625188,
+		args="['RetFrom_0x100659510L', 'updateOnlineConfig:']",
+		context=4301624560,
+		des="<Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:102
+Invoke:0x100659738L +[0 updateOnlineConfig:]
+x0: 0
+x1: updateOnlineConfig:
+x2: RetFrom_\
+0x1006596b0L
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:102
+Invoke:0x100659738L +[0 updateOnlineConfig:]
+x0: 0
+x1: updateOnlineConfig:
+x2: RetFrom_\
+0x1006596b0L
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:106
+Invoke:0x100659764L <Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100659510L
+x1: updateOnlineConfig:
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:124
+Invoke:0x100659764L <Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100659510L
+x1: updateOnlineConfig:
+"	 [addr=4301625188,
+		args="['RetFrom_0x100659510L', 'updateOnlineConfig:']",
+		context=4301624560,
+		des="<Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:120
+Invoke:0x100659738L +[0 updateOnlineConfig:]
+x0: 0
+x1: updateOnlineConfig:
+x2: RetFrom_\
+0x1006596b0L
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:82
+Invoke:0x1006596e4L -[RetFrom_0x1006596b0L isKindOfClass:]
+x0: RetFrom_0x1006596b0L
+\
+x1: isKindOfClass:
+x2: RetFrom_0x1006596ccL
+"	 [addr=4301625060,
+		args="['RetFrom_0x1006596b0L', 'isKindOfClass:', 'RetFrom_0x1006596ccL']",
+		context=4301624560,
+		des="-[RetFrom_0x1006596b0L isKindOfClass:]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:79
+Invoke:0x1006596ccL +[NSDictionary class]
+x0: NSDictionary
+x1: class
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:86
+Invoke:0x100659704L +[MTA4QCConfig getInstance]
+x0: MTA4QCConfig
+x1: getInstance
+"	 [addr=4301625092,
+		args="['MTA4QCConfig', 'getInstance']",
+		context=4301624560,
+		des="+[MTA4QCConfig getInstance]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:82
+Invoke:0x1006596e4L -[RetFrom_0x1006596b0L isKindOfClass:]
+x0: RetFrom_0x1006596b0L
+\
+x1: isKindOfClass:
+x2: RetFrom_0x1006596ccL
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:82
+Invoke:0x1006596e4L -[RetFrom_0x1006596b0L isKindOfClass:]
+x0: RetFrom_0x1006596b0L
+\
+x1: isKindOfClass:
+x2: RetFrom_0x1006596ccL
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:86
+Invoke:0x100659704L +[MTA4QCConfig getInstance]
+x0: MTA4QCConfig
+x1: getInstance
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:86
+Invoke:0x100659764L <Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100659510L
+x1: isKindOfClass:
+"	 [addr=4301625188,
+		args="['RetFrom_0x100659510L', 'isKindOfClass:']",
+		context=4301624560,
+		des="<Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:82
+Invoke:0x1006596e4L -[RetFrom_0x1006596b0L isKindOfClass:]
+x0: RetFrom_0x1006596b0L
+\
+x1: isKindOfClass:
+x2: RetFrom_0x1006596ccL
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:82
+Invoke:0x1006596e4L -[RetFrom_0x1006596b0L isKindOfClass:]
+x0: RetFrom_0x1006596b0L
+\
+x1: isKindOfClass:
+x2: RetFrom_0x1006596ccL
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:86
+Invoke:0x100659764L <Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100659510L
+x1: isKindOfClass:
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:112
+Invoke:0x100659714L +[0 debugEnable]
+x0: 0
+x1: debugEnable
+"	 [addr=4301625108,
+		args="['0', 'debugEnable']",
+		context=4301624560,
+		des="+[0 debugEnable]",
+		dp=None,
+		pnode="Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:96
+Invoke:0x1006580d0L <Symbol \"_objc_msgSendSuper2\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100658334L
+x1: init
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:115
+Invoke:0x100659724L +[MTA4QCDataConfigHolder getInstance]
+x0: MTA4QCDataConfigHolder
+\
+x1: getInstance
+"	 [addr=4301625124,
+		args="['MTA4QCDataConfigHolder', 'getInstance']",
+		context=4301624560,
+		des="+[MTA4QCDataConfigHolder getInstance]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:112
+Invoke:0x100659714L +[0 debugEnable]
+x0: 0
+x1: debugEnable
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:112
+Invoke:0x100659714L +[0 debugEnable]
+x0: 0
+x1: debugEnable
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:115
+Invoke:0x100659724L +[MTA4QCDataConfigHolder getInstance]
+x0: MTA4QCDataConfigHolder
+\
+x1: getInstance
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:98
+Invoke:0x100659724L +[MTA4QCDataConfigHolder getInstance]
+x0: MTA4QCDataConfigHolder
+\
+x1: getInstance
+"	 [addr=4301625124,
+		args="['MTA4QCDataConfigHolder', 'getInstance']",
+		context=4301624560,
+		des="+[MTA4QCDataConfigHolder getInstance]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:95
+Invoke:0x100659714L +[0 debugEnable]
+x0: 0
+x1: debugEnable
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:103
+Invoke:0x100659738L +[0 updateOnlineConfig:]
+x0: 0
+x1: updateOnlineConfig:
+x2: RetFrom_\
+0x1006596b0L
+"	 [addr=4301625144,
+		args="['0', 'updateOnlineConfig:', 'RetFrom_0x1006596b0L']",
+		context=4301624560,
+		des="+[0 updateOnlineConfig:]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:98
+Invoke:0x100659724L +[MTA4QCDataConfigHolder getInstance]
+x0: MTA4QCDataConfigHolder
+\
+x1: getInstance
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:98
+Invoke:0x100659724L +[MTA4QCDataConfigHolder getInstance]
+x0: MTA4QCDataConfigHolder
+\
+x1: getInstance
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:103
+Invoke:0x100659738L +[0 updateOnlineConfig:]
+x0: 0
+x1: updateOnlineConfig:
+x2: RetFrom_\
+0x1006596b0L
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:53
+Invoke:0x10065966cL +[mem_fffffffff004a018 nsRequest:responseData:]
+x0: mem_fffffffff004a018
+\
+x1: nsRequest:responseData:
+x2: RetFrom_0x10065964cL
+x3: 0
+"	 [addr=4301624940,
+		args="['mem_fffffffff004a018', 'nsRequest:responseData:', 'RetFrom_0x10065964cL', '0']",
+		context=4301624560,
+		des="+[mem_fffffffff004a018 nsRequest:responseData:]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:50
+Invoke:0x10065964cL +[NSMutableData dataWithData:]
+x0: NSMutableData
+x1: dataWithData:
+\
+x2: RetFrom_0x100659634L
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:59
+Invoke:0x100659764L <Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100659510L
+x1: 1
+"	 [addr=4301625188,
+		args="['RetFrom_0x100659510L', '1']",
+		context=4301624560,
+		des="<Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:53
+Invoke:0x10065966cL +[mem_fffffffff004a018 nsRequest:responseData:]
+x0: mem_fffffffff004a018
+\
+x1: nsRequest:responseData:
+x2: RetFrom_0x10065964cL
+x3: 0
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:53
+Invoke:0x10065966cL +[mem_fffffffff004a018 nsRequest:responseData:]
+x0: mem_fffffffff004a018
+\
+x1: nsRequest:responseData:
+x2: RetFrom_0x10065964cL
+x3: 0
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:59
+Invoke:0x100659764L <Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100659510L
+x1: 1
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:58
+Invoke:0x100659764L <Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100659510L
+x1: 0
+"	 [addr=4301625188,
+		args="['RetFrom_0x100659510L', '0']",
+		context=4301624560,
+		des="<Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:53
+Invoke:0x10065966cL +[mem_fffffffff004a018 nsRequest:responseData:]
+x0: mem_fffffffff004a018
+\
+x1: nsRequest:responseData:
+x2: RetFrom_0x10065964cL
+x3: 0
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:53
+Invoke:0x10065966cL +[mem_fffffffff004a018 nsRequest:responseData:]
+x0: mem_fffffffff004a018
+\
+x1: nsRequest:responseData:
+x2: RetFrom_0x10065964cL
+x3: 0
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:58
+Invoke:0x100659764L <Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100659510L
+x1: 0
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:59
+Invoke:0x1006596b0L +[NSJSONSerialization JSONObjectWithData:options:error:]
+x0: NSJSONSerialization
+\
+x1: JSONObjectWithData:options:error:
+x2: 0
+x3: 2
+x4: 0
+"	 [addr=4301625008,
+		args="['NSJSONSerialization', 'JSONObjectWithData:options:error:', '0', '2', '0']",
+		context=4301624560,
+		des="+[NSJSONSerialization JSONObjectWithData:options:error:]",
+		dp="[NSJSONSerialization JSONObjectWithData:0 options:2 error:0 ]",
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:53
+Invoke:0x10065966cL +[mem_fffffffff004a018 nsRequest:responseData:]
+x0: mem_fffffffff004a018
+\
+x1: nsRequest:responseData:
+x2: RetFrom_0x10065964cL
+x3: 0
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:53
+Invoke:0x10065966cL +[mem_fffffffff004a018 nsRequest:responseData:]
+x0: mem_fffffffff004a018
+\
+x1: nsRequest:responseData:
+x2: RetFrom_0x10065964cL
+x3: 0
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:59
+Invoke:0x1006596b0L +[NSJSONSerialization JSONObjectWithData:options:error:]
+x0: NSJSONSerialization
+\
+x1: JSONObjectWithData:options:error:
+x2: 0
+x3: 2
+x4: 0
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:47
+Invoke:0x1006595b0L +[mem_fffffffff004a010 objectAtIndex:]
+x0: mem_fffffffff004a010
+\
+x1: objectAtIndex:
+x2: 1
+"	 [addr=4301624752,
+		args="['mem_fffffffff004a010', 'objectAtIndex:', '1']",
+		context=4301624560,
+		des="+[mem_fffffffff004a010 objectAtIndex:]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:43
+Invoke:0x1006595f8L +[mem_fffffffff004a010 count]
+x0: mem_fffffffff004a010
+x1: count
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:50
+Invoke:0x1006595c0L -[RetFrom_0x10065954cL appendString:]
+x0: RetFrom_0x10065954cL
+\
+x1: appendString:
+x2: RetFrom_0x1006595b0L
+"	 [addr=4301624768,
+		args="['RetFrom_0x10065954cL', 'appendString:', 'RetFrom_0x1006595b0L']",
+		context=4301624560,
+		des="-[RetFrom_0x10065954cL appendString:]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:47
+Invoke:0x1006595b0L +[mem_fffffffff004a010 objectAtIndex:]
+x0: mem_fffffffff004a010
+\
+x1: objectAtIndex:
+x2: 1
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:47
+Invoke:0x1006595b0L +[mem_fffffffff004a010 objectAtIndex:]
+x0: mem_fffffffff004a010
+\
+x1: objectAtIndex:
+x2: 1
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:50
+Invoke:0x1006595c0L -[RetFrom_0x10065954cL appendString:]
+x0: RetFrom_0x10065954cL
+\
+x1: appendString:
+x2: RetFrom_0x1006595b0L
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:75
+Invoke:0x100659764L <Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100659510L
+x1: 0
+"	 [addr=4301625188,
+		args="['RetFrom_0x100659510L', '0']",
+		context=4301624560,
+		des="<Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:70
+Invoke:0x10065966cL +[mem_fffffffff004a018 nsRequest:responseData:]
+x0: mem_fffffffff004a018
+\
+x1: nsRequest:responseData:
+x2: RetFrom_0x10065964cL
+x3: 0
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:44
+Invoke:0x100659614L -[RetFrom_0x10065954cL appendString:]
+x0: RetFrom_0x10065954cL
+\
+x1: appendString:
+x2: ]
+"	 [addr=4301624852,
+		args="['RetFrom_0x10065954cL', 'appendString:', ']']",
+		context=4301624560,
+		des="-[RetFrom_0x10065954cL appendString:]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:40
+Invoke:0x1006595f8L +[mem_fffffffff004a010 count]
+x0: mem_fffffffff004a010
+x1: count
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:47
+Invoke:0x100659634L -[RetFrom_0x10065954cL dataUsingEncoding:]
+x0: RetFrom_0x10065954cL
+\
+x1: dataUsingEncoding:
+x2: 4
+"	 [addr=4301624884,
+		args="['RetFrom_0x10065954cL', 'dataUsingEncoding:', '4']",
+		context=4301624560,
+		des="-[RetFrom_0x10065954cL dataUsingEncoding:]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:44
+Invoke:0x100659614L -[RetFrom_0x10065954cL appendString:]
+x0: RetFrom_0x10065954cL
+\
+x1: appendString:
+x2: ]
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:44
+Invoke:0x100659614L -[RetFrom_0x10065954cL appendString:]
+x0: RetFrom_0x10065954cL
+\
+x1: appendString:
+x2: ]
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:47
+Invoke:0x100659634L -[RetFrom_0x10065954cL dataUsingEncoding:]
+x0: RetFrom_0x10065954cL
+\
+x1: dataUsingEncoding:
+x2: 4
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:44
+Invoke:0x100659764L <Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100659510L
+x1: 0
+"	 [addr=4301625188,
+		args="['RetFrom_0x100659510L', '0']",
+		context=4301624560,
+		des="<Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:39
+Invoke:0x10065966cL +[mem_fffffffff004a018 nsRequest:responseData:]
+x0: mem_fffffffff004a018
+\
+x1: nsRequest:responseData:
+x2: RetFrom_0x10065964cL
+x3: 0
+"];
+	"Context:0x100658308 +[MTA4QCConfig getInstance]
+Depth:76
+Invoke:0x100658344L -[RetFrom_0x100658334L init]
+x0: RetFrom_0x100658334L
+\
+x1: init
+"	 [addr=4301620036,
+		args="['RetFrom_0x100658334L', 'init']",
+		context=4301619976,
+		des="-[RetFrom_0x100658334L init]",
+		dp=None,
+		pnode="Context:0x100658308 +[MTA4QCConfig getInstance]
+Depth:73
+Invoke:0x100658334L +[MTA4QCConfig alloc]
+x0: MTA4QCConfig
+x1: alloc
+"];
+	"Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:79
+Invoke:0x1006580d0L <Symbol \"_objc_msgSendSuper2\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100658334L
+x1: init
+"	 [addr=4301619408,
+		args="['RetFrom_0x100658334L', 'init']",
+		context=4301619360,
+		des="<Symbol \"_objc_msgSendSuper2\" in WeiBo_arm64 (import)>",
+		dp="[[MTA4QCConfig alloc] init]",
+		pnode="Context:0x100658308 +[MTA4QCConfig getInstance]
+Depth:76
+Invoke:0x100658344L -[RetFrom_0x100658334L init]
+x0: RetFrom_0x100658334L
+\
+x1: init
+"];
+	"Context:0x100658308 +[MTA4QCConfig getInstance]
+Depth:76
+Invoke:0x100658344L -[RetFrom_0x100658334L init]
+x0: RetFrom_0x100658334L
+\
+x1: init
+" -> "Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:79
+Invoke:0x1006580d0L <Symbol \"_objc_msgSendSuper2\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100658334L
+x1: init
+"	 [color=red];
+	"Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:83
+Invoke:0x1006580f0L -[RetFrom_0x1006580d0L setDebugEnable:]
+x0: RetFrom_0x1006580d0L
+\
+x1: setDebugEnable:
+x2: 0
+"	 [addr=4301619440,
+		args="['RetFrom_0x1006580d0L', 'setDebugEnable:', '0']",
+		context=4301619360,
+		des="-[RetFrom_0x1006580d0L setDebugEnable:]",
+		dp=None,
+		pnode="Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:79
+Invoke:0x1006580d0L <Symbol \"_objc_msgSendSuper2\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100658334L
+x1: init
+"];
+	"Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:79
+Invoke:0x1006580d0L <Symbol \"_objc_msgSendSuper2\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100658334L
+x1: init
+" -> "Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:83
+Invoke:0x1006580f0L -[RetFrom_0x1006580d0L setDebugEnable:]
+x0: RetFrom_0x1006580d0L
+\
+x1: setDebugEnable:
+x2: 0
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:95
+Invoke:0x100659714L +[0 debugEnable]
+x0: 0
+x1: debugEnable
+"	 [addr=4301625108,
+		args="['0', 'debugEnable']",
+		context=4301624560,
+		des="+[0 debugEnable]",
+		dp=None,
+		pnode="Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:79
+Invoke:0x1006580d0L <Symbol \"_objc_msgSendSuper2\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100658334L
+x1: init
+"];
+	"Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:79
+Invoke:0x1006580d0L <Symbol \"_objc_msgSendSuper2\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100658334L
+x1: init
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:95
+Invoke:0x100659714L +[0 debugEnable]
+x0: 0
+x1: debugEnable
+"	 [color=red];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:107
+Invoke:0x100659764L <Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100659510L
+x1: updateOnlineConfig:
+"	 [addr=4301625188,
+		args="['RetFrom_0x100659510L', 'updateOnlineConfig:']",
+		context=4301624560,
+		des="<Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:103
+Invoke:0x100659738L +[0 updateOnlineConfig:]
+x0: 0
+x1: updateOnlineConfig:
+x2: RetFrom_\
+0x1006596b0L
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:103
+Invoke:0x100659738L +[0 updateOnlineConfig:]
+x0: 0
+x1: updateOnlineConfig:
+x2: RetFrom_\
+0x1006596b0L
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:107
+Invoke:0x100659764L <Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100659510L
+x1: updateOnlineConfig:
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:40
+Invoke:0x1006595f8L +[mem_fffffffff004a010 count]
+x0: mem_fffffffff004a010
+x1: count
+"	 [addr=4301624824,
+		args="['mem_fffffffff004a010', 'count']",
+		context=4301624560,
+		des="+[mem_fffffffff004a010 count]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:36
+Invoke:0x1006595ccL +[mem_fffffffff004a010 count]
+x0: mem_fffffffff004a010
+x1: count
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:40
+Invoke:0x1006595f8L +[mem_fffffffff004a010 count]
+x0: mem_fffffffff004a010
+x1: count
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:44
+Invoke:0x100659614L -[RetFrom_0x10065954cL appendString:]
+x0: RetFrom_0x10065954cL
+\
+x1: appendString:
+x2: ]
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:44
+Invoke:0x1006595b0L +[mem_fffffffff004a010 objectAtIndex:]
+x0: mem_fffffffff004a010
+\
+x1: objectAtIndex:
+x2: 1
+"	 [addr=4301624752,
+		args="['mem_fffffffff004a010', 'objectAtIndex:', '1']",
+		context=4301624560,
+		des="+[mem_fffffffff004a010 objectAtIndex:]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:40
+Invoke:0x1006595f8L +[mem_fffffffff004a010 count]
+x0: mem_fffffffff004a010
+x1: count
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:40
+Invoke:0x1006595f8L +[mem_fffffffff004a010 count]
+x0: mem_fffffffff004a010
+x1: count
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:44
+Invoke:0x1006595b0L +[mem_fffffffff004a010 objectAtIndex:]
+x0: mem_fffffffff004a010
+\
+x1: objectAtIndex:
+x2: 1
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:85
+Invoke:0x100659738L +[0 updateOnlineConfig:]
+x0: 0
+x1: updateOnlineConfig:
+x2: RetFrom_\
+0x1006596b0L
+"	 [addr=4301625144,
+		args="['0', 'updateOnlineConfig:', 'RetFrom_0x1006596b0L']",
+		context=4301624560,
+		des="+[0 updateOnlineConfig:]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:80
+Invoke:0x100659724L +[MTA4QCDataConfigHolder getInstance]
+x0: MTA4QCDataConfigHolder
+\
+x1: getInstance
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:80
+Invoke:0x100659724L +[MTA4QCDataConfigHolder getInstance]
+x0: MTA4QCDataConfigHolder
+\
+x1: getInstance
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:85
+Invoke:0x100659738L +[0 updateOnlineConfig:]
+x0: 0
+x1: updateOnlineConfig:
+x2: RetFrom_\
+0x1006596b0L
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:36
+Invoke:0x1006595ccL +[mem_fffffffff004a010 count]
+x0: mem_fffffffff004a010
+x1: count
+"	 [addr=4301624780,
+		args="['mem_fffffffff004a010', 'count']",
+		context=4301624560,
+		des="+[mem_fffffffff004a010 count]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:33
+Invoke:0x1006595c0L -[RetFrom_0x10065954cL appendString:]
+x0: RetFrom_0x10065954cL
+\
+x1: appendString:
+x2: RetFrom_0x1006595b0L
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:36
+Invoke:0x1006595ccL +[mem_fffffffff004a010 count]
+x0: mem_fffffffff004a010
+x1: count
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:40
+Invoke:0x1006595f8L +[mem_fffffffff004a010 count]
+x0: mem_fffffffff004a010
+x1: count
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:40
+Invoke:0x1006595e8L -[RetFrom_0x10065954cL appendString:]
+x0: RetFrom_0x10065954cL
+\
+x1: appendString:
+x2: ,
+"	 [addr=4301624808,
+		args="['RetFrom_0x10065954cL', 'appendString:', ',']",
+		context=4301624560,
+		des="-[RetFrom_0x10065954cL appendString:]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:36
+Invoke:0x1006595ccL +[mem_fffffffff004a010 count]
+x0: mem_fffffffff004a010
+x1: count
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:36
+Invoke:0x1006595ccL +[mem_fffffffff004a010 count]
+x0: mem_fffffffff004a010
+x1: count
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:40
+Invoke:0x1006595e8L -[RetFrom_0x10065954cL appendString:]
+x0: RetFrom_0x10065954cL
+\
+x1: appendString:
+x2: ,
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:30
+Invoke:0x100659614L -[RetFrom_0x10065954cL appendString:]
+x0: RetFrom_0x10065954cL
+\
+x1: appendString:
+x2: ]
+"	 [addr=4301624852,
+		args="['RetFrom_0x10065954cL', 'appendString:', ']']",
+		context=4301624560,
+		des="-[RetFrom_0x10065954cL appendString:]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:26
+Invoke:0x100659584L +[mem_fffffffff004a010 count]
+x0: mem_fffffffff004a010
+x1: count
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:33
+Invoke:0x100659634L -[RetFrom_0x10065954cL dataUsingEncoding:]
+x0: RetFrom_0x10065954cL
+\
+x1: dataUsingEncoding:
+x2: 4
+"	 [addr=4301624884,
+		args="['RetFrom_0x10065954cL', 'dataUsingEncoding:', '4']",
+		context=4301624560,
+		des="-[RetFrom_0x10065954cL dataUsingEncoding:]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:30
+Invoke:0x100659614L -[RetFrom_0x10065954cL appendString:]
+x0: RetFrom_0x10065954cL
+\
+x1: appendString:
+x2: ]
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:30
+Invoke:0x100659614L -[RetFrom_0x10065954cL appendString:]
+x0: RetFrom_0x10065954cL
+\
+x1: appendString:
+x2: ]
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:33
+Invoke:0x100659634L -[RetFrom_0x10065954cL dataUsingEncoding:]
+x0: RetFrom_0x10065954cL
+\
+x1: dataUsingEncoding:
+x2: 4
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:61
+Invoke:0x100659614L -[RetFrom_0x10065954cL appendString:]
+x0: RetFrom_0x10065954cL
+\
+x1: appendString:
+x2: ]
+"	 [addr=4301624852,
+		args="['RetFrom_0x10065954cL', 'appendString:', ']']",
+		context=4301624560,
+		des="-[RetFrom_0x10065954cL appendString:]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:57
+Invoke:0x1006595f8L +[mem_fffffffff004a010 count]
+x0: mem_fffffffff004a010
+x1: count
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:64
+Invoke:0x100659634L -[RetFrom_0x10065954cL dataUsingEncoding:]
+x0: RetFrom_0x10065954cL
+\
+x1: dataUsingEncoding:
+x2: 4
+"	 [addr=4301624884,
+		args="['RetFrom_0x10065954cL', 'dataUsingEncoding:', '4']",
+		context=4301624560,
+		des="-[RetFrom_0x10065954cL dataUsingEncoding:]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:61
+Invoke:0x100659614L -[RetFrom_0x10065954cL appendString:]
+x0: RetFrom_0x10065954cL
+\
+x1: appendString:
+x2: ]
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:61
+Invoke:0x100659614L -[RetFrom_0x10065954cL appendString:]
+x0: RetFrom_0x10065954cL
+\
+x1: appendString:
+x2: ]
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:64
+Invoke:0x100659634L -[RetFrom_0x10065954cL dataUsingEncoding:]
+x0: RetFrom_0x10065954cL
+\
+x1: dataUsingEncoding:
+x2: 4
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:14
+Invoke:0x10065952cL +[NSMutableString alloc]
+x0: NSMutableString
+x1: alloc
+"	 [addr=4301624620,
+		args="['NSMutableString', 'alloc']",
+		context=4301624560,
+		des="+[NSMutableString alloc]",
+		dp="[NSMutableString alloc]",
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:11
+Invoke:0x100659510L <Symbol \"_objc_autoreleasePoolPush\" in WeiBo_arm64 (import)>
+x0: (^{\
+dispatch_queue_s=})MTA4QCDispatcher.task_queue
+x1: 0
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:17
+Invoke:0x10065953cL -[RetFrom_0x10065952cL init]
+x0: RetFrom_0x10065952cL
+x1: init
+"	 [addr=4301624636,
+		args="['RetFrom_0x10065952cL', 'init']",
+		context=4301624560,
+		des="-[RetFrom_0x10065952cL init]",
+		dp="[[NSMutableString alloc] init]",
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:14
+Invoke:0x10065952cL +[NSMutableString alloc]
+x0: NSMutableString
+x1: alloc
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:14
+Invoke:0x10065952cL +[NSMutableString alloc]
+x0: NSMutableString
+x1: alloc
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:17
+Invoke:0x10065953cL -[RetFrom_0x10065952cL init]
+x0: RetFrom_0x10065952cL
+x1: init
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:89
+Invoke:0x100659738L +[0 updateOnlineConfig:]
+x0: 0
+x1: updateOnlineConfig:
+x2: RetFrom_\
+0x1006596b0L
+"	 [addr=4301625144,
+		args="['0', 'updateOnlineConfig:', 'RetFrom_0x1006596b0L']",
+		context=4301624560,
+		des="+[0 updateOnlineConfig:]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:84
+Invoke:0x100659724L +[MTA4QCDataConfigHolder getInstance]
+x0: MTA4QCDataConfigHolder
+\
+x1: getInstance
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:93
+Invoke:0x100659764L <Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100659510L
+x1: updateOnlineConfig:
+"	 [addr=4301625188,
+		args="['RetFrom_0x100659510L', 'updateOnlineConfig:']",
+		context=4301624560,
+		des="<Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:89
+Invoke:0x100659738L +[0 updateOnlineConfig:]
+x0: 0
+x1: updateOnlineConfig:
+x2: RetFrom_\
+0x1006596b0L
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:89
+Invoke:0x100659738L +[0 updateOnlineConfig:]
+x0: 0
+x1: updateOnlineConfig:
+x2: RetFrom_\
+0x1006596b0L
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:93
+Invoke:0x100659764L <Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100659510L
+x1: updateOnlineConfig:
+"	 [color=green];
+	"Context:0x10065945c -[MTA4QCDispatcher send:callback:]
+Depth:8
+Invoke:0x1006594d8L <Symbol \"_dispatch_async\" in WeiBo_arm64 (import)>
+\
+x0: (^{dispatch_queue_s=})MTA4QCDispatcher.task_queue
+x1: 0
+"	 [addr=4301624536,
+		args="['(^{dispatch_queue_s=})MTA4QCDispatcher.task_queue', '0']",
+		context=4301624412,
+		des="<Symbol \"_dispatch_async\" in WeiBo_arm64 (import)>",
+		dp=None,
+		pnode="Context:0x10065945c -[MTA4QCDispatcher send:callback:]
+Depth:4
+Invoke:0x100659490L +[P0 count]
+x0: P0
+x1: count
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:11
+Invoke:0x100659510L <Symbol \"_objc_autoreleasePoolPush\" in WeiBo_arm64 (import)>
+x0: (^{\
+dispatch_queue_s=})MTA4QCDispatcher.task_queue
+x1: 0
+"	 [addr=4301624592,
+		args="['(^{dispatch_queue_s=})MTA4QCDispatcher.task_queue', '0']",
+		context=4301624560,
+		des="<Symbol \"_objc_autoreleasePoolPush\" in WeiBo_arm64 (import)>",
+		dp=None,
+		pnode="Context:0x10065945c -[MTA4QCDispatcher send:callback:]
+Depth:8
+Invoke:0x1006594d8L <Symbol \"_dispatch_async\" in WeiBo_arm64 (import)>
+\
+x0: (^{dispatch_queue_s=})MTA4QCDispatcher.task_queue
+x1: 0
+"];
+	"Context:0x10065945c -[MTA4QCDispatcher send:callback:]
+Depth:8
+Invoke:0x1006594d8L <Symbol \"_dispatch_async\" in WeiBo_arm64 (import)>
+\
+x0: (^{dispatch_queue_s=})MTA4QCDispatcher.task_queue
+x1: 0
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:11
+Invoke:0x100659510L <Symbol \"_objc_autoreleasePoolPush\" in WeiBo_arm64 (import)>
+x0: (^{\
+dispatch_queue_s=})MTA4QCDispatcher.task_queue
+x1: 0
+"	 [color=red];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:39
+Invoke:0x10065966cL +[mem_fffffffff004a018 nsRequest:responseData:]
+x0: mem_fffffffff004a018
+\
+x1: nsRequest:responseData:
+x2: RetFrom_0x10065964cL
+x3: 0
+"	 [addr=4301624940,
+		args="['mem_fffffffff004a018', 'nsRequest:responseData:', 'RetFrom_0x10065964cL', '0']",
+		context=4301624560,
+		des="+[mem_fffffffff004a018 nsRequest:responseData:]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:36
+Invoke:0x10065964cL +[NSMutableData dataWithData:]
+x0: NSMutableData
+x1: dataWithData:
+\
+x2: RetFrom_0x100659634L
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:39
+Invoke:0x10065966cL +[mem_fffffffff004a018 nsRequest:responseData:]
+x0: mem_fffffffff004a018
+\
+x1: nsRequest:responseData:
+x2: RetFrom_0x10065964cL
+x3: 0
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:44
+Invoke:0x100659764L <Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100659510L
+x1: 0
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:45
+Invoke:0x1006596b0L +[NSJSONSerialization JSONObjectWithData:options:error:]
+x0: NSJSONSerialization
+\
+x1: JSONObjectWithData:options:error:
+x2: 0
+x3: 2
+x4: 0
+"	 [addr=4301625008,
+		args="['NSJSONSerialization', 'JSONObjectWithData:options:error:', '0', '2', '0']",
+		context=4301624560,
+		des="+[NSJSONSerialization JSONObjectWithData:options:error:]",
+		dp="[NSJSONSerialization JSONObjectWithData:0 options:2 error:0 ]",
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:39
+Invoke:0x10065966cL +[mem_fffffffff004a018 nsRequest:responseData:]
+x0: mem_fffffffff004a018
+\
+x1: nsRequest:responseData:
+x2: RetFrom_0x10065964cL
+x3: 0
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:39
+Invoke:0x10065966cL +[mem_fffffffff004a018 nsRequest:responseData:]
+x0: mem_fffffffff004a018
+\
+x1: nsRequest:responseData:
+x2: RetFrom_0x10065964cL
+x3: 0
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:45
+Invoke:0x1006596b0L +[NSJSONSerialization JSONObjectWithData:options:error:]
+x0: NSJSONSerialization
+\
+x1: JSONObjectWithData:options:error:
+x2: 0
+x3: 2
+x4: 0
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:45
+Invoke:0x100659764L <Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100659510L
+x1: 1
+"	 [addr=4301625188,
+		args="['RetFrom_0x100659510L', '1']",
+		context=4301624560,
+		des="<Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:39
+Invoke:0x10065966cL +[mem_fffffffff004a018 nsRequest:responseData:]
+x0: mem_fffffffff004a018
+\
+x1: nsRequest:responseData:
+x2: RetFrom_0x10065964cL
+x3: 0
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:39
+Invoke:0x10065966cL +[mem_fffffffff004a018 nsRequest:responseData:]
+x0: mem_fffffffff004a018
+\
+x1: nsRequest:responseData:
+x2: RetFrom_0x10065964cL
+x3: 0
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:45
+Invoke:0x100659764L <Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100659510L
+x1: 1
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:79
+Invoke:0x1006596ccL +[NSDictionary class]
+x0: NSDictionary
+x1: class
+"	 [addr=4301625036,
+		args="['NSDictionary', 'class']",
+		context=4301624560,
+		des="+[NSDictionary class]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:76
+Invoke:0x1006596b0L +[NSJSONSerialization JSONObjectWithData:options:error:]
+x0: NSJSONSerialization
+\
+x1: JSONObjectWithData:options:error:
+x2: 0
+x3: 2
+x4: 0
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:79
+Invoke:0x1006596ccL +[NSDictionary class]
+x0: NSDictionary
+x1: class
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:82
+Invoke:0x1006596e4L -[RetFrom_0x1006596b0L isKindOfClass:]
+x0: RetFrom_0x1006596b0L
+\
+x1: isKindOfClass:
+x2: RetFrom_0x1006596ccL
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:50
+Invoke:0x10065964cL +[NSMutableData dataWithData:]
+x0: NSMutableData
+x1: dataWithData:
+\
+x2: RetFrom_0x100659634L
+"	 [addr=4301624908,
+		args="['NSMutableData', 'dataWithData:', 'RetFrom_0x100659634L']",
+		context=4301624560,
+		des="+[NSMutableData dataWithData:]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:47
+Invoke:0x100659634L -[RetFrom_0x10065954cL dataUsingEncoding:]
+x0: RetFrom_0x10065954cL
+\
+x1: dataUsingEncoding:
+x2: 4
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:50
+Invoke:0x10065964cL +[NSMutableData dataWithData:]
+x0: NSMutableData
+x1: dataWithData:
+\
+x2: RetFrom_0x100659634L
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:53
+Invoke:0x10065966cL +[mem_fffffffff004a018 nsRequest:responseData:]
+x0: mem_fffffffff004a018
+\
+x1: nsRequest:responseData:
+x2: RetFrom_0x10065964cL
+x3: 0
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:48
+Invoke:0x1006596ccL +[NSDictionary class]
+x0: NSDictionary
+x1: class
+"	 [addr=4301625036,
+		args="['NSDictionary', 'class']",
+		context=4301624560,
+		des="+[NSDictionary class]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:45
+Invoke:0x1006596b0L +[NSJSONSerialization JSONObjectWithData:options:error:]
+x0: NSJSONSerialization
+\
+x1: JSONObjectWithData:options:error:
+x2: 0
+x3: 2
+x4: 0
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:45
+Invoke:0x1006596b0L +[NSJSONSerialization JSONObjectWithData:options:error:]
+x0: NSJSONSerialization
+\
+x1: JSONObjectWithData:options:error:
+x2: 0
+x3: 2
+x4: 0
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:48
+Invoke:0x1006596ccL +[NSDictionary class]
+x0: NSDictionary
+x1: class
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:36
+Invoke:0x10065964cL +[NSMutableData dataWithData:]
+x0: NSMutableData
+x1: dataWithData:
+\
+x2: RetFrom_0x100659634L
+"	 [addr=4301624908,
+		args="['NSMutableData', 'dataWithData:', 'RetFrom_0x100659634L']",
+		context=4301624560,
+		des="+[NSMutableData dataWithData:]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:33
+Invoke:0x100659634L -[RetFrom_0x10065954cL dataUsingEncoding:]
+x0: RetFrom_0x10065954cL
+\
+x1: dataUsingEncoding:
+x2: 4
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:36
+Invoke:0x10065964cL +[NSMutableData dataWithData:]
+x0: NSMutableData
+x1: dataWithData:
+\
+x2: RetFrom_0x100659634L
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:39
+Invoke:0x10065966cL +[mem_fffffffff004a018 nsRequest:responseData:]
+x0: mem_fffffffff004a018
+\
+x1: nsRequest:responseData:
+x2: RetFrom_0x10065964cL
+x3: 0
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:47
+Invoke:0x1006595c0L -[RetFrom_0x10065954cL appendString:]
+x0: RetFrom_0x10065954cL
+\
+x1: appendString:
+x2: RetFrom_0x1006595b0L
+"	 [addr=4301624768,
+		args="['RetFrom_0x10065954cL', 'appendString:', 'RetFrom_0x1006595b0L']",
+		context=4301624560,
+		des="-[RetFrom_0x10065954cL appendString:]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:44
+Invoke:0x1006595b0L +[mem_fffffffff004a010 objectAtIndex:]
+x0: mem_fffffffff004a010
+\
+x1: objectAtIndex:
+x2: 1
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:44
+Invoke:0x1006595b0L +[mem_fffffffff004a010 objectAtIndex:]
+x0: mem_fffffffff004a010
+\
+x1: objectAtIndex:
+x2: 1
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:47
+Invoke:0x1006595c0L -[RetFrom_0x10065954cL appendString:]
+x0: RetFrom_0x10065954cL
+\
+x1: appendString:
+x2: RetFrom_0x1006595b0L
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:30
+Invoke:0x1006595b0L +[mem_fffffffff004a010 objectAtIndex:]
+x0: mem_fffffffff004a010
+\
+x1: objectAtIndex:
+x2: 0
+"	 [addr=4301624752,
+		args="['mem_fffffffff004a010', 'objectAtIndex:', '0']",
+		context=4301624560,
+		des="+[mem_fffffffff004a010 objectAtIndex:]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:26
+Invoke:0x100659584L +[mem_fffffffff004a010 count]
+x0: mem_fffffffff004a010
+x1: count
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:33
+Invoke:0x1006595c0L -[RetFrom_0x10065954cL appendString:]
+x0: RetFrom_0x10065954cL
+\
+x1: appendString:
+x2: RetFrom_0x1006595b0L
+"	 [addr=4301624768,
+		args="['RetFrom_0x10065954cL', 'appendString:', 'RetFrom_0x1006595b0L']",
+		context=4301624560,
+		des="-[RetFrom_0x10065954cL appendString:]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:30
+Invoke:0x1006595b0L +[mem_fffffffff004a010 objectAtIndex:]
+x0: mem_fffffffff004a010
+\
+x1: objectAtIndex:
+x2: 0
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:30
+Invoke:0x1006595b0L +[mem_fffffffff004a010 objectAtIndex:]
+x0: mem_fffffffff004a010
+\
+x1: objectAtIndex:
+x2: 0
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:33
+Invoke:0x1006595c0L -[RetFrom_0x10065954cL appendString:]
+x0: RetFrom_0x10065954cL
+\
+x1: appendString:
+x2: RetFrom_0x1006595b0L
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:81
+Invoke:0x100659714L +[0 debugEnable]
+x0: 0
+x1: debugEnable
+"	 [addr=4301625108,
+		args="['0', 'debugEnable']",
+		context=4301624560,
+		des="+[0 debugEnable]",
+		dp=None,
+		pnode="Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:65
+Invoke:0x1006580d0L <Symbol \"_objc_msgSendSuper2\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100658334L
+x1: init
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:84
+Invoke:0x100659724L +[MTA4QCDataConfigHolder getInstance]
+x0: MTA4QCDataConfigHolder
+\
+x1: getInstance
+"	 [addr=4301625124,
+		args="['MTA4QCDataConfigHolder', 'getInstance']",
+		context=4301624560,
+		des="+[MTA4QCDataConfigHolder getInstance]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:81
+Invoke:0x100659714L +[0 debugEnable]
+x0: 0
+x1: debugEnable
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:81
+Invoke:0x100659714L +[0 debugEnable]
+x0: 0
+x1: debugEnable
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:84
+Invoke:0x100659724L +[MTA4QCDataConfigHolder getInstance]
+x0: MTA4QCDataConfigHolder
+\
+x1: getInstance
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:26
+Invoke:0x100659584L +[mem_fffffffff004a010 count]
+x0: mem_fffffffff004a010
+x1: count
+"	 [addr=4301624708,
+		args="['mem_fffffffff004a010', 'count']",
+		context=4301624560,
+		des="+[mem_fffffffff004a010 count]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:23
+Invoke:0x10065956cL -[RetFrom_0x10065954cL appendString:]
+x0: RetFrom_0x10065954cL
+\
+x1: appendString:
+x2: [
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:26
+Invoke:0x100659584L +[mem_fffffffff004a010 count]
+x0: mem_fffffffff004a010
+x1: count
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:30
+Invoke:0x100659614L -[RetFrom_0x10065954cL appendString:]
+x0: RetFrom_0x10065954cL
+\
+x1: appendString:
+x2: ]
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:26
+Invoke:0x100659584L +[mem_fffffffff004a010 count]
+x0: mem_fffffffff004a010
+x1: count
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:30
+Invoke:0x1006595b0L +[mem_fffffffff004a010 objectAtIndex:]
+x0: mem_fffffffff004a010
+\
+x1: objectAtIndex:
+x2: 0
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:47
+Invoke:0x100659634L -[RetFrom_0x10065954cL dataUsingEncoding:]
+x0: RetFrom_0x10065954cL
+\
+x1: dataUsingEncoding:
+x2: 4
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:50
+Invoke:0x10065964cL +[NSMutableData dataWithData:]
+x0: NSMutableData
+x1: dataWithData:
+\
+x2: RetFrom_0x100659634L
+"	 [color=green];
+	"Context:0x100658308 +[MTA4QCConfig getInstance]
+Depth:90
+Invoke:0x100658334L +[MTA4QCConfig alloc]
+x0: MTA4QCConfig
+x1: alloc
+"	 [addr=4301620020,
+		args="['MTA4QCConfig', 'alloc']",
+		context=4301619976,
+		des="+[MTA4QCConfig alloc]",
+		dp="[MTA4QCConfig alloc]",
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:86
+Invoke:0x100659704L +[MTA4QCConfig getInstance]
+x0: MTA4QCConfig
+x1: getInstance
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:86
+Invoke:0x100659704L +[MTA4QCConfig getInstance]
+x0: MTA4QCConfig
+x1: getInstance
+" -> "Context:0x100658308 +[MTA4QCConfig getInstance]
+Depth:90
+Invoke:0x100658334L +[MTA4QCConfig alloc]
+x0: MTA4QCConfig
+x1: alloc
+"	 [color=red];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:94
+Invoke:0x100659714L +[0 debugEnable]
+x0: 0
+x1: debugEnable
+"	 [addr=4301625108,
+		args="['0', 'debugEnable']",
+		context=4301624560,
+		des="+[0 debugEnable]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:86
+Invoke:0x100659704L +[MTA4QCConfig getInstance]
+x0: MTA4QCConfig
+x1: getInstance
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:86
+Invoke:0x100659704L +[MTA4QCConfig getInstance]
+x0: MTA4QCConfig
+x1: getInstance
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:94
+Invoke:0x100659714L +[0 debugEnable]
+x0: 0
+x1: debugEnable
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:67
+Invoke:0x10065964cL +[NSMutableData dataWithData:]
+x0: NSMutableData
+x1: dataWithData:
+\
+x2: RetFrom_0x100659634L
+"	 [addr=4301624908,
+		args="['NSMutableData', 'dataWithData:', 'RetFrom_0x100659634L']",
+		context=4301624560,
+		des="+[NSMutableData dataWithData:]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:64
+Invoke:0x100659634L -[RetFrom_0x10065954cL dataUsingEncoding:]
+x0: RetFrom_0x10065954cL
+\
+x1: dataUsingEncoding:
+x2: 4
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:70
+Invoke:0x10065966cL +[mem_fffffffff004a018 nsRequest:responseData:]
+x0: mem_fffffffff004a018
+\
+x1: nsRequest:responseData:
+x2: RetFrom_0x10065964cL
+x3: 0
+"	 [addr=4301624940,
+		args="['mem_fffffffff004a018', 'nsRequest:responseData:', 'RetFrom_0x10065964cL', '0']",
+		context=4301624560,
+		des="+[mem_fffffffff004a018 nsRequest:responseData:]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:67
+Invoke:0x10065964cL +[NSMutableData dataWithData:]
+x0: NSMutableData
+x1: dataWithData:
+\
+x2: RetFrom_0x100659634L
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:67
+Invoke:0x10065964cL +[NSMutableData dataWithData:]
+x0: NSMutableData
+x1: dataWithData:
+\
+x2: RetFrom_0x100659634L
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:70
+Invoke:0x10065966cL +[mem_fffffffff004a018 nsRequest:responseData:]
+x0: mem_fffffffff004a018
+\
+x1: nsRequest:responseData:
+x2: RetFrom_0x10065964cL
+x3: 0
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:53
+Invoke:0x1006595ccL +[mem_fffffffff004a010 count]
+x0: mem_fffffffff004a010
+x1: count
+"	 [addr=4301624780,
+		args="['mem_fffffffff004a010', 'count']",
+		context=4301624560,
+		des="+[mem_fffffffff004a010 count]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:50
+Invoke:0x1006595c0L -[RetFrom_0x10065954cL appendString:]
+x0: RetFrom_0x10065954cL
+\
+x1: appendString:
+x2: RetFrom_0x1006595b0L
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:50
+Invoke:0x1006595c0L -[RetFrom_0x10065954cL appendString:]
+x0: RetFrom_0x10065954cL
+\
+x1: appendString:
+x2: RetFrom_0x1006595b0L
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:53
+Invoke:0x1006595ccL +[mem_fffffffff004a010 count]
+x0: mem_fffffffff004a010
+x1: count
+"	 [color=green];
+	"Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:100
+Invoke:0x1006580f0L -[RetFrom_0x1006580d0L setDebugEnable:]
+x0: RetFrom_0x1006580d0L
+\
+x1: setDebugEnable:
+x2: 0
+"	 [addr=4301619440,
+		args="['RetFrom_0x1006580d0L', 'setDebugEnable:', '0']",
+		context=4301619360,
+		des="-[RetFrom_0x1006580d0L setDebugEnable:]",
+		dp=None,
+		pnode="Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:96
+Invoke:0x1006580d0L <Symbol \"_objc_msgSendSuper2\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100658334L
+x1: init
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:54
+Invoke:0x1006595e8L -[RetFrom_0x10065954cL appendString:]
+x0: RetFrom_0x10065954cL
+\
+x1: appendString:
+x2: ,
+"	 [addr=4301624808,
+		args="['RetFrom_0x10065954cL', 'appendString:', ',']",
+		context=4301624560,
+		des="-[RetFrom_0x10065954cL appendString:]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:50
+Invoke:0x1006595ccL +[mem_fffffffff004a010 count]
+x0: mem_fffffffff004a010
+x1: count
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:57
+Invoke:0x1006595f8L +[mem_fffffffff004a010 count]
+x0: mem_fffffffff004a010
+x1: count
+"	 [addr=4301624824,
+		args="['mem_fffffffff004a010', 'count']",
+		context=4301624560,
+		des="+[mem_fffffffff004a010 count]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:54
+Invoke:0x1006595e8L -[RetFrom_0x10065954cL appendString:]
+x0: RetFrom_0x10065954cL
+\
+x1: appendString:
+x2: ,
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:54
+Invoke:0x1006595e8L -[RetFrom_0x10065954cL appendString:]
+x0: RetFrom_0x10065954cL
+\
+x1: appendString:
+x2: ,
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:57
+Invoke:0x1006595f8L +[mem_fffffffff004a010 count]
+x0: mem_fffffffff004a010
+x1: count
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:33
+Invoke:0x1006595c0L -[RetFrom_0x10065954cL appendString:]
+x0: RetFrom_0x10065954cL
+\
+x1: appendString:
+x2: RetFrom_0x1006595b0L
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:36
+Invoke:0x1006595ccL +[mem_fffffffff004a010 count]
+x0: mem_fffffffff004a010
+x1: count
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:33
+Invoke:0x100659634L -[RetFrom_0x10065954cL dataUsingEncoding:]
+x0: RetFrom_0x10065954cL
+\
+x1: dataUsingEncoding:
+x2: 4
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:36
+Invoke:0x10065964cL +[NSMutableData dataWithData:]
+x0: NSMutableData
+x1: dataWithData:
+\
+x2: RetFrom_0x100659634L
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:97
+Invoke:0x100659724L +[MTA4QCDataConfigHolder getInstance]
+x0: MTA4QCDataConfigHolder
+\
+x1: getInstance
+"	 [addr=4301625124,
+		args="['MTA4QCDataConfigHolder', 'getInstance']",
+		context=4301624560,
+		des="+[MTA4QCDataConfigHolder getInstance]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:94
+Invoke:0x100659714L +[0 debugEnable]
+x0: 0
+x1: debugEnable
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:97
+Invoke:0x100659724L +[MTA4QCDataConfigHolder getInstance]
+x0: MTA4QCDataConfigHolder
+\
+x1: getInstance
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:102
+Invoke:0x100659738L +[0 updateOnlineConfig:]
+x0: 0
+x1: updateOnlineConfig:
+x2: RetFrom_\
+0x1006596b0L
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:56
+Invoke:0x10065966cL +[mem_fffffffff004a018 nsRequest:responseData:]
+x0: mem_fffffffff004a018
+\
+x1: nsRequest:responseData:
+x2: RetFrom_0x10065964cL
+x3: 0
+"	 [addr=4301624940,
+		args="['mem_fffffffff004a018', 'nsRequest:responseData:', 'RetFrom_0x10065964cL', '0']",
+		context=4301624560,
+		des="+[mem_fffffffff004a018 nsRequest:responseData:]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:53
+Invoke:0x10065964cL +[NSMutableData dataWithData:]
+x0: NSMutableData
+x1: dataWithData:
+\
+x2: RetFrom_0x100659634L
+"];
+	"Context:0x100658308 +[MTA4QCConfig getInstance]
+Depth:73
+Invoke:0x100658334L +[MTA4QCConfig alloc]
+x0: MTA4QCConfig
+x1: alloc
+"	 [addr=4301620020,
+		args="['MTA4QCConfig', 'alloc']",
+		context=4301619976,
+		des="+[MTA4QCConfig alloc]",
+		dp="[MTA4QCConfig alloc]",
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:69
+Invoke:0x100659704L +[MTA4QCConfig getInstance]
+x0: MTA4QCConfig
+x1: getInstance
+"];
+	"Context:0x100658308 +[MTA4QCConfig getInstance]
+Depth:73
+Invoke:0x100658334L +[MTA4QCConfig alloc]
+x0: MTA4QCConfig
+x1: alloc
+" -> "Context:0x100658308 +[MTA4QCConfig getInstance]
+Depth:76
+Invoke:0x100658344L -[RetFrom_0x100658334L init]
+x0: RetFrom_0x100658334L
+\
+x1: init
+"	 [color=green];
+	"Context:0x100658308 +[MTA4QCConfig getInstance]
+Depth:59
+Invoke:0x100658334L +[MTA4QCConfig alloc]
+x0: MTA4QCConfig
+x1: alloc
+"	 [addr=4301620020,
+		args="['MTA4QCConfig', 'alloc']",
+		context=4301619976,
+		des="+[MTA4QCConfig alloc]",
+		dp="[MTA4QCConfig alloc]",
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:55
+Invoke:0x100659704L +[MTA4QCConfig getInstance]
+x0: MTA4QCConfig
+x1: getInstance
+"];
+	"Context:0x100658308 +[MTA4QCConfig getInstance]
+Depth:62
+Invoke:0x100658344L -[RetFrom_0x100658334L init]
+x0: RetFrom_0x100658334L
+\
+x1: init
+"	 [addr=4301620036,
+		args="['RetFrom_0x100658334L', 'init']",
+		context=4301619976,
+		des="-[RetFrom_0x100658334L init]",
+		dp=None,
+		pnode="Context:0x100658308 +[MTA4QCConfig getInstance]
+Depth:59
+Invoke:0x100658334L +[MTA4QCConfig alloc]
+x0: MTA4QCConfig
+x1: alloc
+"];
+	"Context:0x100658308 +[MTA4QCConfig getInstance]
+Depth:59
+Invoke:0x100658334L +[MTA4QCConfig alloc]
+x0: MTA4QCConfig
+x1: alloc
+" -> "Context:0x100658308 +[MTA4QCConfig getInstance]
+Depth:62
+Invoke:0x100658344L -[RetFrom_0x100658334L init]
+x0: RetFrom_0x100658334L
+\
+x1: init
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:66
+Invoke:0x100659724L +[MTA4QCDataConfigHolder getInstance]
+x0: MTA4QCDataConfigHolder
+\
+x1: getInstance
+"	 [addr=4301625124,
+		args="['MTA4QCDataConfigHolder', 'getInstance']",
+		context=4301624560,
+		des="+[MTA4QCDataConfigHolder getInstance]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:63
+Invoke:0x100659714L +[0 debugEnable]
+x0: 0
+x1: debugEnable
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:71
+Invoke:0x100659738L +[0 updateOnlineConfig:]
+x0: 0
+x1: updateOnlineConfig:
+x2: RetFrom_\
+0x1006596b0L
+"	 [addr=4301625144,
+		args="['0', 'updateOnlineConfig:', 'RetFrom_0x1006596b0L']",
+		context=4301624560,
+		des="+[0 updateOnlineConfig:]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:66
+Invoke:0x100659724L +[MTA4QCDataConfigHolder getInstance]
+x0: MTA4QCDataConfigHolder
+\
+x1: getInstance
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:66
+Invoke:0x100659724L +[MTA4QCDataConfigHolder getInstance]
+x0: MTA4QCDataConfigHolder
+\
+x1: getInstance
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:71
+Invoke:0x100659738L +[0 updateOnlineConfig:]
+x0: 0
+x1: updateOnlineConfig:
+x2: RetFrom_\
+0x1006596b0L
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:120
+Invoke:0x100659738L +[0 updateOnlineConfig:]
+x0: 0
+x1: updateOnlineConfig:
+x2: RetFrom_\
+0x1006596b0L
+"	 [addr=4301625144,
+		args="['0', 'updateOnlineConfig:', 'RetFrom_0x1006596b0L']",
+		context=4301624560,
+		des="+[0 updateOnlineConfig:]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:115
+Invoke:0x100659724L +[MTA4QCDataConfigHolder getInstance]
+x0: MTA4QCDataConfigHolder
+\
+x1: getInstance
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:120
+Invoke:0x100659738L +[0 updateOnlineConfig:]
+x0: 0
+x1: updateOnlineConfig:
+x2: RetFrom_\
+0x1006596b0L
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:124
+Invoke:0x100659764L <Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100659510L
+x1: updateOnlineConfig:
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:69
+Invoke:0x100659704L +[MTA4QCConfig getInstance]
+x0: MTA4QCConfig
+x1: getInstance
+"	 [addr=4301625092,
+		args="['MTA4QCConfig', 'getInstance']",
+		context=4301624560,
+		des="+[MTA4QCConfig getInstance]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:65
+Invoke:0x1006596e4L -[RetFrom_0x1006596b0L isKindOfClass:]
+x0: RetFrom_0x1006596b0L
+\
+x1: isKindOfClass:
+x2: RetFrom_0x1006596ccL
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:69
+Invoke:0x100659704L +[MTA4QCConfig getInstance]
+x0: MTA4QCConfig
+x1: getInstance
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:77
+Invoke:0x100659714L +[0 debugEnable]
+x0: 0
+x1: debugEnable
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:69
+Invoke:0x100659704L +[MTA4QCConfig getInstance]
+x0: MTA4QCConfig
+x1: getInstance
+" -> "Context:0x100658308 +[MTA4QCConfig getInstance]
+Depth:73
+Invoke:0x100658334L +[MTA4QCConfig alloc]
+x0: MTA4QCConfig
+x1: alloc
+"	 [color=red];
+	"Context:0x100658308 +[MTA4QCConfig getInstance]
+Depth:93
+Invoke:0x100658344L -[RetFrom_0x100658334L init]
+x0: RetFrom_0x100658334L
+\
+x1: init
+"	 [addr=4301620036,
+		args="['RetFrom_0x100658334L', 'init']",
+		context=4301619976,
+		des="-[RetFrom_0x100658334L init]",
+		dp=None,
+		pnode="Context:0x100658308 +[MTA4QCConfig getInstance]
+Depth:90
+Invoke:0x100658334L +[MTA4QCConfig alloc]
+x0: MTA4QCConfig
+x1: alloc
+"];
+	"Context:0x100658308 +[MTA4QCConfig getInstance]
+Depth:90
+Invoke:0x100658334L +[MTA4QCConfig alloc]
+x0: MTA4QCConfig
+x1: alloc
+" -> "Context:0x100658308 +[MTA4QCConfig getInstance]
+Depth:93
+Invoke:0x100658344L -[RetFrom_0x100658334L init]
+x0: RetFrom_0x100658334L
+\
+x1: init
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:89
+Invoke:0x100659764L <Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100659510L
+x1: updateOnlineConfig:
+"	 [addr=4301625188,
+		args="['RetFrom_0x100659510L', 'updateOnlineConfig:']",
+		context=4301624560,
+		des="<Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:85
+Invoke:0x100659738L +[0 updateOnlineConfig:]
+x0: 0
+x1: updateOnlineConfig:
+x2: RetFrom_\
+0x1006596b0L
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:85
+Invoke:0x100659738L +[0 updateOnlineConfig:]
+x0: 0
+x1: updateOnlineConfig:
+x2: RetFrom_\
+0x1006596b0L
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:89
+Invoke:0x100659764L <Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100659510L
+x1: updateOnlineConfig:
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:51
+Invoke:0x1006596e4L -[RetFrom_0x1006596b0L isKindOfClass:]
+x0: RetFrom_0x1006596b0L
+\
+x1: isKindOfClass:
+x2: RetFrom_0x1006596ccL
+"	 [addr=4301625060,
+		args="['RetFrom_0x1006596b0L', 'isKindOfClass:', 'RetFrom_0x1006596ccL']",
+		context=4301624560,
+		des="-[RetFrom_0x1006596b0L isKindOfClass:]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:48
+Invoke:0x1006596ccL +[NSDictionary class]
+x0: NSDictionary
+x1: class
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:48
+Invoke:0x1006596ccL +[NSDictionary class]
+x0: NSDictionary
+x1: class
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:51
+Invoke:0x1006596e4L -[RetFrom_0x1006596b0L isKindOfClass:]
+x0: RetFrom_0x1006596b0L
+\
+x1: isKindOfClass:
+x2: RetFrom_0x1006596ccL
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:50
+Invoke:0x1006595ccL +[mem_fffffffff004a010 count]
+x0: mem_fffffffff004a010
+x1: count
+"	 [addr=4301624780,
+		args="['mem_fffffffff004a010', 'count']",
+		context=4301624560,
+		des="+[mem_fffffffff004a010 count]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:47
+Invoke:0x1006595c0L -[RetFrom_0x10065954cL appendString:]
+x0: RetFrom_0x10065954cL
+\
+x1: appendString:
+x2: RetFrom_0x1006595b0L
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:47
+Invoke:0x1006595c0L -[RetFrom_0x10065954cL appendString:]
+x0: RetFrom_0x10065954cL
+\
+x1: appendString:
+x2: RetFrom_0x1006595b0L
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:50
+Invoke:0x1006595ccL +[mem_fffffffff004a010 count]
+x0: mem_fffffffff004a010
+x1: count
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:115
+Invoke:0x100659724L +[MTA4QCDataConfigHolder getInstance]
+x0: MTA4QCDataConfigHolder
+\
+x1: getInstance
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:120
+Invoke:0x100659738L +[0 updateOnlineConfig:]
+x0: 0
+x1: updateOnlineConfig:
+x2: RetFrom_\
+0x1006596b0L
+"	 [color=green];
+	"Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:96
+Invoke:0x1006580d0L <Symbol \"_objc_msgSendSuper2\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100658334L
+x1: init
+"	 [addr=4301619408,
+		args="['RetFrom_0x100658334L', 'init']",
+		context=4301619360,
+		des="<Symbol \"_objc_msgSendSuper2\" in WeiBo_arm64 (import)>",
+		dp="[[MTA4QCConfig alloc] init]",
+		pnode="Context:0x100658308 +[MTA4QCConfig getInstance]
+Depth:93
+Invoke:0x100658344L -[RetFrom_0x100658334L init]
+x0: RetFrom_0x100658334L
+\
+x1: init
+"];
+	"Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:96
+Invoke:0x1006580d0L <Symbol \"_objc_msgSendSuper2\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100658334L
+x1: init
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:112
+Invoke:0x100659714L +[0 debugEnable]
+x0: 0
+x1: debugEnable
+"	 [color=red];
+	"Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:96
+Invoke:0x1006580d0L <Symbol \"_objc_msgSendSuper2\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100658334L
+x1: init
+" -> "Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:100
+Invoke:0x1006580f0L -[RetFrom_0x1006580d0L setDebugEnable:]
+x0: RetFrom_0x1006580d0L
+\
+x1: setDebugEnable:
+x2: 0
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:20
+Invoke:0x10065954cL -[RetFrom_0x10065953cL autorelease]
+x0: RetFrom_0x10065953cL
+x1: \
+autorelease
+"	 [addr=4301624652,
+		args="['RetFrom_0x10065953cL', 'autorelease']",
+		context=4301624560,
+		des="-[RetFrom_0x10065953cL autorelease]",
+		dp="[[[NSMutableString alloc] init] autorelease]",
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:17
+Invoke:0x10065953cL -[RetFrom_0x10065952cL init]
+x0: RetFrom_0x10065952cL
+x1: init
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:23
+Invoke:0x10065956cL -[RetFrom_0x10065954cL appendString:]
+x0: RetFrom_0x10065954cL
+\
+x1: appendString:
+x2: [
+"	 [addr=4301624684,
+		args="['RetFrom_0x10065954cL', 'appendString:', '[']",
+		context=4301624560,
+		des="-[RetFrom_0x10065954cL appendString:]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:20
+Invoke:0x10065954cL -[RetFrom_0x10065953cL autorelease]
+x0: RetFrom_0x10065953cL
+x1: \
+autorelease
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:20
+Invoke:0x10065954cL -[RetFrom_0x10065953cL autorelease]
+x0: RetFrom_0x10065953cL
+x1: \
+autorelease
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:23
+Invoke:0x10065956cL -[RetFrom_0x10065954cL appendString:]
+x0: RetFrom_0x10065954cL
+\
+x1: appendString:
+x2: [
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:47
+Invoke:0x100659614L -[RetFrom_0x10065954cL appendString:]
+x0: RetFrom_0x10065954cL
+\
+x1: appendString:
+x2: ]
+"	 [addr=4301624852,
+		args="['RetFrom_0x10065954cL', 'appendString:', ']']",
+		context=4301624560,
+		des="-[RetFrom_0x10065954cL appendString:]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:43
+Invoke:0x1006595f8L +[mem_fffffffff004a010 count]
+x0: mem_fffffffff004a010
+x1: count
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:50
+Invoke:0x100659634L -[RetFrom_0x10065954cL dataUsingEncoding:]
+x0: RetFrom_0x10065954cL
+\
+x1: dataUsingEncoding:
+x2: 4
+"	 [addr=4301624884,
+		args="['RetFrom_0x10065954cL', 'dataUsingEncoding:', '4']",
+		context=4301624560,
+		des="-[RetFrom_0x10065954cL dataUsingEncoding:]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:47
+Invoke:0x100659614L -[RetFrom_0x10065954cL appendString:]
+x0: RetFrom_0x10065954cL
+\
+x1: appendString:
+x2: ]
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:47
+Invoke:0x100659614L -[RetFrom_0x10065954cL appendString:]
+x0: RetFrom_0x10065954cL
+\
+x1: appendString:
+x2: ]
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:50
+Invoke:0x100659634L -[RetFrom_0x10065954cL dataUsingEncoding:]
+x0: RetFrom_0x10065954cL
+\
+x1: dataUsingEncoding:
+x2: 4
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:75
+Invoke:0x100659764L <Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100659510L
+x1: updateOnlineConfig:
+"	 [addr=4301625188,
+		args="['RetFrom_0x100659510L', 'updateOnlineConfig:']",
+		context=4301624560,
+		des="<Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:71
+Invoke:0x100659738L +[0 updateOnlineConfig:]
+x0: 0
+x1: updateOnlineConfig:
+x2: RetFrom_\
+0x1006596b0L
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:71
+Invoke:0x100659738L +[0 updateOnlineConfig:]
+x0: 0
+x1: updateOnlineConfig:
+x2: RetFrom_\
+0x1006596b0L
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:75
+Invoke:0x100659764L <Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100659510L
+x1: updateOnlineConfig:
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:94
+Invoke:0x100659714L +[0 debugEnable]
+x0: 0
+x1: debugEnable
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:97
+Invoke:0x100659724L +[MTA4QCDataConfigHolder getInstance]
+x0: MTA4QCDataConfigHolder
+\
+x1: getInstance
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:43
+Invoke:0x1006595f8L +[mem_fffffffff004a010 count]
+x0: mem_fffffffff004a010
+x1: count
+"	 [addr=4301624824,
+		args="['mem_fffffffff004a010', 'count']",
+		context=4301624560,
+		des="+[mem_fffffffff004a010 count]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:40
+Invoke:0x1006595e8L -[RetFrom_0x10065954cL appendString:]
+x0: RetFrom_0x10065954cL
+\
+x1: appendString:
+x2: ,
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:40
+Invoke:0x1006595e8L -[RetFrom_0x10065954cL appendString:]
+x0: RetFrom_0x10065954cL
+\
+x1: appendString:
+x2: ,
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:43
+Invoke:0x1006595f8L +[mem_fffffffff004a010 count]
+x0: mem_fffffffff004a010
+x1: count
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:63
+Invoke:0x100659714L +[0 debugEnable]
+x0: 0
+x1: debugEnable
+"	 [addr=4301625108,
+		args="['0', 'debugEnable']",
+		context=4301624560,
+		des="+[0 debugEnable]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:55
+Invoke:0x100659704L +[MTA4QCConfig getInstance]
+x0: MTA4QCConfig
+x1: getInstance
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:63
+Invoke:0x100659714L +[0 debugEnable]
+x0: 0
+x1: debugEnable
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:66
+Invoke:0x100659724L +[MTA4QCDataConfigHolder getInstance]
+x0: MTA4QCDataConfigHolder
+\
+x1: getInstance
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:23
+Invoke:0x10065956cL -[RetFrom_0x10065954cL appendString:]
+x0: RetFrom_0x10065954cL
+\
+x1: appendString:
+x2: [
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:26
+Invoke:0x100659584L +[mem_fffffffff004a010 count]
+x0: mem_fffffffff004a010
+x1: count
+"	 [color=green];
+	"Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:65
+Invoke:0x1006580d0L <Symbol \"_objc_msgSendSuper2\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100658334L
+x1: init
+"	 [addr=4301619408,
+		args="['RetFrom_0x100658334L', 'init']",
+		context=4301619360,
+		des="<Symbol \"_objc_msgSendSuper2\" in WeiBo_arm64 (import)>",
+		dp="[[MTA4QCConfig alloc] init]",
+		pnode="Context:0x100658308 +[MTA4QCConfig getInstance]
+Depth:62
+Invoke:0x100658344L -[RetFrom_0x100658334L init]
+x0: RetFrom_0x100658334L
+\
+x1: init
+"];
+	"Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:65
+Invoke:0x1006580d0L <Symbol \"_objc_msgSendSuper2\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100658334L
+x1: init
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:81
+Invoke:0x100659714L +[0 debugEnable]
+x0: 0
+x1: debugEnable
+"	 [color=red];
+	"Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:69
+Invoke:0x1006580f0L -[RetFrom_0x1006580d0L setDebugEnable:]
+x0: RetFrom_0x1006580d0L
+\
+x1: setDebugEnable:
+x2: 0
+"	 [addr=4301619440,
+		args="['RetFrom_0x1006580d0L', 'setDebugEnable:', '0']",
+		context=4301619360,
+		des="-[RetFrom_0x1006580d0L setDebugEnable:]",
+		dp=None,
+		pnode="Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:65
+Invoke:0x1006580d0L <Symbol \"_objc_msgSendSuper2\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100658334L
+x1: init
+"];
+	"Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:65
+Invoke:0x1006580d0L <Symbol \"_objc_msgSendSuper2\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100658334L
+x1: init
+" -> "Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:69
+Invoke:0x1006580f0L -[RetFrom_0x1006580d0L setDebugEnable:]
+x0: RetFrom_0x1006580d0L
+\
+x1: setDebugEnable:
+x2: 0
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:55
+Invoke:0x100659704L +[MTA4QCConfig getInstance]
+x0: MTA4QCConfig
+x1: getInstance
+"	 [addr=4301625092,
+		args="['MTA4QCConfig', 'getInstance']",
+		context=4301624560,
+		des="+[MTA4QCConfig getInstance]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:51
+Invoke:0x1006596e4L -[RetFrom_0x1006596b0L isKindOfClass:]
+x0: RetFrom_0x1006596b0L
+\
+x1: isKindOfClass:
+x2: RetFrom_0x1006596ccL
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:55
+Invoke:0x100659704L +[MTA4QCConfig getInstance]
+x0: MTA4QCConfig
+x1: getInstance
+" -> "Context:0x100658308 +[MTA4QCConfig getInstance]
+Depth:59
+Invoke:0x100658334L +[MTA4QCConfig alloc]
+x0: MTA4QCConfig
+x1: alloc
+"	 [color=red];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:55
+Invoke:0x100659704L +[MTA4QCConfig getInstance]
+x0: MTA4QCConfig
+x1: getInstance
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:63
+Invoke:0x100659714L +[0 debugEnable]
+x0: 0
+x1: debugEnable
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:50
+Invoke:0x1006595ccL +[mem_fffffffff004a010 count]
+x0: mem_fffffffff004a010
+x1: count
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:54
+Invoke:0x1006595e8L -[RetFrom_0x10065954cL appendString:]
+x0: RetFrom_0x10065954cL
+\
+x1: appendString:
+x2: ,
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:57
+Invoke:0x1006595f8L +[mem_fffffffff004a010 count]
+x0: mem_fffffffff004a010
+x1: count
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:61
+Invoke:0x100659614L -[RetFrom_0x10065954cL appendString:]
+x0: RetFrom_0x10065954cL
+\
+x1: appendString:
+x2: ]
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:62
+Invoke:0x1006596ccL +[NSDictionary class]
+x0: NSDictionary
+x1: class
+"	 [addr=4301625036,
+		args="['NSDictionary', 'class']",
+		context=4301624560,
+		des="+[NSDictionary class]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:59
+Invoke:0x1006596b0L +[NSJSONSerialization JSONObjectWithData:options:error:]
+x0: NSJSONSerialization
+\
+x1: JSONObjectWithData:options:error:
+x2: 0
+x3: 2
+x4: 0
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:65
+Invoke:0x1006596e4L -[RetFrom_0x1006596b0L isKindOfClass:]
+x0: RetFrom_0x1006596b0L
+\
+x1: isKindOfClass:
+x2: RetFrom_0x1006596ccL
+"	 [addr=4301625060,
+		args="['RetFrom_0x1006596b0L', 'isKindOfClass:', 'RetFrom_0x1006596ccL']",
+		context=4301624560,
+		des="-[RetFrom_0x1006596b0L isKindOfClass:]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:62
+Invoke:0x1006596ccL +[NSDictionary class]
+x0: NSDictionary
+x1: class
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:62
+Invoke:0x1006596ccL +[NSDictionary class]
+x0: NSDictionary
+x1: class
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:65
+Invoke:0x1006596e4L -[RetFrom_0x1006596b0L isKindOfClass:]
+x0: RetFrom_0x1006596b0L
+\
+x1: isKindOfClass:
+x2: RetFrom_0x1006596ccL
+"	 [color=green];
+	"Context:0x10065945c -[MTA4QCDispatcher send:callback:]
+Depth:0
+Invoke:0x10065945c Start
+"	 [addr=4301624412,
+		args=None,
+		color=blue,
+		context=4301624412,
+		context_name="-[MTA4QCDispatcher send:callback:]",
+		des=Start,
+		dp=None,
+		pnode=None];
+	"Context:0x10065945c -[MTA4QCDispatcher send:callback:]
+Depth:4
+Invoke:0x100659490L +[P0 count]
+x0: P0
+x1: count
+"	 [addr=4301624464,
+		args="['P0', 'count']",
+		context=4301624412,
+		des="+[P0 count]",
+		dp=None,
+		pnode="Context:0x10065945c -[MTA4QCDispatcher send:callback:]
+Depth:0
+Invoke:0x10065945c Start
+"];
+	"Context:0x10065945c -[MTA4QCDispatcher send:callback:]
+Depth:0
+Invoke:0x10065945c Start
+" -> "Context:0x10065945c -[MTA4QCDispatcher send:callback:]
+Depth:4
+Invoke:0x100659490L +[P0 count]
+x0: P0
+x1: count
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:70
+Invoke:0x10065966cL +[mem_fffffffff004a018 nsRequest:responseData:]
+x0: mem_fffffffff004a018
+\
+x1: nsRequest:responseData:
+x2: RetFrom_0x10065964cL
+x3: 0
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:75
+Invoke:0x100659764L <Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100659510L
+x1: 0
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:76
+Invoke:0x100659764L <Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100659510L
+x1: 1
+"	 [addr=4301625188,
+		args="['RetFrom_0x100659510L', '1']",
+		context=4301624560,
+		des="<Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:70
+Invoke:0x10065966cL +[mem_fffffffff004a018 nsRequest:responseData:]
+x0: mem_fffffffff004a018
+\
+x1: nsRequest:responseData:
+x2: RetFrom_0x10065964cL
+x3: 0
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:70
+Invoke:0x10065966cL +[mem_fffffffff004a018 nsRequest:responseData:]
+x0: mem_fffffffff004a018
+\
+x1: nsRequest:responseData:
+x2: RetFrom_0x10065964cL
+x3: 0
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:76
+Invoke:0x100659764L <Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100659510L
+x1: 1
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:76
+Invoke:0x1006596b0L +[NSJSONSerialization JSONObjectWithData:options:error:]
+x0: NSJSONSerialization
+\
+x1: JSONObjectWithData:options:error:
+x2: 0
+x3: 2
+x4: 0
+"	 [addr=4301625008,
+		args="['NSJSONSerialization', 'JSONObjectWithData:options:error:', '0', '2', '0']",
+		context=4301624560,
+		des="+[NSJSONSerialization JSONObjectWithData:options:error:]",
+		dp="[NSJSONSerialization JSONObjectWithData:0 options:2 error:0 ]",
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:70
+Invoke:0x10065966cL +[mem_fffffffff004a018 nsRequest:responseData:]
+x0: mem_fffffffff004a018
+\
+x1: nsRequest:responseData:
+x2: RetFrom_0x10065964cL
+x3: 0
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:70
+Invoke:0x10065966cL +[mem_fffffffff004a018 nsRequest:responseData:]
+x0: mem_fffffffff004a018
+\
+x1: nsRequest:responseData:
+x2: RetFrom_0x10065964cL
+x3: 0
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:76
+Invoke:0x1006596b0L +[NSJSONSerialization JSONObjectWithData:options:error:]
+x0: NSJSONSerialization
+\
+x1: JSONObjectWithData:options:error:
+x2: 0
+x3: 2
+x4: 0
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:17
+Invoke:0x10065953cL -[RetFrom_0x10065952cL init]
+x0: RetFrom_0x10065952cL
+x1: init
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:20
+Invoke:0x10065954cL -[RetFrom_0x10065953cL autorelease]
+x0: RetFrom_0x10065953cL
+x1: \
+autorelease
+"	 [color=green];
+	"Context:0x10065945c -[MTA4QCDispatcher send:callback:]
+Depth:4
+Invoke:0x100659490L +[P0 count]
+x0: P0
+x1: count
+" -> "Context:0x10065945c -[MTA4QCDispatcher send:callback:]
+Depth:8
+Invoke:0x1006594d8L <Symbol \"_dispatch_async\" in WeiBo_arm64 (import)>
+\
+x0: (^{dispatch_queue_s=})MTA4QCDispatcher.task_queue
+x1: 0
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:55
+Invoke:0x100659764L <Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100659510L
+x1: isKindOfClass:
+"	 [addr=4301625188,
+		args="['RetFrom_0x100659510L', 'isKindOfClass:']",
+		context=4301624560,
+		des="<Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:51
+Invoke:0x1006596e4L -[RetFrom_0x1006596b0L isKindOfClass:]
+x0: RetFrom_0x1006596b0L
+\
+x1: isKindOfClass:
+x2: RetFrom_0x1006596ccL
+"];
+	"Context:0x100658308 +[MTA4QCConfig getInstance]
+Depth:93
+Invoke:0x100658344L -[RetFrom_0x100658334L init]
+x0: RetFrom_0x100658334L
+\
+x1: init
+" -> "Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:96
+Invoke:0x1006580d0L <Symbol \"_objc_msgSendSuper2\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100658334L
+x1: init
+"	 [color=red];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:11
+Invoke:0x100659510L <Symbol \"_objc_autoreleasePoolPush\" in WeiBo_arm64 (import)>
+x0: (^{\
+dispatch_queue_s=})MTA4QCDispatcher.task_queue
+x1: 0
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:14
+Invoke:0x10065952cL +[NSMutableString alloc]
+x0: NSMutableString
+x1: alloc
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:95
+Invoke:0x100659714L +[0 debugEnable]
+x0: 0
+x1: debugEnable
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:98
+Invoke:0x100659724L +[MTA4QCDataConfigHolder getInstance]
+x0: MTA4QCDataConfigHolder
+\
+x1: getInstance
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:64
+Invoke:0x100659634L -[RetFrom_0x10065954cL dataUsingEncoding:]
+x0: RetFrom_0x10065954cL
+\
+x1: dataUsingEncoding:
+x2: 4
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:67
+Invoke:0x10065964cL +[NSMutableData dataWithData:]
+x0: NSMutableData
+x1: dataWithData:
+\
+x2: RetFrom_0x100659634L
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:53
+Invoke:0x10065964cL +[NSMutableData dataWithData:]
+x0: NSMutableData
+x1: dataWithData:
+\
+x2: RetFrom_0x100659634L
+"	 [addr=4301624908,
+		args="['NSMutableData', 'dataWithData:', 'RetFrom_0x100659634L']",
+		context=4301624560,
+		des="+[NSMutableData dataWithData:]",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:50
+Invoke:0x100659634L -[RetFrom_0x10065954cL dataUsingEncoding:]
+x0: RetFrom_0x10065954cL
+\
+x1: dataUsingEncoding:
+x2: 4
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:53
+Invoke:0x10065964cL +[NSMutableData dataWithData:]
+x0: NSMutableData
+x1: dataWithData:
+\
+x2: RetFrom_0x100659634L
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:56
+Invoke:0x10065966cL +[mem_fffffffff004a018 nsRequest:responseData:]
+x0: mem_fffffffff004a018
+\
+x1: nsRequest:responseData:
+x2: RetFrom_0x10065964cL
+x3: 0
+"	 [color=green];
+	"Context:0x100658308 +[MTA4QCConfig getInstance]
+Depth:62
+Invoke:0x100658344L -[RetFrom_0x100658334L init]
+x0: RetFrom_0x100658334L
+\
+x1: init
+" -> "Context:0x1006580a0 -[MTA4QCConfig init]
+Depth:65
+Invoke:0x1006580d0L <Symbol \"_objc_msgSendSuper2\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100658334L
+x1: init
+"	 [color=red];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:69
+Invoke:0x100659764L <Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100659510L
+x1: isKindOfClass:
+"	 [addr=4301625188,
+		args="['RetFrom_0x100659510L', 'isKindOfClass:']",
+		context=4301624560,
+		des="<Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>",
+		dp=None,
+		pnode="Context:0x1006594f0 sub_0x1006594f0
+Depth:65
+Invoke:0x1006596e4L -[RetFrom_0x1006596b0L isKindOfClass:]
+x0: RetFrom_0x1006596b0L
+\
+x1: isKindOfClass:
+x2: RetFrom_0x1006596ccL
+"];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:76
+Invoke:0x1006596b0L +[NSJSONSerialization JSONObjectWithData:options:error:]
+x0: NSJSONSerialization
+\
+x1: JSONObjectWithData:options:error:
+x2: 0
+x3: 2
+x4: 0
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:79
+Invoke:0x1006596ccL +[NSDictionary class]
+x0: NSDictionary
+x1: class
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:43
+Invoke:0x1006595f8L +[mem_fffffffff004a010 count]
+x0: mem_fffffffff004a010
+x1: count
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:47
+Invoke:0x1006595b0L +[mem_fffffffff004a010 objectAtIndex:]
+x0: mem_fffffffff004a010
+\
+x1: objectAtIndex:
+x2: 1
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:43
+Invoke:0x1006595f8L +[mem_fffffffff004a010 count]
+x0: mem_fffffffff004a010
+x1: count
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:47
+Invoke:0x100659614L -[RetFrom_0x10065954cL appendString:]
+x0: RetFrom_0x10065954cL
+\
+x1: appendString:
+x2: ]
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:50
+Invoke:0x100659634L -[RetFrom_0x10065954cL dataUsingEncoding:]
+x0: RetFrom_0x10065954cL
+\
+x1: dataUsingEncoding:
+x2: 4
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:53
+Invoke:0x10065964cL +[NSMutableData dataWithData:]
+x0: NSMutableData
+x1: dataWithData:
+\
+x2: RetFrom_0x100659634L
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:84
+Invoke:0x100659724L +[MTA4QCDataConfigHolder getInstance]
+x0: MTA4QCDataConfigHolder
+\
+x1: getInstance
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:89
+Invoke:0x100659738L +[0 updateOnlineConfig:]
+x0: 0
+x1: updateOnlineConfig:
+x2: RetFrom_\
+0x1006596b0L
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:65
+Invoke:0x1006596e4L -[RetFrom_0x1006596b0L isKindOfClass:]
+x0: RetFrom_0x1006596b0L
+\
+x1: isKindOfClass:
+x2: RetFrom_0x1006596ccL
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:69
+Invoke:0x100659704L +[MTA4QCConfig getInstance]
+x0: MTA4QCConfig
+x1: getInstance
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:65
+Invoke:0x1006596e4L -[RetFrom_0x1006596b0L isKindOfClass:]
+x0: RetFrom_0x1006596b0L
+\
+x1: isKindOfClass:
+x2: RetFrom_0x1006596ccL
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:69
+Invoke:0x100659764L <Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100659510L
+x1: isKindOfClass:
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:51
+Invoke:0x1006596e4L -[RetFrom_0x1006596b0L isKindOfClass:]
+x0: RetFrom_0x1006596b0L
+\
+x1: isKindOfClass:
+x2: RetFrom_0x1006596ccL
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:55
+Invoke:0x100659704L +[MTA4QCConfig getInstance]
+x0: MTA4QCConfig
+x1: getInstance
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:51
+Invoke:0x1006596e4L -[RetFrom_0x1006596b0L isKindOfClass:]
+x0: RetFrom_0x1006596b0L
+\
+x1: isKindOfClass:
+x2: RetFrom_0x1006596ccL
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:55
+Invoke:0x100659764L <Symbol \"_objc_autoreleasePoolPop\" in WeiBo_arm64 (import)>
+x0: \
+RetFrom_0x100659510L
+x1: isKindOfClass:
+"	 [color=green];
+	"Context:0x1006594f0 sub_0x1006594f0
+Depth:59
+Invoke:0x1006596b0L +[NSJSONSerialization JSONObjectWithData:options:error:]
+x0: NSJSONSerialization
+\
+x1: JSONObjectWithData:options:error:
+x2: 0
+x3: 2
+x4: 0
+" -> "Context:0x1006594f0 sub_0x1006594f0
+Depth:62
+Invoke:0x1006596ccL +[NSDictionary class]
+x0: NSDictionary
+x1: class
+"	 [color=green];
+}

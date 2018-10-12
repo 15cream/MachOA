@@ -1,0 +1,466 @@
+strict digraph  {
+	"Context:0x10065ed50 sub_0x10065ed50
+Depth:4
+Invoke:0x10065eda4L <Symbol \"___vsnprintf_chk\" in WeiBo_arm64 (import)>
+x0: mem_7fffffffffefbc8
+\
+x1: 1023
+"	 [addr=4301647268,
+		args="['mem_7fffffffffefbc8', '1023']",
+		context=4301647184,
+		des="<Symbol \"___vsnprintf_chk\" in WeiBo_arm64 (import)>",
+		dp=None,
+		pnode="Context:0x10065ed50 sub_0x10065ed50
+Depth:0
+Invoke:0x10065ed50 Start
+"];
+	"Context:0x10065ed50 sub_0x10065ed50
+Depth:7
+Invoke:0x10065edb4L <Symbol \"_objc_sync_enter\" in WeiBo_arm64 (import)>
+x0: __MTA4QC_\
+LOCK__
+x1: 1023
+"	 [addr=4301647284,
+		args="['__MTA4QC_LOCK__', '1023']",
+		context=4301647184,
+		des="<Symbol \"_objc_sync_enter\" in WeiBo_arm64 (import)>",
+		dp=None,
+		pnode="Context:0x10065ed50 sub_0x10065ed50
+Depth:4
+Invoke:0x10065eda4L <Symbol \"___vsnprintf_chk\" in WeiBo_arm64 (import)>
+x0: mem_7fffffffffefbc8
+\
+x1: 1023
+"];
+	"Context:0x10065ed50 sub_0x10065ed50
+Depth:4
+Invoke:0x10065eda4L <Symbol \"___vsnprintf_chk\" in WeiBo_arm64 (import)>
+x0: mem_7fffffffffefbc8
+\
+x1: 1023
+" -> "Context:0x10065ed50 sub_0x10065ed50
+Depth:7
+Invoke:0x10065edb4L <Symbol \"_objc_sync_enter\" in WeiBo_arm64 (import)>
+x0: __MTA4QC_\
+LOCK__
+x1: 1023
+"	 [color=green];
+	"Context:0x10065ed50 sub_0x10065ed50
+Depth:5
+Invoke:0x10065ee0cL <Symbol \"___stack_chk_fail\" in WeiBo_arm64 (import)>
+x0: reg_x0
+\
+x1: reg_x1
+"	 [addr=4301647372,
+		args="['reg_x0', 'reg_x1']",
+		context=4301647184,
+		des="<Symbol \"___stack_chk_fail\" in WeiBo_arm64 (import)>",
+		dp=None,
+		pnode="Context:0x10065ed50 sub_0x10065ed50
+Depth:0
+Invoke:0x10065ed50 Start
+"];
+	"Context:0x10065ed50 sub_0x10065ed50
+Depth:8
+Invoke:0x10065ee20L <Symbol \"_objc_sync_exit\" in WeiBo_arm64 (import)>
+x0: __MTA4QC_\
+LOCK__
+x1: reg_x1
+"	 [addr=4301647392,
+		args="['__MTA4QC_LOCK__', 'reg_x1']",
+		context=4301647184,
+		des="<Symbol \"_objc_sync_exit\" in WeiBo_arm64 (import)>",
+		dp=None,
+		pnode="Context:0x10065ed50 sub_0x10065ed50
+Depth:5
+Invoke:0x10065ee0cL <Symbol \"___stack_chk_fail\" in WeiBo_arm64 (import)>
+x0: reg_x0
+\
+x1: reg_x1
+"];
+	"Context:0x10065ed50 sub_0x10065ed50
+Depth:5
+Invoke:0x10065ee0cL <Symbol \"___stack_chk_fail\" in WeiBo_arm64 (import)>
+x0: reg_x0
+\
+x1: reg_x1
+" -> "Context:0x10065ed50 sub_0x10065ed50
+Depth:8
+Invoke:0x10065ee20L <Symbol \"_objc_sync_exit\" in WeiBo_arm64 (import)>
+x0: __MTA4QC_\
+LOCK__
+x1: reg_x1
+"	 [color=green];
+	"Context:0x10065ed50 sub_0x10065ed50
+Depth:14
+Invoke:0x10065edd8L <Symbol \"_sqlite3_free\" in WeiBo_arm64 (import)>
+x0: 0
+x1: mem_\
+7fffffffffefbc8
+"	 [addr=4301647320,
+		args="['0', 'mem_7fffffffffefbc8']",
+		context=4301647184,
+		des="<Symbol \"_sqlite3_free\" in WeiBo_arm64 (import)>",
+		dp=None,
+		pnode="Context:0x10065ed50 sub_0x10065ed50
+Depth:10
+Invoke:0x10065edccL <Symbol \"_sqlite3_exec\" in WeiBo_arm64 (import)>
+x0: reg_x0
+x1: \
+mem_7fffffffffefbc8
+"];
+	"Context:0x10065ed50 sub_0x10065ed50
+Depth:17
+Invoke:0x10065ede4L <Symbol \"_objc_sync_exit\" in WeiBo_arm64 (import)>
+x0: __MTA4QC_\
+LOCK__
+x1: mem_7fffffffffefbc8
+"	 [addr=4301647332,
+		args="['__MTA4QC_LOCK__', 'mem_7fffffffffefbc8']",
+		context=4301647184,
+		des="<Symbol \"_objc_sync_exit\" in WeiBo_arm64 (import)>",
+		dp=None,
+		pnode="Context:0x10065ed50 sub_0x10065ed50
+Depth:14
+Invoke:0x10065edd8L <Symbol \"_sqlite3_free\" in WeiBo_arm64 (import)>
+x0: 0
+x1: mem_\
+7fffffffffefbc8
+"];
+	"Context:0x10065ed50 sub_0x10065ed50
+Depth:14
+Invoke:0x10065edd8L <Symbol \"_sqlite3_free\" in WeiBo_arm64 (import)>
+x0: 0
+x1: mem_\
+7fffffffffefbc8
+" -> "Context:0x10065ed50 sub_0x10065ed50
+Depth:17
+Invoke:0x10065ede4L <Symbol \"_objc_sync_exit\" in WeiBo_arm64 (import)>
+x0: __MTA4QC_\
+LOCK__
+x1: mem_7fffffffffefbc8
+"	 [color=green];
+	"Context:0x10065ed50 sub_0x10065ed50
+Depth:24
+Invoke:0x10065ee28L <Symbol \"__Unwind_Resume\" in WeiBo_arm64 (import)>
+x0: RetFrom_\
+0x10065ee0cL
+x1: mem_7fffffffffefbc8
+"	 [addr=4301647400,
+		args="['RetFrom_0x10065ee0cL', 'mem_7fffffffffefbc8']",
+		context=4301647184,
+		des="<Symbol \"__Unwind_Resume\" in WeiBo_arm64 (import)>",
+		dp=None,
+		pnode="Context:0x10065ed50 sub_0x10065ed50
+Depth:21
+Invoke:0x10065ee20L <Symbol \"_objc_sync_exit\" in WeiBo_arm64 (import)>
+x0: __MTA4QC_\
+LOCK__
+x1: mem_7fffffffffefbc8
+"];
+	"Context:0x10065ed50 sub_0x10065ed50
+Depth:0
+Invoke:0x10065ed50 Start
+"	 [addr=4301647184,
+		args=None,
+		color=blue,
+		context=4301647184,
+		context_name=sub_0x10065ed50,
+		des=Start,
+		dp=None,
+		pnode=None];
+	"Context:0x10065ed50 sub_0x10065ed50
+Depth:0
+Invoke:0x10065ed50 Start
+" -> "Context:0x10065ed50 sub_0x10065ed50
+Depth:4
+Invoke:0x10065eda4L <Symbol \"___vsnprintf_chk\" in WeiBo_arm64 (import)>
+x0: mem_7fffffffffefbc8
+\
+x1: 1023
+"	 [color=green];
+	"Context:0x10065ed50 sub_0x10065ed50
+Depth:0
+Invoke:0x10065ed50 Start
+" -> "Context:0x10065ed50 sub_0x10065ed50
+Depth:5
+Invoke:0x10065ee0cL <Symbol \"___stack_chk_fail\" in WeiBo_arm64 (import)>
+x0: reg_x0
+\
+x1: reg_x1
+"	 [color=green];
+	"Context:0x10065ed50 sub_0x10065ed50
+Depth:18
+Invoke:0x10065ee0cL <Symbol \"___stack_chk_fail\" in WeiBo_arm64 (import)>
+x0: RetFrom_\
+0x10065ede4L
+x1: mem_7fffffffffefbc8
+"	 [addr=4301647372,
+		args="['RetFrom_0x10065ede4L', 'mem_7fffffffffefbc8']",
+		context=4301647184,
+		des="<Symbol \"___stack_chk_fail\" in WeiBo_arm64 (import)>",
+		dp=None,
+		pnode="Context:0x10065ed50 sub_0x10065ed50
+Depth:14
+Invoke:0x10065ede4L <Symbol \"_objc_sync_exit\" in WeiBo_arm64 (import)>
+x0: __MTA4QC_\
+LOCK__
+x1: mem_7fffffffffefbc8
+"];
+	"Context:0x10065ed50 sub_0x10065ed50
+Depth:21
+Invoke:0x10065ee20L <Symbol \"_objc_sync_exit\" in WeiBo_arm64 (import)>
+x0: __MTA4QC_\
+LOCK__
+x1: mem_7fffffffffefbc8
+"	 [addr=4301647392,
+		args="['__MTA4QC_LOCK__', 'mem_7fffffffffefbc8']",
+		context=4301647184,
+		des="<Symbol \"_objc_sync_exit\" in WeiBo_arm64 (import)>",
+		dp=None,
+		pnode="Context:0x10065ed50 sub_0x10065ed50
+Depth:18
+Invoke:0x10065ee0cL <Symbol \"___stack_chk_fail\" in WeiBo_arm64 (import)>
+x0: RetFrom_\
+0x10065ede4L
+x1: mem_7fffffffffefbc8
+"];
+	"Context:0x10065ed50 sub_0x10065ed50
+Depth:18
+Invoke:0x10065ee0cL <Symbol \"___stack_chk_fail\" in WeiBo_arm64 (import)>
+x0: RetFrom_\
+0x10065ede4L
+x1: mem_7fffffffffefbc8
+" -> "Context:0x10065ed50 sub_0x10065ed50
+Depth:21
+Invoke:0x10065ee20L <Symbol \"_objc_sync_exit\" in WeiBo_arm64 (import)>
+x0: __MTA4QC_\
+LOCK__
+x1: mem_7fffffffffefbc8
+"	 [color=green];
+	"Context:0x10065ed50 sub_0x10065ed50
+Depth:24
+Invoke:0x10065ee20L <Symbol \"_objc_sync_exit\" in WeiBo_arm64 (import)>
+x0: __MTA4QC_\
+LOCK__
+x1: mem_7fffffffffefbc8
+"	 [addr=4301647392,
+		args="['__MTA4QC_LOCK__', 'mem_7fffffffffefbc8']",
+		context=4301647184,
+		des="<Symbol \"_objc_sync_exit\" in WeiBo_arm64 (import)>",
+		dp=None,
+		pnode="Context:0x10065ed50 sub_0x10065ed50
+Depth:21
+Invoke:0x10065ee0cL <Symbol \"___stack_chk_fail\" in WeiBo_arm64 (import)>
+x0: RetFrom_\
+0x10065ede4L
+x1: mem_7fffffffffefbc8
+"];
+	"Context:0x10065ed50 sub_0x10065ed50
+Depth:27
+Invoke:0x10065ee28L <Symbol \"__Unwind_Resume\" in WeiBo_arm64 (import)>
+x0: RetFrom_\
+0x10065ee0cL
+x1: mem_7fffffffffefbc8
+"	 [addr=4301647400,
+		args="['RetFrom_0x10065ee0cL', 'mem_7fffffffffefbc8']",
+		context=4301647184,
+		des="<Symbol \"__Unwind_Resume\" in WeiBo_arm64 (import)>",
+		dp=None,
+		pnode="Context:0x10065ed50 sub_0x10065ed50
+Depth:24
+Invoke:0x10065ee20L <Symbol \"_objc_sync_exit\" in WeiBo_arm64 (import)>
+x0: __MTA4QC_\
+LOCK__
+x1: mem_7fffffffffefbc8
+"];
+	"Context:0x10065ed50 sub_0x10065ed50
+Depth:24
+Invoke:0x10065ee20L <Symbol \"_objc_sync_exit\" in WeiBo_arm64 (import)>
+x0: __MTA4QC_\
+LOCK__
+x1: mem_7fffffffffefbc8
+" -> "Context:0x10065ed50 sub_0x10065ed50
+Depth:27
+Invoke:0x10065ee28L <Symbol \"__Unwind_Resume\" in WeiBo_arm64 (import)>
+x0: RetFrom_\
+0x10065ee0cL
+x1: mem_7fffffffffefbc8
+"	 [color=green];
+	"Context:0x10065ed50 sub_0x10065ed50
+Depth:11
+Invoke:0x10065ee28L <Symbol \"__Unwind_Resume\" in WeiBo_arm64 (import)>
+x0: RetFrom_\
+0x10065ee0cL
+x1: reg_x1
+"	 [addr=4301647400,
+		args="['RetFrom_0x10065ee0cL', 'reg_x1']",
+		context=4301647184,
+		des="<Symbol \"__Unwind_Resume\" in WeiBo_arm64 (import)>",
+		dp=None,
+		pnode="Context:0x10065ed50 sub_0x10065ed50
+Depth:8
+Invoke:0x10065ee20L <Symbol \"_objc_sync_exit\" in WeiBo_arm64 (import)>
+x0: __MTA4QC_\
+LOCK__
+x1: reg_x1
+"];
+	"Context:0x10065ed50 sub_0x10065ed50
+Depth:10
+Invoke:0x10065edccL <Symbol \"_sqlite3_exec\" in WeiBo_arm64 (import)>
+x0: reg_x0
+x1: \
+mem_7fffffffffefbc8
+"	 [addr=4301647308,
+		args="['reg_x0', 'mem_7fffffffffefbc8']",
+		context=4301647184,
+		des="<Symbol \"_sqlite3_exec\" in WeiBo_arm64 (import)>",
+		dp=None,
+		pnode="Context:0x10065ed50 sub_0x10065ed50
+Depth:7
+Invoke:0x10065edb4L <Symbol \"_objc_sync_enter\" in WeiBo_arm64 (import)>
+x0: __MTA4QC_\
+LOCK__
+x1: 1023
+"];
+	"Context:0x10065ed50 sub_0x10065ed50
+Depth:10
+Invoke:0x10065edccL <Symbol \"_sqlite3_exec\" in WeiBo_arm64 (import)>
+x0: reg_x0
+x1: \
+mem_7fffffffffefbc8
+" -> "Context:0x10065ed50 sub_0x10065ed50
+Depth:14
+Invoke:0x10065edd8L <Symbol \"_sqlite3_free\" in WeiBo_arm64 (import)>
+x0: 0
+x1: mem_\
+7fffffffffefbc8
+"	 [color=green];
+	"Context:0x10065ed50 sub_0x10065ed50
+Depth:14
+Invoke:0x10065ede4L <Symbol \"_objc_sync_exit\" in WeiBo_arm64 (import)>
+x0: __MTA4QC_\
+LOCK__
+x1: mem_7fffffffffefbc8
+"	 [addr=4301647332,
+		args="['__MTA4QC_LOCK__', 'mem_7fffffffffefbc8']",
+		context=4301647184,
+		des="<Symbol \"_objc_sync_exit\" in WeiBo_arm64 (import)>",
+		dp=None,
+		pnode="Context:0x10065ed50 sub_0x10065ed50
+Depth:10
+Invoke:0x10065edccL <Symbol \"_sqlite3_exec\" in WeiBo_arm64 (import)>
+x0: reg_x0
+x1: \
+mem_7fffffffffefbc8
+"];
+	"Context:0x10065ed50 sub_0x10065ed50
+Depth:10
+Invoke:0x10065edccL <Symbol \"_sqlite3_exec\" in WeiBo_arm64 (import)>
+x0: reg_x0
+x1: \
+mem_7fffffffffefbc8
+" -> "Context:0x10065ed50 sub_0x10065ed50
+Depth:14
+Invoke:0x10065ede4L <Symbol \"_objc_sync_exit\" in WeiBo_arm64 (import)>
+x0: __MTA4QC_\
+LOCK__
+x1: mem_7fffffffffefbc8
+"	 [color=green];
+	"Context:0x10065ed50 sub_0x10065ed50
+Depth:21
+Invoke:0x10065ee20L <Symbol \"_objc_sync_exit\" in WeiBo_arm64 (import)>
+x0: __MTA4QC_\
+LOCK__
+x1: mem_7fffffffffefbc8
+" -> "Context:0x10065ed50 sub_0x10065ed50
+Depth:24
+Invoke:0x10065ee28L <Symbol \"__Unwind_Resume\" in WeiBo_arm64 (import)>
+x0: RetFrom_\
+0x10065ee0cL
+x1: mem_7fffffffffefbc8
+"	 [color=green];
+	"Context:0x10065ed50 sub_0x10065ed50
+Depth:21
+Invoke:0x10065ee0cL <Symbol \"___stack_chk_fail\" in WeiBo_arm64 (import)>
+x0: RetFrom_\
+0x10065ede4L
+x1: mem_7fffffffffefbc8
+"	 [addr=4301647372,
+		args="['RetFrom_0x10065ede4L', 'mem_7fffffffffefbc8']",
+		context=4301647184,
+		des="<Symbol \"___stack_chk_fail\" in WeiBo_arm64 (import)>",
+		dp=None,
+		pnode="Context:0x10065ed50 sub_0x10065ed50
+Depth:17
+Invoke:0x10065ede4L <Symbol \"_objc_sync_exit\" in WeiBo_arm64 (import)>
+x0: __MTA4QC_\
+LOCK__
+x1: mem_7fffffffffefbc8
+"];
+	"Context:0x10065ed50 sub_0x10065ed50
+Depth:17
+Invoke:0x10065ede4L <Symbol \"_objc_sync_exit\" in WeiBo_arm64 (import)>
+x0: __MTA4QC_\
+LOCK__
+x1: mem_7fffffffffefbc8
+" -> "Context:0x10065ed50 sub_0x10065ed50
+Depth:21
+Invoke:0x10065ee0cL <Symbol \"___stack_chk_fail\" in WeiBo_arm64 (import)>
+x0: RetFrom_\
+0x10065ede4L
+x1: mem_7fffffffffefbc8
+"	 [color=green];
+	"Context:0x10065ed50 sub_0x10065ed50
+Depth:21
+Invoke:0x10065ee0cL <Symbol \"___stack_chk_fail\" in WeiBo_arm64 (import)>
+x0: RetFrom_\
+0x10065ede4L
+x1: mem_7fffffffffefbc8
+" -> "Context:0x10065ed50 sub_0x10065ed50
+Depth:24
+Invoke:0x10065ee20L <Symbol \"_objc_sync_exit\" in WeiBo_arm64 (import)>
+x0: __MTA4QC_\
+LOCK__
+x1: mem_7fffffffffefbc8
+"	 [color=green];
+	"Context:0x10065ed50 sub_0x10065ed50
+Depth:7
+Invoke:0x10065edb4L <Symbol \"_objc_sync_enter\" in WeiBo_arm64 (import)>
+x0: __MTA4QC_\
+LOCK__
+x1: 1023
+" -> "Context:0x10065ed50 sub_0x10065ed50
+Depth:10
+Invoke:0x10065edccL <Symbol \"_sqlite3_exec\" in WeiBo_arm64 (import)>
+x0: reg_x0
+x1: \
+mem_7fffffffffefbc8
+"	 [color=green];
+	"Context:0x10065ed50 sub_0x10065ed50
+Depth:14
+Invoke:0x10065ede4L <Symbol \"_objc_sync_exit\" in WeiBo_arm64 (import)>
+x0: __MTA4QC_\
+LOCK__
+x1: mem_7fffffffffefbc8
+" -> "Context:0x10065ed50 sub_0x10065ed50
+Depth:18
+Invoke:0x10065ee0cL <Symbol \"___stack_chk_fail\" in WeiBo_arm64 (import)>
+x0: RetFrom_\
+0x10065ede4L
+x1: mem_7fffffffffefbc8
+"	 [color=green];
+	"Context:0x10065ed50 sub_0x10065ed50
+Depth:8
+Invoke:0x10065ee20L <Symbol \"_objc_sync_exit\" in WeiBo_arm64 (import)>
+x0: __MTA4QC_\
+LOCK__
+x1: reg_x1
+" -> "Context:0x10065ed50 sub_0x10065ed50
+Depth:11
+Invoke:0x10065ee28L <Symbol \"__Unwind_Resume\" in WeiBo_arm64 (import)>
+x0: RetFrom_\
+0x10065ee0cL
+x1: reg_x1
+"	 [color=green];
+}
