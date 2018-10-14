@@ -13,7 +13,7 @@ from BinaryPatch.Utils import *
 
 from RuntimePatch.AddressConcretize import *
 from RuntimePatch.ExitProtect import *
-from RuntimePatch.InvokeRecord import CG
+from RuntimePatch.InvokeRecord import GraphView
 from RuntimePatch.InvokeResolve import StubHelper
 from RuntimePatch.Utils import *
 from RuntimePatch.Function import Func
@@ -40,14 +40,15 @@ class MachOTask:
         self.pre_process()
         self.checked = []
         self.db = "{}{}.pkl".format(self.configs.get('PATH', 'dbs'), self.macho.provides)
-        self.cg = CG()
+        self.cg = GraphView()
+        self.logger = open('../log', mode='wb')
 
         self.class_blacklist = []
         self.meth_blacklist = []
 
     def config(self):
         config = ConfigParser.RawConfigParser()
-        config.read('/home/gjy/Desktop/MachOA/config/config')
+        config.read('../config/config0')
         result_path = "{}{}".format(config.get('PATH', 'results'), self.macho.provides)
         if not os.path.exists(result_path):
             os.mkdir(result_path)
@@ -66,19 +67,22 @@ class MachOTask:
         self.p.hook(lazy_bind_patch(self.init_state, self.macho), StubHelper)
 
     def analyze_function(self, start_addr=None, name=None):
-        self.cg = CG()
-        if name:
-            start_addr = retrieve_f(name=name)['imp']
-        if start_addr in self.meth_blacklist:
-            return
-        st = self.init_state.copy()
-        st.inspect.b('exit', when=angr.BP_BEFORE, action=branch_check)
-        st.inspect.b('address_concretization', when=angr.BP_AFTER, action=mem_resolve)
+        try:
+            self.cg = GraphView()
+            if name:
+                start_addr = retrieve_f(name=name)['imp']
+            if start_addr in self.meth_blacklist:
+                return
+            st = self.init_state.copy()
+            st.inspect.b('exit', when=angr.BP_BEFORE, action=branch_check)
+            st.inspect.b('address_concretization', when=angr.BP_AFTER, action=mem_resolve)
 
-        f = Func(start_addr, self.macho, self, st)
-        f.init_regs()
-        f.analyze()
-        self.cg.view()
+            f = Func(start_addr, self.macho, self, st)
+            f.init_regs()
+            f.analyze()
+            self.cg.view()
+        except Exception as e:
+            print hex(start_addr), 'Failed to analyze: ', e
 
         # cfg = self.p.analyses.CFGAccurate(keep_state=True, starts=[start_addr, ], initial_state=st, call_depth=2,
         #                               context_sensitivity_level=3)
@@ -88,7 +92,7 @@ class MachOTask:
         for ref in OCClass.classes_indexed_by_ref.keys():
             if ref in self.class_blacklist:
                 continue
-            self.analyze_class_dds(classref=ref)
+            self.analyze_class(classref=ref)
 
     def analyze_class_dds(self, classref=None, classname=None):
         class_obj = OCClass.retrieve(classref=classref, classname=classname)
@@ -120,14 +124,22 @@ class MachOTask:
                 continue
             self.analyze_function(start_addr=meth)
 
+    def clear(self):
+        self.loader.close()
+
 
 print time.strftime("-START-%Y-%m-%d %H:%M:%S", time.localtime())
-analyzer = MachOTask('/home/gjy/Desktop/MachOA/samples/WeiBo_arm64', store=True, visualize=False)
+analyzer = MachOTask('../samples/ZYStock', store=True, visualize=False)
 # analyzer.analyze_function(0x10065871C)
 # analyzer.analyze_function(0x10065EE2C)
 # analyzer.analyze_function(0x10065ed50)
 # analyzer.analyze_function(0x1006594F0)
-analyzer.analyze_function(0x1008675e0L)
+# analyzer.analyze_function(0x1008675e0L)
+# analyzer.analyze_function(0x1008884D8)
+# analyzer.analyze_function(0x100008854)
+analyzer.analyze_bin()
+analyzer.clear()
+
 print time.strftime("-END-%Y-%m-%d %H:%M:%S", time.localtime())
 
 
