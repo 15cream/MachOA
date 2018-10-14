@@ -12,8 +12,8 @@ class StubHelper(SimProcedure):
 
     def run(self):
         state = self.state
-        # src_state = state.history.parent.parent
-        # addr = src_state.addr + src_state.recent_instruction_count * 4
+        src_state = state.history.parent.parent
+        addr = src_state.addr + src_state.recent_instruction_count * 4
         symbol = MachO.pd.stubs[state.history.parent.addr]
         if symbol.name in objc_symbols:
             return state.registers.load('x0')
@@ -25,15 +25,12 @@ class StubHelper(SimProcedure):
 
             if type(ret) == int or type(ret) == long:
 
-                self.call(ret, args=[], continue_at='ret_from_msgSend', cc=None)
+                # self.call(ret, args=[], continue_at='ret_from_msgSend', cc=None)
+                return claripy.BVS("RetFrom_" + hex(addr), 64, uninitialized=True)
+                # func = OCFunction.meth_data[ret]['name']
+                # ret = claripy.BVS(func, 64, uninitialized=True)
+                # return ret
 
-                # self.jump(ret)
-                # f = Func(ret, MachO.pd.macho, MachO.pd.task, state)
-                # f.analyze()
-                # return claripy.BVS("RetFrom_" + hex(addr), 64, uninitialized=True)
-
-            # elif type(ret) == str:
-                # return claripy.BVS(ret, 64, uninitialized=True)
             else:
                 return ret
 

@@ -74,11 +74,23 @@ def resolve_var(state, classname=None, offset=None):
     # return claripy.BVS(classname + name + type, 64).reversed
     return claripy.BVS("({}){}.{}".format(type, classname, name), 64).reversed
 
+
 def read_cfstring(state, addr):
     return state.mem[addr+16].deref.string.concrete
+
 
 def read_str_from_cfstring(self, state, addr):
     str = state.memory.load(addr + 0x10, 8, endness=archinfo.Endness.LE).args[0] - 0x100000000
     length = state.memory.load(addr + 0x18, 8, endness=archinfo.Endness.LE).args[0]
     str = self.macho._read(self.macho.binary_stream, str, length)
     return str
+
+
+def expr_args(args):
+    expr = ''
+    if args:
+        for i in range(0, len(args)):
+            reg_name = 'x' + str(i)
+            reg_value = args[i]
+            expr += '{}: {}\n'.format(reg_name, reg_value)
+    return expr
