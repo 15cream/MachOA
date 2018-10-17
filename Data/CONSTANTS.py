@@ -9,12 +9,14 @@ INVOKEFS = "Context:{} {}\nDepth:{}\nInvoke:{} {}\n{}"
 # about instance variable
 IVAR_FORMAT = "{classname}{var_name}{var_typr}"
 
+IPC = False
+
 dispatch = ['_dispatch_async', '_dispatch_once']
 
 RECEIVERS = ['NSURL', 'NSURLConnection', 'CFStream', 'NSStream', 'NSURLSession', 'NSMutableURLRequest']
 SELECTORS = ['initWithRequest:delegate:startImmediately:', ]
 msgSendSuper = ['_objc_msgSendSuper2', '_objc_msgSendSuper']
-msgSend = ['_objc_msgSend']
+msgSends = ['_objc_msgSend']
 objc_symbols = ['_objc_retainAutoreleasedReturnValue',
                 '_objc_retainAutoreleaseReturnValue',
                 '_objc_autoreleaseReturnValue',

@@ -33,7 +33,6 @@ class Func:
             simgr = self.task.p.factory.simgr(self.init_state)
             while simgr.active:
                 simgr.step()
-                self.break_off(simgr)
 
     def break_off(self, simgr):
         if len(self.task.cg.g.nodes) > 1000:

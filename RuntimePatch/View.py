@@ -24,7 +24,8 @@ class GraphView:
         if node not in self.g.nodes:
             self.g.add_node(node, des=description, context=context, addr=ea, args=args, dp=None)
         else:
-            print 'COME TO THIS INVOKE AGAIN. -> {}'.format(hex(ea))
+            # print 'COME TO THIS INVOKE AGAIN. -> {}'.format(hex(ea))
+            pass
 
         self.hs[state.history] = hs(ea, repr_constraints(state), node)
 
@@ -38,6 +39,7 @@ class GraphView:
         else:
             self.g.nodes[node]['pnode'] = None
         self.dpr.resolve_dp(node)
+        # print self.g.nodes[node]['dp']
         return node
 
     def add_simple_node(self, ea, description, state):

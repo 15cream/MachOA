@@ -13,8 +13,8 @@ from BinaryPatch.Utils import *
 
 from RuntimePatch.AddressConcretize import *
 from RuntimePatch.ExitProtect import *
-from RuntimePatch.InvokeRecord import GraphView
-from RuntimePatch.InvokeResolve import StubHelper
+from RuntimePatch.View import GraphView
+from RuntimePatch.StubHook import StubHelper
 from RuntimePatch.Utils import *
 from RuntimePatch.Function import Func
 
@@ -129,15 +129,15 @@ class MachOTask:
 
 
 print time.strftime("-START-%Y-%m-%d %H:%M:%S", time.localtime())
-analyzer = MachOTask('../samples/ZYStock', store=True, visualize=False)
+analyzer = MachOTask('../samples/WeiBo_arm64', store=True, visualize=False)
 # analyzer.analyze_function(0x10065871C)
 # analyzer.analyze_function(0x10065EE2C)
 # analyzer.analyze_function(0x10065ed50)
 # analyzer.analyze_function(0x1006594F0)
 # analyzer.analyze_function(0x1008675e0L)
 # analyzer.analyze_function(0x1008884D8)
-# analyzer.analyze_function(0x100008854)
-analyzer.analyze_bin()
+analyzer.analyze_function(0x10066CA9C)
+# analyzer.analyze_bin()
 analyzer.clear()
 
 print time.strftime("-END-%Y-%m-%d %H:%M:%S", time.localtime())
