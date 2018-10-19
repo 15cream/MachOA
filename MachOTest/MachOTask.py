@@ -19,6 +19,7 @@ from RuntimePatch.Utils import *
 from RuntimePatch.Function import Func
 
 from Data.OCFunction import OCFunction
+from tools.Files import *
 
 
 class MachOTask:
@@ -38,7 +39,7 @@ class MachOTask:
         self.configs = None
         self.pd = MachO(self.macho, self)
         self.pre_process()
-        self.checked = []
+        self.checked = checked("{}{}".format(self.configs.get('PATH', 'results'), self.macho.provides))
         self.db = "{}{}.pkl".format(self.configs.get('PATH', 'dbs'), self.macho.provides)
         self.cg = GraphView()
         self.logger = open('../log', mode='wb')
@@ -67,22 +68,22 @@ class MachOTask:
         self.p.hook(lazy_bind_patch(self.init_state, self.macho), StubHelper)
 
     def analyze_function(self, start_addr=None, name=None):
-        try:
-            self.cg = GraphView()
-            if name:
-                start_addr = retrieve_f(name=name)['imp']
-            if start_addr in self.meth_blacklist:
-                return
-            st = self.init_state.copy()
-            st.inspect.b('exit', when=angr.BP_BEFORE, action=branch_check)
-            st.inspect.b('address_concretization', when=angr.BP_AFTER, action=mem_resolve)
+        self.cg = GraphView()
+        if name:
+            start_addr = retrieve_f(name=name)['imp']
+        if start_addr in self.meth_blacklist or hex(start_addr) in self.checked:
+            print 'SKIPPED: ', hex(start_addr)
+            return
+        st = self.init_state.copy()
+        st.inspect.b('exit', when=angr.BP_BEFORE, action=branch_check)
+        st.inspect.b('address_concretization', when=angr.BP_AFTER, action=mem_resolve)
 
-            f = Func(start_addr, self.macho, self, st)
-            f.init_regs()
-            f.analyze()
-            self.cg.view()
-        except Exception as e:
-            print hex(start_addr), 'Failed to analyze: ', e
+        f = Func(start_addr, self.macho, self, st)
+        f.init_regs()
+        f.analyze()
+        self.cg.view()
+        # except Exception as e:
+        #     print hex(start_addr), 'Failed to analyze: ', e
 
         # cfg = self.p.analyses.CFGAccurate(keep_state=True, starts=[start_addr, ], initial_state=st, call_depth=2,
         #                               context_sensitivity_level=3)
@@ -136,8 +137,12 @@ analyzer = MachOTask('../samples/WeiBo_arm64', store=True, visualize=False)
 # analyzer.analyze_function(0x1006594F0)
 # analyzer.analyze_function(0x1008675e0L)
 # analyzer.analyze_function(0x1008884D8)
-analyzer.analyze_function(0x10066CA9C)
+analyzer.analyze_function(0x010067F11C)
+# analyzer.analyze_class(classname='TencentRequestDelegate')
 # analyzer.analyze_bin()
+tested = [4296458748L, 4297314720L, 4298072216L, 4298548040L, 4298747060L, 4298958052L, 4299675236L, 4299679092L, 4300090440L, 4300284124L, 4301420752L, 4301779228L, 4301785164L, 4301805964L, 4302979732L, 4304217968L]
+# for f in tested:
+#     analyzer.analyze_function(f)
 analyzer.clear()
 
 print time.strftime("-END-%Y-%m-%d %H:%M:%S", time.localtime())

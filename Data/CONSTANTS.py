@@ -26,3 +26,5 @@ objc_symbols = ['_objc_retainAutoreleasedReturnValue',
                 ]
 angr.types.define_struct('struct methlist{int entrysize; int count;}')
 angr.types.define_struct('struct meth{char* name; long type; long imp;}')
+angr.types.define_struct('struct ivarlist{int entrysize; int count;}')
+angr.types.define_struct('struct ivar{long ptr; char* name; long type; int align; int size}')

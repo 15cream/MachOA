@@ -46,6 +46,7 @@ class OCClass:
             class_data_addr = state.memory.load(self.class_addr + 32, 8, endness=archinfo.Endness.LE)
             self.name = state.mem[class_data_addr+24].deref.string.concrete
             self.resolve_methods_imp(state, self.class_addr, instance_m=True)
+            self.resolve_ivar(state, self.class_addr, instance_m=True)
             self.meta_class_addr = state.memory.load(self.class_addr, 8, endness=archinfo.Endness.LE)
             self.resolve_methods_imp(state, self.meta_class_addr, class_m=True)
             OCClass.binary_class_set[state.solver.eval(self.class_addr)] = self
@@ -59,16 +60,15 @@ class OCClass:
         classname = self.name
         formatstr = "-[{} {}]" if instance_m else "+[{} {}]"
         info = state.memory.load(addr + 32, 8, endness=archinfo.Endness.LE)
-        meth_list = state.memory.load(info + 32, 8, endness=archinfo.Endness.LE)
-        meth_addr = meth_list + 8
-        meth_list = state.mem[meth_list].methlist
-        entry_size = state.solver.eval(meth_list.entrysize.resolved)
-        count = state.solver.eval(meth_list.count.resolved)
-        for i in range(0, count):
+        meth_list_addr = state.memory.load(info + 32, 8, endness=archinfo.Endness.LE)
+        meth_list_info = state.mem[meth_list_addr].methlist
+        entry_size = state.solver.eval(meth_list_info.entrysize.resolved)
+        count = state.solver.eval(meth_list_info.count.resolved)
+
+        for meth_addr in range(meth_list_addr+8, meth_list_addr+8+entry_size*count, entry_size):
             meth = state.mem[meth_addr].meth
             meth_name = formatstr.format(classname, meth.name.deref.string.concrete)
             meth_imp = state.solver.eval(meth.imp.resolved)
-            meth_addr += entry_size
             meths[meth_imp] = meth_name
             if meth_imp not in OCClass.classes_indexed_by_meth:
                 OCClass.classes_indexed_by_meth[meth_imp] = [meth_name, self]
@@ -76,6 +76,20 @@ class OCClass:
             self.instance_meths = meths
         elif class_m:
             self.class_meths = meths
+
+    def resolve_ivar(self, state, addr, instance_m=None, class_m=None):
+        classname = self.name
+        info = state.memory.load(addr + 32, 8, endness=archinfo.Endness.LE)
+        ivars = state.memory.load(info + 48, 8, endness=archinfo.Endness.LE)
+        ivars_info = state.mem[ivars].ivarlist
+        entry_size = state.solver.eval(ivars_info.entrysize.resolved)
+        count = state.solver.eval(ivars_info.count.resolved)
+
+        for ivar_ea in range(ivars+8, ivars+8+entry_size*count, entry_size):
+            ivar = state.mem[ivar_ea].meth
+            # ptr
+            # meth_name
+            # type =
 
     @staticmethod
     def dump(db):
