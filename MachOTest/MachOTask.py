@@ -17,9 +17,10 @@ from RuntimePatch.View import GraphView
 from RuntimePatch.StubHook import StubHelper
 from RuntimePatch.Utils import *
 from RuntimePatch.Function import Func
+from RuntimePatch.mem_read import *
 
 from Data.OCFunction import OCFunction
-from tools.Files import *
+# from tools.Files import *
 
 
 class MachOTask:
@@ -39,7 +40,8 @@ class MachOTask:
         self.configs = None
         self.pd = MachO(self.macho, self)
         self.pre_process()
-        self.checked = checked("{}{}".format(self.configs.get('PATH', 'results'), self.macho.provides))
+        # self.checked = checked("{}{}".format(self.configs.get('PATH', 'results'), self.macho.provides))
+        self.checked = []
         self.db = "{}{}.pkl".format(self.configs.get('PATH', 'dbs'), self.macho.provides)
         self.cg = GraphView()
         self.logger = open('../log', mode='wb')
@@ -76,6 +78,7 @@ class MachOTask:
             return
         st = self.init_state.copy()
         st.inspect.b('exit', when=angr.BP_BEFORE, action=branch_check)
+        st.inspect.b('mem_read', when=angr.BP_BEFORE, action=mem_read)
         st.inspect.b('address_concretization', when=angr.BP_AFTER, action=mem_resolve)
 
         f = Func(start_addr, self.macho, self, st)
@@ -137,7 +140,7 @@ analyzer = MachOTask('../samples/WeiBo_arm64', store=True, visualize=False)
 # analyzer.analyze_function(0x1006594F0)
 # analyzer.analyze_function(0x1008675e0L)
 # analyzer.analyze_function(0x1008884D8)
-analyzer.analyze_function(0x010067F11C)
+analyzer.analyze_function(0x100006D3C)
 # analyzer.analyze_class(classname='TencentRequestDelegate')
 # analyzer.analyze_bin()
 tested = [4296458748L, 4297314720L, 4298072216L, 4298548040L, 4298747060L, 4298958052L, 4299675236L, 4299679092L, 4300090440L, 4300284124L, 4301420752L, 4301779228L, 4301785164L, 4301805964L, 4302979732L, 4304217968L]

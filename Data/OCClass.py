@@ -1,6 +1,7 @@
 import archinfo
 import pickle
 from types import *
+from OCivar import IVar
 
 
 class OCClass:
@@ -22,6 +23,7 @@ class OCClass:
         self.name = name if imported else None
         self.imported = imported
         self.meta_class_addr = None
+        self.ivars = None
 
     @staticmethod
     def retrieve(classref=None, classname=None):
@@ -65,31 +67,40 @@ class OCClass:
         entry_size = state.solver.eval(meth_list_info.entrysize.resolved)
         count = state.solver.eval(meth_list_info.count.resolved)
 
-        for meth_addr in range(meth_list_addr+8, meth_list_addr+8+entry_size*count, entry_size):
+        meth_addr = meth_list_addr + 8
+        for i in range(0, count):
             meth = state.mem[meth_addr].meth
             meth_name = formatstr.format(classname, meth.name.deref.string.concrete)
             meth_imp = state.solver.eval(meth.imp.resolved)
             meths[meth_imp] = meth_name
             if meth_imp not in OCClass.classes_indexed_by_meth:
                 OCClass.classes_indexed_by_meth[meth_imp] = [meth_name, self]
+            meth_addr += entry_size
         if instance_m:
             self.instance_meths = meths
         elif class_m:
             self.class_meths = meths
 
     def resolve_ivar(self, state, addr, instance_m=None, class_m=None):
+        ivarlist = []
         classname = self.name
         info = state.memory.load(addr + 32, 8, endness=archinfo.Endness.LE)
         ivars = state.memory.load(info + 48, 8, endness=archinfo.Endness.LE)
-        ivars_info = state.mem[ivars].ivarlist
-        entry_size = state.solver.eval(ivars_info.entrysize.resolved)
-        count = state.solver.eval(ivars_info.count.resolved)
+        if state.solver.eval(ivars):
+            ivars_info = state.mem[ivars].ivarlist
+            entry_size = state.solver.eval(ivars_info.entrysize.resolved)
+            count = state.solver.eval(ivars_info.count.resolved)
 
-        for ivar_ea in range(ivars+8, ivars+8+entry_size*count, entry_size):
-            ivar = state.mem[ivar_ea].meth
-            # ptr
-            # meth_name
-            # type =
+            ivar_ea = ivars + 8
+            for i in range(0, count):
+                ivar = state.mem[ivar_ea].ivar
+                ptr = state.solver.eval(ivar.ptr.resolved)
+                name = ivar.name.deref.string.concrete
+                type = ivar.type.deref.string.concrete
+                ivar_ea += entry_size
+                ivaro = IVar(ptr, name=name, type=type, _class=self.name)
+                ivarlist.append(ivaro)
+        self.ivars = ivarlist
 
     @staticmethod
     def dump(db):
@@ -115,6 +126,10 @@ class OCClass:
             cd.imported = c['imported']
             cd.class_meths = c['class_meths']
             cd.instance_meths = c['instance_meths']
+            if c['ivars']:
+                cd.ivars = c['ivars']
+            else:
+                cd.ivars = []
             if cd.imported:
                 OCClass.imported_class_set.append(cd)
                 bv = state.solver.BVV(cd.classref_addr, 64).reversed
@@ -132,6 +147,8 @@ class OCClass:
                     OCClass.classes_indexed_by_selector[selector].append(cd)
                 else:
                     OCClass.classes_indexed_by_selector[selector] = [cd, ]
+            for ivar in cd.ivars:
+                ivar.add_to_ivars()
         input.close()
 
 

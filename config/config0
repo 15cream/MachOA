@@ -3,4 +3,5 @@ binary = ../samples/
 dds = ../dds/
 xmls = ../xmls/
 dbs = ../dbs/
+results = ../results/
 
