@@ -16,11 +16,13 @@ def resolve_args(state, selector=None, symbol=None):
             args.append(reg_val)
         if selector == 'stringWithFormat:':
             formatString = args[2]
-            fs_args = formatString.count("@")
-            for c in range(3, fs_args + 3):
-                reg_name = 'x{}'.format(c)
-                reg_val = resolve_reg(state, state.regs.get(reg_name))
-                args.append(reg_val)
+            if '@' in formatString:
+                fs_args = formatString.count("@")
+                for c in range(0, fs_args):
+                    sp = state.regs.sp + c * 8
+                    reg_val = resolve_reg(state, sp)
+                    args.append(reg_val)
+            print 'TO DO: stringWithFormat args to be parsed.'
     elif symbol:
         args.append(resolve_reg(state, state.regs.get('x0')))
         args.append(resolve_reg(state, state.regs.get('x1')))
@@ -94,3 +96,15 @@ def expr_args(args):
             reg_value = args[i]
             expr += '{}: {}\n'.format(reg_name, reg_value)
     return expr
+
+
+def resolve_receiver(cg, state, node):
+    receiver = cg.g.nodes[node]['args'][0]
+    if 'RetFrom' in receiver:
+        src_node = cg.find_pnode(node, receiver.split('_')[-1])
+        if src_node:
+            if not cg.g.nodes[src_node]['dp']:
+                cg.dpr.resolve_dp(src_node)
+            # receiver = self.g.nodes[src_node]['dp'].split(' ')[0].strip('[')
+            receiver = cg.g.nodes[src_node]['dp']
+    return receiver

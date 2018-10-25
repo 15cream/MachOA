@@ -1,0 +1,5 @@
+SPECS = {
+    'UIDevice': {
+        'alloc': 'currentDevice',
+    }
+}

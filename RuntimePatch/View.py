@@ -1,3 +1,4 @@
+# _*_coding:utf-8_*_
 import networkx as nx
 from Data.CONSTANTS import *
 
@@ -74,16 +75,6 @@ class GraphView:
             if p_node and hex(self.g.nodes[p_node]['addr']) == p_addr:
                 return p_node
         return None
-
-    def resolve_receiver(self, state, node):
-        receiver = self.g.nodes[node]['args'][0]
-        if 'RetFrom' in receiver:
-            src_node = self.find_pnode(node, receiver.split('_')[-1])
-            if src_node:
-                if not self.g.nodes[src_node]['dp']:
-                    self.resolve_dp(src_node)
-                receiver = self.g.nodes[src_node]['dp'].split(' ')[0].strip('[')
-        return receiver
 
     def view(self):
         fp = '../results/{}/{}.dot'.format(MachO.pd.macho.provides, self.start)

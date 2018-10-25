@@ -5,7 +5,7 @@ from BinaryPatch.Utils import *
 from callbacks.delegate import Delegate
 
 
-class msgSend():
+class msgSend:
 
     def __init__(self, state, receiver=None, selector=None, args=None):
         self.state = state
@@ -17,6 +17,7 @@ class msgSend():
         self.description = None
         self.methtype = None
         self.g = MachO.pd.task.cg.g
+        self.cg = MachO.pd.task.cg
         self.node = None
 
     def resolve(self):
@@ -48,7 +49,8 @@ class msgSend():
     def resolve_in_context(self):
         self.resolve()
         self.record()
-        receiver = MachO.pd.task.cg.resolve_receiver(self.state, self.node)
+        receiver = resolve_receiver(self.cg, self.state, self.node)
+        print hex(self.g.nodes[self.node]['addr']), self.g.nodes[self.node]['dp']
         if receiver in OCClass.classes_indexed_by_name:
             self.description = "{}[{} {}]".format(self.methtype, receiver, self.selector)
 
