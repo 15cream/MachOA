@@ -5,11 +5,12 @@ class Func:
 
     def __init__(self, addr, binary, task, state):
         self.addr = addr
-        self.next_func_addr = binary.lc_function_starts[binary.lc_function_starts.index(addr) + 1]
+        # self.next_func_addr = binary.lc_function_starts[binary.lc_function_starts.index(addr) + 1]
         self.name = OCFunction.meth_data[addr]['name']
         self.binary = binary
         self.task = task
         self.init_state = state
+        self.active = True
         task.cg.add_start_node(addr, 'Start', self.init_state)
 
     def init_regs(self):
@@ -31,10 +32,11 @@ class Func:
         if self.addr in OCFunction.meth_list:
             self.init_state.regs.ip = self.addr
             simgr = self.task.p.factory.simgr(self.init_state)
-            while simgr.active:
+            while simgr.active and self.active:
                 simgr.step()
+                # self.check_status()
 
-    def break_off(self, simgr):
-        if len(self.task.cg.g.nodes) > 1000:
-            simgr.active = []
+    def check_status(self):
+        if len(self.task.cg.g.nodes) > 100:
+            self.active = False
             self.task.logger.write('{} {}\n'.format(hex(self.addr), self.name))

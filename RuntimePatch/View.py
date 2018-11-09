@@ -78,7 +78,10 @@ class GraphView:
 
     def view(self):
         fp = '../results/{}/{}.dot'.format(MachO.pd.macho.provides, self.start)
-        nx.drawing.nx_agraph.write_dot(self.g, fp)
+        try:
+            nx.drawing.nx_agraph.write_dot(self.g, fp)
+        except Exception as e:
+            print 'Failed to generate {}, {} '.format(fp, e)
 
 
 class hs:

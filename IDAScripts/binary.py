@@ -1,8 +1,6 @@
+import idc
 import idautils
 import idaapi
-import idc
-import pickle
-import os
 import re
 
 
@@ -27,9 +25,10 @@ class Binary:
         self._classrefs[classname] = ea
 
     def parse_selector(self, ea):
-        m = re.search('[^"]+"(?P<sel>.+)"', idc.GetDisasm(ea))
-        if m:
-            self._selrefs[m.group('sel')] = ea
+        # m = re.search('[^"]+"(?P<sel>.+)"', idc.GetDisasm(ea))
+        # if m:
+        #     self._selrefs[m.group('sel')] = ea
+        self._selrefs[idc.Name(ea).replace('selRef_', '').replace('_', ':')] = ea
 
     def parse_ivar(self, ea):
         cmt = idc.GetCommentEx(ea, True)
@@ -43,7 +42,7 @@ class Binary:
         else:
             print 'CANNOT GET CMT OF IVAR: '.format(hex(ea))
 
-    def run(self):
+    def parse(self):
         for seg in idautils.Segments():
             segName = idc.SegName(seg)
             if segName in ['__objc_classrefs', '__objc_superrefs', '__objc_selrefs']:  # step: 8
@@ -66,9 +65,11 @@ class Binary:
     def parse_alloc(self):
         r = []
         for xref in idautils.XrefsTo(self._selrefs['alloc']):
-            fi = idaapi.get_func(xref.frm).startEA
-            if fi not in r:
-                r.append(fi)
+            f = idaapi.get_func(xref.frm)
+            if f:
+                fi = f.startEA
+                if fi not in r:
+                    r.append(fi)
         self._allocs = r
 
     # def dump_data(self):

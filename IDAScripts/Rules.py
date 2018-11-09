@@ -1,47 +1,48 @@
+from object import Object
 import idc
 import idautils
 import idaapi
-import re
-from object import Object
-from Utils import *
+import commands
+import os
+import time
 
 
 class Rule:
-
-    rules = []
 
     def __init__(self, receiver=None, sel=None, data=None):
         self.receiver_str = receiver
         self.selector_str = sel
         self.receiver_ea = None
         self.selector_ea = None
+        self.receiver_ctx = dict()
+        self.selector_ctx = dict()
+        self.suspected_contexts = []
         self.bin_data = data
 
-    def analyze(self):
-        ctx_rec_occurs = self.find_rec_ctx()
-        ctx_sel_occurs = self.find_sel_ctx()
-        s1 = set(ctx_sel_occurs)
-        s2 = ctx_rec_occurs
-        print 's1 - s2', len(s1 - s2)
-        for f in s1-s2:
-            print idc.GetFunctionName(f)
-        print 's2 - s1', len(s2 - s1)
-        for f in s2 - s1:
-            print idc.GetFunctionName(f)
-        print 'COOC:', len(s1&s2)
-        print s1&s2
+    def isClassMethod(self):
+        return False
 
-        if ctx_rec_occurs and ctx_sel_occurs:
-            suspected_contexts = ctx_rec_occurs & set(ctx_sel_occurs)
-            if len(suspected_contexts) == 1:
-                print "FOUND ONE SUSPECTED CONTEXT:{}, MORE DELICATE ANALYSIS NEEDED."\
-                    .format(idc.GetFunctionName(suspected_contexts[0]))
-            else:
-                print "FOUND MORE THAN ONE SUSPECTED CONTEXTS, THE PROPER ENTRIES WE SUGGEST ARE:"
-                for entry in self.find_proper_entry(suspected_contexts):
-                    print "----{}".format(idc.GetFunctionName(entry))
+    def analyze(self):
+        print 'Try to find contexts where [{} {}] invoke happens.'.format(self.receiver_str, self.selector_str)
+        self.find_sel_ctx()
+        self.find_rec_ctx()
+        if self.isClassMethod():
+            pass  # Should do some other work.
         else:
-            print "SORRY, FAIL TO FOUND VALID INVOCATION CONTEXT."
+            print 'Selector occurs in {} functions. '.format(len(self.selector_ctx.keys()))
+            for ctx in self.selector_ctx:
+                print "ADDR: {}, FUNCTION: {}".format(hex(ctx), idc.GetFunctionName(ctx))
+            print 'Receiver occurs in {} functions. '.format(len(self.receiver_ctx.keys()))
+            for ctx in self.receiver_ctx:
+                print "ADDR: {}, FUNCTION: {}".format(hex(ctx), idc.GetFunctionName(ctx))
+            intersection_ctx = list(set(self.selector_ctx.keys()) & set(self.receiver_ctx.keys()))
+            print 'The intersection of functions({}) are:'.format(len(intersection_ctx))
+            for ctx in intersection_ctx:
+                print "ADDR: {}, FUNCTION: {}".format(hex(ctx), idc.GetFunctionName(ctx))
+                if self.slice_analysis_needed(ctx):
+                    print 'STATIC SLICING NEEDED.'
+                else:
+                    self.code_execution(ctx)
 
     def find_sel_ctx(self):
         if self.selector_str and not self.selector_ea:
@@ -50,15 +51,16 @@ class Rule:
             else:
                 print 'CANNOT FIND SELECTOR: ', self.selector_str
                 return False
-        p = []
+
         for xref in idautils.XrefsTo(self.selector_ea):
             if idc.SegName(xref.frm) == '__text':
                 fi = idaapi.get_func(xref.frm).startEA
-                if fi not in p:
-                    p.append(fi)
+                if fi not in self.selector_ctx:
+                    self.selector_ctx[fi] = [xref.frm, ]
+                else:
+                    self.selector_ctx[fi].append(xref.frm)
             else:
                 print 'XREF OF {} NOT IN TEXT SEGMENT: {}'.format(self.selector_str, hex(xref.frm))
-        return p
 
     def find_rec_ctx(self):
         if self.receiver_str and not self.receiver_ea:
@@ -68,25 +70,32 @@ class Rule:
                 print 'CANNOT FIND CLASS: ', self.receiver_str
                 return False
         receiver = Object(self.receiver_str, self.bin_data)
-        return receiver.find_occurance()
-
-    def find_proper_entry(self, ctx):
-        return ctx
+        if receiver:
+            receiver.find_occurrences()
+            self.receiver_ctx = receiver.get_occurrences()
 
     def set_bin_data(self, d):
         self.bin_data = d
 
-    # print 'The caller of [{} {}] could be:'.format(self.receiver_str, self.selector_str)
-    # for f in self.find():
-    #     func = idc.GetFunctionName(f)
-    #     print func
-    #     m = re.search('(?P<type>[-+]?)\[(?P<receiver>\S+?) (?P<selector>[\w:]+)\]', func)
-    #     if m:
-    #         type = m.group('type')
-    #         receiver = m.group('receiver')
-    #         selector = m.group('selector')
-    #         caller = Rule(receiver=receiver, sel=selector, data=self.bin_data)
-    #         caller.analyze()
+    def slice_analysis_needed(self, ea):
+        f = idaapi.get_func(ea)
+        flowchart = idaapi.FlowChart(f)
+        blocks = list(flowchart)
+        instructions = (f.endEA - f.startEA) / 4
+        # print len(blocks), instructions
+        # return "{} , {}".format(len(blocks), instructions)
+        if len(blocks) > 20:
+            return True
+        else:
+            return False
 
-
-
+    def code_execution(self, ea):
+        # print time.strftime("-START-%Y-%m-%d %H:%M:%S", time.localtime())
+        # analyzer = MachOTask('../samples/WeiBo_arm64', store=True, visualize=False)
+        # analyzer.analyze_function(ea)
+        # analyzer.clear()
+        # print time.strftime("-END-%Y-%m-%d %H:%M:%S", time.localtime())
+        # (status, output) = commands.getstatusoutput(
+        #     '/home/gjy/Desktop/MachOA/venv/bin/python /home/gjy/Desktop/MachOA/MachOTest/MachOTask.py  {}'.format(ea))
+        # if status == 0:
+        pass

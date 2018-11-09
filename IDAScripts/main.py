@@ -1,24 +1,21 @@
 import idc
 import idautils
 import idaapi
-# idaapi.require('Rules')
-# idaapi.require('preprocess')
-from Rules import Rule
 from binary import Binary
-import sys
+from Rules import Rule
 
-# idaapi.autoWait()
-
+print 'Parsing Binary Data...'
 p = Binary()
-p.run()
+p.parse()
+print 'Paring Done. '
 
 r = Rule()
 r.set_bin_data(p.get_data())
-r.receiver_str = 'UIDevice'
-r.selector_str = 'identifierForVendor'
+r.receiver_str = 'WXOMTAEvent'
+r.selector_str = 'toJsonString'
 result = r.analyze()
 
-# idc.Exit(0)
+
 
 
 # r.receiver_str = 'TMVideoUploadManager'

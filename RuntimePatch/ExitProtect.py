@@ -1,4 +1,5 @@
 from Data.MachO import MachO
+from Data.OCFunction import OCFunction
 import claripy
 
 
@@ -12,14 +13,22 @@ def branch_check(state):
     if target_invalid(state):
         state.inspect.exit_target = state.regs.lr
         state.inspect.exit_jumpkind = 'Ijk_Boring'
+        state.inspect.exit_guard = claripy.true
+        state.__setattr__('help', True)
 
-    elif state.inspect.exit_jumpkind == 'Ijk_Boring' and jmp_target < text.max_addr:
+    if state.inspect.exit_jumpkind == 'Ijk_Boring' and jmp_target < text.max_addr:
         if loop_found(state):
+            state.inspect.exit_guard = claripy.false
+            state.__setattr__('help', False)
             return
 
+    if jmp_target in OCFunction.meth_list:
+        #  must be subroutines
+        state.inspect.exit_target = state.regs.lr
+
     #  RET, Sub call, method call
-    state.inspect.exit_guard = claripy.true
-    state.__setattr__('help', True)
+    # state.inspect.exit_guard = claripy.true
+    # state.__setattr__('help', True)
 
 
 def target_invalid(state):

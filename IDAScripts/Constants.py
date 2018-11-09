@@ -1,5 +1,3 @@
 SPECS = {
-    'UIDevice': {
-        'alloc': 'currentDevice',
-    }
+    'UIDevice': 'currentDevice'
 }

@@ -48,10 +48,10 @@ def resolve_reg(state, reg):
 def resolve_addr(state, addr):
     datatype = None
     for segname, seg in MachO.pd.segdata.items():
-        if addr in range(seg.min_addr, seg.max_addr):
+        if seg and addr in range(seg.min_addr, seg.max_addr):
             datatype = segname
             break
-    if datatype == 'classref':
+    if datatype == 'class_ref':
         return OCClass.classes_indexed_by_ref[addr].name
     elif datatype == 'classdata':
         return OCClass.binary_class_set[addr].name
@@ -73,7 +73,7 @@ def resolve_var(state, classname=None, offset=None):
         ivar = ivars + (offset / 8 - 1) * 0x20 + 8
         name = state.mem[state.mem[ivar + 8].long.concrete].string.concrete
         type = state.mem[state.mem[ivar + 16].long.concrete].string.concrete
-    # return claripy.BVS(classname + name + type, 64).reversed
+    # return claripy.BVS(class_name + name + type, 64).reversed
     return claripy.BVS("({}){}.{}".format(type, classname, name), 64).reversed
 
 
