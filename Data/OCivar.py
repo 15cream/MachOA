@@ -10,6 +10,10 @@ class IVar():
         self.name = name
         self._class = _class
         self.type = type
+        self.accessors = {
+            'get': [],
+            'set': [],
+        }
 
     def add_to_ivars(self):
         if self not in IVar.ivars:
@@ -22,4 +26,7 @@ class IVar():
             'type': self.type,
             'ptr': self.ptr,
         }
+
+    def add_set_accessor(self, state):
+        print 'Here.'
 

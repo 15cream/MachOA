@@ -1,7 +1,8 @@
 __author__ = 'gjy'
 import ConfigParser
-import os
 import time
+import sys
+sys.path.append('/home/gjy/Desktop/MachOA')
 
 import angr.engines.successors
 import angr.sim_state
@@ -18,9 +19,10 @@ from RuntimePatch.StubHook import StubHelper
 from RuntimePatch.Utils import *
 from RuntimePatch.Function import Func
 from RuntimePatch.mem_read import *
+from RuntimePatch.Slice import Slice
 
 from Data.OCFunction import OCFunction
-# from tools.Files import *
+from tools.Files import *
 
 
 class MachOTask:
@@ -40,8 +42,8 @@ class MachOTask:
         self.configs = None
         self.pd = MachO(self.macho, self)
         self.pre_process()
-        # self.checked = checked("{}{}".format(self.configs.get('PATH', 'results'), self.macho.provides))
-        self.checked = []
+        self.checked = checked("{}{}".format(self.configs.get('PATH', 'results'), self.macho.provides))
+        # self.checked = []
         self.db = "{}{}.pkl".format(self.configs.get('PATH', 'dbs'), self.macho.provides)
         self.cg = GraphView()
         self.logger = open('../log', mode='wb')
@@ -69,16 +71,21 @@ class MachOTask:
         StubResolver(self.init_state, self.pd).run()
         self.p.hook(lazy_bind_patch(self.init_state, self.macho), StubHelper)
 
+    def analyze_slice(self, start_addr=None, end_addr=None):
+        self.cg = GraphView()
+        s = Slice(start_addr, self, end=end_addr)
+        s.run()
+
     def analyze_function(self, start_addr=None, name=None):
         self.cg = GraphView()
         if name:
             start_addr = retrieve_f(name=name)['imp']
-        if start_addr in self.meth_blacklist or hex(start_addr) in self.checked:
+        if start_addr in self.meth_blacklist or hex(start_addr).strip('L') in self.checked:
             print 'SKIPPED: ', hex(start_addr)
             return
         st = self.init_state.copy()
         st.inspect.b('exit', when=angr.BP_BEFORE, action=branch_check)
-        st.inspect.b('mem_read', when=angr.BP_BEFORE, action=mem_read)
+        st.inspect.b('mem_read', when=angr.BP_AFTER, action=mem_read)
         st.inspect.b('address_concretization', when=angr.BP_AFTER, action=mem_resolve)
 
         f = Func(start_addr, self.macho, self, st)
@@ -133,23 +140,30 @@ class MachOTask:
 
 
 print time.strftime("-START-%Y-%m-%d %H:%M:%S", time.localtime())
-analyzer = MachOTask('../samples/WeiBo_arm64', store=True, visualize=False)
-# analyzer.analyze_function(0x10065871C)
-# analyzer.analyze_function(0x10065EE2C)
-# analyzer.analyze_function(0x10065ed50)
-# analyzer.analyze_function(0x1006594F0)
-# analyzer.analyze_function(0x1008675e0L)
-# analyzer.analyze_function(0x1008884D8)
-analyzer.analyze_function(0x100006D3C)
-# analyzer.analyze_class(classname='TencentRequestDelegate')
+analyzer = MachOTask('/home/gjy/Desktop/MachOA/samples/DoubanRadio_arm64', store=True, visualize=False)
+# analyzer.analyze_function(0x10067f11cL)
+analyzer.analyze_class(classname='WXOMTAHelper')
 # analyzer.analyze_bin()
-tested = [4296458748L, 4297314720L, 4298072216L, 4298548040L, 4298747060L, 4298958052L, 4299675236L, 4299679092L, 4300090440L, 4300284124L, 4301420752L, 4301779228L, 4301785164L, 4301805964L, 4302979732L, 4304217968L]
-# for f in tested:
+fs = [4297314720L, 4298958052L, 4301420752L, 4301785164L, 4299675236L, 4304217968L, 4299679092L, 4298747060L, 4300090440L, 4301805964L, 4298072216L, 4296458748L, 4300284124L, 4302979732L]
+# for f in [4298548040L, 4301779228L]:
 #     analyzer.analyze_function(f)
+# analyzer.analyze_function(0x10025D148)
+# analyzer.analyze_slice(0x1005ffe24, end_addr=0x100600484)
+# analyzer.analyze_slice(0x10025E128)
+# analyzer.analyze_class(classname='DOULocationManager')
 analyzer.clear()
 
-print time.strftime("-END-%Y-%m-%d %H:%M:%S", time.localtime())
-
+# print time.strftime("-END-%Y-%m-%d %H:%M:%S", time.localtime())
+#
+# if __name__ == '__main__':
+#     analyzer = MachOTask('/home/gjy/Desktop/MachOA/samples/WeiBo_arm64', store=True, visualize=False)
+#     args = sys.argv[1:]
+#     startEA = int(args[0], 10)
+#     endEA = int(args.pop(), 10)
+#     if startEA == endEA:
+#         analyzer.analyze_function(startEA)
+#     else:
+#         analyzer.analyze_slice(startEA, end_addr=endEA)
 
 
 

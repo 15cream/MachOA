@@ -17,6 +17,7 @@ class MachO:
         self.functions = dict()
         self.stubs = dict()  # stub_code -> symbol_name
         self.segdata = dict()
+        self.libs = dict()
 
     def build(self, state):
         self.build_segdata()
@@ -54,8 +55,26 @@ class MachO:
         self.segdata['cstring'] = MachO.pd.macho.get_segment_by_name('__TEXT').get_section_by_name('__cstring')
         self.segdata['data_const'] = MachO.pd.macho.get_segment_by_name('__DATA').get_section_by_name('__const')
         self.segdata['text_const'] = MachO.pd.macho.get_segment_by_name('__TEXT').get_section_by_name('__const')
-        self.segdata['classref'] = MachO.pd.macho.get_segment_by_name('__DATA').get_section_by_name('__objc_classrefs')
+        self.segdata['class_ref'] = MachO.pd.macho.get_segment_by_name('__DATA').get_section_by_name('__objc_classrefs')
         self.segdata['classdata'] = MachO.pd.macho.get_segment_by_name('__DATA').get_section_by_name('__objc_data')
         self.segdata['methname'] = MachO.pd.macho.get_segment_by_name('__TEXT').get_section_by_name('__objc_methname')
+        self.segdata['code'] = MachO.pd.macho.get_segment_by_name('__TEXT').get_section_by_name('__text')
+        self.segdata['common'] = MachO.pd.macho.get_segment_by_name('__DATA').get_section_by_name('__common')
+        self.segdata['bss'] = MachO.pd.macho.get_segment_by_name('__DATA').get_section_by_name('__bss')
+
+    def parse_symbols(self):
+        for s in self.macho.symbols:
+            print 'SYMBOL: -- {} --'.format(s.name)
+            print 'addr: {}'.format(hex(s.addr))
+            print 'bind_xrefs: {}'.format(s.bind_xrefs)
+            print 'is_import: {}'.format(s.is_import)
+            print 'library_name: {}'.format(s.library_name)
+            if s.is_import:
+                if s.library_name not in self.libs or s not in self.libs[s.library_name]:
+                    self.libs[s.library_name] = [s, ]
+                else:
+                    self.libs[s.library_name].append(s)
+
+
 
 
