@@ -51,7 +51,7 @@ def resolve_addr(state, addr):
         if seg and addr in range(seg.min_addr, seg.max_addr):
             datatype = segname
             break
-    if datatype == 'class_ref':
+    if datatype in ['class_ref', 'superrefs']:
         return OCClass.classes_indexed_by_ref[addr].name
     elif datatype == 'classdata':
         return OCClass.binary_class_set[addr].name

@@ -11,8 +11,8 @@ print 'Paring Done. '
 
 r = Rule()
 r.set_bin_data(p.get_data())
-r.receiver_str = 'WXOMTAEvent'
-r.selector_str = 'toJsonString'
+r.receiver_str = 'QQApiMessage'
+r.selector_str = 'encodeWithCoder:'
 result = r.analyze()
 
 

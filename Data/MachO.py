@@ -56,6 +56,7 @@ class MachO:
         self.segdata['data_const'] = MachO.pd.macho.get_segment_by_name('__DATA').get_section_by_name('__const')
         self.segdata['text_const'] = MachO.pd.macho.get_segment_by_name('__TEXT').get_section_by_name('__const')
         self.segdata['class_ref'] = MachO.pd.macho.get_segment_by_name('__DATA').get_section_by_name('__objc_classrefs')
+        self.segdata['superrefs'] = MachO.pd.macho.get_segment_by_name('__DATA').get_section_by_name('__objc_superrefs')
         self.segdata['classdata'] = MachO.pd.macho.get_segment_by_name('__DATA').get_section_by_name('__objc_data')
         self.segdata['methname'] = MachO.pd.macho.get_segment_by_name('__TEXT').get_section_by_name('__objc_methname')
         self.segdata['code'] = MachO.pd.macho.get_segment_by_name('__TEXT').get_section_by_name('__text')

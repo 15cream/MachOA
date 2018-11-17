@@ -29,6 +29,7 @@ class Func:
                     self.init_state.registers.store(reg, newval)
 
     def analyze(self):
+        print 'ANALYZE {} {}'.format(hex(self.addr), self.name)
         if self.addr in OCFunction.meth_list:
             self.init_state.regs.ip = self.addr
             simgr = self.task.p.factory.simgr(self.init_state)

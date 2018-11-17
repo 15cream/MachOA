@@ -30,7 +30,7 @@ class DPResolver():
             if ':' in selector:
                 for c in selector.split(':'):
                     if c:
-                        s += "{}:{} ".format(c, dps[i])
+                        s += "{}:{}".format(c, dps[i])
                         i += 1
                 if selector == 'stringWithFormat:':
                     fsa = ",".join(dps[3:-1])

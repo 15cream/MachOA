@@ -3,6 +3,7 @@ import ConfigParser
 import time
 import sys
 sys.path.append('/home/gjy/Desktop/MachOA')
+import os
 
 import angr.engines.successors
 import angr.sim_state
@@ -22,7 +23,7 @@ from RuntimePatch.mem_read import *
 from RuntimePatch.Slice import Slice
 
 from Data.OCFunction import OCFunction
-from tools.Files import *
+# from tools.Files import *
 
 
 class MachOTask:
@@ -42,8 +43,8 @@ class MachOTask:
         self.configs = None
         self.pd = MachO(self.macho, self)
         self.pre_process()
-        self.checked = checked("{}{}".format(self.configs.get('PATH', 'results'), self.macho.provides))
-        # self.checked = []
+        # self.checked = checked("{}{}".format(self.configs.get('PATH', 'results'), self.macho.provides))
+        self.checked = []
         self.db = "{}{}.pkl".format(self.configs.get('PATH', 'dbs'), self.macho.provides)
         self.cg = GraphView()
         self.logger = open('../log', mode='wb')
@@ -140,9 +141,9 @@ class MachOTask:
 
 
 print time.strftime("-START-%Y-%m-%d %H:%M:%S", time.localtime())
-analyzer = MachOTask('/home/gjy/Desktop/MachOA/samples/DoubanRadio_arm64', store=True, visualize=False)
-# analyzer.analyze_function(0x10067f11cL)
-analyzer.analyze_class(classname='WXOMTAHelper')
+analyzer = MachOTask('../samples/DoubanRadio_arm64', store=True, visualize=False)
+analyzer.analyze_function(0x100649CD8)
+# analyzer.analyze_class(classname='QQApiMessage')
 # analyzer.analyze_bin()
 fs = [4297314720L, 4298958052L, 4301420752L, 4301785164L, 4299675236L, 4304217968L, 4299679092L, 4298747060L, 4300090440L, 4301805964L, 4298072216L, 4296458748L, 4300284124L, 4302979732L]
 # for f in [4298548040L, 4301779228L]:
