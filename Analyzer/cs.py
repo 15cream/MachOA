@@ -27,5 +27,5 @@ class CallString:
                 print hex(int(g.nodes[node]['addr'], 10)), g.nodes[node]['dp']
 
 cs = CallString()
-cs.recover_from_path('/home/gjy/Desktop/MachOA/results/DoubanRadio_arm64/')
+cs.recover_from_path('../results/DoubanRadio_arm64/')
 

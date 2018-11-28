@@ -5,6 +5,7 @@ import os
 from BinaryPatch.Utils import *
 from OCClass import OCClass
 from OCFunction import OCFunction
+from OCProtocol import Protocol
 
 class MachO:
 
@@ -23,6 +24,7 @@ class MachO:
         self.build_segdata()
         self.build_classdata(state)
         OCFunction.build_meth_list(self.macho)
+        # Protocol.analyze_protolist(self.macho, state)
 
     def build_classdata(self, state):
         db = "{}{}.pkl".format(self.task.configs.get('PATH', 'dbs'), self.macho.provides)

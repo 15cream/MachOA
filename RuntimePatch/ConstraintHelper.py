@@ -7,7 +7,7 @@ def repr_constraints(state):
         # return copy.deepcopy(state.solver.constraints)
 
 
-def find_constraint_addtion(src, des):
+def find_constraint_addtion(des, src):
         cs = []
         for c in des.constraints:
             if c not in src.constraints:

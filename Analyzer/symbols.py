@@ -1,7 +1,0 @@
-symbols = {
-    'AppServices': {
-        'Accounts': {
-            
-        }
-    }
-}
