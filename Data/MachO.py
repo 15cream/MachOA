@@ -1,6 +1,8 @@
 __author__ = 'gjy'
 
 import os
+import pickle
+from types import *
 
 from BinaryPatch.Utils import *
 from OCClass import OCClass
@@ -22,15 +24,18 @@ class MachO:
 
     def build(self, state):
         self.build_segdata()
-        self.build_classdata(state)
-        OCFunction.build_meth_list(self.macho)
-        # Protocol.analyze_protolist(self.macho, state)
 
-    def build_classdata(self, state):
         db = "{}{}.pkl".format(self.task.configs.get('PATH', 'dbs'), self.macho.provides)
         if os.path.exists(db):
-            OCClass.unpack(state, db)
-            return
+            MachO.unpack(state, db)
+        else:
+            self.build_classdata(state)
+            Protocol.analyze_protolist(self.macho, state)
+            MachO.dump(db)
+        OCFunction.build_meth_list(self.macho)
+
+    def build_classdata(self, state):
+
         # imported
         classrefs = self.macho.get_segment_by_name('__DATA').get_section_by_name('__objc_classrefs')
         superrefs = self.macho.get_segment_by_name('__DATA').get_section_by_name('__objc_superrefs')
@@ -50,7 +55,6 @@ class MachO:
                 continue
             else:
                 OCClass(addr).build(state)
-        OCClass.dump(db)
 
     def build_segdata(self):
         self.segdata['cfstring'] = MachO.pd.macho.get_segment_by_name('__DATA').get_section_by_name('__cfstring')
@@ -77,6 +81,64 @@ class MachO:
                     self.libs[s.library_name] = [s, ]
                 else:
                     self.libs[s.library_name].append(s)
+
+    @staticmethod
+    def dump(db):
+        output = open(db, 'wb')
+        pickle.dump([OCClass.class_set, Protocol.protocol_indexed_by_data_EA], output)
+        output.close()
+
+    @staticmethod
+    def unpack(state, db):
+        input = open(db, 'rb')
+        [class_set, protocol_set] = pickle.load(input)
+        for c in class_set:
+            cd = OCClass(c['classref_addr'])
+            if type(c['class_addr']) is not NoneType:
+                cd.class_addr = state.solver.eval(c['class_addr'])
+            else:
+                cd.class_addr = None
+            if type(c['meta_class_addr']) is not NoneType:
+                cd.meta_class_addr = state.solver.eval(c['meta_class_addr'])
+            else:
+                cd.meta_class_addr = None
+            cd.name = c['name']
+            cd.imported = c['imported']
+            cd.class_meths = c['class_meths']
+            cd.instance_meths = c['instance_meths']
+            cd.prots = c['prots']
+            cd.superclass_addr = c['superclass_addr']
+            if c['ivars']:
+                cd.ivars = c['ivars']
+            else:
+                cd.ivars = []
+            if cd.imported:
+                OCClass.imported_class_set.append(cd)
+                bv = state.solver.BVV(cd.classref_addr, 64).reversed
+                state.memory.store(cd.classref_addr, bv)
+            else:
+                OCClass.binary_class_set[cd.class_addr] = cd
+            OCClass.classes_indexed_by_ref[cd.classref_addr] = cd
+            OCClass.classes_indexed_by_name[cd.name] = cd
+            meths = dict(cd.instance_meths.items() + cd.class_meths.items())
+            for meth in meths:
+                meth_name = meths[meth]
+                OCClass.classes_indexed_by_meth[meth] = [meth_name, cd]
+                selector = meth_name.split(' ')[-1].strip(']')
+                if selector in OCClass.classes_indexed_by_selector:
+                    OCClass.classes_indexed_by_selector[selector].append(cd)
+                else:
+                    OCClass.classes_indexed_by_selector[selector] = [cd, ]
+            for ivar in cd.ivars:
+                ivar.add_to_ivars()
+
+        Protocol.protocol_indexed_by_data_EA = protocol_set
+        for ea, p in protocol_set.items():
+            Protocol.protocol_indexed_by_name[p.name] = p
+
+        input.close()
+
+
 
 
 

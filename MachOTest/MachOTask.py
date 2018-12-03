@@ -1,9 +1,10 @@
 __author__ = 'gjy'
-import ConfigParser
-import time
-import sys
-sys.path.append('/home/gjy/Desktop/MachOA')
+
 import os
+import sys
+import time
+import ConfigParser
+sys.path.append('/home/gjy/Desktop/MachOA')
 
 import angr.engines.successors
 import angr.sim_state
@@ -22,8 +23,8 @@ from RuntimePatch.Function import Func
 from RuntimePatch.mem_read import *
 from RuntimePatch.Slice import Slice
 
-from Data.OCFunction import OCFunction
 from tools.Files import *
+from event_simulator.CoreLocation.cldriver import CLDriver
 
 
 class MachOTask:
@@ -36,7 +37,7 @@ class MachOTask:
         self.macho = self.loader.main_object
         self.current_f = None
         self.next_func_addr = None
-        self.init_state = None  # memeory initialized
+        self.init_state = None  # memory initialized
         self.simgr = None
         self.store = store
         self.visualize = visualize
@@ -77,49 +78,29 @@ class MachOTask:
         s = Slice(start_addr, self, end=end_addr)
         s.run()
 
-    def analyze_function(self, start_addr=None, name=None):
-        self.cg = GraphView()
+    def analyze_function(self, init_args=None, start_addr=None, name=None):
+
         if name:
             start_addr = retrieve_f(name=name)['imp']
         if start_addr in self.meth_blacklist or hex(start_addr).strip('L') in self.checked:
             print 'SKIPPED: ', hex(start_addr)
             return
+
+        self.cg = GraphView()
         st = self.init_state.copy()
         st.inspect.b('exit', when=angr.BP_BEFORE, action=branch_check)
         st.inspect.b('mem_read', when=angr.BP_AFTER, action=mem_read)
         st.inspect.b('address_concretization', when=angr.BP_AFTER, action=mem_resolve)
 
-        f = Func(start_addr, self.macho, self, st)
-        f.init_regs()
+        f = Func(start_addr, self.macho, self, st, args=init_args)
         f.analyze()
         self.cg.view()
-        # except Exception as e:
-        #     print hex(start_addr), 'Failed to analyze: ', e
-
-        # cfg = self.p.analyses.CFGAccurate(keep_state=True, starts=[start_addr, ], initial_state=st, call_depth=2,
-        #                               context_sensitivity_level=3)
-        # plot_cfg(cfg, "ais4_cfg", asminst=True, remove_imports=True, remove_path_terminator=True)
 
     def analyze_bin(self):
         for ref in OCClass.classes_indexed_by_ref.keys():
             if ref in self.class_blacklist:
                 continue
             self.analyze_class(classref=ref)
-
-    def analyze_class_dds(self, classref=None, classname=None):
-        class_obj = OCClass.retrieve(classref=classref, classname=classname)
-        if class_obj.imported:
-            return
-        if class_obj.name in self.checked:
-            return
-        fp = "{}{}/{}.txt".format(self.configs.get('PATH', 'dds'), self.macho.provides, class_obj.name)
-        with open(fp, 'w') as f:
-            for meth in class_obj.instance_meths.extend(class_obj.class_meths):
-                if meth in self.meth_blacklist:
-                    continue
-                self.analyze_function(start_addr=meth)
-                f.write("\n---------{}----------\n".format(self.current_f.name))
-                f.write("\n".join(self.current_f.dds))
 
     def analyze_class(self, classref=None, classname=None):
         class_obj = OCClass.retrieve(classref=classref, classname=classname)
@@ -139,32 +120,30 @@ class MachOTask:
     def clear(self):
         self.loader.close()
 
+    #  deprecated
+    def analyze_class_dds(self, classref=None, classname=None):
+        class_obj = OCClass.retrieve(classref=classref, classname=classname)
+        if class_obj.imported:
+            return
+        if class_obj.name in self.checked:
+            return
+        fp = "{}{}/{}.txt".format(self.configs.get('PATH', 'dds'), self.macho.provides, class_obj.name)
+        with open(fp, 'w') as f:
+            for meth in class_obj.instance_meths.extend(class_obj.class_meths):
+                if meth in self.meth_blacklist:
+                    continue
+                self.analyze_function(start_addr=meth)
+                f.write("\n---------{}----------\n".format(self.current_f.name))
+                f.write("\n".join(self.current_f.dds))
 
-print time.strftime("-START-%Y-%m-%d %H:%M:%S", time.localtime())
-analyzer = MachOTask('../samples/WTG2_arm64', store=True, visualize=False)
-analyzer.analyze_function(4296167968L)
-# analyzer.analyze_class(classname='MessageViewController')
-# analyzer.analyze_bin()
-fs = [4297314720L, 4298958052L, 4301420752L, 4301785164L, 4299675236L, 4304217968L, 4299679092L, 4298747060L, 4300090440L, 4301805964L, 4298072216L, 4296458748L, 4300284124L, 4302979732L]
-# for f in [4298548040L, 4301779228L]:
-#     analyzer.analyze_function(f)
-# analyzer.analyze_function(0x10025D148)
-# analyzer.analyze_slice(0x1005ffe24, end_addr=0x100600484)
-# analyzer.analyze_slice(0x10025E128)
-# analyzer.analyze_class(classname='DOULocationManager')
-analyzer.clear()
 
-# print time.strftime("-END-%Y-%m-%d %H:%M:%S", time.localtime())
-#
-# if __name__ == '__main__':
-#     analyzer = MachOTask('/home/gjy/Desktop/MachOA/samples/WeiBo_arm64', store=True, visualize=False)
-#     args = sys.argv[1:]
-#     startEA = int(args[0], 10)
-#     endEA = int(args.pop(), 10)
-#     if startEA == endEA:
-#         analyzer.analyze_function(startEA)
-#     else:
-#         analyzer.analyze_slice(startEA, end_addr=endEA)
+if __name__ == "__main__":
+    print time.strftime("-START-%Y-%m-%d %H:%M:%S", time.localtime())
+    analyzer = MachOTask('../samples/AppJobber_arm64', store=True, visualize=False)
+    CLDriver(analyzer).simulate()
+    analyzer.clear()
+    print time.strftime("-END-%Y-%m-%d %H:%M:%S", time.localtime())
+
 
 
 

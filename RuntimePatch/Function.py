@@ -3,7 +3,7 @@ from Data.OCFunction import OCFunction
 
 class Func:
 
-    def __init__(self, addr, binary, task, state):
+    def __init__(self, addr, binary, task, state, args=None):
         self.addr = addr
         # self.next_func_addr = binary.lc_function_starts[binary.lc_function_starts.index(addr) + 1]
         self.name = OCFunction.meth_data[addr]['name']
@@ -12,9 +12,10 @@ class Func:
         self.init_state = state
         self.active = True
         task.cg.add_start_node(addr, 'Start', self.init_state)
+        self.init_regs(args)
 
-    def init_regs(self):
-        if self.addr in OCFunction.meth_data:  # or could be subroutine
+    def init_regs(self, args):
+        if self.addr in OCFunction.meth_data:
             meth_data = OCFunction.meth_data[self.addr]
             class_data = meth_data['class']
             if class_data:
@@ -22,11 +23,12 @@ class Func:
                     self.init_state.regs.x0 = self.init_state.solver.BVS(class_data.name + "_instance", 64)
                 else:
                     self.init_state.regs.x0 = self.init_state.solver.BVV(class_data.classref_addr, 64)
-                argc = meth_data['name'].count(':')
-                for i in range(0, argc):
-                    reg = 'x' + str(i + 2)
-                    newval = self.init_state.solver.BVS("P" + str(i), 64)
-                    self.init_state.registers.store(reg, newval)
+
+                for i in range(0, meth_data['name'].count(':')):
+                    init_reg_val = args[i+1] if args else "P" + str(i)
+                    self.init_state.registers.store('x{}'.format(str(i+2)), self.init_state.solver.BVS(init_reg_val, 64))
+        else:
+            pass  # subroutine
 
     def analyze(self):
         print 'ANALYZE {} {}'.format(hex(self.addr), self.name)

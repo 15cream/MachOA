@@ -7,7 +7,7 @@ from Rules import Rule
 print 'Parsing Binary Data...'
 p = Binary()
 p.parse()
-print 'Paring Done. '
+print 'Parsing Done. '
 
 r = Rule()
 r.set_bin_data(p.get_data())
