@@ -1,1 +1,0 @@
-<FUNCTION address="0x10001b5bcL" name="-[TGScrollView initWithFrame:]"><NODE addr="0x10001b5bcL">Start<NEXT addr="0x10001b600L" /></NODE><NODE addr="0x10001b600L">[ret_from__objc_msgSendSuper2_5627_64 setPagingEnabled:]<NEXT addr="0x10001b614L" /></NODE><NODE addr="0x10001b614L">[ret_from__objc_msgSendSuper2_5627_64 setClipsToBounds:]</NODE></FUNCTION>

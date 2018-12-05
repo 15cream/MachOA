@@ -1,1 +1,0 @@
-<FUNCTION address="0x100132008L" name="-[TGwebViewController closeNative]"><NODE addr="0x100132038L">[ret_from_0x10013201cL_2903_64 popViewControllerAnimated:]</NODE><NODE addr="0x100132008L">Start<NEXT addr="0x10013201cL" /></NODE><NODE addr="0x10013201cL">[TGwebViewController_instance_2898_64 navigationController]<NEXT addr="0x100132038L" /></NODE></FUNCTION>

@@ -1,1 +1,0 @@
-<FUNCTION address="0x10005ed3cL" name="-[TGCentralManager initWithQueue:options:withMac:]"><NODE addr="0x10005ed3cL">Start<NEXT addr="0x10005edb8L" /></NODE><NODE addr="0x10005edb8L">[_OBJC_CLASS_$_CBCentralManager alloc]<NEXT addr="0x10005edd0L" /></NODE><NODE addr="0x10005edd0L">[ret_from_0x10005edb8L_1861_64 initWithDelegate:queue:options:]</NODE></FUNCTION>

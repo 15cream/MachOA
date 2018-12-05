@@ -1,1 +1,0 @@
-<FUNCTION address="0x100097120L" name="-[TGDayAlertView imageWithColor:]"><NODE addr="0x100097120L">Start<NEXT addr="0x10009716cL" /></NODE><NODE addr="0x10009716cL">[ret_from__objc_retainAutorelease_123_64 CGColor]</NODE></FUNCTION>

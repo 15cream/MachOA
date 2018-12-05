@@ -1,1 +1,0 @@
-<FUNCTION address="0x1006e1f00L" name="+[AliSecXDeviceInfo getOSName]"><NODE addr="0x1006e1f00L">Start<NEXT addr="0x1006e1f28L" /></NODE><NODE addr="0x1006e1f28L">[internal_DeviceInfo getOSName]</NODE></FUNCTION>

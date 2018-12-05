@@ -1,1 +1,0 @@
-<FUNCTION address="0x1004c1284L" name="+[MAPolyline polylineWithCoordinates:count:]"><NODE addr="0x1004c12b4L">[ret_from_0x1004c12a0L_23247_64 initWithCoordinates:count:]</NODE><NODE addr="0x1004c1284L">Start<NEXT addr="0x1004c12a0L" /></NODE><NODE addr="0x1004c12a0L">[MAPolyline alloc]<NEXT addr="0x1004c12b4L" /></NODE></FUNCTION>

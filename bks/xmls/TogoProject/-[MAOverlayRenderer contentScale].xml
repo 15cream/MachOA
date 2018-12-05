@@ -1,1 +1,0 @@
-<FUNCTION address="0x1004f0658L" name="-[MAOverlayRenderer contentScale]"><NODE addr="0x1004f0670L">[MAOverlayRenderer_instance_1006_64 rendererDelegate]<NEXT addr="0x1004f0688L" /></NODE><NODE addr="0x1004f0658L">Start<NEXT addr="0x1004f0670L" /></NODE><NODE addr="0x1004f0688L">[ret_from_0x1004f0670L_1013_64 rendererContentScale]</NODE></FUNCTION>

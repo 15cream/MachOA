@@ -1,1 +1,0 @@
-<FUNCTION address="0x1004f09c0L" name="-[MAOverlayRenderer glPointsForMapPoints:count:]"><NODE addr="0x1004f09c0L">Start<NEXT addr="0x1004f0a1cL" /></NODE><NODE addr="0x1004f0a1cL">[MAOverlayRenderer_instance_1120_64 glPointForMapPoint:]<NEXT addr="0x1004f0a1cL" /></NODE><NODE addr="0x1004f0a1cL">[MAOverlayRenderer_instance_1120_64 glPointForMapPoint:]</NODE></FUNCTION>

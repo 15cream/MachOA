@@ -1,1 +1,0 @@
-<FUNCTION address="0x10074a928L" name="-[TDAADesignerConnection dealloc]"><NODE addr="0x10074a964L">[TDAADesignerConnection_instance_197_64 close]</NODE><NODE addr="0x10074a928L">Start<NEXT addr="0x10074a954L" /></NODE><NODE addr="0x10074a954L">[mem_fffffffffffffff8_202_64 setDelegate:]<NEXT addr="0x10074a964L" /></NODE></FUNCTION>

@@ -1,1 +1,0 @@
-<FUNCTION address="0x100417a4cL" name="+[GXDyncSdkConfig getBackgroundType]"><NODE addr="0x100417a4cL">Start<NEXT addr="0x100417a68L" /></NODE><NODE addr="0x100417a68L">[GXDyncSdkConfig readIntForGTKey:defValue:]</NODE></FUNCTION>

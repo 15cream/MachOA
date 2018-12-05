@@ -1,1 +1,0 @@
-<FUNCTION address="0x100495504L" name="-[MAMapView setIsAllowDecreaseFrame:]"><NODE addr="0x100495504L">Start<NEXT addr="0x100495534L" /></NODE><NODE addr="0x100495534L">[mem_fffffffffffffff8_9065_64 isAllowDecreaseRenderFrame]<NEXT addr="0x100495560L" /></NODE><NODE addr="0x100495560L">[mem_fffffffffffffff8_9065_64 setIsAllowDecreaseRenderFrame:]</NODE></FUNCTION>

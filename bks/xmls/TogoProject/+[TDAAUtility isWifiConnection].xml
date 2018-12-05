@@ -1,1 +1,0 @@
-<FUNCTION address="0x1007a3f88L" name="+[TDAAUtility isWifiConnection]"><NODE addr="0x1007a3fd4L">[ret_from_0x1007a3fbcL_15302_64 currentReachabilityStatus]</NODE><NODE addr="0x1007a3f88L">Start<NEXT addr="0x1007a3fbcL" /></NODE><NODE addr="0x1007a3fbcL">[TDAAReachability reachabilityForInternetConnection]<NEXT addr="0x1007a3fd4L" /></NODE></FUNCTION>

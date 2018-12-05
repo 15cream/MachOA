@@ -1,1 +1,0 @@
-<FUNCTION address="0x1003ca6fcL" name="+[BLYDevice systemUpTime]"><NODE addr="0x1003ca71cL">[_OBJC_CLASS_$_NSProcessInfo processInfo]<NEXT addr="0x1003ca734L" /></NODE><NODE addr="0x1003ca6fcL">Start<NEXT addr="0x1003ca71cL" /></NODE><NODE addr="0x1003ca734L">[ret_from_0x1003ca71cL_15347_64 systemUptime]</NODE></FUNCTION>

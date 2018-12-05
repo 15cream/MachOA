@@ -1,1 +1,0 @@
-<FUNCTION address="0x1007c7e3cL" name="+[BPushUtility getCurrentDeviceSystemVersion]"><NODE addr="0x1007c7e70L">[ret_from_0x1007c7e58L_4568_64 systemVersion]</NODE><NODE addr="0x1007c7e3cL">Start<NEXT addr="0x1007c7e58L" /></NODE><NODE addr="0x1007c7e58L">[_OBJC_CLASS_$_UIDevice currentDevice]<NEXT addr="0x1007c7e70L" /></NODE></FUNCTION>

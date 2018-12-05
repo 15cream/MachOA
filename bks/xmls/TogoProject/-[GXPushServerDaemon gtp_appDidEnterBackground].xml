@@ -1,1 +1,0 @@
-<FUNCTION address="0x100404e20L" name="-[GXPushServerDaemon gtp_appDidEnterBackground]"><NODE addr="0x100404e20L">Start<NEXT addr="0x100404e28L" /></NODE><NODE addr="0x100404e28L">[GXPushServerDaemon_instance_19931_64 createBackgroundClient]</NODE></FUNCTION>

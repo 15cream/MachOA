@@ -1,1 +1,0 @@
-<FUNCTION address="0x100049194L" name="+[TGPushHandleObject appPushEnterBackground:backBlock:]"><NODE addr="0x100049194L">Start<NEXT addr="0x1000491d8L" /></NODE><NODE addr="0x1000491d8L">[TGPushHandleObject sharedTGPushHandleObject]<NEXT addr="0x100049238L" /></NODE><NODE addr="0x100049238L">[ret_from_0x1000491d8L_3340_64 handleData:backBlock:]</NODE></FUNCTION>

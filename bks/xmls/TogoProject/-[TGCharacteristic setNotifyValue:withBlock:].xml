@@ -1,1 +1,0 @@
-<FUNCTION address="0x10013a910L" name="-[TGCharacteristic setNotifyValue:withBlock:]"><NODE addr="0x10013a970L">[reg_x3_4448_64 copy]<NEXT addr="0x10013a990L" /></NODE><NODE addr="0x10013a910L">Start<NEXT addr="0x10013a970L" /></NODE><NODE addr="0x10013a990L">[ret_from__objc_loadWeakRetained_4450_64 setNotifyValue:forCharacteristic:withBlock:]</NODE></FUNCTION>

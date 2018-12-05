@@ -1,1 +1,0 @@
-<FUNCTION address="0x10004a0f0L" name="-[TGPushHandleObject pushInitRequestBlock:]"><NODE addr="0x10004a184L">[TGHttpManager TGPOSTAndCustomAlert:parameters:name:success:failure:]</NODE><NODE addr="0x10004a0f0L">Start<NEXT addr="0x10004a184L" /></NODE></FUNCTION>

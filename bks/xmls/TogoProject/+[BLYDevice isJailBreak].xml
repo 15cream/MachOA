@@ -1,1 +1,0 @@
-<FUNCTION address="0x1003ca624L" name="+[BLYDevice isJailBreak]"><NODE addr="0x1003ca658L">[ret_from_0x1003ca640L_15234_64 isJailbroken]</NODE><NODE addr="0x1003ca624L">Start<NEXT addr="0x1003ca640L" /></NODE><NODE addr="0x1003ca640L">[BLYDevice currentDevice]<NEXT addr="0x1003ca658L" /></NODE></FUNCTION>

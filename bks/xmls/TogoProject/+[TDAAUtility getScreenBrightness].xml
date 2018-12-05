@@ -1,1 +1,0 @@
-<FUNCTION address="0x1007a0f1cL" name="+[TDAAUtility getScreenBrightness]"><NODE addr="0x1007a0f1cL">Start<NEXT addr="0x1007a0f3cL" /></NODE><NODE addr="0x1007a0f3cL">[_OBJC_CLASS_$_UIScreen mainScreen]<NEXT addr="0x1007a0f54L" /></NODE><NODE addr="0x1007a0f54L">[ret_from_0x1007a0f3cL_13140_64 brightness]</NODE></FUNCTION>

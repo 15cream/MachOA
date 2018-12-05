@@ -1,1 +1,0 @@
-<FUNCTION address="0x1000804bcL" name="-[TGRadarView btnClick]"><NODE addr="0x1000804dcL">[TGRadarView_instance_3892_64 clickBlock]<NEXT addr="0x1000804fcL" /></NODE><NODE addr="0x1000804bcL">Start<NEXT addr="0x1000804dcL" /></NODE><NODE addr="0x1000804fcL">[TGRadarView_instance_3892_64 clickBlock]</NODE></FUNCTION>

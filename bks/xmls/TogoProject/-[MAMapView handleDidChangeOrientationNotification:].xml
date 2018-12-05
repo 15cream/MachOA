@@ -1,1 +1,0 @@
-<FUNCTION address="0x1004aa80cL" name="-[MAMapView handleDidChangeOrientationNotification:]"><NODE addr="0x1004aa80cL">Start<NEXT addr="0x1004aa814L" /></NODE><NODE addr="0x1004aa814L">[MAMapView_instance_48_64 updateHeadingForDeviceOrientation]</NODE></FUNCTION>

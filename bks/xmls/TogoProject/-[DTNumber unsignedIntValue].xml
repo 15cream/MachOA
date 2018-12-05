@@ -1,1 +1,0 @@
-<FUNCTION address="0x1006d8984L" name="-[DTNumber unsignedIntValue]"><NODE addr="0x1006d8984L">Start<NEXT addr="0x1006d8998L" /></NODE><NODE addr="0x1006d8998L">[DTNumber_instance_19349_64 number]<NEXT addr="0x1006d89b0L" /></NODE><NODE addr="0x1006d89b0L">[ret_from_0x1006d8998L_19354_64 unsignedIntValue]</NODE></FUNCTION>

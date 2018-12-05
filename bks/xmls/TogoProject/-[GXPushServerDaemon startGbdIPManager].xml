@@ -1,1 +1,0 @@
-<FUNCTION address="0x100404b30L" name="-[GXPushServerDaemon startGbdIPManager]"><NODE addr="0x100404b64L">[GtGbdManager startupIPManagerServer]</NODE><NODE addr="0x100404b30L">Start<NEXT addr="0x100404b48L" /></NODE><NODE addr="0x100404b48L">[GXDyncSdkConfig getPingSelfEnable]<NEXT addr="0x100404b64L" /></NODE></FUNCTION>

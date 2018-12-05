@@ -1,1 +1,0 @@
-<FUNCTION address="0x1000a33dcL" name="-[TGHomeViewController homeInitRequest]"><NODE addr="0x1000a344cL">[TGHttpManager TGPOST:parameters:name:success:failure:]</NODE><NODE addr="0x1000a33dcL">Start<NEXT addr="0x1000a344cL" /></NODE></FUNCTION>

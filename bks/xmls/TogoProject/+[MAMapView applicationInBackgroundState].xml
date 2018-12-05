@@ -1,1 +1,0 @@
-<FUNCTION address="0x1004a6818L" name="+[MAMapView applicationInBackgroundState]"><NODE addr="0x1004a684cL">[ret_from_0x1004a6834L_10745_64 applicationState]</NODE><NODE addr="0x1004a6818L">Start<NEXT addr="0x1004a6834L" /></NODE><NODE addr="0x1004a6834L">[_OBJC_CLASS_$_UIApplication sharedApplication]<NEXT addr="0x1004a684cL" /></NODE></FUNCTION>

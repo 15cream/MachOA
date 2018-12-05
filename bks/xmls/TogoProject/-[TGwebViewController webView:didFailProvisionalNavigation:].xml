@@ -1,1 +1,0 @@
-<FUNCTION address="0x10013180cL" name="-[TGwebViewController webView:didFailProvisionalNavigation:]"><NODE addr="0x10013180cL">Start<NEXT addr="0x100131820L" /></NODE><NODE addr="0x100131820L">[TGwebViewController_instance_1692_64 progressView]<NEXT addr="0x10013183cL" /></NODE><NODE addr="0x10013183cL">[ret_from_0x100131820L_1697_64 setHidden:]</NODE></FUNCTION>

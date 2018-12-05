@@ -1,1 +1,0 @@
-<FUNCTION address="0x10012c83cL" name="-[CouponViewController numberOfSectionsInTableView:]"><NODE addr="0x10012c83cL">Start<NEXT addr="0x10012c850L" /></NODE><NODE addr="0x10012c868L">[ret_from_0x10012c850L_795_64 count]</NODE><NODE addr="0x10012c850L">[CouponViewController_instance_790_64 dataList]<NEXT addr="0x10012c868L" /></NODE></FUNCTION>

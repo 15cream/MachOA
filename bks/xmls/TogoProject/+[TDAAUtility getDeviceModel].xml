@@ -1,1 +1,0 @@
-<FUNCTION address="0x10079f180L" name="+[TDAAUtility getDeviceModel]"><NODE addr="0x10079f1a8L">[TDAAUtility getSysInfoByName:]</NODE><NODE addr="0x10079f180L">Start<NEXT addr="0x10079f1a8L" /></NODE></FUNCTION>

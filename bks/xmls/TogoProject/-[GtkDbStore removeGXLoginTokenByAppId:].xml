@@ -1,1 +1,0 @@
-<FUNCTION address="0x10040a664L" name="-[GtkDbStore removeGXLoginTokenByAppId:]"><NODE addr="0x10040a664L">Start<NEXT addr="0x10040a678L" /></NODE><NODE addr="0x10040a678L">[GtkDbStore_instance_5399_64 saveGXLoginToken:andAppId:]</NODE></FUNCTION>

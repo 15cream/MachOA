@@ -1,1 +1,0 @@
-<FUNCTION address="0x10000cf80L" name="+[TGBleData hexStringToBle:intructType:]"><NODE addr="0x10000cf80L">Start<NEXT addr="0x10000cfc0L" /></NODE><NODE addr="0x10000cfc0L">[TGBluetoothUtils hexStringFromString:]</NODE></FUNCTION>

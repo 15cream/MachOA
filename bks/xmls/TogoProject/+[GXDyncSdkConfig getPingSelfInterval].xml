@@ -1,1 +1,0 @@
-<FUNCTION address="0x100417af0L" name="+[GXDyncSdkConfig getPingSelfInterval]"><NODE addr="0x100417af0L">Start<NEXT addr="0x100417b0cL" /></NODE><NODE addr="0x100417b0cL">[GXDyncSdkConfig readIntForGTKey:defValue:]</NODE></FUNCTION>

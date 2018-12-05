@@ -1,1 +1,0 @@
-<FUNCTION address="0x1004a8b38L" name="-[MAMapView normalizeScreenPoint:]"><NODE addr="0x1004a8b70L">[MAMapView_instance_4587_64 getRectOnGround]</NODE><NODE addr="0x1004a8b38L">Start<NEXT addr="0x1004a8b5cL" /></NODE><NODE addr="0x1004a8b5cL">[MAMapView_instance_4587_64 isInSkyMode]<NEXT addr="0x1004a8b70L" /></NODE></FUNCTION>

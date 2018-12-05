@@ -1,1 +1,0 @@
-<FUNCTION address="0x1004f0abcL" name="-[MAOverlayRenderer renderLinesWithPoints:pointCount:strokeColor:lineWidth:looped:]"><NODE addr="0x1004f0abcL">Start<NEXT addr="0x1004f0adcL" /></NODE><NODE addr="0x1004f0adcL">[MAOverlayRenderer_instance_900_64 renderLinesWithPoints:pointCount:strokeColor:lineWidth:looped:LineJoinType:LineCapType:lineDash:]</NODE></FUNCTION>

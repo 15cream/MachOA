@@ -1,1 +1,0 @@
-<FUNCTION address="0x1004f7a14L" name="+[MAMediaTimingFunction functionWithType:]"><NODE addr="0x1004f7a14L">Start<NEXT addr="0x1004f7a34L" /></NODE><NODE addr="0x1004f7a44L">[ret_from_0x1004f7a34L_1988_64 initWithType:]</NODE><NODE addr="0x1004f7a34L">[MAMediaTimingFunction alloc]<NEXT addr="0x1004f7a44L" /></NODE></FUNCTION>

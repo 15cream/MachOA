@@ -1,1 +1,0 @@
-<FUNCTION address="0x100159990L" name="-[TGExpireCouponViewController numberOfSectionsInTableView:]"><NODE addr="0x1001599bcL">[ret_from_0x1001599a4L_5885_64 count]</NODE><NODE addr="0x100159990L">Start<NEXT addr="0x1001599a4L" /></NODE><NODE addr="0x1001599a4L">[TGExpireCouponViewController_instance_5880_64 dataList]<NEXT addr="0x1001599bcL" /></NODE></FUNCTION>

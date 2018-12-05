@@ -1,1 +1,0 @@
-<FUNCTION address="0x1003f1ea8L" name="-[GtAsyncSocket removeStreamsFromRunLoop]"><NODE addr="0x1003f1ea8L">Start<NEXT addr="0x1003f1ed8L" /></NODE><NODE addr="0x1003f1ed8L">[GtAsyncSocket_instance_1163_64 class]<NEXT addr="0x1003f1efcL" /></NODE><NODE addr="0x1003f1efcL">[ret_from_0x1003f1ed8L_1169_64 performSelector:onThread:withObject:waitUntilDone:]</NODE></FUNCTION>

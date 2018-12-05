@@ -1,1 +1,0 @@
-<FUNCTION address="0x10013a9bcL" name="-[TGCharacteristic discoverDescriptorsWithBlock:]"><NODE addr="0x10013aa30L">[ret_from__objc_loadWeakRetained_4513_64 discoverDescriptorsForCharacteristic:withBlock:]</NODE><NODE addr="0x10013a9bcL">Start<NEXT addr="0x10013aa14L" /></NODE><NODE addr="0x10013aa14L">[reg_x2_4511_64 copy]<NEXT addr="0x10013aa30L" /></NODE></FUNCTION>

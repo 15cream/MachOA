@@ -1,1 +1,0 @@
-<FUNCTION address="0x1004f07a0L" name="-[MAOverlayRenderer getMapZoomLevel]"><NODE addr="0x1004f07a0L">Start<NEXT addr="0x1004f07b8L" /></NODE><NODE addr="0x1004f07b8L">[MAOverlayRenderer_instance_801_64 rendererDelegate]<NEXT addr="0x1004f07d0L" /></NODE><NODE addr="0x1004f07d0L">[ret_from_0x1004f07b8L_808_64 getMapZoomLevel]</NODE></FUNCTION>

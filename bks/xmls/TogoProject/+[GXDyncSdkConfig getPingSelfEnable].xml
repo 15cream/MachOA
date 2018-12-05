@@ -1,1 +1,0 @@
-<FUNCTION address="0x100417ad0L" name="+[GXDyncSdkConfig getPingSelfEnable]"><NODE addr="0x100417ad0L">Start<NEXT addr="0x100417aecL" /></NODE><NODE addr="0x100417aecL">[GXDyncSdkConfig readBoolForGTKey:defValue:]</NODE></FUNCTION>

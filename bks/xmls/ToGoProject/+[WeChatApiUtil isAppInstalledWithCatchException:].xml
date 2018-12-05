@@ -1,4 +1,0 @@
-<FUNCTION address="0x1002873d8" name="+[WeChatApiUtil isAppInstalledWithCatchException:]"><NODE addr="0x100287474L">[RetFrom0x10028741cL release]</NODE><NODE addr="0x100287438L">[_OBJC_CLASS_$_NSURL URLWithString:] 
-(RetFrom0x10028741cL)<NEXT addr="0x100287450L" /></NODE><NODE addr="0x100287460L">[RetFrom0x100287450L canOpenURL:] 
-(RetFrom0x100287438L)<NEXT addr="0x100287474L" /></NODE><NODE addr="0x10028741cL">[RetFrom0x100287410L retain]<NEXT addr="0x100287438L" /></NODE><NODE addr="0x100287410L">[_OBJC_CLASS_$_NSString stringWithFormat:] 
-(%@%@://)<NEXT addr="0x10028741cL" /></NODE><NODE addr="0x100287450L">[_OBJC_CLASS_$_UIApplication sharedApplication]<NEXT addr="0x100287460L" /></NODE><NODE addr="0x1002873d8">+[WeChatApiUtil isAppInstalledWithCatchException:]<NEXT addr="0x100287410L" /></NODE></FUNCTION>

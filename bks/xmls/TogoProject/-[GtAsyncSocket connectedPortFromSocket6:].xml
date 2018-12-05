@@ -1,1 +1,0 @@
-<FUNCTION address="0x1003eae08L" name="-[GtAsyncSocket connectedPortFromSocket6:]"><NODE addr="0x1003eae08L">Start<NEXT addr="0x1003eae48L" /></NODE><NODE addr="0x1003eae48L">[GtAsyncSocket_instance_49_64 class]<NEXT addr="0x1003eae58L" /></NODE><NODE addr="0x1003eae58L">[ret_from_0x1003eae48L_56_64 gt_portFromSockaddr6:]</NODE></FUNCTION>

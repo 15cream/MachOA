@@ -1,1 +1,0 @@
-<FUNCTION address="0x100417a8cL" name="+[GXDyncSdkConfig getLogfulIniflogEnable]"><NODE addr="0x100417a8cL">Start<NEXT addr="0x100417aa8L" /></NODE><NODE addr="0x100417aa8L">[GXDyncSdkConfig readBoolForGTKey:defValue:]</NODE></FUNCTION>

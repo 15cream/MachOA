@@ -1,1 +1,0 @@
-<FUNCTION address="0x1003faca8L" name="+[GtSdkPbListenManager gtp_ShowSubSdkVersion]"><NODE addr="0x1003faca8L">Start<NEXT addr="0x1003facc8L" /></NODE><NODE addr="0x1003facc8L">[GtGbdManager version]<NEXT addr="0x1003facfcL" /></NODE><NODE addr="0x1003facfcL">[_OBJC_CLASS_$_NSString stringWithFormat:]</NODE></FUNCTION>

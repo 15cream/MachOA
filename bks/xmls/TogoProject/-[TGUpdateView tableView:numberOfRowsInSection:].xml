@@ -1,1 +1,0 @@
-<FUNCTION address="0x100006f60L" name="-[TGUpdateView tableView:numberOfRowsInSection:]"><NODE addr="0x100006f8cL">[ret_from_0x100006f74L_1354_64 count]</NODE><NODE addr="0x100006f60L">Start<NEXT addr="0x100006f74L" /></NODE><NODE addr="0x100006f74L">[TGUpdateView_instance_1349_64 array]<NEXT addr="0x100006f8cL" /></NODE></FUNCTION>

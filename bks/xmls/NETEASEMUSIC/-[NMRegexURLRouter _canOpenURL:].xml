@@ -1,1 +1,0 @@
-<FUNCTION address="0x1005726b4L" name="-[NMRegexURLRouter _canOpenURL:]"><NODE addr="0x1005726b4L">Start<NEXT addr="0x10057270cL" /></NODE><NODE addr="0x10057270cL">[mem_fffffffffd203b23_523_64 allValues]<NEXT addr="0x100572748L" /></NODE><NODE addr="0x100572748L">[ret_from_0x10057270cL_524_64 countByEnumeratingWithState:objects:count:]</NODE></FUNCTION>

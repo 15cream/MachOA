@@ -1,1 +1,0 @@
-<FUNCTION address="0x10040a694L" name="-[GtkDbStore removeGXRegisterIdByAppId:]"><NODE addr="0x10040a694L">Start<NEXT addr="0x10040a6a8L" /></NODE><NODE addr="0x10040a6a8L">[GtkDbStore_instance_5166_64 saveGXRegisterId:andAppId:]</NODE></FUNCTION>

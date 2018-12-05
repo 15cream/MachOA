@@ -1,1 +1,0 @@
-<FUNCTION address="0x1000fb770L" name="-[TGBleManager discoverServices]"><NODE addr="0x1000fb800L">[ret_from_0x1000fb79cL_4196_64 discoverServices:withBlock:]</NODE><NODE addr="0x1000fb770L">Start<NEXT addr="0x1000fb79cL" /></NODE><NODE addr="0x1000fb79cL">[TGBleManager_instance_4190_64 TGperipheral]<NEXT addr="0x1000fb800L" /></NODE></FUNCTION>

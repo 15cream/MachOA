@@ -1,1 +1,0 @@
-<FUNCTION address="0x1006d82e8L" name="-[DTNumber initWithLong:]"><NODE addr="0x1006d8358L">[ret_from__objc_msgSendSuper2_19508_64 setNumber:]</NODE><NODE addr="0x1006d82e8L">Start<NEXT addr="0x1006d8338L" /></NODE><NODE addr="0x1006d8338L">[_OBJC_CLASS_$_NSNumber numberWithLong:]<NEXT addr="0x1006d8358L" /></NODE></FUNCTION>

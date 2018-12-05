@@ -1,1 +1,0 @@
-<FUNCTION address="0x1004a91a8L" name="-[MAMapView setCompassImage:]"><NODE addr="0x1004a91a8L">Start<NEXT addr="0x1004a91c0L" /></NODE><NODE addr="0x1004a91c0L">[mem_e0000000000000d0_2325_64 setImage:]</NODE></FUNCTION>

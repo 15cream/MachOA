@@ -1,1 +1,0 @@
-<FUNCTION address="0x1000fe948L" name="+[WXApiRequestHandler sendText:InScene:]"><NODE addr="0x1000fe948L">Start<NEXT addr="0x1000fe974L" /></NODE><NODE addr="0x1000fe998L">[WXApi sendReq:]</NODE><NODE addr="0x1000fe974L">[SendMessageToWXReq requestWithText:OrMediaMessage:bText:InScene:]<NEXT addr="0x1000fe998L" /></NODE></FUNCTION>

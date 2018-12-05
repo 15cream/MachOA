@@ -1,1 +1,0 @@
-<FUNCTION address="0x100417a08L" name="+[GXDyncSdkConfig getDiagnosticToolsEnable]"><NODE addr="0x100417a08L">Start<NEXT addr="0x100417a24L" /></NODE><NODE addr="0x100417a24L">[GXDyncSdkConfig readBoolForGTKey:defValue:]</NODE></FUNCTION>

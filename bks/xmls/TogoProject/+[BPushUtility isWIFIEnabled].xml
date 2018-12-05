@@ -1,1 +1,0 @@
-<FUNCTION address="0x1007c77e0L" name="+[BPushUtility isWIFIEnabled]"><NODE addr="0x1007c7814L">[ret_from_0x1007c77fcL_4516_64 currentReachabilityStatus]</NODE><NODE addr="0x1007c77e0L">Start<NEXT addr="0x1007c77fcL" /></NODE><NODE addr="0x1007c77fcL">[BPushReachability reachabilityForInternetConnection]<NEXT addr="0x1007c7814L" /></NODE></FUNCTION>

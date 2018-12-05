@@ -1,5 +1,0 @@
-<FUNCTION address="0x1001f9e00" name="sub_0x1001f9e00"><NODE addr="0x1001f9e00">sub_0x1001f9e00<NEXT addr="0x1001f9e34L" /><NEXT addr="0x1001f9d00L" /></NODE><NODE addr="0x1001f9e3cL">_CFStringGetLength 
-(RetFrom_0x1001f9e34L,0)</NODE><NODE addr="0x1001f9d1cL">_write 
-(1,(null))</NODE><NODE addr="0x1001f9e34L">_CFStringCreateWithFormatAndArguments 
-(0,0)<NEXT addr="0x1001f9e3cL" /></NODE><NODE addr="0x1001f9d00L">_strlen 
-((null),reg_x1)<NEXT addr="0x1001f9d1cL" /></NODE></FUNCTION>

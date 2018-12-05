@@ -1,1 +1,0 @@
-<FUNCTION address="0x1004f1380L" name="-[MAOverlayRenderer deleteTexture:]"><NODE addr="0x1004f1380L">Start<NEXT addr="0x1004f13a8L" /></NODE><NODE addr="0x1004f13c4L">[ret_from_0x1004f13a8L_647_64 clearTexture:]</NODE><NODE addr="0x1004f13a8L">[MAGLESUnity sharedInstance]<NEXT addr="0x1004f13c4L" /></NODE></FUNCTION>

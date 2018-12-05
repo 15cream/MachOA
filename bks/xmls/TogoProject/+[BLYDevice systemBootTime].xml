@@ -1,1 +1,0 @@
-<FUNCTION address="0x1003ca758L" name="+[BLYDevice systemBootTime]"><NODE addr="0x1003ca758L">Start<NEXT addr="0x1003ca7bcL" /></NODE><NODE addr="0x1003ca7bcL">[_OBJC_CLASS_$_NSDate dateWithTimeIntervalSince1970:]</NODE></FUNCTION>

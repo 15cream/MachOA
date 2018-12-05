@@ -1,1 +1,0 @@
-<FUNCTION address="0x1004f11e8L" name="-[MAOverlayRenderer loadStrokeTextureImage:]"><NODE addr="0x1004f11e8L">Start<NEXT addr="0x1004f11f8L" /></NODE><NODE addr="0x1004f11f8L">[MAOverlayRenderer_instance_948_64 setStrokeImage:]</NODE></FUNCTION>

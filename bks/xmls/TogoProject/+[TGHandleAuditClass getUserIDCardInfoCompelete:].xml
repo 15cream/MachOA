@@ -1,1 +1,0 @@
-<FUNCTION address="0x10011c34cL" name="+[TGHandleAuditClass getUserIDCardInfoCompelete:]"><NODE addr="0x10011c34cL">Start<NEXT addr="0x10011c3e0L" /></NODE><NODE addr="0x10011c3e0L">[TGHttpManager TGPOSTAndLoading:parameters:name:success:failure:]</NODE></FUNCTION>

@@ -1,1 +1,0 @@
-<FUNCTION address="0x10008b31cL" name="-[TGDepQuestionViewController numberOfSectionsInTableView:]"><NODE addr="0x10008b348L">[ret_from_0x10008b330L_13715_64 count]</NODE><NODE addr="0x10008b31cL">Start<NEXT addr="0x10008b330L" /></NODE><NODE addr="0x10008b330L">[TGDepQuestionViewController_instance_13710_64 groupArray]<NEXT addr="0x10008b348L" /></NODE></FUNCTION>

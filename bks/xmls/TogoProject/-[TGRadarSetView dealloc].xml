@@ -1,1 +1,0 @@
-<FUNCTION address="0x1000d08c0L" name="-[TGRadarSetView dealloc]"><NODE addr="0x1000d08c0L">Start<NEXT addr="0x1000d08e4L" /></NODE><NODE addr="0x1000d08e4L">[_OBJC_CLASS_$_NSNotificationCenter defaultCenter]<NEXT addr="0x1000d0900L" /></NODE><NODE addr="0x1000d0900L">[ret_from_0x1000d08e4L_1224_64 removeObserver:]</NODE></FUNCTION>

@@ -1,1 +1,0 @@
-<FUNCTION address="0x100019fecL" name="-[TGRadarScanAnnotationView stopAnimation]"><NODE addr="0x100019fecL">Start<NEXT addr="0x10001a000L" /></NODE><NODE addr="0x10001a018L">[ret_from_0x10001a000L_1477_64 stopAnimation]</NODE><NODE addr="0x10001a000L">[TGRadarScanAnnotationView_instance_1472_64 radarScanView]<NEXT addr="0x10001a018L" /></NODE></FUNCTION>

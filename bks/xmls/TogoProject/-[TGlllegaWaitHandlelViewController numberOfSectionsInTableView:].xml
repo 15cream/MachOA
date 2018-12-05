@@ -1,1 +1,0 @@
-<FUNCTION address="0x10001e1b4L" name="-[TGlllegaWaitHandlelViewController numberOfSectionsInTableView:]"><NODE addr="0x10001e1b4L">Start<NEXT addr="0x10001e1c8L" /></NODE><NODE addr="0x10001e1c8L">[TGlllegaWaitHandlelViewController_instance_2315_64 dataList]<NEXT addr="0x10001e1e0L" /></NODE><NODE addr="0x10001e1e0L">[ret_from_0x10001e1c8L_2320_64 count]</NODE></FUNCTION>

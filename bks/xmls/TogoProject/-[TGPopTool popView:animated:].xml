@@ -1,1 +1,0 @@
-<FUNCTION address="0x10008cf38L" name="-[TGPopTool popView:animated:]"><NODE addr="0x10008cf38L">Start<NEXT addr="0x10008cfdcL" /></NODE><NODE addr="0x10008d068L">[_OBJC_CLASS_$_UIView animateWithDuration:animations:completion:]</NODE><NODE addr="0x10008cfdcL">[reg_x2_4688_64 setTransform:]<NEXT addr="0x10008d068L" /></NODE></FUNCTION>

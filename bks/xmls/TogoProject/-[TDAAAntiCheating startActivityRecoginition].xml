@@ -1,1 +1,0 @@
-<FUNCTION address="0x1007b164cL" name="-[TDAAAntiCheating startActivityRecoginition]"><NODE addr="0x1007b164cL">Start<NEXT addr="0x1007b1680L" /></NODE><NODE addr="0x1007b1680L">[TDAAQueueManager antiCheatingQueue]</NODE></FUNCTION>

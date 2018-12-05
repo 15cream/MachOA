@@ -1,1 +1,0 @@
-<FUNCTION address="0x1004a0280L" name="-[MAMapView removeAngleIndicator]"><NODE addr="0x1004a0280L">Start<NEXT addr="0x1004a02a4L" /></NODE><NODE addr="0x1004a02a4L">[mem_c000000000000000_3210_64 removeFromSuperview]</NODE></FUNCTION>

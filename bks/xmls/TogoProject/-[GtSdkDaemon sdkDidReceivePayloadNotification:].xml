@@ -1,1 +1,0 @@
-<FUNCTION address="0x1003f70bcL" name="-[GtSdkDaemon sdkDidReceivePayloadNotification:]"><NODE addr="0x1003f70bcL">Start<NEXT addr="0x1003f70d8L" /></NODE><NODE addr="0x1003f70d8L">[GtSdkDaemon_instance_977_64 performSelectorOnMainThread:withObject:waitUntilDone:]</NODE></FUNCTION>

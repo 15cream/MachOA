@@ -1,1 +1,0 @@
-<FUNCTION address="0x10005c1d8L" name="-[TGExpandInfoView startAnimation]"><NODE addr="0x10005c248L">[_OBJC_CLASS_$_UIView animateWithDuration:animations:]</NODE><NODE addr="0x10005c1d8L">Start<NEXT addr="0x10005c1f8L" /></NODE><NODE addr="0x10005c1f8L">[TGExpandInfoView_instance_2054_64 animationWithScale:]<NEXT addr="0x10005c248L" /></NODE></FUNCTION>

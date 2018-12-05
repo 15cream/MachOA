@@ -1,1 +1,0 @@
-<FUNCTION address="0x100076d00L" name="-[TGDepositViewController getDepositInfoRequest]"><NODE addr="0x100076d00L">Start<NEXT addr="0x100076d88L" /></NODE><NODE addr="0x100076d88L">[TGHttpManager TGPOSTAndLoading:parameters:name:success:failure:]</NODE></FUNCTION>

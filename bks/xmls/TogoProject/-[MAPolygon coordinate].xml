@@ -1,1 +1,0 @@
-<FUNCTION address="0x1004af020L" name="-[MAPolygon coordinate]"><NODE addr="0x1004af020L">Start<NEXT addr="0x100483038L" /></NODE><NODE addr="0x100483038L">[MAProjection projection]<NEXT addr="0x100483058L" /></NODE><NODE addr="0x100483058L">[ret_from_0x100483038L_11442_64 mapPointToCoordinate:]</NODE></FUNCTION>

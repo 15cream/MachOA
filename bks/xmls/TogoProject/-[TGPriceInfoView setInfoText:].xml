@@ -1,1 +1,0 @@
-<FUNCTION address="0x1001397b0L" name="-[TGPriceInfoView setInfoText:]"><NODE addr="0x1001397fcL">[ret_from_0x1001397e0L_2279_64 setText:]</NODE><NODE addr="0x1001397b0L">Start<NEXT addr="0x1001397e0L" /></NODE><NODE addr="0x1001397e0L">[TGPriceInfoView_instance_2271_64 infoLabel]<NEXT addr="0x1001397fcL" /></NODE></FUNCTION>

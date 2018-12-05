@@ -1,1 +1,0 @@
-<FUNCTION address="0x100777378L" name="-[TDAAEventIAP recharge:orderId:amount:currencyType:payType:order:]"><NODE addr="0x100777400L">[TDAAQueueManager getAPIQueue]</NODE><NODE addr="0x100777378L">Start<NEXT addr="0x100777400L" /></NODE></FUNCTION>

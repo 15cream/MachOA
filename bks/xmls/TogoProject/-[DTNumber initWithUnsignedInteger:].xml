@@ -1,1 +1,0 @@
-<FUNCTION address="0x1006d8778L" name="-[DTNumber initWithUnsignedInteger:]"><NODE addr="0x1006d87c8L">[_OBJC_CLASS_$_NSNumber numberWithUnsignedInteger:]<NEXT addr="0x1006d87e8L" /></NODE><NODE addr="0x1006d8778L">Start<NEXT addr="0x1006d87c8L" /></NODE><NODE addr="0x1006d87e8L">[ret_from__objc_msgSendSuper2_19626_64 setNumber:]</NODE></FUNCTION>

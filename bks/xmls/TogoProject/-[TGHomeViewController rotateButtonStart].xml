@@ -1,1 +1,0 @@
-<FUNCTION address="0x1000a9cacL" name="-[TGHomeViewController rotateButtonStart]"><NODE addr="0x1000a9cecL">[mem_fff8000000000020_1774_64 startAnimation]</NODE><NODE addr="0x1000a9cacL">Start<NEXT addr="0x1000a9cd0L" /></NODE><NODE addr="0x1000a9cd0L">[mem_fff8000000000020_1774_64 finish]<NEXT addr="0x1000a9cecL" /></NODE></FUNCTION>

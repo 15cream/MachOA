@@ -1,1 +1,0 @@
-<FUNCTION address="0x1006d88a0L" name="-[DTNumber shortValue]"><NODE addr="0x1006d88a0L">Start<NEXT addr="0x1006d88b4L" /></NODE><NODE addr="0x1006d88ccL">[ret_from_0x1006d88b4L_19418_64 shortValue]</NODE><NODE addr="0x1006d88b4L">[DTNumber_instance_19413_64 number]<NEXT addr="0x1006d88ccL" /></NODE></FUNCTION>

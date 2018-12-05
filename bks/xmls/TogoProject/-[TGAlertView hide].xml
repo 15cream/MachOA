@@ -1,1 +1,0 @@
-<FUNCTION address="0x1000cd7c4L" name="-[TGAlertView hide]"><NODE addr="0x1000cd7f8L">[TGAlertView_instance_36733_64 removeFromSuperview]</NODE><NODE addr="0x1000cd7c4L">Start<NEXT addr="0x1000cd7dcL" /></NODE><NODE addr="0x1000cd7dcL">[TGAlertView_instance_36733_64 autoHide]<NEXT addr="0x1000cd7f8L" /></NODE></FUNCTION>

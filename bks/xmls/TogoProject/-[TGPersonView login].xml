@@ -1,1 +1,0 @@
-<FUNCTION address="0x100099548L" name="-[TGPersonView login]"><NODE addr="0x100099558L">[TGHttpManager isLoginAndShowLoginVC]</NODE><NODE addr="0x100099548L">Start<NEXT addr="0x100099558L" /></NODE></FUNCTION>

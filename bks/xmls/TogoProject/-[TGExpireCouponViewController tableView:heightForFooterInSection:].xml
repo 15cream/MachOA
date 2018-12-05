@@ -1,1 +1,0 @@
-<FUNCTION address="0x1001599dcL" name="-[TGExpireCouponViewController tableView:heightForFooterInSection:]"><NODE addr="0x1001599dcL">Start<NEXT addr="0x1001599f8L" /></NODE><NODE addr="0x1001599f8L">[TGExpireCouponViewController_instance_5891_64 dataList]<NEXT addr="0x100159a10L" /></NODE><NODE addr="0x100159a10L">[ret_from_0x1001599f8L_5899_64 count]</NODE></FUNCTION>

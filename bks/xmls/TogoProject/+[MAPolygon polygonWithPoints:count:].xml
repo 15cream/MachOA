@@ -1,1 +1,0 @@
-<FUNCTION address="0x1004af090L" name="+[MAPolygon polygonWithPoints:count:]"><NODE addr="0x1004af0c0L">[ret_from_0x1004af0acL_11557_64 initWithPoints:count:]</NODE><NODE addr="0x1004af090L">Start<NEXT addr="0x1004af0acL" /></NODE><NODE addr="0x1004af0acL">[MAPolygon alloc]<NEXT addr="0x1004af0c0L" /></NODE></FUNCTION>

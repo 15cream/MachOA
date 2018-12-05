@@ -1,1 +1,0 @@
-<FUNCTION address="0x1006e2a04L" name="+[AliSecXDeviceInfo getNetworkInfo]"><NODE addr="0x1006e2a04L">Start<NEXT addr="0x1006e2a20L" /></NODE><NODE addr="0x1006e2a20L">[internal_DeviceInfo getNetworkInfo]</NODE></FUNCTION>

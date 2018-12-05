@@ -1,1 +1,0 @@
-<FUNCTION address="0x10077a5c4L" name="-[TDAAEventIAP placeOrder:orderId:amount:currencyType:items:]"><NODE addr="0x10077a63cL">[TDAAQueueManager getAPIQueue]</NODE><NODE addr="0x10077a5c4L">Start<NEXT addr="0x10077a63cL" /></NODE></FUNCTION>

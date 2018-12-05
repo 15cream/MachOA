@@ -1,1 +1,0 @@
-<FUNCTION address="0x100019778L" name="-[CardViewController relieveCard]"><NODE addr="0x1000197f0L">[TGAlert showWithTitle:message:cancelButtonTitle:otherButtonTitle:cancel:confirm:]</NODE><NODE addr="0x100019778L">Start<NEXT addr="0x1000197f0L" /></NODE></FUNCTION>
