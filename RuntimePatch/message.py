@@ -8,7 +8,6 @@ from callbacks.delegate import Delegate
 
 
 class Message:
-
     def __init__(self, state, receiver=None, selector=None, args=None, simprocedure_handler=None):
         self.simprocedure_handler = simprocedure_handler
         self.dispatch_state = state
@@ -23,17 +22,18 @@ class Message:
         self.node = None
 
     def dynamic_bind(self):
-        self.selector = SEL(Data(self.dispatch_state, reg=self.dispatch_state.regs.x1))  # take care of 'performSelector'
+        self.selector = SEL(
+            Data(self.dispatch_state, reg=self.dispatch_state.regs.x1))  # take care of 'performSelector'
         self.receiver = Receiver(Data(self.dispatch_state, reg=self.dispatch_state.regs.x0),
                                  self.selector)
         self.description = "{}[{} {}]".format(self.receiver.type, self.receiver.expr, self.selector.expr)
 
     def send(self):
         self.dynamic_bind()
-        if 'msgQueue' in self.dispatch_state.regs.x0.ast.__dict__:
-            self.dispatch_state.regs.x0.ast.__dict__['msgQueue'].append(self)
-        else:
-            self.dispatch_state.regs.x0.ast.__dict__['msgQueue'] = [self, ]
+        # if 'msgQueue' in self.dispatch_state.regs.x0.ast.__dict__:
+        #     self.dispatch_state.regs.x0.ast.__dict__['msgQueue'].append(self)
+        # else:
+        #     self.dispatch_state.regs.x0.ast.__dict__['msgQueue'] = [self, ]
 
         # If do the inter-procedure analysis, there's no need to think about ret_val.
         # But if we just do inner-procedure analysis, how to express that a message has been send?
@@ -41,22 +41,18 @@ class Message:
             sel_imp = retrieve_f(name=self.description)['imp']
             self.simprocedure_handler.call(sel_imp, args=[], continue_at='ret_from_msgSend', cc=None)
         else:
-            # If message invoke has ret_val, x0 should be covered with ret_val; if message invoke has unknown ret_type,
-            # do not touch x0, but we should record that x0 has received this message.
-            ret_value = OCFunction.query_ret_type(self.selector.expr, self.receiver.expr)
-            if ret_value:
-                if 'v' in ret_value:
-                    pass
-                else:
-                    # Pay attention. Because invokes are path sensitive,
-                    # look for your ret_val in your history path.
-                    x0 = FORMAT_REG_RET_VAL.format(ret_type=ret_value, ret_from=hex(self.invoke_ea))
-                    self.dispatch_state.regs.x0 = self.dispatch_state.solver.BVS(x0, 64)
-            else:
-                pass
+            # '({data_type}<{instance_type}:{ptr}>){name}'
+            # Pay attention. Because invokes are path sensitive, look for your ret_val in your history path.
+            ret_type = 'unknown'
+            if self.receiver.oc_class:
+                ret_type = OCFunction.find_detailed_prototype(self.selector.expr, self.receiver.oc_class)[0]
+
+            x0 = FORMAT_INSTANCE.format(data_type=ret_type, instance_type='RET', ptr=hex(self.invoke_ea),
+                                        name="[{} {}]".format(self.receiver.expr, self.selector.expr))
+            self.dispatch_state.regs.x0 = self.dispatch_state.solver.BVS(x0, 64)
 
         self.node = MachO.pd.task.cg.insert_invoke(self.invoke_ea, self.description, self.dispatch_state,
-                                                   receiver=self.receiver.expr,
+                                                   receiver=self.receiver.data.expr,
                                                    selector=self.selector.expr,
                                                    args=self.selector.args)
 
@@ -67,54 +63,53 @@ class Message:
             tainted = False
         return tainted
 
-    # origin
-    # def _send(self):
-    #     state = self.dispatch_state
-    #     self.invoke_state = state.history.parent.parent  # invoke_context_state -> msgSend_stub -> stub_helper
-    #     self.invoke_ea = self.invoke_state.addr + self.invoke_state.recent_instruction_count * 4
-    #
-    #     receiver = self.receiver = resolve_reg(state, state.regs.x0)
-    #     selector = self.selector = resolve_reg(state, state.regs.x1)
-    #     args = self.args = resolve_args(state, selector=selector)
-    #
-    #     if 'instance' in receiver:
-    #         receiver = receiver.split('_')[0]
-    #         meth_type = '-'
-    #     elif '@' in receiver:
-    #         receiver = receiver.split('@')[-1].strip('"')
-    #         meth_type = '-'
-    #     elif 'RetFrom' in receiver:
-    #         meth_type = '-'
-    #     else:
-    #         meth_type = '+'
-    #     self.methtype = meth_type
-    #     self.description = "{}[{} {}]".format(meth_type, receiver, selector)
+        # origin
+        # def _send(self):
+        # state = self.dispatch_state
+        #     self.invoke_state = state.history.parent.parent  # invoke_context_state -> msgSend_stub -> stub_helper
+        #     self.invoke_ea = self.invoke_state.addr + self.invoke_state.recent_instruction_count * 4
+        #
+        #     receiver = self.receiver = resolve_reg(state, state.regs.x0)
+        #     selector = self.selector = resolve_reg(state, state.regs.x1)
+        #     args = self.args = resolve_args(state, selector=selector)
+        #
+        #     if 'instance' in receiver:
+        #         receiver = receiver.split('_')[0]
+        #         meth_type = '-'
+        #     elif '@' in receiver:
+        #         receiver = receiver.split('@')[-1].strip('"')
+        #         meth_type = '-'
+        #     elif 'RetFrom' in receiver:
+        #         meth_type = '-'
+        #     else:
+        #         meth_type = '+'
+        #     self.methtype = meth_type
+        #     self.description = "{}[{} {}]".format(meth_type, receiver, selector)
 
-    # # origin
-    # def _resolve_in_context(self):
-    #     self.send()
-    #     self.record()
-    #     receiver = resolve_receiver(self.cg, self.dispatch_state, self.node)
-    #     print hex(self.g.nodes[self.node]['addr']), self.g.nodes[self.node]['dp']
-    #     if receiver in OCClass.classes_indexed_by_name:
-    #         self.description = "{}[{} {}]".format(self.methtype, receiver, self.selector)
-    #
-    #     delegate = Delegate(self)
-    #     if delegate.isDelegateAccessor():
-    #         print "Find delegate"
-    #
-    #     imp = retrieve_f(name=self.description)['imp']
-    #     if imp:
-    #         return imp
-    #     else:
-    #         ret = claripy.BVS("RetFrom_" + hex(self.invoke_ea), 64, uninitialized=True)
-    #         # ret.__setattr__('tainted', tainted)
-    #         return ret
-
+        # # origin
+        # def _resolve_in_context(self):
+        #     self.send()
+        #     self.record()
+        #     receiver = resolve_receiver(self.cg, self.dispatch_state, self.node)
+        #     print hex(self.g.nodes[self.node]['addr']), self.g.nodes[self.node]['dp']
+        #     if receiver in OCClass.classes_indexed_by_name:
+        #         self.description = "{}[{} {}]".format(self.methtype, receiver, self.selector)
+        #
+        #     delegate = Delegate(self)
+        #     if delegate.isDelegateAccessor():
+        #         print "Find delegate"
+        #
+        #     imp = retrieve_f(name=self.description)['imp']
+        #     if imp:
+        #         return imp
+        #     else:
+        #         ret = claripy.BVS("RetFrom_" + hex(self.invoke_ea), 64, uninitialized=True)
+        #         # ret.__setattr__('tainted', tainted)
+        #         return ret
 
 
 # for i in range(0, 32):
-#     reg = self.dispatch_state.regs.get('x{}'.format(i))
+# reg = self.dispatch_state.regs.get('x{}'.format(i))
 #     if 'msgQueue' in reg.ast.__dict__:
 #         print 'x{}'.format(i)
 #         for msg in reg.ast.__dict__['msgQueue']:

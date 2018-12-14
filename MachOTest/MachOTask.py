@@ -1,13 +1,10 @@
 __author__ = 'gjy'
 
-import os
 import sys
 import time
 import ConfigParser
 sys.path.append('/home/gjy/Desktop/MachOA')
 
-import angr.engines.successors
-import angr.sim_state
 from cle.backends.macho.binding import BindingHelper
 
 from BinaryPatch.LazyBind import lazy_bind_patch
@@ -23,8 +20,12 @@ from RuntimePatch.Function import Func
 from RuntimePatch.mem_read import *
 from RuntimePatch.Slice import Slice
 
+from event_simulator.CoreLocationDriver import CLDriver
+from event_simulator.UIEvent import UIEvent
+
+from SecCheck.sensitiveData import SensitiveData
+
 from tools.Files import *
-from event_simulator.CoreLocation.cldriver import CLDriver
 
 
 class MachOTask:
@@ -35,6 +36,7 @@ class MachOTask:
         self.p = angr.Project(binary)
         self.loader = self.p.loader
         self.macho = self.loader.main_object
+
         self.current_f = None
         self.next_func_addr = None
         self.init_state = None  # memory initialized
@@ -92,9 +94,10 @@ class MachOTask:
         st.inspect.b('mem_read', when=angr.BP_AFTER, action=mem_read)
         st.inspect.b('address_concretization', when=angr.BP_AFTER, action=mem_resolve)
 
-        f = Func(start_addr, self.macho, self, st, args=init_args)
-        f.analyze()
-        self.cg.view()
+        f = Func(start_addr, self.macho, self, st, args=init_args).init()
+        if f:
+            f.analyze()
+            self.cg.view()
 
     def analyze_bin(self):
         for ref in OCClass.classes_indexed_by_ref.keys():
@@ -139,8 +142,16 @@ class MachOTask:
 
 if __name__ == "__main__":
     print time.strftime("-START-%Y-%m-%d %H:%M:%S", time.localtime())
-    analyzer = MachOTask('../samples/AppJobber_arm64', store=True, visualize=False)
-    CLDriver(analyzer).simulate()
+    analyzer = MachOTask('../samples/DoubanRadio_arm64', store=True, visualize=False)
+    # CLDriver(analyzer).simulate()
+    # UIEvent(analyzer).simulate()
+    # analyzer.analyze_function(start_addr=0x1000999C8)
+    # analyzer.analyze_function(start_addr=0x10026df08L)
+    # sd = SensitiveData(receiver='UIDevice', selector='identifierForVendor')
+    sd = SensitiveData(receiver='WXOMTAEnv', selector='ifv')
+    for f in sd.as_ret():
+        analyzer.analyze_function(start_addr=f)
+    # sd.as_ivar()
     analyzer.clear()
     print time.strftime("-END-%Y-%m-%d %H:%M:%S", time.localtime())
 

@@ -22,7 +22,7 @@ class IVar():
     def to_dict(self):
         return {
             'name': self.name,
-            'class': self._class,
+            'class': self.owned_instance,
             'type': self.type,
             'ptr': self.ptr,
         }

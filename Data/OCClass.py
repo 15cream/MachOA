@@ -1,9 +1,9 @@
 import archinfo
 from OCivar import IVar
+from OCFunction import OCFunction
 
 
 class OCClass:
-
     class_set = []
     imported_class_set = []
     binary_class_set = dict()  # INDEXED BY CLASS_INFO_ADDRESS (the value stored in class_ref)
@@ -47,15 +47,18 @@ class OCClass:
             self.class_addr = state.memory.load(self.classref_addr, 8, endness=archinfo.Endness.LE)
             self.meta_class_addr = state.memory.load(self.class_addr, 8, endness=archinfo.Endness.LE)
             self.superclass_addr = state.memory.load(self.class_addr + 8, 8, endness=archinfo.Endness.LE)
+
             class_data_addr = state.memory.load(self.class_addr + 32, 8, endness=archinfo.Endness.LE)
             if state.solver.eval(class_data_addr) % 8 != 0:
                 print class_data_addr, 'ERROR'
                 return None
-            self.name = state.mem[class_data_addr+24].deref.string.concrete
+
+            self.name = state.mem[class_data_addr + 24].deref.string.concrete
             self.resolve_methods_imp(state, self.class_addr, instance_m=True)
+            self.resolve_methods_imp(state, self.meta_class_addr, class_m=True)
             self.resolve_ivar(state, self.class_addr)
             self.resolve_prots(state, self.class_addr)
-            self.resolve_methods_imp(state, self.meta_class_addr, class_m=True)
+
             OCClass.binary_class_set[state.solver.eval(self.class_addr)] = self
 
         OCClass.classes_indexed_by_name[self.name] = OCClass.classes_indexed_by_ref[self.classref_addr] = self
@@ -64,8 +67,6 @@ class OCClass:
 
     def resolve_methods_imp(self, state, addr, instance_m=None, class_m=None):
         meths = dict()
-        classname = self.name
-        formatstr = "-[{} {}]" if instance_m else "+[{} {}]"
         info = state.memory.load(addr + 32, 8, endness=archinfo.Endness.LE)
         meth_list_addr = state.memory.load(info + 32, 8, endness=archinfo.Endness.LE)
 
@@ -77,12 +78,17 @@ class OCClass:
             meth_addr = meth_list_addr + 8
             for i in range(0, count):
                 meth = state.mem[meth_addr].meth
-                meth_name = formatstr.format(classname, meth.name.deref.string.concrete)
-                meth_imp = state.solver.eval(meth.imp.resolved)
-                meths[meth_imp] = meth_name
-                if meth_imp not in OCClass.classes_indexed_by_meth:
-                    OCClass.classes_indexed_by_meth[meth_imp] = [meth_name, self]
+                f = OCFunction(imp=state.solver.eval(meth.imp.resolved),
+                               rec=self.name,
+                               sel=meth.name.deref.string.concrete,
+                               prot=meth.type.deref.string.concrete,
+                               meth_type='-' if instance_m else '+')
+
+                meths[f.imp] = f.expr
+                if f.imp not in OCClass.classes_indexed_by_meth:
+                    OCClass.classes_indexed_by_meth[f.imp] = [f.expr, self]
                 meth_addr += entry_size
+
         if instance_m:
             self.instance_meths = meths
         elif class_m:
@@ -90,7 +96,6 @@ class OCClass:
 
     def resolve_ivar(self, state, addr):
         ivarlist = []
-        classname = self.name
         info = state.memory.load(addr + 32, 8, endness=archinfo.Endness.LE)
         ivars = state.memory.load(info + 48, 8, endness=archinfo.Endness.LE)
         if state.solver.eval(ivars):
@@ -112,6 +117,7 @@ class OCClass:
     def resolve_prots(self, state, objc2_class):
         objc2_class_ro = state.memory.load(objc2_class + 32, 8, endness=archinfo.Endness.LE)
         objc2_prot_list = state.memory.load(objc2_class_ro + 0x28, 8, endness=archinfo.Endness.LE)
+
         if state.solver.eval(objc2_prot_list) != 0:
             count = state.solver.eval(state.memory.load(objc2_prot_list, 8, endness=archinfo.Endness.LE))
             for i in range(0, count):

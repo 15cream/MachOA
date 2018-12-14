@@ -3,7 +3,6 @@ import networkx as nx
 
 
 class CallString:
-
     def __init__(self):
         self.cs = {
             'sampleClass':
@@ -19,13 +18,26 @@ class CallString:
 
     def recover_from_path(self, p):
         for f in os.listdir(p):
-            if '0x100007ec8' not in f:
+            if 'e0c' not in f:
                 continue
-            g = nx.drawing.nx_agraph.read_dot(p+f)
+            g = nx.drawing.nx_agraph.read_dot(p + f)
             print f
             for node in g.nodes:
-                print hex(int(g.nodes[node]['addr'], 10)), g.nodes[node]['dp']
+                print '-' * 80
+                ea = g.nodes[node]['addr']
+                des = g.nodes[node]['des']
+                rec = g.nodes[node]['rec']
+                args = g.nodes[node]['args'] if 'args' in g.nodes[node] else None
+
+                print hex(int(ea, 10)), des
+                print 'Receiver: {} \nArguments:'.format(rec)
+                if args:
+                    print args
+                    # for i in range(0, len(args)):
+                    #     print '|____{}'.format(args[i].expr)
+
 
 cs = CallString()
-cs.recover_from_path('../results/AppJobber_arm64/')
+# cs.recover_from_path('../results/AppJobber_arm64_bak/')
+cs.recover_from_path('../results/DoubanRadio_arm64/')
 

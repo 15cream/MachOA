@@ -3,6 +3,7 @@ import claripy
 
 from Data.MachO import MachO
 from Data.OCClass import OCClass
+from Data.OCFunction import OCFunction
 
 
 def resolve_args(state, selector=None, symbol=None):
@@ -23,9 +24,9 @@ def resolve_args(state, selector=None, symbol=None):
                     reg_val = resolve_reg(state, sp)
                     args.append(reg_val)
             print 'TO DO: stringWithFormat args to be parsed.'
-    elif symbol:
-        args.append(resolve_reg(state, state.regs.get('x0')))
-        args.append(resolve_reg(state, state.regs.get('x1')))
+    # elif symbol:
+    #     args.append(resolve_reg(state, state.regs.get('x0')))
+    #     args.append(resolve_reg(state, state.regs.get('x1')))
     return args
 
 
@@ -37,12 +38,27 @@ def resolve_reg(state, reg):
     args = reg.args
 
     if op == 'BVV':
-        repr = resolve_addr(state, args[0])
+        expr = resolve_addr(state, args[0])
     elif op == 'BVS':
-        repr = '_'.join(args[0].split('_')[0:-2])
-    else:
-        repr = str(reg)
-    return repr
+        expr = '_'.join(args[0].split('_')[0:-2])
+    else:  # expression
+        expr = str(reg)
+    return expr
+
+
+def resolve_reg2(state, reg):
+    if reg.op == 'BVV' and '0x7f' in hex(reg.args[0]):
+        reg = state.memory.load(reg).reversed
+
+    op = reg.op
+    args = reg.args
+
+    if op == 'BVV':
+        return 1, resolve_addr(state, args[0])
+    elif op == 'BVS':
+        return 0, '_'.join(args[0].split('_')[0:-2])
+    else:  # expression
+        return 0, str(reg)
 
 
 def resolve_addr(state, addr):
@@ -92,9 +108,9 @@ def expr_args(args):
     expr = ''
     if args:
         for i in range(0, len(args)):
-            reg_name = 'x' + str(i)
+            reg_name = 'para' + str(i)
             reg_value = args[i]
-            expr += '{}: {}\n'.format(reg_name, reg_value)
+            expr += '{}: {}\n'.format(reg_name, reg_value.expr)
     return expr
 
 
@@ -108,3 +124,13 @@ def resolve_receiver(cg, state, node):
             # receiver = self.g.nodes[src_node]['dp'].split(' ')[0].strip('[')
             receiver = cg.g.nodes[src_node]['dp']
     return receiver
+
+
+# UIEvent to @"UIEvent"
+def str_to_type(str):
+    return '@"{}"'.format(str)
+
+
+# @"UIEvent" to UIEvent
+def type_to_str(type_str):
+    return type_str.strip('@').strip('"')

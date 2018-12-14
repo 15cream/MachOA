@@ -9,11 +9,13 @@ class UIEvent:
         self.analyzer = analyzer
 
     def simulate(self):
-        symbol = ImportedClass('_OBJC_CLASS_$_UILabel', self.analyzer)
-        symbol.analyze_usage()
-        for occlass in symbol.sub_binary_class:  # occlass subclass UIViewController, could act as UIResponder
-            responder = UIResponder(occlass, self.analyzer)
-            responder.simulate()
+        uiresponders = ['_OBJC_CLASS_$_UILabel', '_OBJC_CLASS_$_UIView', '_OBJC_CLASS_$_UIViewController']
+        for rs in uiresponders:
+            symbol = ImportedClass(rs, self.analyzer)
+            symbol.analyze_usage()
+            for occlass in symbol.sub_binary_class:  # occlass subclass UIViewController, could act as UIResponder
+                responder = UIResponder(occlass, self.analyzer)
+                responder.simulate()
 
 
 

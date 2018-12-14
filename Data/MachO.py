@@ -9,6 +9,7 @@ from OCClass import OCClass
 from OCFunction import OCFunction
 from OCProtocol import Protocol
 
+
 class MachO:
 
     pd = None
@@ -60,6 +61,7 @@ class MachO:
         self.segdata['cfstring'] = MachO.pd.macho.get_segment_by_name('__DATA').get_section_by_name('__cfstring')
         self.segdata['cstring'] = MachO.pd.macho.get_segment_by_name('__TEXT').get_section_by_name('__cstring')
         self.segdata['data_const'] = MachO.pd.macho.get_segment_by_name('__DATA').get_section_by_name('__const')
+        self.segdata['objc_const'] = MachO.pd.macho.get_segment_by_name('__DATA').get_section_by_name('__objc_const')
         self.segdata['text_const'] = MachO.pd.macho.get_segment_by_name('__TEXT').get_section_by_name('__const')
         self.segdata['class_ref'] = MachO.pd.macho.get_segment_by_name('__DATA').get_section_by_name('__objc_classrefs')
         self.segdata['superrefs'] = MachO.pd.macho.get_segment_by_name('__DATA').get_section_by_name('__objc_superrefs')
@@ -68,6 +70,12 @@ class MachO:
         self.segdata['code'] = MachO.pd.macho.get_segment_by_name('__TEXT').get_section_by_name('__text')
         self.segdata['common'] = MachO.pd.macho.get_segment_by_name('__DATA').get_section_by_name('__common')
         self.segdata['bss'] = MachO.pd.macho.get_segment_by_name('__DATA').get_section_by_name('__bss')
+
+    def query_segment(self, ea):
+        for seg_name, seg in self.segdata.items():
+            if ea in range(seg.min_addr, seg.max_addr):
+                return seg_name
+        return None
 
     def parse_symbols(self):
         for s in self.macho.symbols:
@@ -85,13 +93,13 @@ class MachO:
     @staticmethod
     def dump(db):
         output = open(db, 'wb')
-        pickle.dump([OCClass.class_set, Protocol.protocol_indexed_by_data_EA], output)
+        pickle.dump([OCClass.class_set, Protocol.protocol_indexed_by_data_EA, OCFunction.oc_function_set], output)
         output.close()
 
     @staticmethod
     def unpack(state, db):
         input = open(db, 'rb')
-        [class_set, protocol_set] = pickle.load(input)
+        [class_set, protocol_set, func_set] = pickle.load(input)
         for c in class_set:
             cd = OCClass(c['classref_addr'])
             if type(c['class_addr']) is not NoneType:
@@ -135,6 +143,8 @@ class MachO:
         Protocol.protocol_indexed_by_data_EA = protocol_set
         for ea, p in protocol_set.items():
             Protocol.protocol_indexed_by_name[p.name] = p
+
+        OCFunction.oc_function_set = func_set
 
         input.close()
 
