@@ -7,21 +7,20 @@ from RuntimePatch.mem_read import *
 
 class Slice:
 
-    def __init__(self, ea, task, end=None):
-        self.start_ea = ea
-        self.end_ea = end
+    def __init__(self, task, state, start=None, end=None):
+        self.init_state = state  # add_options = {"SYMBOLIC_WRITE_ADDRESSES"}
         self.task = task
         self.binary = task.macho
+
+        self.start_ea = start
+        self.end_ea = end
+
+        # if start_ea is the function start, initial the state
+
+        # else check code or not.
+
         self.code_segment = MachO.pd.macho.get_segment_by_name('__TEXT').get_section_by_name('__text')
-
-        st = self.task.init_state.copy()
-        # add_options = {"SYMBOLIC_WRITE_ADDRESSES"}
-        st.inspect.b('exit', when=angr.BP_BEFORE, action=branch_check)
-        st.inspect.b('mem_read', when=angr.BP_AFTER, action=mem_read)
-        st.inspect.b('address_concretization', when=angr.BP_AFTER, action=mem_resolve)
-        self.init_state = st
-
-        task.cg.add_start_node(ea, 'Start', self.init_state)
+        task.cg.add_start_node(self.start_ea, 'Start', self.init_state)
 
     def run(self):
         self.init_state.regs.ip = self.start_ea
@@ -38,7 +37,6 @@ class Slice:
         elif ip > self.end_ea:
             return True
         return False
-
 
     def static_analysis(self):
         irsb = self.task.p.factory.block(self.start_ea).vex

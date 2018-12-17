@@ -6,6 +6,7 @@ from types import *
 
 from BinaryPatch.Utils import *
 from OCClass import OCClass
+from OCivar import IVar
 from OCFunction import OCFunction
 from OCProtocol import Protocol
 
@@ -34,6 +35,7 @@ class MachO:
             Protocol.analyze_protolist(self.macho, state)
             MachO.dump(db)
         OCFunction.build_meth_list(self.macho)
+        IVar.parse_accessor()
 
     def build_classdata(self, state):
 
@@ -95,6 +97,41 @@ class MachO:
         output = open(db, 'wb')
         pickle.dump([OCClass.class_set, Protocol.protocol_indexed_by_data_EA, OCFunction.oc_function_set], output)
         output.close()
+
+    @staticmethod
+    def unpack_deprecated(state, db):
+        input = open(db, 'rb')
+        [class_set, protocol_set, func_set] = pickle.load(input)
+        for cd in class_set:
+            if cd.imported:
+                OCClass.imported_class_set.append(cd)
+                bv = state.solver.BVV(cd.classref_addr, 64).reversed
+                state.memory.store(cd.classref_addr, bv)
+            else:
+                OCClass.binary_class_set[cd.class_addr] = cd
+
+            OCClass.classes_indexed_by_ref[cd.classref_addr] = cd
+            OCClass.classes_indexed_by_name[cd.name] = cd
+            meths = dict(cd.instance_meths.items() + cd.class_meths.items())
+            for meth in meths:
+                meth_name = meths[meth]
+                OCClass.classes_indexed_by_meth[meth] = [meth_name, cd]
+                selector = meth_name.split(' ')[-1].strip(']')
+                if selector in OCClass.classes_indexed_by_selector:
+                    OCClass.classes_indexed_by_selector[selector].append(cd)
+                else:
+                    OCClass.classes_indexed_by_selector[selector] = [cd, ]
+            if cd.ivars:
+                for ivar in cd.ivars:
+                    ivar.add_to_ivars()
+
+        Protocol.protocol_indexed_by_data_EA = protocol_set
+        for ea, p in protocol_set.items():
+            Protocol.protocol_indexed_by_name[p.name] = p
+
+        OCFunction.oc_function_set = func_set
+
+        input.close()
 
     @staticmethod
     def unpack(state, db):

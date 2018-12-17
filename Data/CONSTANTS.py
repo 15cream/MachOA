@@ -9,7 +9,11 @@ INVOKEFS = "Context:{} {}\nDepth:{}\nInvoke:{} {}\n{}"
 # about instance variable
 IVAR_FORMAT = "{class_name}{var_name}{var_typr}"
 
+# Inter-procedural analysis
 IPC = False
+
+# Sensitive Data Analysis
+SDA = True
 
 dispatch = ['_dispatch_async', '_dispatch_once']
 
@@ -46,10 +50,16 @@ FORMAT_BSS_DATA = '(unknown<ea:{ptr}>)BSS_DATA'
 # INSTANCE_RANDOM_RANGE
 IRR = 1000
 
+# Receiver type can be used to infer ret_type, imp
 REC_SEL_RET = {
     (None, 'alloc'): None,
     ('UIDevice', 'currentDevice'): 'UIDevice',
     (None, 'init'): None,
     ('UIScreen', 'mainScreen'): 'UIScreen',
+    ('UIDevice', 'identifierForVendor'): 'Marked_NSUUID',
+    ('UIPasteboard', 'generalPasteboard'): 'Marked_UIPasteboard'
 
 }
+
+XREF_DB = None
+

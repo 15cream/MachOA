@@ -18,7 +18,7 @@ class StubHelper(SimProcedure):
         if lib == '/usr/lib/libobjc.A.dylib':
             if symbol.name == "_objc_msgSend":
                 msg = Message(dispatch_state, simprocedure_handler=self)
-                msg.send()
+                msg.send2()
 
             elif symbol.name == "_objc_msgSendSuper2":
                 pass

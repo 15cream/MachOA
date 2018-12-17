@@ -1,6 +1,7 @@
 from Data.OCFunction import OCFunction
 from Data.OCClass import OCClass
 from Data.CONSTANTS import *
+from Data.data import Data
 from Utils import *
 
 import random
@@ -8,7 +9,7 @@ import random
 
 class Func:
 
-    def __init__(self, addr, binary, task, state, args=None):
+    def __init__(self, addr, binary, task, state, args=None, sensiData=None):
 
         self.start_ea = addr
         self.binary = binary
@@ -19,6 +20,8 @@ class Func:
         self._oc_function = None
         self._oc_class = None
         self.name = None
+        self.sensiData = sensiData
+        self.text_seg_boundary = MachO.pd.macho.get_segment_by_name('__TEXT').get_section_by_name('__text').max_addr
         task.cg.add_start_node(addr, 'Start', self.init_state)
 
     def init(self):
@@ -61,10 +64,41 @@ class Func:
         self.init_state.regs.ip = self.start_ea
         simgr = self.task.p.factory.simgr(self.init_state)
         while simgr.active and self.active:
+            if SDA:
+                simgr.move(from_stash='active', to_stash='deadended', filter_func=self.not_sensitive)
             simgr.step()
-            # self.check_status()
 
     def check_status(self):
         if len(self.task.cg.g.nodes) > 100:
             self.active = False
             self.task.logger.write('{} {}\n'.format(hex(self.start_ea), self.name))
+
+    def sensitive(self, state):
+        """
+        Check the necessity to continue this state.
+        :return:
+        """
+        # msg invoke
+        if state.addr > self.text_seg_boundary:
+            return True
+
+        for end in self.sensiData.as_ret[self.start_ea]['sel']:
+            if state.addr < end:
+                return True
+
+        # Check no sensitive data in this state.
+        for i in range(0, 32):
+            reg_data = Data(state, reg=state.regs.get('x{}'.format(i)))
+            if 'Marked' in reg_data.expr:
+                print 'Sensitive data X{} {} exists at {}'.format(i, reg_data.expr, hex(state.addr))
+                return True
+            if 'Marked' in self.sensiData.selector in reg_data.expr:
+                print 'Selector {} occurs at {}'.format(reg_data.expr, hex(state.addr))
+                return True
+        return False
+
+    def not_sensitive(self, state):
+        return not self.sensitive(state)
+
+
+

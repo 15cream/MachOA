@@ -63,6 +63,7 @@ class OCClass:
 
         OCClass.classes_indexed_by_name[self.name] = OCClass.classes_indexed_by_ref[self.classref_addr] = self
         OCClass.class_set.append(self.__dict__)
+        # OCClass.class_set.append(self)
         print hex(self.classref_addr), self.name
 
     def resolve_methods_imp(self, state, addr, instance_m=None, class_m=None):

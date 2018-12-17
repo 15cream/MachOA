@@ -24,7 +24,6 @@ from event_simulator.CoreLocationDriver import CLDriver
 from event_simulator.UIEvent import UIEvent
 
 from SecCheck.sensitiveData import SensitiveData
-
 from tools.Files import *
 
 
@@ -62,6 +61,9 @@ class MachOTask:
         if not os.path.exists(result_path):
             os.mkdir(result_path)
         self.configs = config
+        xref_pkl = "{}{}_xrefs.pkl".format(config.get('PATH', 'dbs'), self.macho.provides)
+        SensitiveData.init(xref_pkl)
+        IVar.init(xref_pkl)
 
     def pre_process(self):
         self.config()
@@ -75,12 +77,20 @@ class MachOTask:
         StubResolver(self.init_state, self.pd).run()
         self.p.hook(lazy_bind_patch(self.init_state, self.macho), StubHelper)
 
-    def analyze_slice(self, start_addr=None, end_addr=None):
+    # TO-DO
+    def analyze_slice(self, start_ea=None, end_ea=None):
         self.cg = GraphView()
-        s = Slice(start_addr, self, end=end_addr)
-        s.run()
+        st = self.init_state.copy()
+        st.inspect.b('exit', when=angr.BP_BEFORE, action=branch_check)
+        st.inspect.b('mem_read', when=angr.BP_AFTER, action=mem_read)
+        st.inspect.b('address_concretization', when=angr.BP_AFTER, action=mem_resolve)
 
-    def analyze_function(self, init_args=None, start_addr=None, name=None):
+        s = Slice(self, st, start=start_ea, end=end_ea)
+        if s:
+            s.run()
+            self.cg.view()
+
+    def analyze_function(self, init_args=None, start_addr=None, sd=None, name=None):
 
         if name:
             start_addr = retrieve_f(name=name)['imp']
@@ -94,7 +104,7 @@ class MachOTask:
         st.inspect.b('mem_read', when=angr.BP_AFTER, action=mem_read)
         st.inspect.b('address_concretization', when=angr.BP_AFTER, action=mem_resolve)
 
-        f = Func(start_addr, self.macho, self, st, args=init_args).init()
+        f = Func(start_addr, self.macho, self, st, args=init_args, sensiData=sd).init()
         if f:
             f.analyze()
             self.cg.view()
@@ -142,15 +152,17 @@ class MachOTask:
 
 if __name__ == "__main__":
     print time.strftime("-START-%Y-%m-%d %H:%M:%S", time.localtime())
-    analyzer = MachOTask('../samples/DoubanRadio_arm64', store=True, visualize=False)
+    analyzer = MachOTask('../samples/CsdnPlus_arm64', store=True, visualize=False)
     # CLDriver(analyzer).simulate()
     # UIEvent(analyzer).simulate()
     # analyzer.analyze_function(start_addr=0x1000999C8)
     # analyzer.analyze_function(start_addr=0x10026df08L)
     # sd = SensitiveData(receiver='UIDevice', selector='identifierForVendor')
-    sd = SensitiveData(receiver='WXOMTAEnv', selector='ifv')
-    for f in sd.as_ret():
-        analyzer.analyze_function(start_addr=f)
+    sd = SensitiveData(receiver='UIPasteboard', selector='generalPasteboard')
+
+    # sd = SensitiveData(receiver='WXOMTAEnv', selector='ifv')
+    for f, ea_pair in sd.as_ret.items():
+        analyzer.analyze_function(start_addr=f, sd=sd)
     # sd.as_ivar()
     analyzer.clear()
     print time.strftime("-END-%Y-%m-%d %H:%M:%S", time.localtime())

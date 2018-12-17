@@ -1,5 +1,5 @@
-from Sink import Sink
+from SinkAnalyzer import SinkAnalyzer
 
-class NSURLConnectionSink(Sink):
+class NSURLConnectionSink(SinkAnalyzer):
     def parse(self):
         pass

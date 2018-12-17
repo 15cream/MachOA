@@ -4,6 +4,8 @@ from Utils import *
 from Data.CONSTANTS import *
 from Data.data import Data, SEL, Receiver
 from BinaryPatch.Utils import *
+from SecCheck.SinkAnalyzer import SinkAnalyzer
+from SecCheck.sensitiveData import SensitiveData
 from callbacks.delegate import Delegate
 
 
@@ -39,6 +41,7 @@ class Message:
         # But if we just do inner-procedure analysis, how to express that a message has been send?
         if IPC:
             sel_imp = retrieve_f(name=self.description)['imp']
+            # Record a start node here.
             self.simprocedure_handler.call(sel_imp, args=[], continue_at='ret_from_msgSend', cc=None)
         else:
             # '({data_type}<{instance_type}:{ptr}>){name}'
@@ -51,10 +54,45 @@ class Message:
                                         name="[{} {}]".format(self.receiver.expr, self.selector.expr))
             self.dispatch_state.regs.x0 = self.dispatch_state.solver.BVS(x0, 64)
 
+            self.node = MachO.pd.task.cg.insert_invoke(self.invoke_ea, self.description, self.dispatch_state,
+                                                       receiver=self.receiver.data.expr,
+                                                       selector=self.selector.expr,
+                                                       args=self.selector.args)
+
+    def send2(self):
+        """
+        Used for sensitive data analysis.
+        1. dynamic_bind
+        2. check if sensitive data used as parameter, True: go into the function. False: record and go on.
+        :return:
+        """
+        self.dynamic_bind()
+
+        # Infer ret_type and mark it if sensitive.
+        ret_type = 'unknown'
+        if self.receiver.oc_class:
+            ret_type = OCFunction.find_detailed_prototype(self.selector.expr, self.receiver.oc_class)[0]
+
+        if SDA:
+            # Mark the return value if receiver is marked.
+            if 'Marked' in self.receiver.data.expr and 'Marked' not in ret_type:
+                ret_type = 'Marked_{}'.format(ret_type)
+
+            # Sink check.
+            sink_analyzer = SinkAnalyzer(self)
+            if sink_analyzer.sensitive_data_as_parameter():
+                # Mark the return value if marked data used as parameter.
+                pass
+
+        # Store the ret_value if necessary
+        x0 = FORMAT_INSTANCE.format(data_type=ret_type, instance_type='RET', ptr=hex(self.invoke_ea),
+                                    name="[{} {}]".format(self.receiver.expr, self.selector.expr))
+        self.dispatch_state.regs.x0 = self.dispatch_state.solver.BVS(x0, 64)
         self.node = MachO.pd.task.cg.insert_invoke(self.invoke_ea, self.description, self.dispatch_state,
                                                    receiver=self.receiver.data.expr,
                                                    selector=self.selector.expr,
                                                    args=self.selector.args)
+
 
     def tainted(self):
         if 'tainted' in self.g.nodes[self.node]:
@@ -63,28 +101,7 @@ class Message:
             tainted = False
         return tainted
 
-        # origin
-        # def _send(self):
-        # state = self.dispatch_state
-        #     self.invoke_state = state.history.parent.parent  # invoke_context_state -> msgSend_stub -> stub_helper
-        #     self.invoke_ea = self.invoke_state.addr + self.invoke_state.recent_instruction_count * 4
-        #
-        #     receiver = self.receiver = resolve_reg(state, state.regs.x0)
-        #     selector = self.selector = resolve_reg(state, state.regs.x1)
-        #     args = self.args = resolve_args(state, selector=selector)
-        #
-        #     if 'instance' in receiver:
-        #         receiver = receiver.split('_')[0]
-        #         meth_type = '-'
-        #     elif '@' in receiver:
-        #         receiver = receiver.split('@')[-1].strip('"')
-        #         meth_type = '-'
-        #     elif 'RetFrom' in receiver:
-        #         meth_type = '-'
-        #     else:
-        #         meth_type = '+'
-        #     self.methtype = meth_type
-        #     self.description = "{}[{} {}]".format(meth_type, receiver, selector)
+
 
         # # origin
         # def _resolve_in_context(self):
