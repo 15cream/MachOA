@@ -22,7 +22,6 @@ class Func:
         self.name = None
         self.sensiData = sensiData
         self.text_seg_boundary = MachO.pd.macho.get_segment_by_name('__TEXT').get_section_by_name('__text').max_addr
-        task.cg.add_start_node(addr, 'Start', self.init_state)
 
     def init(self):
         if self.start_ea not in OCFunction.meth_list:
@@ -41,6 +40,7 @@ class Func:
                 x0 = self.init_state.solver.BVV(OCClass.classes_indexed_by_name[f.receiver].class_addr, 64)
             self.init_state.regs.x0 = x0
 
+            args_data = []
             if self.args:
                 args = self.args
             elif OCFunction.find_detailed_prototype(f.selector, self._oc_class):
@@ -52,11 +52,14 @@ class Func:
                 else:
                     reg = FORMAT_INSTANCE.format(data_type='unknown', ptr=hex(f.imp), instance_type='PARA', name="P" + str(i))
                 self.init_state.registers.store('x{}'.format(str(i+2)), self.init_state.solver.BVS(reg, 64))
+                args_data.append(Data(self.init_state, reg=self.init_state.registers.load('x{}'.format(str(i+2)))))
 
+            self.task.cg.add_start_node(self.start_ea, 'Start', self.init_state, args=args_data)
             return self
         else:
             # subroutine
             self.name = OCFunction.meth_data[self.start_ea]['name']
+            self.task.cg.add_start_node(self.start_ea, 'Start', self.init_state)
             return self
 
     def analyze(self):
@@ -87,6 +90,13 @@ class Func:
                 return True
 
         # Check no sensitive data in this state.
+        ea = state.regs.bp
+        while state.solver.eval(ea > state.regs.sp):
+            if 'Marked' in Data(state, reg=ea).expr:
+                print 'Sensitive data {} exists at {}'.format(Data(state, reg=ea).expr, ea)
+                return True
+            ea -= 8
+
         for i in range(0, 32):
             reg_data = Data(state, reg=state.regs.get('x{}'.format(i)))
             if 'Marked' in reg_data.expr:

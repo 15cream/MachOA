@@ -79,7 +79,7 @@ class GraphView:
         # print self.g.nodes[node]['dp']
         return node
 
-    def add_simple_node(self, ea, description, state):
+    def add_simple_node(self, ea, description, state, args=None):
         # Resolve the context.
         context = resolve_context(ea)
         if context in OCFunction.oc_function_set:
@@ -87,15 +87,15 @@ class GraphView:
         else:
             context_name = OCFunction.meth_data[context]['name']
 
-        node = INVOKEFS.format(hex(context), context_name, state.history.depth, hex(ea), description, '')
+        node = INVOKEFS.format(hex(context), context_name, state.history.depth, hex(ea), description, expr_args(args))
         if node not in self.g.nodes:
             self.g.add_node(node, des=description, context=context, context_name=context_name, addr=ea,
-                            args=None, dp=None, pnode=None, rec=None, sel=None)
+                            args=expr_args(args), dp=None, pnode=None, rec=None, sel=None)
             self.history_records[state.history] = HS(ea, repr_constraints(state), node)
         return node
 
-    def add_start_node(self, ea, description, state, edge=None):
-        node = self.add_simple_node(ea, description, state)
+    def add_start_node(self, ea, description, state, edge=None, args=None):
+        node = self.add_simple_node(ea, description, state, args=args)
         self.g.nodes[node]['color'] = 'blue'
         if not self.start:
             self.start = "{}{}".format(hex(self.g.nodes[node]['context']), self.g.nodes[node]['context_name'])
