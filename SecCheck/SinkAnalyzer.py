@@ -7,6 +7,7 @@ class SinkAnalyzer:
         self.msg = msg
 
     def sensitive_data_as_parameter(self):
+        # Mark the return value if marked data used as parameter.
         if self.msg.selector.args:
             for arg in self.msg.selector.args:
                 expr = arg.expr
@@ -15,6 +16,11 @@ class SinkAnalyzer:
                     if 'Marked' in m.group('data_type'):
                         return True
         return False
+
+    def sensitive_data_as_receiver(self):
+        # Mark the return value if receiver is marked.
+        if 'Marked' in self.msg.receiver.data.expr:
+            return True
 
     def is_setter(self):
 

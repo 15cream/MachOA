@@ -1,6 +1,5 @@
 __author__ = 'gjy'
 
-from Utils import *
 from Data.CONSTANTS import *
 from Data.data import Data, SEL, Receiver
 from BinaryPatch.Utils import *
@@ -33,31 +32,43 @@ class Message:
     def send(self):
         self.dynamic_bind()
         # if 'msgQueue' in self.dispatch_state.regs.x0.ast.__dict__:
-        #     self.dispatch_state.regs.x0.ast.__dict__['msgQueue'].append(self)
+        # self.dispatch_state.regs.x0.ast.__dict__['msgQueue'].append(self)
         # else:
-        #     self.dispatch_state.regs.x0.ast.__dict__['msgQueue'] = [self, ]
+        # self.dispatch_state.regs.x0.ast.__dict__['msgQueue'] = [self, ]
 
         # If do the inter-procedure analysis, there's no need to think about ret_val.
         # But if we just do inner-procedure analysis, how to express that a message has been send?
         if IPC:
-            sel_imp = retrieve_f(name=self.description)['imp']
-            # Record a start node here.
-            self.simprocedure_handler.call(sel_imp, args=[], continue_at='ret_from_msgSend', cc=None)
-        else:
-            # '({data_type}<{instance_type}:{ptr}>){name}'
-            # Pay attention. Because invokes are path sensitive, look for your ret_val in your history path.
-            ret_type = 'unknown'
-            if self.receiver.oc_class:
-                ret_type = OCFunction.find_detailed_prototype(self.selector.expr, self.receiver.oc_class)[0]
+            # sel_imp = retrieve_f(name=self.description)['imp']
+            sel_imp = OCFunction.ask_for_imp(rec=self.receiver.oc_class, sel=self.selector)
+            if sel_imp:
+                # Record a start node here.
+                self.node = MachO.pd.task.cg.insert_invoke(self.invoke_ea, self.description, self.dispatch_state,
+                                                           receiver=self.receiver.data.expr,
+                                                           selector=self.selector.expr,
+                                                           args=self.selector.args)
+                # self.cg.add_start_node(sel_imp, 'Start', self.dispatch_state, args=self.selector.args, edge=True)
+                # self.simprocedure_handler.call(sel_imp, args=[], continue_at='ret_from_msgSend', cc=None)
+                self.simprocedure_handler.jump(sel_imp)
+                return
 
-            x0 = FORMAT_INSTANCE.format(data_type=ret_type, instance_type='RET', ptr=hex(self.invoke_ea),
-                                        name="[{} {}]".format(self.receiver.expr, self.selector.expr))
-            self.dispatch_state.regs.x0 = self.dispatch_state.solver.BVS(x0, 64)
+        # '({data_type}<{instance_type}:{ptr}>){name}'
+        # Pay attention. Because invokes are path sensitive, look for your ret_val in your history path.
+        ret_type = 'unknown'
+        if self.receiver.oc_class:
+            ret_type = OCFunction.find_detailed_prototype(self.selector.expr, self.receiver.oc_class)[0]
 
-            self.node = MachO.pd.task.cg.insert_invoke(self.invoke_ea, self.description, self.dispatch_state,
-                                                       receiver=self.receiver.data.expr,
-                                                       selector=self.selector.expr,
-                                                       args=self.selector.args)
+        x0 = FORMAT_INSTANCE.format(data_type=ret_type, instance_type='RET', ptr=hex(self.invoke_ea),
+                                    name="[{} {}]".format(self.receiver.expr, self.selector.expr))
+        self.dispatch_state.regs.x0 = self.dispatch_state.solver.BVS(x0, 64)
+
+        self.node = MachO.pd.task.cg.insert_invoke(self.invoke_ea, self.description, self.dispatch_state,
+                                                   receiver=self.receiver.data.expr,
+                                                   selector=self.selector.expr,
+                                                   args=self.selector.args)
+
+    def returned(self):
+        print '?'
 
     def send2(self):
         """
@@ -74,15 +85,21 @@ class Message:
             ret_type = OCFunction.find_detailed_prototype(self.selector.expr, self.receiver.oc_class)[0]
 
         if SDA:
-            # Mark the return value if receiver is marked.
-            if 'Marked' in self.receiver.data.expr and 'Marked' not in ret_type:
-                ret_type = 'Marked_{}'.format(ret_type)
-
             # Sink check.
             sink_analyzer = SinkAnalyzer(self)
+            if sink_analyzer.sensitive_data_as_receiver() and 'Marked_' not in ret_type:
+                ret_type = 'Marked_{}'.format(ret_type)
             if sink_analyzer.sensitive_data_as_parameter():
-                # Mark the return value if marked data used as parameter.
-                pass
+                if SDA_IPC:
+                    sel_imp = OCFunction.ask_for_imp(rec=self.receiver.oc_class, sel=self.selector)
+                    if sel_imp:
+                        self.node = MachO.pd.task.cg.insert_invoke(self.invoke_ea, self.description,
+                                                                   self.dispatch_state,
+                                                                   receiver=self.receiver.data.expr,
+                                                                   selector=self.selector.expr,
+                                                                   args=self.selector.args)
+                        self.simprocedure_handler.jump(sel_imp)
+                        return
 
         # Store the ret_value if necessary
         x0 = FORMAT_INSTANCE.format(data_type=ret_type, instance_type='RET', ptr=hex(self.invoke_ea),
@@ -105,8 +122,8 @@ class Message:
 
         # # origin
         # def _resolve_in_context(self):
-        #     self.send()
-        #     self.record()
+        # self.send()
+        # self.record()
         #     receiver = resolve_receiver(self.cg, self.dispatch_state, self.node)
         #     print hex(self.g.nodes[self.node]['addr']), self.g.nodes[self.node]['dp']
         #     if receiver in OCClass.classes_indexed_by_name:
@@ -127,8 +144,8 @@ class Message:
 
 # for i in range(0, 32):
 # reg = self.dispatch_state.regs.get('x{}'.format(i))
-#     if 'msgQueue' in reg.ast.__dict__:
-#         print 'x{}'.format(i)
+# if 'msgQueue' in reg.ast.__dict__:
+# print 'x{}'.format(i)
 #         for msg in reg.ast.__dict__['msgQueue']:
 #             print hex(msg.invoke_ea), msg.description
 

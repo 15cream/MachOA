@@ -28,6 +28,7 @@ class StubHelper(SimProcedure):
 
     def ret_from_msgSend(self):
         print 'I just jumped to a meth_imp and returned'
+        return
 
     # origin
     def run_(self):
@@ -40,7 +41,8 @@ class StubHelper(SimProcedure):
             return state.registers.load('x0')
         elif symbol.name in msgSends:
             msg = Message(state)
-            ret = msg.resolve_in_context()
+            # ret = msg.resolve_in_context()
+            ret = 0x10031DF34
             if type(ret) == int or type(ret) == long:
                 if IPC:
                     self.call(ret, args=[], continue_at='ret_from_msgSend', cc=None)

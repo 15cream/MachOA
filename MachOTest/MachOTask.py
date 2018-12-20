@@ -155,7 +155,7 @@ if __name__ == "__main__":
     analyzer = MachOTask('../samples/CsdnPlus_arm64', store=True, visualize=False)
     # CLDriver(analyzer).simulate()
     # UIEvent(analyzer).simulate()
-    # analyzer.analyze_function(start_addr=0x1000999C8)
+    # analyzer.analyze_function(start_addr=0x10031DFBC)
     # analyzer.analyze_function(start_addr=0x10026df08L)
     # sd = SensitiveData(receiver='UIDevice', selector='identifierForVendor')
     sd = SensitiveData(receiver='UIPasteboard', selector='generalPasteboard')

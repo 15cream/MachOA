@@ -72,6 +72,24 @@ class OCFunction:
 
         return ['unknown']
 
+    @staticmethod
+    def ask_for_imp(rec=None, sel=None):
+        """
+        Find the method implementation to handle a message.
+        :param rec: oc_class object
+        :param sel: selector string
+        :return:
+        """
+        if sel and sel.expr in OCFunction.meth_indexed_by_sel:
+            for f in OCFunction.meth_indexed_by_sel[sel.expr]:
+                if rec and f.receiver == rec.name:  # should consider superclass ? category?
+                    return f.imp
+        return None
+
+
+
+
+
 
 
 

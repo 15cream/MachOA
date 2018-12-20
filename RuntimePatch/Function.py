@@ -4,6 +4,8 @@ from Data.CONSTANTS import *
 from Data.data import Data
 from Utils import *
 
+from BinaryPatch.Utils import *
+
 import random
 
 
@@ -85,9 +87,12 @@ class Func:
         if state.addr > self.text_seg_boundary:
             return True
 
-        for end in self.sensiData.as_ret[self.start_ea]['sel']:
-            if state.addr < end:
-                return True
+        # You have to consider inter-procedural invokes.
+        conetxt_func_ea = resolve_context(state.addr)
+        if conetxt_func_ea in self.sensiData.as_ret:
+            for end in self.sensiData.as_ret[conetxt_func_ea]['sel']:
+                if state.addr < end:
+                    return True
 
         # Check no sensitive data in this state.
         ea = state.regs.bp

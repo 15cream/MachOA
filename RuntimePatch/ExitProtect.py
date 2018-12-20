@@ -1,5 +1,6 @@
 from Data.MachO import MachO
 from Data.OCFunction import OCFunction
+from Data.CONSTANTS import *
 import claripy
 
 
@@ -23,8 +24,9 @@ def branch_check(state):
             return
 
     if jmp_target in OCFunction.meth_list:
-        #  must be subroutines
-        state.inspect.exit_target = state.regs.lr
+        if not IPC:
+            #  must be subroutines
+            state.inspect.exit_target = state.regs.lr
 
     #  RET, Sub call, method call
     # state.inspect.exit_guard = claripy.true

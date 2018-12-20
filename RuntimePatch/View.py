@@ -99,9 +99,9 @@ class GraphView:
         self.g.nodes[node]['color'] = 'blue'
         if not self.start:
             self.start = "{}{}".format(hex(self.g.nodes[node]['context']), self.g.nodes[node]['context_name'])
-            if edge:
-                last_invoke_history = self.find_last_invoke(state)
-                self.g.add_edge(last_invoke_history.node, node)
+        if edge:
+            last_invoke_history = self.find_last_invoke(state)
+            self.g.add_edge(last_invoke_history.node, node)
 
     def find_last_invoke(self, state):
         history = state.history.parent

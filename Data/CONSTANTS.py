@@ -14,6 +14,7 @@ IPC = False
 
 # Sensitive Data Analysis
 SDA = True
+SDA_IPC = True
 
 dispatch = ['_dispatch_async', '_dispatch_once']
 
