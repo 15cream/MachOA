@@ -3,6 +3,7 @@ __author__ = 'gjy'
 from Data.CONSTANTS import *
 from Data.data import Data, SEL, Receiver
 from BinaryPatch.Utils import *
+from RuntimePatch.Utils import expr_args
 from SecCheck.SinkAnalyzer import SinkAnalyzer
 from SecCheck.sensitiveData import SensitiveData
 from callbacks.delegate import Delegate
@@ -90,6 +91,7 @@ class Message:
             if sink_analyzer.sensitive_data_as_receiver() and 'Marked_' not in ret_type:
                 ret_type = 'Marked_{}'.format(ret_type)
             if sink_analyzer.sensitive_data_as_parameter():
+                print '* Sensitive data {} used as parameter. * {}'.format(expr_args(self.selector.args), self.description)
                 if SDA_IPC:
                     sel_imp = OCFunction.ask_for_imp(rec=self.receiver.oc_class, sel=self.selector)
                     if sel_imp:
@@ -109,7 +111,6 @@ class Message:
                                                    receiver=self.receiver.data.expr,
                                                    selector=self.selector.expr,
                                                    args=self.selector.args)
-
 
     def tainted(self):
         if 'tainted' in self.g.nodes[self.node]:

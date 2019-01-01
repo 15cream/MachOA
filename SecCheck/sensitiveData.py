@@ -3,16 +3,14 @@ import commands
 from Data.OCivar import IVar
 from Data.OCClass import OCClass
 from Data.OCFunction import OCFunction
-from Data.CONSTANTS import *
 from tools.oc_type_parser import *
 import pickle
 
 
 class SensitiveData:
-
     xrefs = dict()
 
-    def __init__(self, data_type=None, receiver=None, selector=None):
+    def __init__(self, data_type=None, receiver=None, selector=None, ivar_name=None):
         """
         Give a plain data_type string.
         :param data_type:
@@ -21,7 +19,9 @@ class SensitiveData:
         self.receiver = receiver
         self.selector = selector
         self.type = receiver if not data_type else data_type
-        self.as_ret = self.as_ret()
+        self.ivar_name = ivar_name
+
+        self.as_ret_value = None
 
     @staticmethod
     def init(xref_pkl):
@@ -50,17 +50,23 @@ class SensitiveData:
         Some ivar typed UIDevice. @"UITextField", @"NSUUID"
         :return: The direct reference context and where getter was invoked.
         """
-        for ptr, ivar in IVar.ivars.items():
-            if str_to_type(self.type) == ivar.type:
-                print hex(ptr)
+        ivars = set()
+        if self.ivar_name:
+            for ptr, ivar in IVar.ivars.items():
+                if ivar.name == self.ivar_name:
+                    ivars.add(ptr)
+        elif self.type:
+            for ptr, ivar in IVar.ivars.items():
+                if str_to_type(self.type) == ivar.type:
+                    ivars.add(ptr)
+        print ivars
 
-    def as_ret(self):
+    def find_data_as_ret_value(self):
         """
         [UIDevice currentDevice] return the UIDevice instance.
-        Find the [UIDevice currentDevice] invoke.
+        Find where the [UIDevice currentDevice] invokes.
         :return:
         """
-        fs = OCFunction.meth_indexed_by_sel[self.selector] if self.selector in OCFunction.meth_indexed_by_sel else None
         inter_ctx = dict()
         r_ctx = SensitiveData.ask_for_xrefs(self.receiver, 'class')
         s_ctx = SensitiveData.ask_for_xrefs(self.selector, 'selector')
@@ -81,6 +87,7 @@ class SensitiveData:
                 if f in inter_ctx:
                     inter_ctx[f]['rec'].append(ea)
 
+        self.as_ret_value = inter_ctx
         return inter_ctx
 
     def as_para(self):
@@ -92,15 +99,8 @@ class SensitiveData:
         pass
 
     @staticmethod
-    def build_xrefs_from_file(dbf):
-        f = open(dbf)
-        SensitiveData.xrefs = pickle.load(f)
-        f.close()
-
-    @staticmethod
     def ask_for_xrefs(ea, data_type):
         """
-
         :param ea:
         :param data_type: class, sel, ivar
         :return:
@@ -109,6 +109,18 @@ class SensitiveData:
             return SensitiveData.xrefs[data_type][ea]
         else:
             return {}
+
+    def record(self):
+        """
+        Record the sensitive data usage.
+        :return:
+        """
+
+    @staticmethod
+    def build_xrefs_from_file(dbf):
+        f = open(dbf)
+        SensitiveData.xrefs = pickle.load(f)
+        f.close()
 
     # deprecated
     def find_callstack_via_IDA(self):
@@ -124,3 +136,4 @@ class SensitiveData:
             '/Users/gjy/Documents/git_workspace/MachOA/samples/AppJobber_arm64_bak.i64')
 
         commands.getstatusoutput(cmd)
+

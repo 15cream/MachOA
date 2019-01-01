@@ -34,6 +34,11 @@ def branch_check(state):
 
 
 def target_invalid(state):
+    """
+    You should evaluate the target, code segment or data segment.
+    :param state:
+    :return:
+    """
     expr = str(state.inspect.exit_target)
     if 'mem_f' in expr:
         # jmp target cannot be mem_address

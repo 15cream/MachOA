@@ -3,6 +3,7 @@ __author__ = 'gjy'
 import sys
 import time
 import ConfigParser
+
 sys.path.append('/home/gjy/Desktop/MachOA')
 
 from cle.backends.macho.binding import BindingHelper
@@ -32,25 +33,26 @@ class MachOTask:
     currentTask = None
 
     def __init__(self, binary, store=None, visualize=None):
+
         self.p = angr.Project(binary)
         self.loader = self.p.loader
         self.macho = self.loader.main_object
+        self.pd = MachO(self.macho, self)
+        self.to_be_analyzed = set()
+        self.analyzed = set()
 
-        self.current_f = None
-        self.next_func_addr = None
+        # self.current_f = None
+        self.cg = GraphView()
         self.init_state = None  # memory initialized
-        self.simgr = None
         self.store = store
         self.visualize = visualize
         self.configs = None
-        self.pd = MachO(self.macho, self)
+        self.db = None
+        self.logger = open('../log', mode='wb')
         self.pre_process()
+
         self.checked = checked("{}{}".format(self.configs.get('PATH', 'results'), self.macho.provides))
         # self.checked = []
-        self.db = "{}{}.pkl".format(self.configs.get('PATH', 'dbs'), self.macho.provides)
-        self.cg = GraphView()
-        self.logger = open('../log', mode='wb')
-
         self.class_blacklist = []
         self.meth_blacklist = []
 
@@ -61,6 +63,7 @@ class MachOTask:
         if not os.path.exists(result_path):
             os.mkdir(result_path)
         self.configs = config
+        self.db = "{}{}.pkl".format(self.configs.get('PATH', 'dbs'), self.macho.provides)
         xref_pkl = "{}{}_xrefs.pkl".format(config.get('PATH', 'dbs'), self.macho.provides)
         SensitiveData.init(xref_pkl)
         IVar.init(xref_pkl)
@@ -133,41 +136,20 @@ class MachOTask:
     def clear(self):
         self.loader.close()
 
-    #  deprecated
-    def analyze_class_dds(self, classref=None, classname=None):
-        class_obj = OCClass.retrieve(classref=classref, classname=classname)
-        if class_obj.imported:
-            return
-        if class_obj.name in self.checked:
-            return
-        fp = "{}{}/{}.txt".format(self.configs.get('PATH', 'dds'), self.macho.provides, class_obj.name)
-        with open(fp, 'w') as f:
-            for meth in class_obj.instance_meths.extend(class_obj.class_meths):
-                if meth in self.meth_blacklist:
-                    continue
-                self.analyze_function(start_addr=meth)
-                f.write("\n---------{}----------\n".format(self.current_f.name))
-                f.write("\n".join(self.current_f.dds))
-
 
 if __name__ == "__main__":
     print time.strftime("-START-%Y-%m-%d %H:%M:%S", time.localtime())
     analyzer = MachOTask('../samples/CsdnPlus_arm64', store=True, visualize=False)
     # CLDriver(analyzer).simulate()
     # UIEvent(analyzer).simulate()
-    # analyzer.analyze_function(start_addr=0x10031DFBC)
+    # analyzer.analyze_function(start_addr=0x1002CF3E0)
     # analyzer.analyze_function(start_addr=0x10026df08L)
-    # sd = SensitiveData(receiver='UIDevice', selector='identifierForVendor')
-    sd = SensitiveData(receiver='UIPasteboard', selector='generalPasteboard')
-
+    sd = SensitiveData(receiver='UIDevice', selector='identifierForVendor')
+    # sd = SensitiveData(receiver='UIPasteboard', selector='generalPasteboard')
+    # sd = SensitiveData(receiver='TencentMessagePack', selector='packTencentReqMessage:appId:')
     # sd = SensitiveData(receiver='WXOMTAEnv', selector='ifv')
-    for f, ea_pair in sd.as_ret.items():
+    # sd = SensitiveData(receiver='XGDeviceInfo', selector='jce_idfv')
+    for f, ea_pair in sd.find_data_as_ret_value().items():
         analyzer.analyze_function(start_addr=f, sd=sd)
-    # sd.as_ivar()
     analyzer.clear()
     print time.strftime("-END-%Y-%m-%d %H:%M:%S", time.localtime())
-
-
-
-
-

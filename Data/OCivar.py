@@ -4,7 +4,7 @@ from OCFunction import OCFunction
 from Data.CONSTANTS import *
 
 
-class IVar():
+class IVar:
 
     ivars = dict()
     xrefs = dict()
@@ -14,6 +14,7 @@ class IVar():
         self.name = name
         self._class = _class
         self.type = type
+        self.property = None
         self.getter = None
         self.setter = None
         self.dealloc = []
@@ -27,11 +28,16 @@ class IVar():
         f.close()
 
     def add_to_ivars(self):
-        if self not in IVar.ivars:
+        if self.ptr not in IVar.ivars:
             IVar.ivars[self.ptr] = self
 
     @staticmethod
+    # deprecated for the moment
     def parse_accessor():
+        """
+        For each ivar, check the function used it, and predicate this function to be accessor or not.
+        :return:
+        """
         for ivar_ptr, ivar in IVar.ivars.items():
             setter = 'set{}:'.format(ivar.name.strip('_')).upper()
             getter = ivar.name.strip('_').upper()

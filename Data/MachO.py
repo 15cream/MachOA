@@ -35,7 +35,7 @@ class MachO:
             Protocol.analyze_protolist(self.macho, state)
             MachO.dump(db)
         OCFunction.build_meth_list(self.macho)
-        IVar.parse_accessor()
+        # IVar.parse_accessor()
 
     def build_classdata(self, state):
 
@@ -156,7 +156,7 @@ class MachO:
             if c['ivars']:
                 cd.ivars = c['ivars']
             else:
-                cd.ivars = []
+                cd.ivars = dict()
             if cd.imported:
                 OCClass.imported_class_set.append(cd)
                 bv = state.solver.BVV(cd.classref_addr, 64).reversed
@@ -174,7 +174,7 @@ class MachO:
                     OCClass.classes_indexed_by_selector[selector].append(cd)
                 else:
                     OCClass.classes_indexed_by_selector[selector] = [cd, ]
-            for ivar in cd.ivars:
+            for ivar in cd.ivars.values():
                 ivar.add_to_ivars()
 
         Protocol.protocol_indexed_by_data_EA = protocol_set

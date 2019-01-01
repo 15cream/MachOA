@@ -10,11 +10,12 @@ INVOKEFS = "Context:{} {}\nDepth:{}\nInvoke:{} {}\n{}"
 IVAR_FORMAT = "{class_name}{var_name}{var_typr}"
 
 # Inter-procedural analysis
-IPC = False
+IPC = True
 
 # Sensitive Data Analysis
 SDA = True
 SDA_IPC = True
+ssData = None
 
 dispatch = ['_dispatch_async', '_dispatch_once']
 
@@ -33,6 +34,8 @@ angr.types.define_struct('struct methlist{int entrysize; int count;}')
 angr.types.define_struct('struct meth{char* name; char* type; long imp;}')
 angr.types.define_struct('struct ivarlist{int entrysize; int count;}')
 angr.types.define_struct('struct ivar{long ptr; char* name; char* type; int align; int size;}')
+angr.types.define_struct('struct proplist{int entrysize; int count;}')
+angr.types.define_struct('struct prop{char* name; char* attr;}')
 angr.types.define_struct('struct prot{long isa; char* name; long prots; long inst_meths; long class_meths; '
                          'long opt_inst_meths; long opt_class_meths; long inst_props; int cb; int flags; long methtype;}')
 

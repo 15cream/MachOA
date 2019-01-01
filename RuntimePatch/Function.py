@@ -89,8 +89,8 @@ class Func:
 
         # You have to consider inter-procedural invokes.
         conetxt_func_ea = resolve_context(state.addr)
-        if conetxt_func_ea in self.sensiData.as_ret:
-            for end in self.sensiData.as_ret[conetxt_func_ea]['sel']:
+        if conetxt_func_ea in self.sensiData.as_ret_value:
+            for end in self.sensiData.as_ret_value[conetxt_func_ea]['sel']:
                 if state.addr < end:
                     return True
 

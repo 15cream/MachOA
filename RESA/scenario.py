@@ -15,21 +15,22 @@ class ScenarioExtractor:
 
     def parse_all_traces(self):
         for f in os.listdir(self.dir):
-            trace_file = os.path.join(self.dir, f)
-            print trace_file
+            cfg_file = os.path.join(self.dir, f)
+            print cfg_file
             try:
-                self.parse_trace(trace_file)
+                self.parse_cfg(cfg_file)
             except Exception as e:
                 print e
 
-    def parse_trace(self, trace_file):
+    def parse_cfg(self, cfg_file):
         """
-        Give a trace file, parse this trace and extract scenarios.
-        :param trace_file:
+        Give a call-graph file (inter-procedural or intra-procedural), parse this cfg and extract scenarios.
+        :param cfg_file:
         :return:
         """
+        # Actually, because of the path sensitivity, one cfg covers several traces.
         self.scenario_set = []
-        self.graph = nx.drawing.nx_agraph.read_dot(trace_file)
+        self.graph = nx.drawing.nx_agraph.read_dot(cfg_file)
         for node, node_data in self.graph.nodes.items():
             self.node_and_dps[node] = set()
             ea = int(node_data['addr'])
@@ -82,11 +83,11 @@ class ScenarioExtractor:
         node_ea = int(self.graph.nodes[snode]['addr'])
         if node_ea in self.graph_indexed_by_invoke_dp:
             scenario.dps.add(snode)
-            for (node_depend_on_snode, usage_type) in self.graph_indexed_by_invoke_dp[node_ea]:
+            for (node_depends_on_snode, usage_type) in self.graph_indexed_by_invoke_dp[node_ea]:
                 # if used as receiver, find the receiver's usage;
                 # if used as parameter, find the receiver's dependency. Also usage?
-                scenario.nodes.add(node_depend_on_snode)
-                self.find_usage(node_depend_on_snode, scenario)
+                scenario.nodes.add(node_depends_on_snode)
+                self.find_usage(node_depends_on_snode, scenario)
 
                 # for succ in self.graph.succ[snode]:
                 # # usage: as receiver, find the arguments dependencies if exits
@@ -113,7 +114,7 @@ class ScenarioExtractor:
         for node in scenario.nodes:
             self.find_dependency(scenario, node)
         for node in scenario.nodes:
-            print node
+            self.pprint_node(node)
         print '\n'
 
     def view(self, g):
@@ -143,6 +144,18 @@ class ScenarioExtractor:
             except Exception as e:
                 pass
 
+    def pprint_node(self, node):
+        print '-' * 80
+        ea = self.graph.nodes[node]['addr']
+        des = self.graph.nodes[node]['des']
+        rec = self.graph.nodes[node]['rec']
+        args = self.graph.nodes[node]['args'] if 'args' in self.graph.nodes[node] else None
+
+        print hex(int(ea, 10)), des
+        print 'Receiver: {} \nArguments:'.format(rec)
+        if args:
+            print args
+
 
 class Scenario:
     def __init__(self, initial_node):
@@ -158,8 +171,8 @@ class Seed:
         self.data_type = dt
 
 
-extractor = ScenarioExtractor(seeds=[Seed(sel='identifierForVendor', rec='UIDevice')], dir='../results/CsdnPlus_arm64/')
-extractor.pprint()
+extractor = ScenarioExtractor(seeds=[Seed(sel='identifierForVendor', rec='UIDevice')],
+                              dir='../results/CsdnPlus_arm64/uidevice')
+# extractor = ScenarioExtractor(seeds=[Seed(sel='generalPasteboard', rec='UIPasteboard')], dir='../results/CsdnPlus_arm64/')
+# extractor.pprint()
 extractor.parse_all_traces()
-
-

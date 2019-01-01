@@ -22,7 +22,7 @@ class OCClass:
         self.name = name if imported else None
         self.class_meths = dict()
         self.instance_meths = dict()
-        self.ivars = None
+        self.ivars = dict()
         self.prots = dict()
 
     @staticmethod
@@ -57,6 +57,7 @@ class OCClass:
             self.resolve_methods_imp(state, self.class_addr, instance_m=True)
             self.resolve_methods_imp(state, self.meta_class_addr, class_m=True)
             self.resolve_ivar(state, self.class_addr)
+            self.resolve_props(state, self.class_addr)
             self.resolve_prots(state, self.class_addr)
 
             OCClass.binary_class_set[state.solver.eval(self.class_addr)] = self
@@ -96,7 +97,7 @@ class OCClass:
             self.class_meths = meths
 
     def resolve_ivar(self, state, addr):
-        ivarlist = []
+        ivardict = dict()
         info = state.memory.load(addr + 32, 8, endness=archinfo.Endness.LE)
         ivars = state.memory.load(info + 48, 8, endness=archinfo.Endness.LE)
         if state.solver.eval(ivars):
@@ -112,8 +113,37 @@ class OCClass:
                 type = ivar.type.deref.string.concrete
                 ivar_ea += entry_size
                 ivaro = IVar(ptr, name=name, type=type, _class=self.name)
-                ivarlist.append(ivaro)
-        self.ivars = ivarlist
+                ivaro.add_to_ivars()
+                ivardict[name] = ivaro
+        self.ivars = ivardict
+
+    def resolve_props(self, state, addr):
+        info = state.memory.load(addr + 32, 8, endness=archinfo.Endness.LE)
+        props = state.memory.load(info + 64, 8, endness=archinfo.Endness.LE)
+        if state.solver.eval(props):
+            prop_info = state.mem[props].proplist
+            entry_size = state.solver.eval(prop_info.entrysize.resolved)
+            count = state.solver.eval(prop_info.count.resolved)
+
+            prop_ea = props + 8
+            for i in range(0, count):
+                prop = state.mem[prop_ea].prop
+                name = prop.name.deref.string.concrete
+                attrs = prop.attr.deref.string.concrete.split(',')
+                getter = None
+                setter = None
+                for attr in attrs:
+                    if attr[0] == 'G':
+                        getter = attr.strip('G')
+                    elif attr[0] == 'S':
+                        setter = attr.strip('S')
+                    elif attr[0] == 'V':
+                        ivar_name = attr.strip('V')
+                        if ivar_name in self.ivars:
+                            self.ivars[ivar_name].getter = getter
+                            self.ivars[ivar_name].setter = setter
+                            self.ivars[ivar_name].property = name
+                prop_ea += entry_size
 
     def resolve_prots(self, state, objc2_class):
         objc2_class_ro = state.memory.load(objc2_class + 32, 8, endness=archinfo.Endness.LE)
