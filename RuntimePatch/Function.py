@@ -1,29 +1,30 @@
-from Data.OCFunction import OCFunction
-from Data.OCClass import OCClass
 from Data.CONSTANTS import *
 from Data.data import Data
 from Utils import *
 
 from BinaryPatch.Utils import *
+from SecCheck.sensitiveData import SensitiveData
 
 import random
 
 
 class Func:
 
-    def __init__(self, addr, binary, task, state, args=None, sensiData=None):
+    def __init__(self, addr, binary, task, state, args=None):
 
         self.start_ea = addr
         self.binary = binary
         self.task = task
         self.init_state = state
+        self.init_state.globals['start_func_object'] = self
         self.active = True
         self.args = args
         self._oc_function = None
         self._oc_class = None
         self.name = None
-        self.sensiData = sensiData
         self.text_seg_boundary = MachO.pd.macho.get_segment_by_name('__TEXT').get_section_by_name('__text').max_addr
+        self.ret = []
+        self.ret_type = None
 
     def init(self):
         if self.start_ea not in OCFunction.meth_list:
@@ -31,6 +32,7 @@ class Func:
             return None
         elif self.start_ea in OCFunction.oc_function_set:
             f = self._oc_function = OCFunction.oc_function_set[self.start_ea]
+            self.ret_type = f.ret_type
             self.name = f.expr
             self._oc_class = OCClass.classes_indexed_by_name[self._oc_function.receiver]
 
@@ -68,15 +70,33 @@ class Func:
         print 'ANALYZE {} {}'.format(hex(self.start_ea), self.name)
         self.init_state.regs.ip = self.start_ea
         simgr = self.task.p.factory.simgr(self.init_state)
-        while simgr.active and self.active:
+        while self.active:
             if SDA:
-                simgr.move(from_stash='active', to_stash='deadended', filter_func=self.not_sensitive)
+                simgr.move(from_stash='active', to_stash='clean', filter_func=self.not_sensitive)
+                if not simgr.active:
+                    # self.check_if_as_ret()
+                    self.active = False
             simgr.step()
 
     def check_status(self):
         if len(self.task.cg.g.nodes) > 100:
             self.active = False
             self.task.logger.write('{} {}\n'.format(hex(self.start_ea), self.name))
+
+    def check_if_as_ret(self, state):
+        """
+        If the simulate manager has no successors, you have to decide whether the marked data used as ret value.
+        Because the last instruction of function may be 'RET' or symbol call, take care.
+        Because of Inter-procedural analysis, so we need to resolve the context.
+        :return:
+        """
+        reg_data = Data(state, reg=state.regs.get('x0'))
+        if 'Marked' in reg_data.expr:
+            self.ret = resolve_context(state.addr)
+
+    def get_ret_values(self):
+        if 'v' not in self.ret_type:
+            return self.ret
 
     def sensitive(self, state):
         """
@@ -89,8 +109,8 @@ class Func:
 
         # You have to consider inter-procedural invokes.
         conetxt_func_ea = resolve_context(state.addr)
-        if conetxt_func_ea in self.sensiData.as_ret_value:
-            for end in self.sensiData.as_ret_value[conetxt_func_ea]['sel']:
+        if conetxt_func_ea in SensitiveData.ssData.as_ret_value:
+            for end in SensitiveData.ssData.as_ret_value[conetxt_func_ea]['sel']:
                 if state.addr < end:
                     return True
 
@@ -98,16 +118,16 @@ class Func:
         ea = state.regs.bp
         while state.solver.eval(ea > state.regs.sp):
             if 'Marked' in Data(state, reg=ea).expr:
-                print 'Sensitive data {} exists at {}'.format(Data(state, reg=ea).expr, ea)
+                print 'Sensitive data {} exists at {}, state:{}'.format(Data(state, reg=ea).expr, ea, hex(state.addr))
                 return True
             ea -= 8
 
         for i in range(0, 32):
             reg_data = Data(state, reg=state.regs.get('x{}'.format(i)))
             if 'Marked' in reg_data.expr:
-                print 'Sensitive data X{} {} exists at {}'.format(i, reg_data.expr, hex(state.addr))
+                print 'Sensitive data X{} {} exists at {}, state:{}'.format(i, reg_data.expr, hex(state.addr), hex(state.addr))
                 return True
-            if 'Marked' in self.sensiData.selector in reg_data.expr:
+            if SensitiveData.ssData.selector in reg_data.expr:
                 print 'Selector {} occurs at {}'.format(reg_data.expr, hex(state.addr))
                 return True
         return False
@@ -115,5 +135,13 @@ class Func:
     def not_sensitive(self, state):
         return not self.sensitive(state)
 
-
-
+    @staticmethod
+    def check_ret(state):
+        func_ctx = resolve_context(state.addr)
+        # if state.addr == func_ctx
+        if func_ctx in OCFunction.oc_function_set:
+            f = OCFunction.oc_function_set[func_ctx]
+            if 'v' not in f.ret_type:  # has ret value
+                pass
+            else:
+                return None

@@ -5,8 +5,22 @@ import claripy
 
 
 def branch_check(state):
+    """
+
+    :param state:
+    :return:
+    """
     text = MachO.pd.macho.get_segment_by_name('__TEXT').get_section_by_name('__text')
     jmp_target = state.solver.eval(state.inspect.exit_target)
+    src = state.addr
+
+    # We could check the ret value here.
+    if jmp_target == 0:
+        state.globals['start_func_object'].ret.append(state.regs.x0)
+
+    # stubs
+    if jmp_target > text.max_addr or src > text.max_addr:
+        return
 
     if state.inspect.exit_jumpkind == 'Ijk_Ret' and jmp_target in MachO.pd.macho.lc_function_starts:
         state.inspect.exit_guard = claripy.false
