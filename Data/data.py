@@ -5,6 +5,7 @@ from types import *
 from Data.MachO import MachO
 from Data.OCClass import OCClass
 from Data.OCFunction import OCFunction
+from Data.CONSTANTS import FORMAT_INSTANCE
 from tools.oc_type_parser import *
 
 
@@ -72,6 +73,43 @@ class Data(object):
         else:
             return str(addr)
 
+    def mark(self):
+        expr = self.expr
+        m = re.search('\((?P<data_type>.+)<(?P<instance_type>.+):(?P<ptr>.+)>\)(?P<name>.+)', expr)
+        if m:
+            data_type = m.group('data_type')
+            if 'Marked' not in data_type:
+                pts = self.pt_analyze()
+                data_type = 'Marked_' + data_type
+                new_val = self.state.solver.BVS(
+                    FORMAT_INSTANCE.format(
+                        data_type=data_type, instance_type=m.group('instance_type'),
+                        ptr=m.group('ptr'), name=m.group('name')),
+                    64)
+                for ea in pts['ea']:
+                    self.state.memory.store(ea, new_val)
+                for reg in pts['reg']:
+                    self.state.registers.store(reg, new_val)
+
+    def pt_analyze(self):
+        """
+        We have to do the pointer analysis. ( =. =  But I remember that angr can do this on his own.
+        Sorry that I forgot.)
+        :return:
+        """
+        pts = {'ea': [], 'reg': []}
+        state = self.state
+        ea = state.regs.bp
+        while state.solver.eval(ea > state.regs.sp):
+            if Data(state, reg=ea).expr == self.expr:
+                pts['ea'].append(ea)
+            ea -= 8
+
+        for i in range(0, 32):
+            if Data(state, reg=state.regs.get('x{}'.format(i))).expr == self.expr:
+                pts['reg'].append('x{}'.format(i))
+        return pts
+
     @staticmethod
     def read_cfstring(state, addr):
         return state.mem[addr + 16].deref.string.concrete
@@ -135,16 +173,22 @@ class Receiver:
 
             # Now, you know the selector, infer the unknown receiver type.
             if data_type == 'unknown':
-                if self.selector.expr in OCFunction.meth_indexed_by_sel:
-                    ret = []
-                    for rec in OCFunction.meth_indexed_by_sel[self.selector.expr]:
-                        # print rec
-                        pass
+                # self.type_infer_by_selector()
+                pass
 
             if type_to_str(data_type) in OCClass.classes_indexed_by_name:
                 self.oc_class = OCClass.classes_indexed_by_name[type_to_str(data_type)]
         else:
             self.expr = expr
+
+    def type_infer_by_selector(self):
+        if self.selector.expr in OCFunction.meth_indexed_by_sel:
+            for f in OCFunction.meth_indexed_by_sel[self.selector.expr]:
+                if f.receiver in self.expr:
+                    self.oc_class = OCClass.classes_indexed_by_name[f.receiver]
+                    return
+        # There is a big problem here.
+        # We may make a wrong inference.
 
 
 # if 'instance' in expr:
