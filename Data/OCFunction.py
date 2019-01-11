@@ -73,17 +73,31 @@ class OCFunction:
         return ['unknown']
 
     @staticmethod
-    def ask_for_imp(rec=None, sel=None):
+    def ask_for_imp(rec=None, sel=None, send_super=False):
         """
-        Find the method implementation to handle a message.
+        Find the method implementation to handle a message. How about category?
         :param rec: oc_class object
         :param sel: selector string
         :return:
         """
         if sel and sel.expr in OCFunction.meth_indexed_by_sel:
-            for f in OCFunction.meth_indexed_by_sel[sel.expr]:
-                if rec and f.receiver == rec.name:  # should consider superclass ? category?
-                    return f.imp
+            if send_super:
+                super_classes = []
+                classes_imp_sel = dict()
+
+                superclass_addr = rec.superclass_addr
+                while superclass_addr:
+                    super_classes.append(rec.binary_class_set[superclass_addr].name)
+                    superclass_addr = rec.binary_class_set[superclass_addr].superclass_addr
+                for f in OCFunction.meth_indexed_by_sel[sel.expr]:
+                    classes_imp_sel[f.receiver] = f
+                for c in super_classes:
+                    if c in classes_imp_sel:
+                        return classes_imp_sel[c].imp
+            else:
+                for f in OCFunction.meth_indexed_by_sel[sel.expr]:
+                    if rec and f.receiver == rec.name:  # should consider superclass ? category?
+                        return f.imp
         return None
 
 

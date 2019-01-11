@@ -21,7 +21,8 @@ class StubHelper(SimProcedure):
                 msg.send2()
 
             elif symbol.name == "_objc_msgSendSuper2":
-                pass
+                msg = Message(dispatch_state, simprocedure_handler=self, send_super=True)
+                msg.send2()
         else:
             MachO.pd.task.cg.insert_invoke(invoke_ea, symbol, dispatch_state, args=resolve_args(dispatch, symbol=symbol))
             return dispatch_state.registers.load('x0')
