@@ -71,12 +71,11 @@ class Func:
         self.init_state.regs.ip = self.start_ea
         simgr = self.task.p.factory.simgr(self.init_state)
         while self.active:
+            simgr.step()
             if SDA:
                 simgr.move(from_stash='active', to_stash='clean', filter_func=self.not_sensitive)
-                if not simgr.active:
-                    # self.check_if_as_ret()
-                    self.active = False
-            simgr.step()
+            if not simgr.active:
+                self.active = False
 
     def check_status(self):
         if len(self.task.cg.g.nodes) > 100:

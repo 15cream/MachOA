@@ -13,16 +13,13 @@ IVAR_FORMAT = "{class_name}{var_name}{var_typr}"
 IPC = True
 
 # Sensitive Data Analysis
-SDA = True
-SDA_IPC = True
-ssData = None
+SDA = False
+SDA_IPC = False
 
 dispatch = ['_dispatch_async', '_dispatch_once']
-
-RECEIVERS = ['NSURL', 'NSURLConnection', 'CFStream', 'NSStream', 'NSURLSession', 'NSMutableURLRequest']
-SELECTORS = ['initWithRequest:delegate:startImmediately:', ]
 msgSendSuper = ['_objc_msgSendSuper2', '_objc_msgSendSuper']
 msgSends = ['_objc_msgSend', '_objc_msgSendSuper2']
+retSymbols = []
 objc_symbols = ['_objc_retainAutoreleasedReturnValue',
                 '_objc_retainAutoreleaseReturnValue',
                 '_objc_autoreleaseReturnValue',
@@ -30,6 +27,10 @@ objc_symbols = ['_objc_retainAutoreleasedReturnValue',
                 '_objc_release',
                 '_objc_retainAutorelease',
                 ]
+
+RECEIVERS = ['NSURL', 'NSURLConnection', 'CFStream', 'NSStream', 'NSURLSession', 'NSMutableURLRequest']
+SELECTORS = ['initWithRequest:delegate:startImmediately:', ]
+
 angr.types.define_struct('struct methlist{int entrysize; int count;}')
 angr.types.define_struct('struct meth{char* name; char* type; long imp;}')
 angr.types.define_struct('struct ivarlist{int entrysize; int count;}')
@@ -61,8 +62,9 @@ REC_SEL_RET = {
     (None, 'init'): None,
     ('UIScreen', 'mainScreen'): 'UIScreen',
     ('UIDevice', 'identifierForVendor'): 'Marked_NSUUID',
-    ('UIPasteboard', 'generalPasteboard'): 'Marked_UIPasteboard'
-
+    ('UIPasteboard', 'generalPasteboard'): 'Marked_UIPasteboard',
+    ('NSMutableDictionary',  'dictionaryWithCapacity:'): 'NSMutableDictionary',
+    ('NSMutableDictionary',  'addEntriesFromDictionary:'): 'NSMutableDictionary',
 }
 
 XREF_DB = None

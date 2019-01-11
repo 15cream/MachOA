@@ -10,12 +10,13 @@ from callbacks.delegate import Delegate
 
 
 class Message:
-    def __init__(self, state, receiver=None, selector=None, args=None, simprocedure_handler=None):
+    def __init__(self, state, receiver=None, selector=None, args=None, simprocedure_handler=None, send_super=False):
         self.simprocedure_handler = simprocedure_handler
         self.dispatch_state = state
         self.receiver = receiver
         self.selector = selector
         self.args = args
+        self.send_super = send_super
         self.invoke_state = state.history.parent.parent  # invoke_context_state -> msgSend_stub -> stub_helper
         self.invoke_ea = self.invoke_state.addr + self.invoke_state.recent_instruction_count * 4
         self.description = None
@@ -41,7 +42,7 @@ class Message:
         # But if we just do inner-procedure analysis, how to express that a message has been send?
         if IPC:
             # sel_imp = retrieve_f(name=self.description)['imp']
-            sel_imp = OCFunction.ask_for_imp(rec=self.receiver.oc_class, sel=self.selector)
+            sel_imp = OCFunction.ask_for_imp(rec=self.receiver.oc_class, sel=self.selector, send_super=self.send_super)
             if sel_imp:
                 # Record a start node here.
                 self.node = MachO.pd.task.cg.insert_invoke(self.invoke_ea, self.description, self.dispatch_state,
@@ -87,21 +88,31 @@ class Message:
 
         if SDA:
             # Sink check.
-            sink_analyzer = SinkAnalyzer(self)
+            sink_analyzer = SinkAnalyzer(self, SensitiveData.ssData)
+            if sink_analyzer.receiver_tainted() and 'Marked_' not in self.receiver.expr:
+                self.receiver.data.mark()
+                ret_type = 'Marked_{}'.format(ret_type)
+            if sink_analyzer.sensitive_data_as_ret() and 'Marked_' not in ret_type:
+                ret_type = 'Marked_{}'.format(ret_type)
             if sink_analyzer.sensitive_data_as_receiver() and 'Marked_' not in ret_type:
                 ret_type = 'Marked_{}'.format(ret_type)
             if sink_analyzer.sensitive_data_as_parameter():
-                print '* Sensitive data {} used as parameter. * {}'.format(expr_args(self.selector.args), self.description)
-                if SDA_IPC:
-                    sel_imp = OCFunction.ask_for_imp(rec=self.receiver.oc_class, sel=self.selector)
-                    if sel_imp:
-                        self.node = MachO.pd.task.cg.insert_invoke(self.invoke_ea, self.description,
-                                                                   self.dispatch_state,
-                                                                   receiver=self.receiver.data.expr,
-                                                                   selector=self.selector.expr,
-                                                                   args=self.selector.args)
-                        self.simprocedure_handler.jump(sel_imp)
-                        return
+                print "* Sensitive data {} used as parameter. *  {} {}".format(
+                    expr_args(self.selector.args), hex(self.invoke_ea), self.description)
+
+        if IPC:
+            if not self.receiver.oc_class:
+                self.receiver.type_infer_by_selector()
+            sel_imp = OCFunction.ask_for_imp(rec=self.receiver.oc_class, sel=self.selector, send_super=self.send_super)
+            if sel_imp:
+                # SETTER OR NOT
+                self.node = MachO.pd.task.cg.insert_invoke(self.invoke_ea, self.description,
+                                                           self.dispatch_state,
+                                                           receiver=self.receiver.data.expr,
+                                                           selector=self.selector.expr,
+                                                           args=self.selector.args)
+                self.simprocedure_handler.jump(sel_imp)
+                return
 
         # Store the ret_value if necessary
         x0 = FORMAT_INSTANCE.format(data_type=ret_type, instance_type='RET', ptr=hex(self.invoke_ea),

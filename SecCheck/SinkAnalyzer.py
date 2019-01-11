@@ -2,9 +2,15 @@ import re
 
 
 class SinkAnalyzer:
+    tainted_receiver = {
+        'NSMutableDictionary': [
+            'addEntriesFromDictionary:'
+        ]
+    }
 
-    def __init__(self, msg):
+    def __init__(self, msg, ssData):
         self.msg = msg
+        self.ssData = ssData
 
     def sensitive_data_as_parameter(self):
         # Mark the return value if marked data used as parameter.
@@ -25,6 +31,16 @@ class SinkAnalyzer:
         if 'Marked' in self.msg.receiver.data.expr:
             return True
 
-    def is_setter(self):
+    def sensitive_data_as_ret(self):
+        """
+        Check if ssData's returned as ret_value, if so, find the possible caller.
+        :return:
+        """
+        if self.msg.selector.expr == self.ssData.selector and self.msg.receiver.oc_class and \
+                self.msg.receiver.oc_class.name == self.ssData.receiver:
+            return True
 
-        return
+    def receiver_tainted(self):
+        if self.msg.receiver.oc_class and self.msg.receiver.oc_class.name in SinkAnalyzer.tainted_receiver:
+            if self.msg.selector.expr in SinkAnalyzer.tainted_receiver[self.msg.receiver.oc_class.name]:
+                return True

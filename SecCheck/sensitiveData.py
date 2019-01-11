@@ -1,5 +1,6 @@
 __author__ = 'gjy'
 import commands
+import Data.CONSTANTS as Data
 from Data.OCivar import IVar
 from Data.OCClass import OCClass
 from Data.OCFunction import OCFunction
@@ -9,8 +10,9 @@ import pickle
 
 class SensitiveData:
     xrefs = dict()
+    ssData = None
 
-    def __init__(self, data_type=None, receiver=None, selector=None, ivar_name=None):
+    def __init__(self, data_type=None, receiver=None, selector=None, ivar_name=None, func_ea=None):
         """
         Give a plain data_type string.
         :param data_type:
@@ -20,8 +22,14 @@ class SensitiveData:
         self.selector = selector
         self.type = receiver if not data_type else data_type
         self.ivar_name = ivar_name
-
         self.as_ret_value = None
+        if func_ea and func_ea in OCFunction.oc_function_set:
+            f = OCFunction.oc_function_set[func_ea]
+            self.receiver = f.receiver
+            self.selector = f.selector
+
+        # If you want do multi-type sensitive data analysis, you could use a list.
+        SensitiveData.ssData = self
 
     @staticmethod
     def init(xref_pkl):

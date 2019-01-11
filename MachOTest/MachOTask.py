@@ -26,7 +26,7 @@ from event_simulator.UIEvent import UIEvent
 
 from SecCheck.sensitiveData import SensitiveData
 from tools.Files import *
-
+from angrutils import *
 
 class MachOTask:
 
@@ -34,7 +34,7 @@ class MachOTask:
 
     def __init__(self, binary, store=None, visualize=None):
 
-        self.p = angr.Project(binary)
+        self.p = angr.Project(binary, load_options={'auto_load_libs': True})
         self.loader = self.p.loader
         self.macho = self.loader.main_object
         self.pd = MachO(self.macho, self)
@@ -93,7 +93,7 @@ class MachOTask:
             s.run()
             self.cg.view()
 
-    def analyze_function(self, init_args=None, start_addr=None, sd=None, name=None):
+    def analyze_function(self, init_args=None, start_addr=None, name=None):
 
         if name:
             start_addr = retrieve_f(name=name)['imp']
@@ -107,10 +107,15 @@ class MachOTask:
         st.inspect.b('mem_read', when=angr.BP_AFTER, action=mem_read)
         st.inspect.b('address_concretization', when=angr.BP_AFTER, action=mem_resolve)
 
-        f = Func(start_addr, self.macho, self, st, args=init_args, sensiData=sd).init()
+        cfg = self.p.analyses.CFGAccurate(keep_state=True, starts=[start_addr, ], initial_state=st,
+                                          call_depth=2, context_sensitivity_level=3)
+        plot_cfg(cfg, "angr_cfg", asminst=True, remove_imports=True, remove_path_terminator=True)
+
+        f = Func(start_addr, self.macho, self, st, args=init_args).init()
         if f:
             f.analyze()
             self.cg.view()
+            return f.get_ret_values()
 
     def analyze_bin(self):
         for ref in OCClass.classes_indexed_by_ref.keys():
@@ -137,19 +142,25 @@ class MachOTask:
         self.loader.close()
 
 
-if __name__ == "__main__":
-    print time.strftime("-START-%Y-%m-%d %H:%M:%S", time.localtime())
-    analyzer = MachOTask('../samples/CsdnPlus_arm64', store=True, visualize=False)
-    # CLDriver(analyzer).simulate()
-    # UIEvent(analyzer).simulate()
-    # analyzer.analyze_function(start_addr=0x1002CF3E0)
-    # analyzer.analyze_function(start_addr=0x10026df08L)
-    sd = SensitiveData(receiver='UIDevice', selector='identifierForVendor')
-    # sd = SensitiveData(receiver='UIPasteboard', selector='generalPasteboard')
-    # sd = SensitiveData(receiver='TencentMessagePack', selector='packTencentReqMessage:appId:')
-    # sd = SensitiveData(receiver='WXOMTAEnv', selector='ifv')
-    # sd = SensitiveData(receiver='XGDeviceInfo', selector='jce_idfv')
-    for f, ea_pair in sd.find_data_as_ret_value().items():
-        analyzer.analyze_function(start_addr=f, sd=sd)
-    analyzer.clear()
-    print time.strftime("-END-%Y-%m-%d %H:%M:%S", time.localtime())
+# if __name__ == "__main__":
+#     print time.strftime("-START-%Y-%m-%d %H:%M:%S", time.localtime())
+#     analyzer = MachOTask('../samples/CsdnPlus_arm64', store=True, visualize=False)
+#     # CLDriver(analyzer).simulate()
+#     # UIEvent(analyzer).simulate()
+#     # analyzer.analyze_function(start_addr=0x1002E29CC)
+#     # analyzer.analyze_class(classname='SmLocation')
+#     # sd = SensitiveData(receiver='UIDevice', selector='identifierForVendor')
+#     # sd = SensitiveData(receiver='UIPasteboard', selector='generalPasteboard')
+#     # sd = SensitiveData(receiver='TencentMessagePack', selector='packTencentReqMessage:appId:')
+#     # sd = SensitiveData(receiver='WXOMTAEnv', selector='ifv')
+#     # sd = SensitiveData(receiver='SmStrUtils', selector='safe:')
+#     sd = SensitiveData(receiver='SmLocation', selector='getGeoLocation')
+#     sd.find_data_as_ret_value()
+#     analyzer.to_be_analyzed.update(set(sd.as_ret_value.keys()))
+#     # analyzer.to_be_analyzed.add(0x100326b1cL)
+#     for f in analyzer.to_be_analyzed:
+#         analyzer.analyze_function(start_addr=f)
+#     # for f, ea_pair in sd.as_ret_value.items():
+#     #     analyzer.analyze_function(start_addr=f, sd=sd)
+#     analyzer.clear()
+#     print time.strftime("-END-%Y-%m-%d %H:%M:%S", time.localtime())

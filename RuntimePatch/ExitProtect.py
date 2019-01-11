@@ -16,7 +16,8 @@ def branch_check(state):
 
     # We could check the ret value here.
     if jmp_target == 0:
-        state.globals['start_func_object'].ret.append(state.regs.x0)
+        if 'start_func_object' in state.globals:
+            state.globals['start_func_object'].ret.append(state.regs.x0)
 
     # stubs
     if jmp_target > text.max_addr or src > text.max_addr:
