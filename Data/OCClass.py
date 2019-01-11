@@ -5,6 +5,7 @@ from OCFunction import OCFunction
 
 class OCClass:
     class_set = []
+    class_set2 = []
     imported_class_set = []
     binary_class_set = dict()  # INDEXED BY CLASS_INFO_ADDRESS (the value stored in class_ref)
     classes_indexed_by_ref = dict()
@@ -47,6 +48,9 @@ class OCClass:
             self.class_addr = state.memory.load(self.classref_addr, 8, endness=archinfo.Endness.LE)
             self.meta_class_addr = state.memory.load(self.class_addr, 8, endness=archinfo.Endness.LE)
             self.superclass_addr = state.memory.load(self.class_addr + 8, 8, endness=archinfo.Endness.LE)
+            self.class_addr = state.mem[self.classref_addr].long.concrete
+            self.meta_class_addr = state.mem[self.class_addr].long.concrete
+            self.superclass_addr = state.mem[self.class_addr + 8].long.concrete
 
             class_data_addr = state.memory.load(self.class_addr + 32, 8, endness=archinfo.Endness.LE)
             if state.solver.eval(class_data_addr) % 8 != 0:
@@ -60,11 +64,16 @@ class OCClass:
             self.resolve_props(state, self.class_addr)
             self.resolve_prots(state, self.class_addr)
 
-            OCClass.binary_class_set[state.solver.eval(self.class_addr)] = self
+            if state.solver.eval(self.class_addr) not in OCClass.binary_class_set:
+                OCClass.binary_class_set[state.solver.eval(self.class_addr)] = self
+                OCClass.classes_indexed_by_name[self.name] = self
+            else:
+                # could be superclass of someone
+                pass
 
-        OCClass.classes_indexed_by_name[self.name] = OCClass.classes_indexed_by_ref[self.classref_addr] = self
+        OCClass.classes_indexed_by_ref[self.classref_addr] = self
         OCClass.class_set.append(self.__dict__)
-        # OCClass.class_set.append(self)
+        OCClass.class_set2.append(self)
         print hex(self.classref_addr), self.name
 
     def resolve_methods_imp(self, state, addr, instance_m=None, class_m=None):

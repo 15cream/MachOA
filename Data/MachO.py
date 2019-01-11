@@ -95,11 +95,11 @@ class MachO:
     @staticmethod
     def dump(db):
         output = open(db, 'wb')
-        pickle.dump([OCClass.class_set, Protocol.protocol_indexed_by_data_EA, OCFunction.oc_function_set], output)
+        pickle.dump([OCClass.class_set2, Protocol.protocol_indexed_by_data_EA, OCFunction.oc_function_set], output)
         output.close()
 
     @staticmethod
-    def unpack_deprecated(state, db):
+    def unpack(state, db):
         input = open(db, 'rb')
         [class_set, protocol_set, func_set] = pickle.load(input)
         for cd in class_set:
@@ -122,7 +122,7 @@ class MachO:
                 else:
                     OCClass.classes_indexed_by_selector[selector] = [cd, ]
             if cd.ivars:
-                for ivar in cd.ivars:
+                for ivar in cd.ivars.values():
                     ivar.add_to_ivars()
 
         Protocol.protocol_indexed_by_data_EA = protocol_set
@@ -134,9 +134,9 @@ class MachO:
         input.close()
 
     @staticmethod
-    def unpack(state, db):
+    def unpack_deprecated(state, db):
         input = open(db, 'rb')
-        [class_set, protocol_set, func_set] = pickle.load(input)
+        [class_set, class_set2, protocol_set, func_set] = pickle.load(input)
         for c in class_set:
             cd = OCClass(c['classref_addr'])
             if type(c['class_addr']) is not NoneType:
