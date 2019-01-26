@@ -54,7 +54,7 @@ class MachOTask:
         self.checked = checked("{}{}".format(self.configs.get('PATH', 'results'), self.macho.provides))
         # self.checked = []
         self.class_blacklist = []
-        self.meth_blacklist = []
+        self.meth_blacklist = [0x10011a60cL]
 
     def config(self):
         config = ConfigParser.RawConfigParser()
@@ -107,9 +107,9 @@ class MachOTask:
         st.inspect.b('mem_read', when=angr.BP_AFTER, action=mem_read)
         st.inspect.b('address_concretization', when=angr.BP_AFTER, action=mem_resolve)
 
-        cfg = self.p.analyses.CFGAccurate(keep_state=True, starts=[start_addr, ], initial_state=st,
-                                          call_depth=2, context_sensitivity_level=3)
-        plot_cfg(cfg, "angr_cfg", asminst=True, remove_imports=True, remove_path_terminator=True)
+        # cfg = self.p.analyses.CFGAccurate(keep_state=True, starts=[start_addr, ], initial_state=st,
+        #                                   call_depth=2, context_sensitivity_level=3)
+        # plot_cfg(cfg, "angr_cfg", asminst=True, remove_imports=True, remove_path_terminator=True)
 
         f = Func(start_addr, self.macho, self, st, args=init_args).init()
         if f:
@@ -125,18 +125,21 @@ class MachOTask:
 
     def analyze_class(self, classref=None, classname=None):
         class_obj = OCClass.retrieve(classref=classref, classname=classname)
-        if class_obj.imported:
-            return
-        if class_obj.name in self.checked:
-            return
-        for meth in class_obj.class_meths:
-            if meth in self.meth_blacklist:
-                continue
-            self.analyze_function(start_addr=meth)
-        for meth in class_obj.instance_meths:
-            if meth in self.meth_blacklist:
-                continue
-            self.analyze_function(start_addr=meth)
+        if class_obj:
+            if class_obj.imported:
+                return
+            if class_obj.name in self.checked:
+                return
+            for meth in class_obj.class_meths:
+                if meth in self.meth_blacklist:
+                    continue
+                self.analyze_function(start_addr=meth)
+            for meth in class_obj.instance_meths:
+                if meth in self.meth_blacklist:
+                    continue
+                self.analyze_function(start_addr=meth)
+        else:
+            print 'CANNOT FIND THIS CLASS.'
 
     def clear(self):
         self.loader.close()

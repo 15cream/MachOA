@@ -10,10 +10,10 @@ INVOKEFS = "Context:{} {}\nDepth:{}\nInvoke:{} {}\n{}"
 IVAR_FORMAT = "{class_name}{var_name}{var_typr}"
 
 # Inter-procedural analysis
-IPC = True
+IPC = False
 
 # Sensitive Data Analysis
-SDA = False
+SDA = True
 SDA_IPC = False
 
 dispatch = ['_dispatch_async', '_dispatch_once']
