@@ -30,12 +30,13 @@ class OCFunction:
         for imp in OCFunction.meth_list:
             if imp in OCFunction.oc_function_set:
                 f = OCFunction.oc_function_set[imp]
-                _name = f.selector
+                _selector = f.selector
                 _class = f.receiver
-                if _name not in OCFunction.meth_indexed_by_sel:
-                    OCFunction.meth_indexed_by_sel[_name] = [f]
+                if _selector not in OCFunction.meth_indexed_by_sel:
+                    OCFunction.meth_indexed_by_sel[_selector] = [f]
                 else:
-                    OCFunction.meth_indexed_by_sel[_name].append(f)
+                    OCFunction.meth_indexed_by_sel[_selector].append(f)
+                _name = "{} {}".format(_class, _selector)
             else:
                 _name = 'sub_' + str(hex(imp))
                 _class = None
@@ -81,23 +82,29 @@ class OCFunction:
         :return:
         """
         if sel and sel.expr in OCFunction.meth_indexed_by_sel:
-            if send_super:
-                super_classes = []
-                classes_imp_sel = dict()
+            if rec:
+                if send_super:
+                    super_classes = []
+                    classes_imp_sel = dict()
 
-                superclass_addr = rec.superclass_addr
-                while superclass_addr:
-                    super_classes.append(rec.binary_class_set[superclass_addr].name)
-                    superclass_addr = rec.binary_class_set[superclass_addr].superclass_addr
-                for f in OCFunction.meth_indexed_by_sel[sel.expr]:
-                    classes_imp_sel[f.receiver] = f
-                for c in super_classes:
-                    if c in classes_imp_sel:
-                        return classes_imp_sel[c].imp
+                    superclass_addr = rec.superclass_addr
+                    while superclass_addr:
+                        if superclass_addr not in rec.binary_class_set:
+                            break  # TODO Check the reason.
+                        super_classes.append(rec.binary_class_set[superclass_addr].name)
+                        superclass_addr = rec.binary_class_set[superclass_addr].superclass_addr
+                    for f in OCFunction.meth_indexed_by_sel[sel.expr]:
+                        classes_imp_sel[f.receiver] = f
+                    for c in super_classes:
+                        if c in classes_imp_sel:
+                            return classes_imp_sel[c].imp
+                else:
+                    for f in OCFunction.meth_indexed_by_sel[sel.expr]:
+                        if rec and f.receiver == rec.name:  # should consider superclass ? category?
+                            return f.imp
             else:
-                for f in OCFunction.meth_indexed_by_sel[sel.expr]:
-                    if rec and f.receiver == rec.name:  # should consider superclass ? category?
-                        return f.imp
+                if len(OCFunction.meth_indexed_by_sel[sel.expr]) == 1:
+                    return OCFunction.meth_indexed_by_sel[sel.expr][0].imp
         return None
 
 

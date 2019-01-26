@@ -33,7 +33,7 @@ class IVar:
 
     @staticmethod
     # deprecated for the moment
-    def parse_accessor():
+    def _parse_accessor():
         """
         For each ivar, check the function used it, and predicate this function to be accessor or not.
         :return:
@@ -57,3 +57,16 @@ class IVar:
                             ivar.direct_ref[fi].append(xref)
                         else:
                             ivar.direct_ref[fi] = [xref]
+
+    def parse_accessors(self):
+        if self.property:
+            if self.setter:
+                pass
+            else:
+                self.setter = "set{}:".format(self.property[0].upper() + self.property[1:])
+            if self.getter:
+                pass
+            else:
+                self.getter = "{}:".format(self.property)
+
+

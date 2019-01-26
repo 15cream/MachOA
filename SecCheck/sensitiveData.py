@@ -1,6 +1,5 @@
 __author__ = 'gjy'
 import commands
-import Data.CONSTANTS as Data
 from Data.OCivar import IVar
 from Data.OCClass import OCClass
 from Data.OCFunction import OCFunction
@@ -39,7 +38,7 @@ class SensitiveData:
 
     def as_x0(self):
         """
-        The X0 of instance method call is the instance.
+        The X0 of instance method call is the specified type instance.
         :return: method_dict {function_ea: function_name}
         """
         class_set = set()  # OCClass instances
@@ -68,6 +67,11 @@ class SensitiveData:
                 if str_to_type(self.type) == ivar.type:
                     ivars.add(ptr)
         print ivars
+        for ptr in ivars:
+            ivar = IVar.ivars[ptr]
+            ivar.parse_accessors()
+            setter_ctx = SensitiveData(receiver=ivar._class, selector=ivar.setter).find_data_as_ret_value()
+            getter_ctx = SensitiveData(receiver=ivar._class, selector=ivar.getter).find_data_as_ret_value()
 
     def find_data_as_ret_value(self):
         """
@@ -98,7 +102,7 @@ class SensitiveData:
         self.as_ret_value = inter_ctx
         return inter_ctx
 
-    def as_para(self):
+    def as_para(self, rec, selector, arg_index):
         """
         The first parameter of 'locationManager:didUpdateLocations:' is CLLocationManager.
         Analyze the 'locationManager:didUpdateLocations:' method.
@@ -107,14 +111,14 @@ class SensitiveData:
         pass
 
     @staticmethod
-    def ask_for_xrefs(ea, data_type):
+    def ask_for_xrefs(ea, ea_type):
         """
         :param ea:
-        :param data_type: class, sel, ivar
-        :return:
+        :param ea_type: class, sel, ivar
+        :return: the xrefs already parsed by IDA.
         """
-        if data_type in SensitiveData.xrefs and ea in SensitiveData.xrefs[data_type]:
-            return SensitiveData.xrefs[data_type][ea]
+        if ea_type in SensitiveData.xrefs and ea in SensitiveData.xrefs[ea_type]:
+            return SensitiveData.xrefs[ea_type][ea]
         else:
             return {}
 
