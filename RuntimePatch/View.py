@@ -1,4 +1,7 @@
-# _*_coding:utf-8_*_
+import sys
+
+reload(sys)
+sys.setdefaultencoding('utf-8')
 import networkx as nx
 
 from Data.CONSTANTS import *
@@ -22,6 +25,7 @@ class GraphView:
         node['args']: the arguments for this invoke.
         node['dp']: the data dependency. (None default)
         node['pnode']: the predecessor node. (None if the start node.)
+        node['snode']: the successor node.
         edge['color']: green if intra-procedural, red if inter-procedural.
         edge['label']: constraints.
 
@@ -60,6 +64,7 @@ class GraphView:
                             rec=receiver, sel=selector)
         else:
             pass  # Invoke again. (Impossible ?)
+            print "Invoke has been recorded: {}".format(node)
 
         # Record this invoke.
         self.history_records[state.history] = HS(ea, repr_constraints(state), node)
@@ -131,6 +136,3 @@ class HS:
         self.node = node
         self.invoke_addr = ea
         self.constraints = cs
-
-
-

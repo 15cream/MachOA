@@ -1,38 +1,59 @@
 import os
 import re
 import networkx as nx
+import copy
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 
 class ScenarioExtractor:
+
+    task = None
+
     def __init__(self, seeds=None, dir=None):
+        ScenarioExtractor.task = self
         self.seeds = seeds
+        self.matched_nodes = []
         self.dir = dir
         self.graph = None
-        self.graph_indexed_by_invoke_ea = dict()
-        self.graph_indexed_by_invoke_dp = dict()
-        self.node_and_dps = dict()
+        self.graph_indexed_by_invoke_ea = dict()  # each ea may have several nodes in different traces.
+        self.node_and_his_usage = dict()  # key:node(ptr only) value: set of nodes use this node
+        self.node_and_his_dps = dict()  # key:node value: set of nodes(ptr only) this node relies on
         self.scenario_set = []
 
-    def parse_all_traces(self):
+    def run(self):
         for f in os.listdir(self.dir):
             cfg_file = os.path.join(self.dir, f)
-            print cfg_file
+            print "Now we're parsing cfg_file : {}".format(cfg_file)
             try:
                 self.parse_cfg(cfg_file)
+                self.clear()
             except Exception as e:
-                print e
+                print "Failed for {}".format(e)
+        print 'END HERE.'
+        for scenario in self.scenario_set:
+            index = self.scenario_set.index(scenario)
+            scenario.view_scenario(_name=str(index))
+
+    def clear(self):
+        self.graph = None
+        self.graph_indexed_by_invoke_ea = dict()
+        self.node_and_his_usage = dict()
+        self.node_and_his_dps = dict()
 
     def parse_cfg(self, cfg_file):
         """
         Give a call-graph file (inter-procedural or intra-procedural), parse this cfg and extract scenarios.
+        Actually, because of the path sensitivity, one cfg covers several traces.
         :param cfg_file:
         :return:
         """
-        # Actually, because of the path sensitivity, one cfg covers several traces.
-        self.scenario_set = []
         self.graph = nx.drawing.nx_agraph.read_dot(cfg_file)
+        self.matched_nodes = self.match_seed()
+
         for node, node_data in self.graph.nodes.items():
-            self.node_and_dps[node] = set()
+            self.node_and_his_dps[node] = set()
             ea = int(node_data['addr'])
             if ea in self.graph_indexed_by_invoke_ea:
                 self.graph_indexed_by_invoke_ea[ea].append(node)
@@ -43,11 +64,12 @@ class ScenarioExtractor:
                 m = re.search('\((?P<data_type>.+)<(?P<instance_type>.+):(?P<ptr>.+)>\)(?P<name>.+)', node_data['rec'])
                 if m:
                     ptr = int(m.group('ptr').encode('UTF-8').strip('L'), 16)
-                    if ptr in self.graph_indexed_by_invoke_dp:
-                        self.graph_indexed_by_invoke_dp[ptr].append((node, 'rec'))
+                    if ptr in self.node_and_his_usage:
+                        self.node_and_his_usage[ptr].append((node, 0))
                     else:
-                        self.graph_indexed_by_invoke_dp[ptr] = [(node, 'rec'), ]
-                    self.node_and_dps[node].add(ptr)
+                        self.node_and_his_usage[ptr] = [(node, 0), ]
+                    # self.node_and_his_dps[node].add(ptr)
+                    self.node_and_his_dps[node].add((ptr, 0))
 
             if 'args' in node_data:
                 args = node_data['args'].split('\n')[0:-1]
@@ -55,74 +77,52 @@ class ScenarioExtractor:
                     m = re.search('\((?P<data_type>.+)<(?P<instance_type>.+):(?P<ptr>.+)>\)(?P<name>.+)', arg)
                     if m:
                         ptr = int(m.group('ptr').encode('UTF-8').strip('L'), 16)
-                        if ptr in self.graph_indexed_by_invoke_dp:
-                            self.graph_indexed_by_invoke_dp[ptr].append((node, 'arg'))
+                        if ptr in self.node_and_his_usage:
+                            self.node_and_his_usage[ptr].append((node, args.index(arg)+2))
                         else:
-                            self.graph_indexed_by_invoke_dp[ptr] = [(node, 'arg'), ]
-                        self.node_and_dps[node].add(ptr)
+                            self.node_and_his_usage[ptr] = [(node, args.index(arg)+2), ]
+                        # self.node_and_his_dps[node].add(ptr)
+                        self.node_and_his_dps[node].add((ptr, args.index(arg)+2))
 
+        # parse traces >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.
+        start_node = None
+        for node in self.graph.nodes:
+            if self.graph.nodes[node]['des'] == 'Start':
+                start_node = node
+                break
+        if start_node:
+            Trace.alive_traces.append(Trace(self.graph, start=start_node))
+            while Trace.alive_traces:
+                round = list(Trace.alive_traces)
+                for trace in round:
+                    if trace.alive:
+                        trace.step()
+            for trace in Trace.deadend_traces:
+                self.parse_trace(trace)
+            print 'End here.'
+        else:
+            print "Cannot find the start node."
+
+    def parse_trace(self, trace):
         # initial scenarios for each node matched seed.
-        for node in self.match_seed():
-            self.scenario_set.append(Scenario(node))
-
-        for scenario in self.scenario_set:
-            self.construct(scenario)
+        for seed in self.matched_nodes:
+            if seed in trace.route:
+                scenario = Scenario(seed, trace)
+                scenario.construct()
+                scenario.view_scenario()
+                self.scenario_set.append(scenario)
 
     def match_seed(self):
+        # TODO The algorithm is too rough ...
         matched_nodes = []
         for seed in self.seeds:
             for node in self.graph.nodes:
-                if self.graph.nodes[node]['sel'] == seed.selector:
+                if 'sel' in self.graph.nodes[node] and self.graph.nodes[node]['sel'] == seed.selector:
                     m = re.search('\((?P<data_type>.+)<(?P<instance_type>.+):(?P<ptr>.+)>\)(?P<name>.+)',
                                   self.graph.nodes[node]['rec'])
                     # if m and seed.receiver == m.group('rec'):
                     matched_nodes.append(node)
         return matched_nodes
-
-    def find_usage(self, snode, scenario):
-        node_ea = int(self.graph.nodes[snode]['addr'])
-        if node_ea in self.graph_indexed_by_invoke_dp:
-            scenario.dps.add(snode)
-            for (node_depends_on_snode, usage_type) in self.graph_indexed_by_invoke_dp[node_ea]:
-                # if used as receiver, find the receiver's usage;
-                # if used as parameter, find the receiver's dependency. Also usage?
-                scenario.nodes.add(node_depends_on_snode)
-                self.find_usage(node_depends_on_snode, scenario)
-
-                # for succ in self.graph.succ[snode]:
-                # # usage: as receiver, find the arguments dependencies if exits
-                #     if node_ea in self.graph.nodes[succ]['rec']:
-                #         self.find_usage()
-                #         if 'args' in self.graph.nodes[succ]:
-                #             pass
-                #
-                #     # usage: as argument, find the receiver and arguments dependencies if exits
-                #     elif 'args' in self.graph.nodes[succ] and node_ea in self.graph.nodes[succ]['args']:
-                #         usage.append(snode)
-
-    def find_dependency(self, scenario, node):
-        for dp_node_addr in self.node_and_dps[node]:
-            for dp_node in self.graph_indexed_by_invoke_ea[dp_node_addr]:
-                if dp_node in scenario.dps:
-                    continue
-                scenario.dps.add(dp_node)
-                self.find_dependency(scenario, dp_node)
-
-    def construct(self, scenario):
-        start_node = scenario.seed_node
-        self.find_usage(start_node, scenario)
-        for node in scenario.nodes:
-            self.find_dependency(scenario, node)
-        for node in scenario.nodes:
-            self.pprint_node(node)
-        print '\n'
-
-    def view(self, g):
-        fp = '../results/tmp.dot'
-        try:
-            nx.drawing.nx_agraph.write_dot(g, fp)
-        except Exception as e:
-            print 'Failed to generate {}, {} '.format(fp, e)
 
     def pprint(self):
         for f in os.listdir(self.dir):
@@ -157,11 +157,100 @@ class ScenarioExtractor:
             print args
 
 
+class Trace:
+
+    alive_traces = []
+    deadend_traces = []
+
+    def __init__(self, graph, start=None, pre_existing=None):
+        self.graph = graph
+        if start:
+            self.route = [start, ]
+        else:
+            self.route = pre_existing
+        self.alive = True
+
+    def terminate(self):
+        self.alive = False
+        Trace.alive_traces.remove(self)
+        Trace.deadend_traces.append(self)
+
+    def step(self):
+        out_edges = self.graph.out_edges(self.route[-1])
+        if len(out_edges) == 0:
+            print "Trace terminated at {}.".format(self.route[-1])
+            self.terminate()
+        elif len(out_edges) == 1:
+            self.route.append(list(out_edges)[0][-1])
+        elif len(out_edges) == 2:
+            forked_trace = Trace(self.graph, pre_existing=copy.deepcopy(self.route))
+            forked_trace.route.append(list(out_edges)[1][-1])
+            Trace.alive_traces.append(forked_trace)
+            self.route.append(list(out_edges)[0][-1])
+        else:
+            print '??? WHY ???'
+
+
 class Scenario:
-    def __init__(self, initial_node):
+    def __init__(self, initial_node, trace):
+        self.dpg = nx.DiGraph()
+        self.extractor = ScenarioExtractor.task
+        self.trace = trace
+        self.cfg = trace.graph
         self.seed_node = initial_node
-        self.nodes = set([initial_node])
+        self.usages = set([initial_node])
         self.dps = set([])
+
+    def add_node(self, ori_node):
+        node_dict = self.cfg.nodes[ori_node]
+        node = "{}:{}".format(node_dict['addr'], node_dict['des'])
+        if node not in self.dpg.nodes:
+            self.dpg.add_node(node, des=node_dict['des'])
+        else:
+            pass
+        return node
+
+    def construct(self):
+        self.add_node(self.seed_node)
+        self.find_usage(self.seed_node)  # find nodes used the seed.
+        for node in self.usages:
+            self.find_dependency(node)
+
+    def find_usage(self, producer):
+        graph = self.trace.graph
+        node_ea = int(graph.nodes[producer]['addr'])
+        if node_ea in self.extractor.node_and_his_usage:
+            self.dps.add(producer)
+            for (usage, usage_type) in self.extractor.node_and_his_usage[node_ea]:
+                # if used as receiver, find the receiver's usage;
+                # if used as parameter, find the receiver's dependency. Also usage?
+                if usage in self.trace.route:
+                    self.usages.add(usage)
+                    producer_node = self.add_node(producer)
+                    consumer_node = self.add_node(usage)
+                    self.dpg.add_edge(producer_node, consumer_node, label=usage_type)
+                    self.find_usage(usage)
+
+    def find_dependency(self, consumer):
+        for (producer_ea, dp_type) in self.extractor.node_and_his_dps[consumer]:
+            for dp_node in self.extractor.graph_indexed_by_invoke_ea[producer_ea]:
+                if dp_node in self.trace.route:
+                    if dp_node in self.dps:
+                        continue
+                    self.dps.add(dp_node)
+                    producer_node = self.add_node(dp_node)
+                    consumer_node = self.add_node(consumer)
+                    self.dpg.add_edge(producer_node, consumer_node, label=dp_type)
+                    self.find_dependency(dp_node)
+
+    def view_scenario(self, _name=None):
+        sub_graph = nx.subgraph(self.trace.graph, self.usages | self.dps)
+        name = _name if _name else 'tmp'
+        fp = '../results/DoubanRadio_arm64/scenarios/{}.dot'.format(name)
+        try:
+            nx.drawing.nx_agraph.write_dot(self.dpg, fp)
+        except Exception as e:
+            print 'Failed to generate {}, {} '.format(fp, e)
 
 
 class Seed:
@@ -171,8 +260,11 @@ class Seed:
         self.data_type = dt
 
 
-extractor = ScenarioExtractor(seeds=[Seed(sel='identifierForVendor', rec='UIDevice')],
-                              dir='../results/CsdnPlus_arm64/uidevice')
-# extractor = ScenarioExtractor(seeds=[Seed(sel='generalPasteboard', rec='UIPasteboard')], dir='../results/CsdnPlus_arm64/')
+# extractor = ScenarioExtractor(seeds=[Seed(sel='identifierForVendor', rec='UIDevice')],
+#                               dir='../results/CsdnPlus_arm64/uidevice2')
+# extractor = ScenarioExtractor(seeds=[Seed(sel='generalPasteboard', rec='UIPasteboard')],
+#                               dir='../results/CsdnPlus_arm64/')
+extractor = ScenarioExtractor(seeds=[Seed(rec='UIDevice', sel='identifierForVendor')],
+                              dir='../results/DoubanRadio_arm64/')
 # extractor.pprint()
-extractor.parse_all_traces()
+extractor.run()
