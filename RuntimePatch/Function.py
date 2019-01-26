@@ -34,14 +34,17 @@ class Func:
             f = self._oc_function = OCFunction.oc_function_set[self.start_ea]
             self.ret_type = f.ret_type
             self.name = f.expr
-            self._oc_class = OCClass.classes_indexed_by_name[self._oc_function.receiver]
+            # self._oc_class = OCClass.classes_indexed_by_name[self._oc_function.receiver]
+            self._oc_class = OCClass.retrieve_by_classname(self._oc_function.receiver, is_superclass=False)
 
             if self._oc_function.meth_type == '-':
                 receiver = FORMAT_INSTANCE.format(data_type=str_to_type(f.receiver), ptr=hex(f.imp), instance_type='REC',
                                                   name='{}#{}'.format(f.receiver, random.randint(0, IRR)))
                 x0 = self.init_state.solver.BVS(receiver, 64)
             elif f.meth_type == '+':
-                x0 = self.init_state.solver.BVV(OCClass.classes_indexed_by_name[f.receiver].class_addr, 64)
+                # x0 = self.init_state.solver.BVV(OCClass.classes_indexed_by_name[f.receiver].class_addr, 64)
+                x0 = self.init_state.solver.BVV(
+                    OCClass.retrieve_by_classname(f.receiver, is_superclass=False).class_addr, 64)
             self.init_state.regs.x0 = x0
 
             args_data = []
@@ -70,12 +73,14 @@ class Func:
         print 'ANALYZE {} {}'.format(hex(self.start_ea), self.name)
         self.init_state.regs.ip = self.start_ea
         simgr = self.task.p.factory.simgr(self.init_state)
-        while self.active:
+        # while self.active:
+        #         #     simgr.step()
+        #         #     if SDA:
+        #         #         simgr.move(from_stash='active', to_stash='clean', filter_func=self.not_sensitive)
+        #         #     if not simgr.active:
+        #         #         self.active = False
+        while simgr.active:
             simgr.step()
-            if SDA:
-                simgr.move(from_stash='active', to_stash='clean', filter_func=self.not_sensitive)
-            if not simgr.active:
-                self.active = False
 
     def check_status(self):
         if len(self.task.cg.g.nodes) > 100:
@@ -94,7 +99,7 @@ class Func:
             self.ret = resolve_context(state.addr)
 
     def get_ret_values(self):
-        if 'v' not in self.ret_type:
+        if self.ret_type and 'v' not in self.ret_type:  # subroutine may have no ret_type
             return self.ret
 
     def sensitive(self, state):

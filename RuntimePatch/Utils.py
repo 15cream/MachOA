@@ -80,7 +80,8 @@ def resolve_addr(state, addr):
 
 
 def resolve_var(state, classname=None, offset=None):
-    c = OCClass.classes_indexed_by_name[classname]
+    # c = OCClass.classes_indexed_by_name[classname]
+    c = OCClass.retrieve_by_classname(classname, is_superclass=False)
     if c.imported:
         pass
     else:

@@ -16,6 +16,7 @@ class OCClass:
     def __init__(self, classref, imported=False, name=None):
 
         self.imported = imported
+        self.is_superclass = False
         self.classref_addr = classref
         self.meta_class_addr = None
         self.superclass_addr = None
@@ -28,26 +29,33 @@ class OCClass:
 
     @staticmethod
     def retrieve(classref=None, classname=None):
-        if classref:
-            if classref in OCClass.classes_indexed_by_ref:
-                return OCClass.classes_indexed_by_ref[classref]
-            else:
-                print "NO SUCH CLASS_REF"
-        if classname:
-            if classname in OCClass.classes_indexed_by_name:
-                return OCClass.classes_indexed_by_name[classname]
-            else:
-                print "NO SUCH CLASS_NAME"
+        if classref and classref in OCClass.classes_indexed_by_ref:
+            return OCClass.classes_indexed_by_ref[classref]
+        elif classname:
+            return OCClass.retrieve_by_classname(classname)
+        else:
+            return None
 
-    def build(self, state):
+    @staticmethod
+    def retrieve_by_classname(classname, is_superclass=False):
+        if classname in OCClass.classes_indexed_by_name:
+            for occlass in OCClass.classes_indexed_by_name[classname]:
+                if occlass.is_superclass == is_superclass:
+                    return occlass
+        else:
+            return None
+
+    def build(self, state, superclass=False):
+        if superclass:
+            self.is_superclass = True
         if self.imported:
             bv = state.solver.BVV(self.classref_addr, 64).reversed
             state.memory.store(self.classref_addr, bv)
             OCClass.imported_class_set.append(self.classref_addr)
         else:
-            self.class_addr = state.memory.load(self.classref_addr, 8, endness=archinfo.Endness.LE)
-            self.meta_class_addr = state.memory.load(self.class_addr, 8, endness=archinfo.Endness.LE)
-            self.superclass_addr = state.memory.load(self.class_addr + 8, 8, endness=archinfo.Endness.LE)
+            # self.class_addr = state.memory.load(self.classref_addr, 8, endness=archinfo.Endness.LE)
+            # self.meta_class_addr = state.memory.load(self.class_addr, 8, endness=archinfo.Endness.LE)
+            # self.superclass_addr = state.memory.load(self.class_addr + 8, 8, endness=archinfo.Endness.LE)
             self.class_addr = state.mem[self.classref_addr].long.concrete
             self.meta_class_addr = state.mem[self.class_addr].long.concrete
             self.superclass_addr = state.mem[self.class_addr + 8].long.concrete
@@ -66,10 +74,11 @@ class OCClass:
 
             if state.solver.eval(self.class_addr) not in OCClass.binary_class_set:
                 OCClass.binary_class_set[state.solver.eval(self.class_addr)] = self
-                OCClass.classes_indexed_by_name[self.name] = self
+
+            if self.name not in OCClass.classes_indexed_by_name:
+                OCClass.classes_indexed_by_name[self.name] = [self, ]
             else:
-                # could be superclass of someone
-                pass
+                OCClass.classes_indexed_by_name[self.name].append(self)
 
         OCClass.classes_indexed_by_ref[self.classref_addr] = self
         OCClass.class_set.append(self.__dict__)

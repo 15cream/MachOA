@@ -20,7 +20,7 @@ def retrieve_f(name=None, imp=None):
         else:
             print "???"
             return results
-        if receiver in OCClass.classes_indexed_by_name:
+        if OCClass.retrieve_by_classname(receiver):
             pass
         elif selector in OCClass.classes_indexed_by_selector:
             possible_classes = OCClass.classes_indexed_by_selector[selector]

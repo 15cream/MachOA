@@ -57,7 +57,7 @@ class MachO:
             if addr in OCClass.imported_class_set:
                 continue
             else:
-                OCClass(addr).build(state)
+                OCClass(addr).build(state, superclass=True)
 
     def build_segdata(self):
         self.segdata['cfstring'] = MachO.pd.macho.get_segment_by_name('__DATA').get_section_by_name('__cfstring')
@@ -111,7 +111,11 @@ class MachO:
                 OCClass.binary_class_set[cd.class_addr] = cd
 
             OCClass.classes_indexed_by_ref[cd.classref_addr] = cd
-            OCClass.classes_indexed_by_name[cd.name] = cd
+            if cd.name not in OCClass.classes_indexed_by_name:
+                OCClass.classes_indexed_by_name[cd.name] = [cd, ]
+            else:
+                OCClass.classes_indexed_by_name[cd.name].append(cd)
+
             meths = dict(cd.instance_meths.items() + cd.class_meths.items())
             for meth in meths:
                 meth_name = meths[meth]

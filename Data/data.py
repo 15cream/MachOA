@@ -154,8 +154,8 @@ class Receiver:
             if self.data.is_instance:
                 self.type = '-'  # BVV, string
             else:
-                if self.expr in OCClass.classes_indexed_by_name:
-                    self.oc_class = OCClass.classes_indexed_by_name[self.expr]
+                # self.oc_class = OCClass.classes_indexed_by_name[self.expr]
+                self.oc_class = OCClass.retrieve_by_classname(self.expr, is_superclass=False)
                 self.type = '+'  # BVV, class method invoke
         else:
             self.type_infer()  # BVS, need type infer
@@ -175,9 +175,7 @@ class Receiver:
             if data_type == 'unknown':
                 # self.type_infer_by_selector()
                 pass
-
-            if type_to_str(data_type) in OCClass.classes_indexed_by_name:
-                self.oc_class = OCClass.classes_indexed_by_name[type_to_str(data_type)]
+            self.oc_class = OCClass.retrieve_by_classname(type_to_str(data_type), is_superclass=False)
         else:
             self.expr = expr
 
@@ -185,7 +183,7 @@ class Receiver:
         if self.selector.expr in OCFunction.meth_indexed_by_sel:
             for f in OCFunction.meth_indexed_by_sel[self.selector.expr]:
                 if f.receiver in self.expr:
-                    self.oc_class = OCClass.classes_indexed_by_name[f.receiver]
+                    self.oc_class = OCClass.retrieve_by_classname(f.receiver)
                     return
         # There is a big problem here.
         # We may make a wrong inference.
