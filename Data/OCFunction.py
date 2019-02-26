@@ -48,6 +48,8 @@ class OCFunction:
 
     @staticmethod
     def find_detailed_prototype(sel, oc_class):
+        if not oc_class:
+            return ['unknown']
         for p in oc_class.prots.keys():
             protocol = Protocol.protocol_indexed_by_name[p]
             meth_types = ['class_meths', 'inst_meths', 'opt_class_meths', 'opt_inst_meths']
@@ -60,6 +62,11 @@ class OCFunction:
         if rec and functions_match_sel:
             for f in functions_match_sel:
                 if rec == f.receiver:  # Think about superclass
+                    # check if accessor
+                    for ivar in oc_class.ivars.values():
+                        ivar.parse_accessors()
+                        if f.selector == ivar.getter:
+                            return [ivar.type, ]
                     return parser1(f.prototype)
 
         # Now, you know the receiver's instance_type(maybe 'unknown'), the selector,
