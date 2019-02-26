@@ -1,3 +1,5 @@
+#coding=utf-8
+from tools.oc_type_parser import *
 import os
 import re
 import networkx as nx
@@ -14,84 +16,130 @@ class ScenarioExtractor:
     def __init__(self, seeds=None, dir=None):
         ScenarioExtractor.task = self
         self.seeds = seeds
+        self.root_dir = dir
+
+        # -------------------------------------------------------------
+        # 以下数据皆为一棵执行树对应的数据 = ,  = 我知道该单独写一个执行数类
+
+        self.eTree = None
+        self.start_node = None
         self.matched_nodes = []
-        self.dir = dir
-        self.graph = None
-        self.graph_indexed_by_invoke_ea = dict()  # each ea may have several nodes in different traces.
-        self.node_and_his_usage = dict()  # key:node(ptr only) value: set of nodes use this node
-        self.node_and_his_dps = dict()  # key:node value: set of nodes(ptr only) this node relies on
         self.scenario_set = []
+        # 每一个地址，可能对应多个节点，因为路径敏感
+        self.ea_and_nodes = dict()
+        # 生产者与它的消费者们：键为生产者的地址，值为一个列表，其中每一项为一个消费者的信息元组
+        self.producer_and_his_consumers = dict()
+        # 消费者与其所依赖的生产者：键为消费者的节点表示，值为一个集合，集合中每一项为一个生产者信息元组
+        self.consumer_and_neededProducers = dict()
+        # 数据类型 与 出现的地址
+        self.data_and_ptrs = dict()
 
     def run(self):
-        for f in os.listdir(self.dir):
-            cfg_file = os.path.join(self.dir, f)
-            print "Now we're parsing cfg_file : {}".format(cfg_file)
+        for f in os.listdir(self.root_dir):
+            tree_file = os.path.join(self.root_dir, f)
+            print "Now We're Parsing Execution Tree : {}".format(tree_file)
             try:
-                self.parse_cfg(cfg_file)
+                self.parse_ET(tree_file)
+                for scenario in self.scenario_set:
+                    index = self.scenario_set.index(scenario)
+                    scenario.view_scenario(_name="{}_{}".format(str(index), f))
                 self.clear()
             except Exception as e:
-                print "Failed for {}".format(e)
-        print 'END HERE.'
-        for scenario in self.scenario_set:
-            index = self.scenario_set.index(scenario)
-            scenario.view_scenario(_name=str(index))
+                print "Failed For: {}".format(e)
 
     def clear(self):
-        self.graph = None
-        self.graph_indexed_by_invoke_ea = dict()
-        self.node_and_his_usage = dict()
-        self.node_and_his_dps = dict()
+        self.eTree = None
+        self.start_node = None
+        self.matched_nodes = []
+        self.scenario_set = []
+        self.ea_and_nodes = dict()
+        self.producer_and_his_consumers = dict()
+        self.consumer_and_neededProducers = dict()
+        self.data_and_ptrs = dict()
 
-    def parse_cfg(self, cfg_file):
+    def parse_ET(self, etree_file):
         """
-        Give a call-graph file (inter-procedural or intra-procedural), parse this cfg and extract scenarios.
-        Actually, because of the path sensitivity, one cfg covers several traces.
-        :param cfg_file:
+        Give a execution tree file (inter-procedural or intra-procedural), parse this tree and extract scenarios.
+        Actually, because of the path sensitivity, one tree covers several traces.
+        :param etree_file:
         :return:
         """
-        self.graph = nx.drawing.nx_agraph.read_dot(cfg_file)
-        self.matched_nodes = self.match_seed()
+        self.eTree = nx.drawing.nx_agraph.read_dot(etree_file)
 
-        for node, node_data in self.graph.nodes.items():
-            self.node_and_his_dps[node] = set()
+        # 对整个执行树进行节点解析，主要记录节点之间的依赖关系
+        # 在后续构建场景时，不用再上下遍历执行树/执行路径
+        for node, node_data in self.eTree.nodes.items():
+            if not self.start_node and node_data['des'] == 'Start':
+                self.start_node = node
+
             ea = int(node_data['addr'])
-            if ea in self.graph_indexed_by_invoke_ea:
-                self.graph_indexed_by_invoke_ea[ea].append(node)
+            if ea in self.ea_and_nodes:
+                self.ea_and_nodes[ea].append(node)
             else:
-                self.graph_indexed_by_invoke_ea[ea] = [node, ]
+                self.ea_and_nodes[ea] = [node, ]
+            self.consumer_and_neededProducers[node] = set()
 
             if 'rec' in node_data:
                 m = re.search('\((?P<data_type>.+)<(?P<instance_type>.+):(?P<ptr>.+)>\)(?P<name>.+)', node_data['rec'])
                 if m:
+                    data_type = m.group('data_type').encode('UTF-8')
+                    instance_type = m.group('instance_type').encode('UTF-8')
                     ptr = int(m.group('ptr').encode('UTF-8').strip('L'), 16)
-                    if ptr in self.node_and_his_usage:
-                        self.node_and_his_usage[ptr].append((node, 0))
-                    else:
-                        self.node_and_his_usage[ptr] = [(node, 0), ]
-                    # self.node_and_his_dps[node].add(ptr)
-                    self.node_and_his_dps[node].add((ptr, 0))
+
+                    # 当instance_type为RET时，当前调用的receiver 依赖于某次调用的返回值；
+                    # 当为PARA时，当前调用的receiver 为传入参数；
+                    # 当为IVAR时，当前调用的receiver 为ivar.
+
+                    # 当前节点不为其所依赖的节点，当出现这种情况时通常为Start节点的传入参数？
+                    if ea != ptr:
+                        # 当前节点消耗了一个producer生产的值，
+                        # 该producer的地址为ptr，消耗的数据类型为data_type, 该数据为RET/PARA/IVAR, 该数据用作当前节点的第０个寄存器
+                        self.consumer_and_neededProducers[node].add((ptr, data_type, instance_type, 0))
+
+                        # 反过来为生产者建立档案，为生产者的消费者们添上当前这笔
+                        # 信息稍微简单一些，消费者的节点表示，以及生产的数据怎样被引用（０表示作为receiver, 2以上表示作为参数）
+                        if ptr in self.producer_and_his_consumers:
+                            self.producer_and_his_consumers[ptr].append((node, data_type, instance_type, 0))
+                        else:
+                            self.producer_and_his_consumers[ptr] = [(node, data_type, instance_type, 0), ]
+
+                    # 记录出现的所有数据，以及地址，用于ADT类型seed的匹配
+                    if data_type not in self.data_and_ptrs:
+                        self.data_and_ptrs[data_type] = [ptr, ]
+                    elif ptr not in self.data_and_ptrs[data_type]:
+                        self.data_and_ptrs[data_type].append(ptr)
 
             if 'args' in node_data:
                 args = node_data['args'].split('\n')[0:-1]
                 for arg in args:
                     m = re.search('\((?P<data_type>.+)<(?P<instance_type>.+):(?P<ptr>.+)>\)(?P<name>.+)', arg)
                     if m:
+                        data_type = m.group('data_type').encode('UTF-8')
+                        instance_type = m.group('instance_type').encode('UTF-8')
                         ptr = int(m.group('ptr').encode('UTF-8').strip('L'), 16)
-                        if ptr in self.node_and_his_usage:
-                            self.node_and_his_usage[ptr].append((node, args.index(arg)+2))
-                        else:
-                            self.node_and_his_usage[ptr] = [(node, args.index(arg)+2), ]
-                        # self.node_and_his_dps[node].add(ptr)
-                        self.node_and_his_dps[node].add((ptr, args.index(arg)+2))
 
-        # parse traces >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.
-        start_node = None
-        for node in self.graph.nodes:
-            if self.graph.nodes[node]['des'] == 'Start':
-                start_node = node
-                break
-        if start_node:
-            Trace.alive_traces.append(Trace(self.graph, start=start_node))
+                        if ea != ptr:
+                            # 当前节点消耗了一个producer生产的值，
+                            # 该producer的地址为ptr，消耗的数据类型为data_type, 该数据为RET/PARA/IVAR, 该数据用作当前节点的第０个寄存器
+                            self.consumer_and_neededProducers[node].add((ptr, data_type, instance_type, args.index(arg) + 2))
+
+                            # ptr处instance_type类型的数据data_type，被作为node的某参数使用
+                            if ptr in self.producer_and_his_consumers:
+                                self.producer_and_his_consumers[ptr].append((node, data_type, instance_type, args.index(arg) + 2), )
+                            else:
+                                self.producer_and_his_consumers[ptr] = [(node, data_type, instance_type, args.index(arg) + 2), ]
+
+                        if data_type not in self.data_and_ptrs:
+                            self.data_and_ptrs[data_type] = [ptr, ]
+                        elif ptr not in self.data_and_ptrs[data_type]:
+                            self.data_and_ptrs[data_type].append(ptr)
+
+        # ---------------------------------------------------------------------
+        # 遍历执行树，获得所有路径，对每一条路径提取场景
+        self.matched_nodes = self.match_seed()
+        if self.start_node:
+            init_trace = Trace(self.eTree, start=self.start_node)
+            Trace.alive_traces.append(init_trace)
             while Trace.alive_traces:
                 round = list(Trace.alive_traces)
                 for trace in round:
@@ -99,62 +147,43 @@ class ScenarioExtractor:
                         trace.step()
             for trace in Trace.deadend_traces:
                 self.parse_trace(trace)
-            print 'End here.'
         else:
             print "Cannot find the start node."
 
     def parse_trace(self, trace):
-        # initial scenarios for each node matched seed.
+        # initial a scenario instance for each node matched seed.
+        used_seed = []
         for seed in self.matched_nodes:
-            if seed in trace.route:
+            if seed in trace.route and seed not in used_seed:
                 scenario = Scenario(seed, trace)
                 scenario.construct()
                 scenario.view_scenario()
                 self.scenario_set.append(scenario)
 
+                used_seed.append(seed)
+                for seed_node in self.matched_nodes:
+                    if seed_node in scenario.producers or seed_node in scenario.consumers:
+                        used_seed.append(seed_node)
+
     def match_seed(self):
         # TODO The algorithm is too rough ...
         matched_nodes = []
         for seed in self.seeds:
-            for node in self.graph.nodes:
-                if 'sel' in self.graph.nodes[node] and self.graph.nodes[node]['sel'] == seed.selector:
-                    m = re.search('\((?P<data_type>.+)<(?P<instance_type>.+):(?P<ptr>.+)>\)(?P<name>.+)',
-                                  self.graph.nodes[node]['rec'])
-                    # if m and seed.receiver == m.group('rec'):
-                    matched_nodes.append(node)
+            if str_to_type(seed.data_type) in self.data_and_ptrs:  # ADT
+                for ptr in self.data_and_ptrs[str_to_type(seed.data_type)]:
+                    if ptr in self.ea_and_nodes:
+                        matched_nodes.extend(self.ea_and_nodes[ptr])
+
+            else:  # API
+                for node in self.eTree.nodes:
+                    if 'sel' in self.eTree.nodes[node] and self.eTree.nodes[node]['sel'] == seed.selector:
+                        m = re.search('\((?P<data_type>.+)<(?P<instance_type>.+):(?P<ptr>.+)>\)(?P<name>.+)',
+                                      self.eTree.nodes[node]['rec'])
+                        if m and seed.receiver == m.group('data_type').encode('UTF-8'):
+                            matched_nodes.append(node)
+                        elif self.eTree.nodes[node]['rec'] == seed.receiver:
+                            matched_nodes.append(node)
         return matched_nodes
-
-    def pprint(self):
-        for f in os.listdir(self.dir):
-            trace_file = os.path.join(self.dir, f)
-            print trace_file
-            try:
-                g = nx.drawing.nx_agraph.read_dot(trace_file)
-                for node in g.nodes:
-                    print '-' * 80
-                    ea = g.nodes[node]['addr']
-                    des = g.nodes[node]['des']
-                    rec = g.nodes[node]['rec']
-                    args = g.nodes[node]['args'] if 'args' in g.nodes[node] else None
-
-                    print hex(int(ea, 10)), des
-                    print 'Receiver: {} \nArguments:'.format(rec)
-                    if args:
-                        print args
-            except Exception as e:
-                pass
-
-    def pprint_node(self, node):
-        print '-' * 80
-        ea = self.graph.nodes[node]['addr']
-        des = self.graph.nodes[node]['des']
-        rec = self.graph.nodes[node]['rec']
-        args = self.graph.nodes[node]['args'] if 'args' in self.graph.nodes[node] else None
-
-        print hex(int(ea, 10)), des
-        print 'Receiver: {} \nArguments:'.format(rec)
-        if args:
-            print args
 
 
 class Trace:
@@ -162,8 +191,8 @@ class Trace:
     alive_traces = []
     deadend_traces = []
 
-    def __init__(self, graph, start=None, pre_existing=None):
-        self.graph = graph
+    def __init__(self, tree, start=None, pre_existing=None):
+        self.tree = tree
         if start:
             self.route = [start, ]
         else:
@@ -176,16 +205,17 @@ class Trace:
         Trace.deadend_traces.append(self)
 
     def step(self):
-        out_edges = self.graph.out_edges(self.route[-1])
+        out_edges = self.tree.out_edges(self.route[-1])
         if len(out_edges) == 0:
             print "Trace terminated at {}.".format(self.route[-1])
             self.terminate()
         elif len(out_edges) == 1:
             self.route.append(list(out_edges)[0][-1])
-        elif len(out_edges) == 2:
-            forked_trace = Trace(self.graph, pre_existing=copy.deepcopy(self.route))
-            forked_trace.route.append(list(out_edges)[1][-1])
-            Trace.alive_traces.append(forked_trace)
+        elif len(out_edges) > 1:
+            for edge in list(out_edges)[1:]:
+                forked_trace = Trace(self.tree, pre_existing=copy.deepcopy(self.route))
+                forked_trace.route.append(edge[-1])
+                Trace.alive_traces.append(forked_trace)
             self.route.append(list(out_edges)[0][-1])
         else:
             print '??? WHY ???'
@@ -193,60 +223,101 @@ class Trace:
 
 class Scenario:
     def __init__(self, initial_node, trace):
-        self.dpg = nx.DiGraph()
         self.extractor = ScenarioExtractor.task
         self.trace = trace
-        self.cfg = trace.graph
+        self.etree = trace.tree
         self.seed_node = initial_node
-        self.usages = set([initial_node])
-        self.dps = set([])
+        self.consumers = set([initial_node])
+        self.producers = set([])
+        # 场景本质上是基于数据依赖关联的DAG
+        self.dpg = nx.DiGraph()
+        # 从原路径中提取出场景中的节点，按原排序构成子序列
+        self.sub_trace = dict()
 
-    def add_node(self, ori_node):
-        node_dict = self.cfg.nodes[ori_node]
-        node = "{}:{}".format(node_dict['addr'], node_dict['des'])
+    def construct(self):
+        # self.add_node(self.seed_node)
+        # 根据seed，向下查找使用，并记录所有使用节点；关系可传递
+        self.find_usage(self.seed_node)
+        # 对已经存在场景中的节点，向上查找依赖；关系可传递（但这些非seed节点，暂时不用查找它们的使用）
+        for node in self.consumers:
+            self.find_dependency(node)
+
+    def find_usage(self, node):
+
+        node_ea = int(self.etree.nodes[node]['addr'])
+        # 查看该节点是否有被作为producer的记录
+        if node_ea in self.extractor.producer_and_his_consumers:
+            self.producers.add(node)
+            for (consumer, data, instance_type, usage_type) in self.extractor.producer_and_his_consumers[node_ea]:
+                # 当usage_type为０时，表示该数据曾被当做其他调用的接受者
+                # 当usage_type为２及以上时，表示该数据曾被当做其他调用的参数
+                # 其余两项表示：producer产生的instance_type类型的data被该consumer使用
+                if consumer in self.trace.route:
+                    self.consumers.add(consumer)
+                    # 由于生产者除了是方法调用外
+                    if instance_type != 'RET':
+                        producer_node = self.add_node(node, data=data)
+                    else:
+                        producer_node = self.add_node(node)
+                    consumer_node = self.add_node(consumer)
+                    # 这里边的label用于表示上一个调用节点的返回值/上一个数据节点在下一个节点中是如何被使用的
+                    self.dpg.add_edge(producer_node, consumer_node, label=usage_type)
+                    self.find_usage(consumer)
+
+    def find_dependency(self, consumer):
+        for (producer_ea, data, instance_type, dp_type) in self.extractor.consumer_and_neededProducers[consumer]:
+            # TODO producer may come from ivar segment
+            if producer_ea in self.extractor.ea_and_nodes:
+                for producer in self.extractor.ea_and_nodes[producer_ea]:
+                    if producer in self.trace.route:
+                        if producer in self.producers:
+                            continue
+                        self.producers.add(producer)
+                        if instance_type != 'RET':
+                            producer_node = self.add_node(producer, data=data)
+                        else:
+                            producer_node = self.add_node(producer)
+                        consumer_node = self.add_node(consumer)
+                        self.dpg.add_edge(producer_node, consumer_node, label=dp_type)
+                        self.find_dependency(producer)
+
+    def standardization(self, node_dict, data=None):
+        """
+        If the node is 'Start', the node should be data other than invoke.
+        :param data:
+        :param node_dict:
+        :param dp_type: if 'Start', the exact data position.
+        :return:
+        """
+        if node_dict['des'] == u'Start':
+            node = node_dict['context_name']
+        else:
+            node = node_dict['des']
+        if data:
+            node = data
+        return node
+
+    def add_node(self, ori_node, data=None):
+        """
+        Add one node to the scenario's dpg.
+        :param data:
+        :param ori_node: the original representation in execution tree.
+        :return: new representation.
+        """
+        node_dict = self.etree.nodes[ori_node]
+        node = self.standardization(node_dict, data=data)
         if node not in self.dpg.nodes:
-            self.dpg.add_node(node, des=node_dict['des'])
+            self.dpg.add_node(node, des=node_dict)
+            self.sub_trace[self.trace.route.index(ori_node)] = node
         else:
             pass
         return node
 
-    def construct(self):
-        self.add_node(self.seed_node)
-        self.find_usage(self.seed_node)  # find nodes used the seed.
-        for node in self.usages:
-            self.find_dependency(node)
-
-    def find_usage(self, producer):
-        graph = self.trace.graph
-        node_ea = int(graph.nodes[producer]['addr'])
-        if node_ea in self.extractor.node_and_his_usage:
-            self.dps.add(producer)
-            for (usage, usage_type) in self.extractor.node_and_his_usage[node_ea]:
-                # if used as receiver, find the receiver's usage;
-                # if used as parameter, find the receiver's dependency. Also usage?
-                if usage in self.trace.route:
-                    self.usages.add(usage)
-                    producer_node = self.add_node(producer)
-                    consumer_node = self.add_node(usage)
-                    self.dpg.add_edge(producer_node, consumer_node, label=usage_type)
-                    self.find_usage(usage)
-
-    def find_dependency(self, consumer):
-        for (producer_ea, dp_type) in self.extractor.node_and_his_dps[consumer]:
-            for dp_node in self.extractor.graph_indexed_by_invoke_ea[producer_ea]:
-                if dp_node in self.trace.route:
-                    if dp_node in self.dps:
-                        continue
-                    self.dps.add(dp_node)
-                    producer_node = self.add_node(dp_node)
-                    consumer_node = self.add_node(consumer)
-                    self.dpg.add_edge(producer_node, consumer_node, label=dp_type)
-                    self.find_dependency(dp_node)
-
     def view_scenario(self, _name=None):
-        sub_graph = nx.subgraph(self.trace.graph, self.usages | self.dps)
+        # sub_graph = nx.subgraph(self.trace.graph, self.consumers | self.producers)
         name = _name if _name else 'tmp'
-        fp = '../results/DoubanRadio_arm64/scenarios/{}.dot'.format(name)
+
+        fp = '../../results/ScenarioTest/ToGoProject/scenarios/{}.dot'.format(name)
         try:
             nx.drawing.nx_agraph.write_dot(self.dpg, fp)
         except Exception as e:
@@ -261,10 +332,13 @@ class Seed:
 
 
 # extractor = ScenarioExtractor(seeds=[Seed(sel='identifierForVendor', rec='UIDevice')],
-#                               dir='../results/CsdnPlus_arm64/uidevice2')
+#                               root_dir='../results/CsdnPlus_arm64/uidevice2')
 # extractor = ScenarioExtractor(seeds=[Seed(sel='generalPasteboard', rec='UIPasteboard')],
-#                               dir='../results/CsdnPlus_arm64/')
-extractor = ScenarioExtractor(seeds=[Seed(rec='UIDevice', sel='identifierForVendor')],
-                              dir='../results/DoubanRadio_arm64/')
-# extractor.pprint()
+#                               root_dir='../results/CsdnPlus_arm64/')
+# extractor = ScenarioExtractor(seeds=[Seed(rec='UIDevice', sel='identifierForVendor')],
+#                               root_dir='../results/DoubanRadio_arm64/')
+# extractor = ScenarioExtractor(seeds=[Seed(sel='alloc', rec='CLLocationManager')],
+#                               root_dir='../results/ScenarioTest/ToGoProject/')
+extractor = ScenarioExtractor(seeds=[Seed(dt='CLLocationManager')],
+                              dir='../../results/ScenarioTest/ToGoProject/')
 extractor.run()
