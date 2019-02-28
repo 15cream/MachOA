@@ -17,6 +17,7 @@ class ScenarioExtractor:
         ScenarioExtractor.task = self
         self.seeds = seeds
         self.root_dir = dir
+        self.scenarios_for_mining = []
 
         # -------------------------------------------------------------
         # 以下数据皆为一棵执行树对应的数据 = ,  = 我知道该单独写一个执行数类
@@ -37,7 +38,7 @@ class ScenarioExtractor:
     def run(self):
         for f in os.listdir(self.root_dir):
             tree_file = os.path.join(self.root_dir, f)
-            print "Now We're Parsing Execution Tree : {}".format(tree_file)
+            # print "Now We're Parsing Execution Tree : {}".format(tree_file)
             try:
                 self.parse_ET(tree_file)
                 for scenario in self.scenario_set:
@@ -48,6 +49,7 @@ class ScenarioExtractor:
                 print "Failed For: {}".format(e)
 
     def clear(self):
+        self.scenarios_for_mining.extend(self.scenario_set)
         self.eTree = None
         self.start_node = None
         self.matched_nodes = []
@@ -169,17 +171,21 @@ class ScenarioExtractor:
         # TODO The algorithm is too rough ...
         matched_nodes = []
         for seed in self.seeds:
-            if str_to_type(seed.data_type) in self.data_and_ptrs:  # ADT
-                for ptr in self.data_and_ptrs[str_to_type(seed.data_type)]:
-                    if ptr in self.ea_and_nodes:
-                        matched_nodes.extend(self.ea_and_nodes[ptr])
+            if seed.data_type:
+                if str_to_type(seed.data_type) in self.data_and_ptrs:  # ADT
+                    for ptr in self.data_and_ptrs[str_to_type(seed.data_type)]:
+                        if ptr in self.ea_and_nodes:
+                            matched_nodes.extend(self.ea_and_nodes[ptr])
+                for node in self.eTree.nodes:
+                    if 'rec' in self.eTree.nodes[node] and self.eTree.nodes[node]['rec'] == seed.data_type:
+                        matched_nodes.append(node)
 
             else:  # API
                 for node in self.eTree.nodes:
                     if 'sel' in self.eTree.nodes[node] and self.eTree.nodes[node]['sel'] == seed.selector:
                         m = re.search('\((?P<data_type>.+)<(?P<instance_type>.+):(?P<ptr>.+)>\)(?P<name>.+)',
                                       self.eTree.nodes[node]['rec'])
-                        if m and seed.receiver == m.group('data_type').encode('UTF-8'):
+                        if m and str_to_type(seed.receiver) == m.group('data_type').encode('UTF-8'):
                             matched_nodes.append(node)
                         elif self.eTree.nodes[node]['rec'] == seed.receiver:
                             matched_nodes.append(node)
@@ -207,7 +213,7 @@ class Trace:
     def step(self):
         out_edges = self.tree.out_edges(self.route[-1])
         if len(out_edges) == 0:
-            print "Trace terminated at {}.".format(self.route[-1])
+            # print "Trace terminated at {}.".format(self.route[-1])
             self.terminate()
         elif len(out_edges) == 1:
             self.route.append(list(out_edges)[0][-1])
@@ -289,13 +295,14 @@ class Scenario:
         :param dp_type: if 'Start', the exact data position.
         :return:
         """
-        if node_dict['des'] == u'Start':
-            node = node_dict['context_name']
-        else:
-            node = node_dict['des']
         if data:
-            node = data
-        return node
+            return type_to_str(data)
+        if node_dict['des'] == u'Start':
+            return node_dict['context_name']
+        if '#' in node_dict['des']:
+           return re.sub(r'#[0-9]+', '', node_dict['des'])
+
+        return node_dict['des']
 
     def add_node(self, ori_node, data=None):
         """
@@ -316,8 +323,11 @@ class Scenario:
     def view_scenario(self, _name=None):
         # sub_graph = nx.subgraph(self.trace.graph, self.consumers | self.producers)
         name = _name if _name else 'tmp'
+        # for index, des in sorted(self.sub_trace.items(), key=lambda item: item[0]):
+        #     print index, des
+        # print '-' * 80
 
-        fp = '../../results/ScenarioTest/ToGoProject/scenarios/{}.dot'.format(name)
+        fp = '../../results/ScenarioTest/total_scenarios/{}.dot'.format(name)
         try:
             nx.drawing.nx_agraph.write_dot(self.dpg, fp)
         except Exception as e:
@@ -339,6 +349,4 @@ class Seed:
 #                               root_dir='../results/DoubanRadio_arm64/')
 # extractor = ScenarioExtractor(seeds=[Seed(sel='alloc', rec='CLLocationManager')],
 #                               root_dir='../results/ScenarioTest/ToGoProject/')
-extractor = ScenarioExtractor(seeds=[Seed(dt='CLLocationManager')],
-                              dir='../../results/ScenarioTest/ToGoProject/')
-extractor.run()
+

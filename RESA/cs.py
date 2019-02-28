@@ -10,7 +10,7 @@ class CallString:
                     'sampleMethod':
                         {
                             'dot': 'dot_file_path',
-                            'graph': 'this could be none because of too mush mem needed.',
+                            'eTree': 'this could be none because of too mush mem needed.',
                             'invoke': ''
                         }
                 }
