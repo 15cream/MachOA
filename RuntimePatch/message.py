@@ -5,7 +5,6 @@ from Data.data import Data, SEL, Receiver
 from BinaryPatch.Utils import *
 from RuntimePatch.Utils import expr_args
 from SecCheck.SinkAnalyzer import SinkAnalyzer
-from SecCheck.sensitiveData import SensitiveData
 from callbacks.delegate import Delegate
 
 
@@ -74,9 +73,9 @@ class Message:
 
     def send2(self):
         """
-        Used for sensitive data analysis.
+        Used for sensitive database analysis.
         1. dynamic_bind
-        2. check if sensitive data used as parameter, True: go into the function. False: record and go on.
+        2. check if sensitive database used as parameter, True: go into the function. False: record and go on.
         :return:
         """
         self.dynamic_bind()
@@ -88,17 +87,21 @@ class Message:
 
         if SDA:
             # Sink check.
-            sink_analyzer = SinkAnalyzer(self, SensitiveData.ssData)
-            if sink_analyzer.receiver_tainted() and 'Marked_' not in self.receiver.expr:
-                self.receiver.data.mark()
+
+            sink_analyzer = SinkAnalyzer.singleton
+            if sink_analyzer.sensitive_data_returned(self) and 'Marked_' not in ret_type:
                 ret_type = 'Marked_{}'.format(ret_type)
-            if sink_analyzer.sensitive_data_as_ret() and 'Marked_' not in ret_type:
+
+            # field-insensitive
+            if sink_analyzer.sensitive_data_as_receiver(self) and 'Marked_' not in ret_type:
                 ret_type = 'Marked_{}'.format(ret_type)
-            if sink_analyzer.sensitive_data_as_receiver() and 'Marked_' not in ret_type:
-                ret_type = 'Marked_{}'.format(ret_type)
-            if sink_analyzer.sensitive_data_as_parameter():
-                print "* Sensitive data {} used as parameter. *  {} {}".format(
+
+            if sink_analyzer.sensitive_data_as_parameter(self):
+                print "* Sensitive database {} used as parameter. *  {} {}".format(
                     expr_args(self.selector.args), hex(self.invoke_ea), self.description)
+                if sink_analyzer.receiver_tainted(self) and 'Marked_' not in self.receiver.expr:
+                    self.receiver.data.mark()
+                    ret_type = 'Marked_{}'.format(ret_type)
 
         if IPC:
             if not self.receiver.oc_class:
@@ -117,7 +120,9 @@ class Message:
         # Store the ret_value if necessary
         x0 = FORMAT_INSTANCE.format(data_type=ret_type, instance_type='RET', ptr=hex(self.invoke_ea),
                                     name="[{} {}]".format(self.receiver.expr, self.selector.expr))
+
         self.dispatch_state.regs.x0 = self.dispatch_state.solver.BVS(x0, 64)
+        self.check_particularity()
         self.node = MachO.pd.task.cg.insert_invoke(self.invoke_ea, self.description, self.dispatch_state,
                                                    receiver=self.receiver.data.expr,
                                                    selector=self.selector.expr,
@@ -130,34 +135,7 @@ class Message:
             tainted = False
         return tainted
 
-
-
-        # # origin
-        # def _resolve_in_context(self):
-        # self.send()
-        # self.record()
-        #     receiver = resolve_receiver(self.cg, self.dispatch_state, self.node)
-        #     print hex(self.g.nodes[self.node]['addr']), self.g.nodes[self.node]['dp']
-        #     if receiver in OCClass.classes_indexed_by_name:
-        #         self.description = "{}[{} {}]".format(self.methtype, receiver, self.selector)
-        #
-        #     delegate = Delegate(self)
-        #     if delegate.isDelegateAccessor():
-        #         print "Find delegate"
-        #
-        #     imp = retrieve_f(name=self.description)['imp']
-        #     if imp:
-        #         return imp
-        #     else:
-        #         ret = claripy.BVS("RetFrom_" + hex(self.invoke_ea), 64, uninitialized=True)
-        #         # ret.__setattr__('tainted', tainted)
-        #         return ret
-
-
-# for i in range(0, 32):
-# reg = self.dispatch_state.regs.get('x{}'.format(i))
-# if 'msgQueue' in reg.ast.__dict__:
-# print 'x{}'.format(i)
-#         for msg in reg.ast.__dict__['msgQueue']:
-#             print hex(msg.invoke_ea), msg.description
-
+    def check_particularity(self):
+        if self.selector.expr == 'getCString:maxLength:encoding:':
+            self.dispatch_state.memory.store(self.dispatch_state.regs.x2, self.dispatch_state.regs.x0)
+            print ''
