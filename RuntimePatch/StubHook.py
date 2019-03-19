@@ -1,7 +1,10 @@
 __author__ = 'gjy'
+import re
 from angr import SimProcedure
 
 from Data.CONSTANTS import *
+from Data.data import *
+from Data.OCivar import *
 from RuntimePatch.Utils import *
 from RuntimePatch.message import Message
 
@@ -17,14 +20,32 @@ class StubHelper(SimProcedure):
 
         if lib == '/usr/lib/libobjc.A.dylib':
             if symbol.name == "_objc_msgSend":
-                msg = Message(dispatch_state, simprocedure_handler=self)
+                msg = Message(dispatch_state, invoke_ea, simprocedure_handler=self)
                 msg.send2()
+                print hex(invoke_ea), msg.description
 
             elif symbol.name == "_objc_msgSendSuper2":
-                msg = Message(dispatch_state, simprocedure_handler=self, send_super=True)
+                msg = Message(dispatch_state, invoke_ea, simprocedure_handler=self, send_super=True)
                 msg.send2()
+                print hex(invoke_ea), msg.description
+
+            elif symbol.name in setProperty:
+                print 'Here'
+                m = re.search('<BV\d+ \(<ea:0x(?P<ptr>[0-9a-f]+)L>\)IVAR_OFFSET.+', str(dispatch_state.regs.x3.args[0]))
+                if m:
+                    ivar = IVar.ivars(int(m.group('ptr'), 16))
+                    ivar.add_record(AccessedRecord(invoke_ea, symbol.name, value=dispatch_state.regs.x2))
+
+            elif symbol.name in getProperty:
+                print 'Here'
+
         else:
-            MachO.pd.task.cg.insert_invoke(invoke_ea, symbol, dispatch_state, args=resolve_args(dispatch, symbol=symbol))
+            args = []
+            for i in range(0, 6):
+                reg_name = 'x{}'.format(i)
+                reg = Data(self.state, reg=dispatch_state.regs.get(reg_name))
+                args.append(reg)
+            MachO.pd.task.cg.insert_invoke(invoke_ea, symbol, dispatch_state, args=args)
             return dispatch_state.registers.load('x0')
 
     def ret_from_msgSend(self):
@@ -64,5 +85,37 @@ class StubHelper(SimProcedure):
             return claripy.BVS("RetFrom_" + hex(addr), 64, uninitialized=True)
 
 
+def analyze_lazy_bind_invoke(dispatch_state, ptr):
+    invoke_ea = dispatch_state.history.addr + dispatch_state.history.recent_instruction_count * 4
+    symbol = MachO.pd.stubs[ptr]
+    lib = symbol.library_name
 
+    if lib == '/usr/lib/libobjc.A.dylib':
+        if symbol.name == "_objc_msgSend":
+            msg = Message(dispatch_state, invoke_ea)
+            msg.send2()
+            print hex(invoke_ea), msg.description
+
+        elif symbol.name == "_objc_msgSendSuper2":
+            msg = Message(dispatch_state, invoke_ea, send_super=True)
+            msg.send2()
+            print hex(invoke_ea), msg.description
+
+        elif symbol.name in setProperty:
+            print 'Here'
+            m = re.search('<BV\d+ \(<ea:0x(?P<ptr>[0-9a-f]+)L>\)IVAR_OFFSET.+', str(dispatch_state.regs.x3.args[0]))
+            if m:
+                ivar = IVar.ivars(int(m.group('ptr'), 16))
+                ivar.add_record(AccessedRecord(invoke_ea, symbol.name, value=dispatch_state.regs.x2))
+
+        elif symbol.name in getProperty:
+            print 'Here'
+
+    else:
+        args = []
+        for i in range(0, 6):
+            reg_name = 'x{}'.format(i)
+            reg = Data(dispatch_state, reg=dispatch_state.regs.get(reg_name))
+            args.append(reg)
+        MachO.pd.task.cg.insert_invoke(invoke_ea, symbol, dispatch_state, args=args)
 
