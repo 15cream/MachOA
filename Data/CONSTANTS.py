@@ -3,6 +3,7 @@ import angr
 import pickle
 
 current_ctx = None
+BLOCK_LIMIT = 205
 
 LAZY_BIND_F = 0
 MSGSEND = 1
@@ -11,7 +12,7 @@ INTERINVOKE = 1
 # 执行树中的调用节点格式
 INVOKEFS = "Context:{} {}\nDepth:{}\nInvoke:{} {}\n{}"
 # 执行树中的返回节点格式
-RETFS = "Return {} at {}"
+RETFS = "Return {} at {}\n(random:{})"
 
 # about instance variable
 IVAR_FORMAT = "{class_name}{var_name}{var_typr}"
@@ -65,7 +66,7 @@ angr.types.define_struct('struct prot{long isa; char* name; long prots; long ins
 
 
 instance_types = {
-    'PARA': 'passed_in_as_parameter',
+    'GEN_PARA': 'passed_in_as_parameter',
     'REC': 'as_receiver',
     'RET': 'as_ret_value',
     'IVAR': 'ret_as_ivar'
@@ -83,6 +84,7 @@ REC_SEL_RET = {
     (None, 'alloc'): None,
     (None, 'sharedInstance'): None,
     (None, 'init'): None,
+    (None, 'class'): None,
     (None, 'UUIDString'): 'UUIDString',
     ('UIDevice', 'currentDevice'): 'UIDevice',
     ('UIScreen', 'mainScreen'): 'UIScreen',

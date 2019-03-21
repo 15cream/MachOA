@@ -23,6 +23,8 @@ class Data(object):
 
         if type(self.reg) is not NoneType:
             self.resolve_reg()
+        # if type(self.ea) is not NoneType:
+        #     self.resolve_addr(self.ea)
 
     def resolve_reg(self):
         """
@@ -39,20 +41,20 @@ class Data(object):
 
         if op == 'BVV':
             self.concrete = True
-            expr = self.resolve_addr(state, args[0])
+            expr = self.resolve_addr(args[0])
         elif op == 'BVS':
             expr = '_'.join(args[0].split('_')[0:-2])
         else:  # expression
             expr = str(reg)
         self.expr = expr
 
-    def resolve_addr(self, state, addr):
+    def resolve_addr(self, addr):
         """
         According the address, find the segment and data_type ,dref the string expr.
-        :param state:
         :param addr:
         :return:
         """
+        state = self.state
         data_type = None
         for seg_name, seg in MachO.pd.segdata.items():
             if seg and addr in range(seg.min_addr, seg.max_addr):
@@ -75,6 +77,8 @@ class Data(object):
 
     def mark(self):
         expr = self.expr
+        if 'Marked_' in expr:
+            return
         m = re.search('\((?P<data_type>.+)<(?P<instance_type>.+):(?P<ptr>.+)>\)(?P<name>.+)', expr)
         if m:
             data_type = m.group('data_type')

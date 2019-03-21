@@ -2,13 +2,13 @@ __author__ = 'gjy'
 
 import os
 import pickle
+import claripy
 from types import *
 
-from BinaryPatch.Utils import *
 from OCClass import OCClass
-from OCivar import IVar
 from OCFunction import OCFunction
 from OCProtocol import Protocol
+from Data.CONSTANTS import *
 
 
 class MachO:
@@ -190,7 +190,30 @@ class MachO:
         input.close()
 
 
+class BSS:
 
+    bss_data = dict()
 
+    @staticmethod
+    def get(ptr):
+        if ptr not in BSS.bss_data:
+            BSS.bss_data[ptr] = BSS(ptr)
+        return BSS.bss_data[ptr]
+
+    def __init__(self, ptr):
+        self.ptr = ptr
+        self.standard_value = FORMAT_BSS_DATA.format(ptr=hex(ptr))
+        self.current_value = None
+        self.runtime_values = []
+
+    def store(self, value):
+        self.current_value = value
+        self.runtime_values.append(value)
+
+    def load(self, length):
+        if type(self.current_value) != NoneType:
+            return self.current_value
+        else:
+            return claripy.BVS(self.standard_value, length, uninitialized=True)
 
 

@@ -8,7 +8,7 @@ class Protocol:
 
     def __init__(self, ea):
         self.ea = ea  # in protolist
-        self.data_ea = None  # __objc2_prot data in __data
+        self.data_ea = None  # __objc2_prot database in __data
         self.name = None
         self.protos = None
         self.inst_meths = dict()

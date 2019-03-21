@@ -50,6 +50,16 @@ class OCFunction:
     def find_detailed_prototype(sel, oc_class):
         if not oc_class:
             return ['unknown']
+
+        # 预定义的规则
+        for (_rec, _sel), _ret in REC_SEL_RET.items():
+            if sel == _sel:
+                if not _rec:  # None, return the receiver class
+                    return ['@"{}"'.format(oc_class.name)]
+                else:
+                    return ['@"{}"'.format(_ret)]
+
+        # 检查该类实现的协议，看当前方法是否为协议中定义的方法，如是，则表明存在方法原型
         for p in oc_class.prots.keys():
             protocol = Protocol.protocol_indexed_by_name[p]
             meth_types = ['class_meths', 'inst_meths', 'opt_class_meths', 'opt_inst_meths']
@@ -57,26 +67,19 @@ class OCFunction:
                 if sel in protocol.__dict__[mt]:
                     return parser1(protocol.__dict__[mt][sel])
 
+        # 根据selector查找可能的receiver，然后与当前方法的receiver做对比，如匹配则能找到方法原型，虽然不完整；
+        # 注意一个福利，如果得知当前方法是getter的话，那么可以得知获得的属性类型，即返回值。
         functions_match_sel = OCFunction.meth_indexed_by_sel[sel] if sel in OCFunction.meth_indexed_by_sel else None
         rec = oc_class.name
         if rec and functions_match_sel:
             for f in functions_match_sel:
-                if rec == f.receiver:  # Think about superclass
+                if rec == f.receiver:  # Think about the superclass
                     # check if accessor
                     for ivar in oc_class.ivars.values():
                         ivar.parse_accessors()
                         if f.selector == ivar.getter:
                             return [ivar.type, ]
                     return parser1(f.prototype)
-
-        # Now, you know the receiver's instance_type(maybe 'unknown'), the selector,
-        # infer the prototype.
-        for (_rec, _sel), _ret in REC_SEL_RET.items():
-            if sel == _sel:
-                if not _rec:  # None, return the receiver class
-                    return ['@"{}"'.format(oc_class.name)]
-                else:
-                    return ['@"{}"'.format(_ret)]
 
         return ['unknown']
 
@@ -89,29 +92,37 @@ class OCFunction:
         :return:
         """
         if sel and sel.expr in OCFunction.meth_indexed_by_sel:
-            if rec:
-                if send_super:
-                    super_classes = []
-                    classes_imp_sel = dict()
+            selector = sel.expr
+        elif sel.expr in performSelectors:
+            selector = sel.args[0].expr
+        else:
+            return None
 
-                    superclass_addr = rec.superclass_addr
-                    while superclass_addr:
-                        if superclass_addr not in rec.binary_class_set:
-                            break  # TODO Check the reason.
-                        super_classes.append(rec.binary_class_set[superclass_addr].name)
-                        superclass_addr = rec.binary_class_set[superclass_addr].superclass_addr
-                    for f in OCFunction.meth_indexed_by_sel[sel.expr]:
-                        classes_imp_sel[f.receiver] = f
-                    for c in super_classes:
-                        if c in classes_imp_sel:
-                            return classes_imp_sel[c].imp
-                else:
-                    for f in OCFunction.meth_indexed_by_sel[sel.expr]:
-                        if rec and f.receiver == rec.name:  # should consider superclass ? category?
-                            return f.imp
+        classes_imp_sel = {}
+        for f in OCFunction.meth_indexed_by_sel[selector]:
+            classes_imp_sel[f.receiver] = f
+
+        if rec:
+            if send_super:
+                classes_imp_sel = dict()
+
+                superclass_addr = rec.superclass_addr
+                while superclass_addr:
+                    if superclass_addr not in rec.binary_class_set:
+                        break  # TODO Check the reason.
+                    _class = rec.binary_class_set[superclass_addr]
+                    if _class.name in classes_imp_sel:
+                        return classes_imp_sel[_class.name].imp
+                    superclass_addr = _class.superclass_addr
             else:
-                if len(OCFunction.meth_indexed_by_sel[sel.expr]) == 1:
-                    return OCFunction.meth_indexed_by_sel[sel.expr][0].imp
+                for f in OCFunction.meth_indexed_by_sel[selector]:
+                    if rec and f.receiver == rec.name:  # should consider superclass ? category?
+                        return f.imp
+        else:
+            # 这里是不合理的其实，当receiver的类型未知时，selector也可能是导入的类的selector。
+            if len(OCFunction.meth_indexed_by_sel[selector]) == 1:
+                return OCFunction.meth_indexed_by_sel[selector][0].imp
+
         return None
 
 
