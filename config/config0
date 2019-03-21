@@ -1,7 +1,6 @@
 [PATH]
-binary = ../samples/
+binary = ../../samples/
 dds = ../dds/
 xmls = ../xmls/
 dbs = ../dbs/
-results = ../results/
-
+results = ../../results/Privacy/

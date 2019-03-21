@@ -27,7 +27,7 @@ class SensitiveData:
             self.receiver = f.receiver
             self.selector = f.selector
 
-        # If you want do multi-type sensitive data analysis, you could use a list.
+        # If you want do multi-type sensitive database analysis, you could use a list.
         SensitiveData.ssData = self
 
     @staticmethod
@@ -124,7 +124,7 @@ class SensitiveData:
 
     def record(self):
         """
-        Record the sensitive data usage.
+        Record the sensitive database usage.
         :return:
         """
 

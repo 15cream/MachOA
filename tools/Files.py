@@ -1,12 +1,13 @@
 import os
 import re
 
+
 def checked(root):
-    checked = []
+    checked = dict()
     for f in os.listdir(root):
         m = re.search('(?P<addr>[a-f0-9xX]+).+', f)
         if m:
-            checked.append(m.group('addr'))
+            checked[m.group('addr')] = os.path.join(root, f)
         else:
             print 'RE ERROR', f
     return checked

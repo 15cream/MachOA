@@ -10,15 +10,14 @@ from callbacks.delegate import Delegate
 
 
 class Message:
-    def __init__(self, state, receiver=None, selector=None, args=None, simprocedure_handler=None, send_super=False):
+    def __init__(self, state, ea, receiver=None, selector=None, args=None, simprocedure_handler=None, send_super=False):
         self.simprocedure_handler = simprocedure_handler
         self.dispatch_state = state
         self.receiver = receiver
         self.selector = selector
         self.args = args
         self.send_super = send_super
-        self.invoke_state = state.history.parent.parent  # invoke_context_state -> msgSend_stub -> stub_helper
-        self.invoke_ea = self.invoke_state.addr + self.invoke_state.recent_instruction_count * 4
+        self.invoke_ea = ea
         self.description = None
         self.g = MachO.pd.task.cg.g
         self.cg = MachO.pd.task.cg
@@ -36,51 +35,11 @@ class Message:
 
         # 如果过程间分析的开关打开，查找imp；否则，返回None
         if IPC:
+            # 如果是performSelector等方法，返回的imp应该为即将进入的代码imp。
             sel_imp = OCFunction.ask_for_imp(rec=self.receiver.oc_class, sel=self.selector, send_super=self.send_super)
             if sel_imp:
                 return sel_imp
         return None
-
-    def send(self):
-        self.dynamic_bind()
-        # if 'msgQueue' in self.dispatch_state.regs.x0.ast.__dict__:
-        # self.dispatch_state.regs.x0.ast.__dict__['msgQueue'].append(self)
-        # else:
-        # self.dispatch_state.regs.x0.ast.__dict__['msgQueue'] = [self, ]
-
-        # If do the inter-procedure analysis, there's no need to think about ret_val.
-        # But if we just do inner-procedure analysis, how to express that a message has been send?
-        if IPC:
-            # sel_imp = retrieve_f(name=self.description)['imp']
-            sel_imp = OCFunction.ask_for_imp(rec=self.receiver.oc_class, sel=self.selector, send_super=self.send_super)
-            if sel_imp:
-                # Record a start node here.
-                self.node = MachO.pd.task.cg.insert_invoke(self.invoke_ea, self.description, self.dispatch_state,
-                                                           receiver=self.receiver.data.expr,
-                                                           selector=self.selector.expr,
-                                                           args=self.selector.args)
-                # self.cg.add_start_node(sel_imp, 'Start', self.dispatch_state, args=self.selector.args, edge=True)
-                # self.simprocedure_handler.call(sel_imp, args=[], continue_at='ret_from_msgSend', cc=None)
-                self.simprocedure_handler.jump(sel_imp)
-                return
-
-        # '({data_type}<{instance_type}:{ptr}>){name}'
-        # Pay attention. Because invokes are path sensitive, look for your ret_val in your history path.
-        ret_type = 'unknown'
-        if self.receiver.oc_class:
-            ret_type = OCFunction.find_detailed_prototype(self.selector.expr, self.receiver.oc_class)[0]
-
-        x0 = FORMAT_INSTANCE.format(data_type=ret_type, instance_type='RET', ptr=hex(self.invoke_ea),
-                                    name="[{} {}]".format(self.receiver.expr, self.selector.expr))
-        self.dispatch_state.regs.x0 = self.dispatch_state.solver.BVS(x0, 64)
-
-        self.node = MachO.pd.task.cg.insert_invoke(self.invoke_ea, self.description, self.dispatch_state,
-                                                   receiver=self.receiver.data.expr,
-                                                   selector=self.selector.expr,
-                                                   args=self.selector.args)
-
-    def returned(self):
-        print '?'
 
     def send2(self):
 
@@ -98,6 +57,13 @@ class Message:
             # 即使进行过程间分析，还可能会有两种类型的限制，一是数据敏感；二是控制流敏感（预定义了函数调用链）
             if SDA:
                 if Analyzer.sensitive_API(msg=self):
+                    self.prepare_for_new_context()
+                    # self.simprocedure_handler.call(sel_imp, args=[], continue_at='ret_from_msgSend', cc=None)
+                    self.simprocedure_handler.jump(imp)
+                    return
+            if CS_LIMITED:
+                if Analyzer.allowed_step_in(self, imp):
+                    self.prepare_for_new_context()
                     self.simprocedure_handler.jump(imp)
                     return
 
@@ -117,7 +83,7 @@ class Message:
 
         x0 = FORMAT_INSTANCE.format(data_type=ret_type, instance_type='RET', ptr=hex(self.invoke_ea),
                                     name="[{} {}]".format(self.receiver.expr, self.selector.expr))
-
+        self.g.nodes[self.node]['ret'] = x0
         self.dispatch_state.regs.x0 = self.dispatch_state.solver.BVS(x0, 64)
         self.check_particularity()
 
@@ -131,3 +97,9 @@ class Message:
     def check_particularity(self):
         if self.selector.expr == 'getCString:maxLength:encoding:':
             self.dispatch_state.memory.store(self.dispatch_state.regs.x2, self.dispatch_state.regs.x0)
+
+    def prepare_for_new_context(self):
+        if self.selector.expr == 'performSelector:withObject:afterDelay:':
+            # 原本的第一个参数作为selector,原本withObject:对应的参数作为第一个参数
+            self.dispatch_state.registers.store('x1', self.dispatch_state.regs.x2.ast)
+            self.dispatch_state.registers.store('x2', self.dispatch_state.regs.x3.ast)

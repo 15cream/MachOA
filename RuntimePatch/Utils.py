@@ -24,9 +24,9 @@ def resolve_args(state, selector=None, symbol=None):
                     reg_val = resolve_reg(state, sp)
                     args.append(reg_val)
             print 'TO DO: stringWithFormat args to be parsed.'
-    # elif symbol:
-    #     args.append(resolve_reg(state, state.regs.get('x0')))
-    #     args.append(resolve_reg(state, state.regs.get('x1')))
+    elif symbol:
+        args.append(resolve_reg(state, state.regs.get('x0')))
+        args.append(resolve_reg(state, state.regs.get('x1')))
     return args
 
 

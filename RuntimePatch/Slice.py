@@ -2,7 +2,7 @@ import angr
 import claripy
 from RuntimePatch.ExitProtect import *
 from RuntimePatch.AddressConcretize import *
-from RuntimePatch.mem_read import *
+from RuntimePatch.memory_event import *
 
 
 class Slice:

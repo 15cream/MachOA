@@ -7,6 +7,7 @@ from Data.data import *
 from Data.OCivar import *
 from RuntimePatch.Utils import *
 from RuntimePatch.message import Message
+from RuntimePatch.AddressConcretize import mem_resolve2
 
 
 class StubHelper(SimProcedure):
@@ -22,12 +23,15 @@ class StubHelper(SimProcedure):
             if symbol.name == "_objc_msgSend":
                 msg = Message(dispatch_state, invoke_ea, simprocedure_handler=self)
                 msg.send2()
-                print hex(invoke_ea), msg.description
+                # print hex(invoke_ea), msg.description
 
             elif symbol.name == "_objc_msgSendSuper2":
                 msg = Message(dispatch_state, invoke_ea, simprocedure_handler=self, send_super=True)
                 msg.send2()
-                print hex(invoke_ea), msg.description
+                # print hex(invoke_ea), msg.description
+
+            elif symbol.name == '_objc_loadWeakRetained':
+                mem_resolve2(dispatch_state)
 
             elif symbol.name in setProperty:
                 print 'Here'
@@ -94,12 +98,12 @@ def analyze_lazy_bind_invoke(dispatch_state, ptr):
         if symbol.name == "_objc_msgSend":
             msg = Message(dispatch_state, invoke_ea)
             msg.send2()
-            print hex(invoke_ea), msg.description
+            # print hex(invoke_ea), msg.description
 
         elif symbol.name == "_objc_msgSendSuper2":
             msg = Message(dispatch_state, invoke_ea, send_super=True)
             msg.send2()
-            print hex(invoke_ea), msg.description
+            # print hex(invoke_ea), msg.description
 
         elif symbol.name in setProperty:
             print 'Here'

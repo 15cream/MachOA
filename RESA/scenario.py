@@ -1,4 +1,4 @@
-#coding=utf-8
+# coding=utf-8
 from tools.oc_type_parser import *
 import os
 import re
@@ -62,7 +62,7 @@ class ScenarioExtractor:
     def parse_ET(self, etree_file):
         """
         Give a execution tree file (inter-procedural or intra-procedural), parse this tree and extract scenarios.
-        Actually, because of the path sensitivity, one tree covers several traces.
+        Actually, because of the path sensitivity, one tree covers several tracked_trace.
         :param etree_file:
         :return:
         """
@@ -95,7 +95,7 @@ class ScenarioExtractor:
                     # 当前节点不为其所依赖的节点，当出现这种情况时通常为Start节点的传入参数？
                     if ea != ptr:
                         # 当前节点消耗了一个producer生产的值，
-                        # 该producer的地址为ptr，消耗的数据类型为data_type, 该数据为RET/PARA/IVAR, 该数据用作当前节点的第０个寄存器
+                        # 该producer的地址为ptr，消耗的数据类型为data_type, 该数据为RET/GEN_PARA/IVAR, 该数据用作当前节点的第０个寄存器
                         self.consumer_and_neededProducers[node].add((ptr, data_type, instance_type, 0))
 
                         # 反过来为生产者建立档案，为生产者的消费者们添上当前这笔
@@ -122,7 +122,7 @@ class ScenarioExtractor:
 
                         if ea != ptr:
                             # 当前节点消耗了一个producer生产的值，
-                            # 该producer的地址为ptr，消耗的数据类型为data_type, 该数据为RET/PARA/IVAR, 该数据用作当前节点的第０个寄存器
+                            # 该producer的地址为ptr，消耗的数据类型为data_type, 该数据为RET/GEN_PARA/IVAR, 该数据用作当前节点的第０个寄存器
                             self.consumer_and_neededProducers[node].add((ptr, data_type, instance_type, args.index(arg) + 2))
 
                             # ptr处instance_type类型的数据data_type，被作为node的某参数使用
@@ -190,6 +190,12 @@ class ScenarioExtractor:
                         elif self.eTree.nodes[node]['rec'] == seed.receiver:
                             matched_nodes.append(node)
         return matched_nodes
+
+    def pprint_node(self, node):
+        if node in self.eTree.nodes:
+            node_data = self.eTree.nodes[node]
+            print 'NODE:', node_data['des']
+            print node_data['args']
 
 
 class Trace:
@@ -289,10 +295,10 @@ class Scenario:
 
     def standardization(self, node_dict, data=None):
         """
-        If the node is 'Start', the node should be data other than invoke.
+        If the node is 'Start', the node should be rule other than invoke.
         :param data:
         :param node_dict:
-        :param dp_type: if 'Start', the exact data position.
+        :param dp_type: if 'Start', the exact rule position.
         :return:
         """
         if data:
@@ -350,3 +356,5 @@ class Seed:
 # extractor = ScenarioExtractor(seeds=[Seed(sel='alloc', rec='CLLocationManager')],
 #                               root_dir='../results/ScenarioTest/ToGoProject/')
 
+extractor = ScenarioExtractor(dir='/home/gjy/Desktop/LogBOok/01/第五次实验/')
+extractor.run()

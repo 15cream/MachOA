@@ -5,6 +5,8 @@
 #  对 imp为0 的__la_symbol_ptr，将其链接到stub_helper的地址
 #  同时，hook stub_helper，做合适的返回就好
 
+from Data.CONSTANTS import STUB_HOOK
+
 
 def lazy_bind_patch(state, binary):
     stub_helper = binary.get_segment_by_name('__TEXT').get_section_by_name('__stub_helper').min_addr
@@ -13,7 +15,10 @@ def lazy_bind_patch(state, binary):
     for ptr in range(__la_symbol_ptr.min_addr, __la_symbol_ptr.max_addr, 8):
         symbol = binary.get_symbol_by_address_fuzzy(ptr)
         if symbol:
-            state.memory.store(ptr, bv)
+            if STUB_HOOK:
+                state.memory.store(ptr, bv)
+            else:
+                state.memory.store(ptr, state.solver.BVV(ptr, 64).reversed)
         else:
             pass
     return stub_helper

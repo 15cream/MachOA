@@ -9,6 +9,6 @@ config.set('PATH', 'xmls', '../xmls/')
 config.set('PATH', 'dbs', '../dbs/')
 
 
-# Writing our configuration file to 'example.cfg'
+# Writing our configuration file to 'example.etree'
 with open('/home/gjy/Desktop/MachOA/config/config', 'wb') as configfile:
     config.write(configfile)

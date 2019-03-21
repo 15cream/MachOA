@@ -73,7 +73,8 @@ class MachOTask:
 
     def pre_process(self):
         self.config()
-        self.init_state = self.p.factory.blank_state()
+        # add_options={angr.options.LAZY_SOLVES}
+        self.init_state = self.p.factory.blank_state(add_options={angr.options.LAZY_SOLVES})
         bh = BindingHelper(self.macho)
         bh.do_normal_bind(self.macho.rebase_blob)
         bh.do_normal_bind(self.macho.binding_blob)
@@ -107,7 +108,7 @@ class MachOTask:
 
         cfg = self.p.analyses.CFGAccurate(keep_state=True, starts=[start_addr, ], call_depth=0)
         print '{} BLOCKS DETECTED in {}.'.format(len(cfg._nodes), hex(start_addr))
-        if len(cfg._nodes) > 250:
+        if len(cfg._nodes) > BLOCK_LIMIT:
             return None
 
         self.cg = GraphView()
