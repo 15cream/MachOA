@@ -15,11 +15,11 @@ class Scheduler:
         # Analyzer.current_cs_limited = cs
         # #     cs.pprint()
         # for api in cs.stack[1:]:
-        #     print api.ea
+        #     print api.eacreateGtRuleRegisterId
         #     self.analyzer.analyze_function(start_addr=api.ea)
         # self.analyzer.analyze_function(start_addr=cs.stack[-1].ea)
 
-        seed = API(receiver='GXCommonUtils', selector='createGtRuleRegisterId')
+        seed = API(receiver='WXOMTA', selector='getIDFV')
         # seed.find_calls(gist='SEL')
         seed.find_calls()
         for func in seed.calls:
@@ -59,7 +59,7 @@ class Scheduler:
         # self.analyzer.analyze_class(classname='WXOMTAGCDAsyncSocket')
         # self.analyzer.analyze_class(classname='SmLocation')
         # print self.analyzer.analyze_function(start_addr=0x10078DD40)
-        self.analyzer.analyze_function(start_addr=0x100465E18)
+        self.analyzer.analyze_function(start_addr=0x010035ED94)
 
 
 sd_scheduler = Scheduler()

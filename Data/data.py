@@ -1,3 +1,4 @@
+# coding=utf-8
 import re
 import claripy
 import archinfo
@@ -5,7 +6,7 @@ from types import *
 from Data.MachO import MachO
 from Data.OCClass import OCClass
 from Data.OCFunction import OCFunction
-from Data.CONSTANTS import FORMAT_INSTANCE
+from Data.CONSTANTS import FORMAT_INSTANCE, GOT_ADD_ON
 from tools.oc_type_parser import *
 
 
@@ -118,6 +119,14 @@ class Data(object):
     def read_cfstring(state, addr):
         return state.mem[addr + 16].deref.string.concrete
 
+    @staticmethod
+    def decode(s):
+        m = re.search('\((?P<data_type>.+)<(?P<instance_type>.+):(?P<ptr>.+)>\)(?P<name>.+)', s)
+        if m:
+            return [m.group('data_type'), m.group('instance_type'), m.group('ptr'), m.group('name')]
+        else:
+            return None
+
 
 class SEL:
 
@@ -129,17 +138,30 @@ class SEL:
 
     def resolve_args(self):
         args = []
+        if self.expr == 'dictionaryWithObjects:forKeys:count:':
+            objects = self.state.regs.x2
+            keys = self.state.regs.x3
+            count = int(Data(self.state, reg=self.state.regs.x4).expr)
+            object_list = []
+            key_list = []
+            for i in range(0, count):
+                object_list.append(Data(self.state, reg=objects + i * 8))
+                key_list.append(Data(self.state, reg=keys + i * 8))
+            args = object_list + key_list
+            return args
+
         for c in range(0, self.expr.count(':')):
             reg_name = 'x{}'.format(c + 2)
             reg = Data(self.state, reg=self.state.regs.get(reg_name))
             args.append(reg)
         if self.expr == 'stringWithFormat:':
             format_string = args[0].expr
-            fs_args = format_string.count("@")
+            fs_args = format_string.count("%")
             for c in range(0, fs_args):
                 sp = self.state.regs.sp + c * 8
-                reg = Data(self.state, sp)
+                reg = Data(self.state, reg=sp)
                 args.append(reg)
+
         return args
 
 
@@ -153,12 +175,14 @@ class Receiver:
         self.type = '?'
         self.expr = data.expr
         self.oc_class = None
+        self.data_type = None
+        self.dpr = {}  # ea: type
+        self.valid = True
 
         if self.data.concrete:
             if self.data.is_instance:
                 self.type = '-'  # BVV, string
             else:
-                # self.oc_class = OCClass.classes_indexed_by_name[self.expr]
                 self.oc_class = OCClass.retrieve_by_classname(self.expr, is_superclass=False)
                 self.type = '+'  # BVV, class method invoke
         else:
@@ -175,13 +199,17 @@ class Receiver:
             self.expr = name
             self.type = '-'
 
-            # Now, you know the selector, infer the unknown receiver type.
-            if data_type == 'unknown':
-                # self.type_infer_by_selector()
-                pass
             self.oc_class = OCClass.retrieve_by_classname(type_to_str(data_type), is_superclass=False)
+            if self.oc_class:
+                self.data_type = self.oc_class.name
+            else:
+                self.data_type = data_type
+                self.dpr[ptr] = instance_type
         else:
             self.expr = expr
+            self.valid = False
+            # todo 例如，mem_0，这类是完全无法解析，原因是二进制分析中的
+            # 莫非根据selector进行推断
 
     def type_infer_by_selector(self):
         if self.selector.expr in OCFunction.meth_indexed_by_sel:
@@ -189,20 +217,27 @@ class Receiver:
                 if f.receiver in self.expr:
                     self.oc_class = OCClass.retrieve_by_classname(f.receiver)
                     return
-        # There is a big problem here.
-        # We may make a wrong inference.
 
 
-# if 'instance' in expr:
-#     self.expr = expr.split('_')[0]
-#     self.type = '-'
-# elif '@' in expr:
-#     self.expr = expr.split('@')[-1].strip('"')
-#     self.type = '-'
+class Block:
 
-# occlass = OCFunction.meth_data[meth_imp]['class']
-# if type == '+':
-#     state.regs.x0 = state.solver.BVV(occlass.classref_addr, 64)
-# else:
-#     state.regs.x0 = state.solver.BVS(occlass.name, 64)
+    def __init__(self, state, data):
+        self.data_ea = data
+        self.subroutine = None
+        self.data = Data(state, reg=data)
+        if self.data.type == 'got':
+            if self.data.concrete:
+                got_ptr = int(self.data.expr) - GOT_ADD_ON
+                if MachO.pd.macho.get_symbol_by_address_fuzzy(got_ptr).name == '__NSConcreteStackBlock':
+                    sub = Data(state, reg=data+0x10)
+                    if sub.type == 'code' and sub.concrete:
+                        subroutine = int(sub.expr)
+                        if subroutine in OCFunction.meth_data:
+                            self.subroutine = subroutine
+            else:
+                print "EXCEPTION HERE: data.Block.__init__"
+
+
+
+
 

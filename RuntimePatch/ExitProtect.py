@@ -4,6 +4,7 @@ from Data.OCFunction import OCFunction
 from Data.CONSTANTS import *
 from Data.data import *
 from StubHook import analyze_lazy_bind_invoke
+from tools.common import block_excess
 import claripy
 
 
@@ -61,8 +62,13 @@ def branch_check(state):
     # 如果跳转地址为oc方法，在没有开IPC时是不被允许的，但可以是subroutine。
     if jmp_target in OCFunction.meth_list:
         if not IPC:
-            state.inspect.exit_target = state.regs.lr
-            return
+            if jmp_target in OCFunction.oc_function_set:
+                state.inspect.exit_target = state.regs.lr
+                return
+            elif jmp_target in OCFunction.meth_list:
+                if block_excess(MachO.pd.task.p, jmp_target):
+                    state.inspect.exit_target = state.regs.lr
+                    return
 
     # 最普通的跳转，检测是否存在循环。
     if state.inspect.exit_jumpkind == 'Ijk_Boring' and jmp_target < text.max_addr:

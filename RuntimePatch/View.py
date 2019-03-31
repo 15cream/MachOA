@@ -2,11 +2,11 @@
 import networkx as nx
 import random
 from Data.CONSTANTS import *
-from Data.data import *
-from BinaryPatch.Utils import *
 from RuntimePatch.Utils import *
 from RuntimePatch.ConstraintHelper import *
 from RuntimePatch.DependencyResolve import DPResolver
+from RuntimePatch.Utils import resolve_context
+
 
 class GraphView:
 

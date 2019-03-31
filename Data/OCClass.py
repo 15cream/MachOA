@@ -1,4 +1,5 @@
 import archinfo
+import re
 from OCivar import IVar
 from OCFunction import OCFunction
 
@@ -12,6 +13,7 @@ class OCClass:
     classes_indexed_by_name = dict()
     classes_indexed_by_meth = dict()  # meth_imp - > [meth_name, class_obj]
     classes_indexed_by_selector = dict()
+    class_and_subclasses = dict()  # class_addr -> [subclass1_name, subclass2_name, ...]
 
     def __init__(self, classref, imported=False, name=None):
 
@@ -175,4 +177,40 @@ class OCClass:
                 prot = state.mem[objc2_prot].prot
                 prot_name = prot.name.deref.string.concrete
                 self.prots[prot_name] = objc2_prot
+
+    @staticmethod
+    def find_superclass_chain(name):
+        ret = []
+        if name not in OCClass.classes_indexed_by_name:
+            return ret
+
+        oc_class = OCClass.classes_indexed_by_name[name][0]
+        if not oc_class.superclass_addr:
+            return ret
+
+        superclass_addr = oc_class.superclass_addr
+        while superclass_addr:
+            if superclass_addr not in OCClass.binary_class_set:
+                break  # TODO Check the reason.
+            _class = OCClass.binary_class_set[superclass_addr]
+            ret.append(_class.name)
+            superclass_addr = _class.superclass_addr
+        return ret
+
+    @staticmethod
+    def retrieve_func(name=None, rec=None, sel=None):
+        if name:
+            m = re.search('(?P<type>[-+]?)\[(?P<receiver>\S+?) (?P<selector>[\w:]+)\]', name)
+            if m:
+                rec = m.group('receiver')
+                sel = m.group('selector')
+                meth_type = m.group('type')
+            else:
+                return None
+        if sel in OCFunction.meth_indexed_by_sel:
+            # class_chain = OCClass.find_superclass_chain(rec)
+            for func in OCFunction.meth_indexed_by_sel[sel]:
+                if func.receiver == rec:
+                    return func
+        return None
 

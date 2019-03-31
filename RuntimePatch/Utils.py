@@ -135,3 +135,11 @@ def str_to_type(str):
 # @"UIEvent" to UIEvent
 def type_to_str(type_str):
     return type_str.strip('@').strip('"')
+
+
+def resolve_context(ea):
+    # find which function this ea resides in
+    for f in sorted(MachO.pd.macho.lc_function_starts, reverse=True):
+        if ea >= f:
+            break
+    return f

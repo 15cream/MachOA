@@ -72,6 +72,7 @@ class MachO:
         self.segdata['code'] = MachO.pd.macho.get_segment_by_name('__TEXT').get_section_by_name('__text')
         self.segdata['common'] = MachO.pd.macho.get_segment_by_name('__DATA').get_section_by_name('__common')
         self.segdata['bss'] = MachO.pd.macho.get_segment_by_name('__DATA').get_section_by_name('__bss')
+        self.segdata['got'] = MachO.pd.macho.get_segment_by_name('__DATA').get_section_by_name('__got')
 
     def query_segment(self, ea):
         for seg_name, seg in self.segdata.items():
@@ -115,6 +116,12 @@ class MachO:
                 OCClass.classes_indexed_by_name[cd.name] = [cd, ]
             else:
                 OCClass.classes_indexed_by_name[cd.name].append(cd)
+
+            if cd.superclass_addr:
+                if cd.superclass_addr not in OCClass.class_and_subclasses:
+                    OCClass.class_and_subclasses[cd.superclass_addr] = [cd.name]
+                else:
+                    OCClass.class_and_subclasses[cd.superclass_addr].append(cd.name)
 
             meths = dict(cd.instance_meths.items() + cd.class_meths.items())
             for meth in meths:
@@ -215,5 +222,4 @@ class BSS:
             return self.current_value
         else:
             return claripy.BVS(self.standard_value, length, uninitialized=True)
-
 

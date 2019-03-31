@@ -1,13 +1,10 @@
 __author__ = 'gjy'
 
 import sys
-import time
 import ConfigParser
-
 sys.path.append('/home/gjy/Desktop/MachOA')
 
 from cle.backends.macho.binding import BindingHelper
-
 from BinaryPatch.LazyBind import lazy_bind_patch
 from BinaryPatch.StubResolver import *
 from BinaryPatch.Utils import *
@@ -26,6 +23,7 @@ from event_simulator.UIEvent import UIEvent
 
 from SecCheck.sensitiveData import SensitiveData
 from tools.Files import *
+from tools.common import block_excess
 # from angrutils import *
 
 
@@ -56,7 +54,8 @@ class MachOTask:
         # self.checked = []
         self.class_blacklist = []
         self.meth_blacklist = [0x10011a60cL, 0x10045AB08, 0x1002FD890, 0x1003B2118, 0x10026df08L, 0x100206740L,
-                               0x100c209d4L, 0x100027f68L, 0X10000C05C, 0x100127480L]
+                               0x100c209d4L, 0x100027f68L, 0X10000C05C, 0x100127480L, 0x10078dd40L, 0x100712cfcL]
+        #  0x10078dd40L, 0x100712cfcL
 
     def config(self):
         config = ConfigParser.RawConfigParser()
@@ -70,6 +69,7 @@ class MachOTask:
         SensitiveData.init(xref_pkl)
         IVar.init(xref_pkl)
         Xrefs(xref_pkl)
+        Frameworks('{}FrameworkHeaders.pkl'.format(config.get('PATH', 'dbs')))
 
     def pre_process(self):
         self.config()
@@ -99,16 +99,17 @@ class MachOTask:
             self.cg.view()
 
     def analyze_function(self, init_args=None, start_addr=None, name=None):
-
-        if name:
-            start_addr = retrieve_f(name=name)['imp']
-        if start_addr in self.meth_blacklist or hex(start_addr).strip('L') in self.checked:
-            print 'SKIPPED: ', hex(start_addr)
+        if name and OCClass.retrieve_func(name=name):
+            start_addr = OCClass.retrieve_func(name=name).imp
+        if not start_addr:
+            return None
+        if start_addr in self.meth_blacklist:
+            print 'SKIPPED(IN BLACKLIST): ', hex(start_addr)
+            return None
+        if hex(start_addr).strip('L') in self.checked:
+            print 'SKIPPED(ALREADY CHECKED): ', hex(start_addr)
             return self.checked[hex(start_addr).strip('L')]
-
-        cfg = self.p.analyses.CFGAccurate(keep_state=True, starts=[start_addr, ], call_depth=0)
-        print '{} BLOCKS DETECTED in {}.'.format(len(cfg._nodes), hex(start_addr))
-        if len(cfg._nodes) > BLOCK_LIMIT:
+        if block_excess(self.p, start_addr):
             return None
 
         self.cg = GraphView()

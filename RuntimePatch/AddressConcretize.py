@@ -31,7 +31,8 @@ def mem_resolve(state):
 
 def mem_resolve2(state):
     instance = state.regs.x0.args[0]
-    if len(state.regs.x0.args[1].args) == 33:
+    # todo AttributeError: 'int' object has no attribute 'args'
+    if type(state.regs.x0.args[1]) == list and len(state.regs.x0.args[1].args) == 33:
         ivar_offset = state.regs.x0.args[1].args[-1]
     else:
         return

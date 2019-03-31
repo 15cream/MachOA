@@ -4,13 +4,16 @@ from SecCheck.seed import API
 from Data.CONSTANTS import *
 from Data.eTree import *
 from Data.OCFunction import *
+from Data.OCClass import *
+from Data.data import *
+from tools.oc_type_parser import *
 import networkx as nx
 import random
-LEVEL_TOP = 5
+
+LEVEL_TOP = 4
 
 
 class TaintTask:
-
     current_task = None
 
     def __init__(self, binary_name, rule):
@@ -18,123 +21,117 @@ class TaintTask:
         self.machoTask = MachOTask('../../samples/{}'.format(binary_name), store=True, visualize=False)
         self.rule = rule
 
-    def get_src_ctxs(self):
-        """
-        根据敏感数据获得可能产生src的方法。
-        :return:
-        """
-        if self.rule in Rules:
-            ctxs = set()
-            for rule in Rules[self.rule]:
-                delegate_protocol = self.resolve_delegate(rule['Receiver'])
-                if delegate_protocol:
-                    ctxs.update(self.find_protocol_meth(delegate_protocol))
-                else:
-                    ctxs.update(API(receiver=rule['Receiver'], selector=rule['Selector']).find_calls())
-            return ctxs
-        else:
-            print "{}相关规则不存在。".format(self.rule)
-            return None
-
-    def run(self):
-        if self.rule in Rules:
-            # 一类规则里可能有多条规则，每条规则的类型有两种可能：API或者作为参数的ADT
-            for rule in Rules[self.rule]:
-                delegate_protocol = self.resolve_delegate(rule['Receiver'])
-                if delegate_protocol:
-                    for f in self.find_protocol_meth(delegate_protocol):
-                        eTree_dot = self.machoTask.analyze_function(start_addr=f)
-                        if eTree_dot:
-                            traces = ETree(eTree_dot).analyze(as_parameter=1)
-                else:
-                    for f in API(receiver=rule['Receiver'], selector=rule['Selector']).find_calls():
-                        if f != 0x0100471650:
-                            continue
-                        eTree_dot = self.machoTask.analyze_function(start_addr=f)
-                        if eTree_dot:
-                            traces = ETree(eTree_dot).analyze(rec=rule['Receiver'], sel=rule['Selector'])
-                            for t in traces:
-                                if t.tainted_subtrace:
-                                    tainted_trace = TaintedTrace(self.rule, t)
-                                    tainted_trace.track()
-        else:
-            print "{}相关规则不存在。".format(self.rule)
-            return None
-
-    def resolve_delegate(self, str):
-        if '<' in str:
-            return str.strip('<>')
-        else:
-            return None
-
-    def find_protocol_meth(self, protocol):
-        return []
-
     @staticmethod
     def main_test():
         analyzer = TaintTask('ToGoProject', 'ID')
         analyzer.run()
 
+    def run(self):
+        if self.rule in Rules:
+            for rule in Rules[self.rule]:
+                to_be_analyzed = set()
+                if rule['Type'] == AS_PROTO_METH_PARA:
+                    for f in OCFunction.find_protocol_method(rule['Receiver'], rule['Selector']):
+                        to_be_analyzed.add(f)
+                else:
+                    for f in API(receiver=rule['Receiver'], selector=rule['Selector']).find_calls():
+                        to_be_analyzed.add(f)
+
+                for f in to_be_analyzed:
+                    if f != 0x10034594C:
+                        continue
+                    eTree_dot = self.machoTask.analyze_function(start_addr=f)
+                    if eTree_dot:
+                        for trace in ETree(eTree_dot).traverse():
+                            if trace.taint_analyze(rule=rule):
+                                tainted_trace = TaintedTrace(self.rule, trace)
+                                tainted_trace.track()
+        else:
+            print "{}相关规则不存在。".format(self.rule)
+            return None
+
 
 class TaintedTrace:
 
     def __init__(self, rule, trace):
+        """
+        一条完整的污染路径，由预定义的level进行扩展。
+        :param rule:
+        :param trace: 初始化路径，Trace对象，level为0.
+        """
         self.rule = rule
-        self.src = None
         self.init_trace = trace
         self.tracked_trace = nx.DiGraph()
+        self.node_and_trace = dict()
 
         if trace.tainted_subtrace[0]['type'] == GEN_API:
-            self.src = self.add_node(trace.tainted_subtrace[0], 0)
+            self.src = self.add_node(trace.tainted_subtrace[0], 0, trace, node_label=random.uniform(0, 100))
+            self.build_intra_conn(self.init_trace.tainted_subtrace, self.src)
         else:
-            print 'ERROR: THE FIRST NODE OF TAINTED TRACE IS NOT GENERATOR.'
-        self.build_intra_conn(self.init_trace.tainted_subtrace, self.src, 0)
+            print 'ERROR: THE FIRST NODE OF TAINTED TRACE IS NOT A GENERATOR.'
 
-    def build_intra_conn(self, tainted_sub_trace, start, level):
+    def build_intra_conn(self, tainted_sub_trace, start):
+        """
+        将tainted_sub_trace中的节点添加到TaintedTrace中
+        :param tainted_sub_trace:
+        :param start:
+        :return:
+        """
         if start in self.tracked_trace.nodes:
+            current_level = self.tracked_trace.nodes[start]['level']
+            current_label = self.tracked_trace.nodes[start]['node_label']
+            current_trace = self.node_and_trace[start]
             pnode = start
             for node in tainted_sub_trace[1:]:
-                _node = self.add_node(node, level, add_node_label=self.tracked_trace.nodes[start]['node_label'])
+                _node = self.add_node(node, current_level, current_trace, node_label=current_label)
                 self.tracked_trace.add_edge(pnode, _node)
                 pnode = _node
 
-    def add_node(self, node_data, level, add_node_label=None, data_transferred=None):
+    def add_node(self, node_data, level, trace, node_label=None, data_transferred=None):
         """
 
         :param node_data: 为eTree中节点的数据
         :param level: 当前节点的level
-        :param type: 当前节点的类型
+        :param trace: 该节点作为路径（Trace 对象）
         :return:
         """
         if node_data['type'] == GEN_API:
             des = 'GEN {} \n by invoke [{} {}]\n at {} ({}) \n {}'.format(node_data['data'], node_data['rec'],
-                                                                          node_data['sel'], hex(int(node_data['ea'])), node_data['ctx_name'],
-                                                                          add_node_label)
+                                                                          node_data['sel'], hex(int(node_data['ea'])),
+                                                                          node_data['ctx_name'], node_label)
             self.tracked_trace.add_node(des, color='green')
 
         if node_data['type'] == GEN_PARA:
             des = 'GEN {} \n as parameter at {} ({}) \n {}'.format(node_data['data'], hex(int(node_data['ea'])),
-                                                                   node_data['ctx_name'], add_node_label)
+                                                                   node_data['ctx_name'], node_label)
             self.tracked_trace.add_node(des, color='green')
 
         if node_data['type'] == ARG:
             des = 'USE {} as argument \n at {} [{} {}] \n {}'.format(node_data['data'], hex(int(node_data['ea'])),
-                                                                 node_data['rec'], node_data['sel'], add_node_label)
-            self.tracked_trace.add_node(des)
+                                                                     node_data['rec'], node_data['sel'], node_label)
 
         if node_data['type'] == REC:
             des = 'USE {} as receiver \n at {} [{} {}] \n {}'.format(node_data['data'], hex(int(node_data['ea'])),
-                                                                 node_data['rec'], node_data['sel'], add_node_label)
-            self.tracked_trace.add_node(des)
+                                                                     node_data['rec'], node_data['sel'], node_label)
 
         if node_data['type'] == RET:
-            des = 'RET {}\n at {} ({}) \n {}'.format(node_data['data'], hex(int(node_data['ea'])), node_data['ctx_name'],
-                                                     add_node_label)
+            des = 'RET {}\n at {} ({}) \n {}'.format(node_data['data'], hex(int(node_data['ea'])),
+                                                     node_data['ctx_name'],
+                                                     node_label)
             self.tracked_trace.add_node(des, color='blue')
 
-        self.tracked_trace.add_node(des, data=node_data['data'], ori_node=node_data['node'], type=node_data['type'],
-                                    ctx=int(node_data['ctx']), ctx_name=node_data['ctx_name'], level=level,
-                                    node_label=add_node_label)
+        self.tracked_trace.add_node(des, node_data=node_data, node_label=node_label, level=level)
+
+        if str(level) in self.tracked_trace.graph:
+            self.tracked_trace.graph[str(level)].add(des)
+        else:
+            self.tracked_trace.graph[str(level)] = set([des])
+
+        if des not in self.node_and_trace:
+            self.node_and_trace[des] = trace
+        else:
+            print 'ERROR: 1'
+
         return des
 
     def find_usage(self, src_node):
@@ -143,94 +140,100 @@ class TaintedTrace:
         :param src_node:
         :return:
         """
-        src_type = self.tracked_trace.nodes[src_node]['type']
-        src_ctx = self.tracked_trace.nodes[src_node]['ctx']
-        current_level = self.tracked_trace.nodes[src_node]['level']
-        data_transferred = self.tracked_trace.nodes[src_node]['data']
-        if src_type == ARG:
-            # 当隐私数据作为参数，那么其使用者只可能是使用隐私数据的调用，且该调用中所匹配的隐私数据源只可能是GEN_PARA
-            # for imp in find_possible_imp(src):  # should consider parameter index also.
-            #     eTree_dot = TaintTask.current_task.machoTask.analyze_function(start_addr=imp)
-            #     self.analyze_etree(eTree_dot, src['level'], as_parameter=src['index'])
-            pass
+        node_data = self.tracked_trace.nodes[src_node]['node_data']
+        data_transferred = node_data['data']
 
-        elif src_type == RET:
-            # 当隐私数据作为返回值，那么其使用者只可能是当前方法的调用者，且调用者中所匹配的隐私数据源只可能是GEN_API
-            if src_ctx in OCFunction.oc_function_set:
-                src_f = OCFunction.oc_function_set[src_ctx]
+        if node_data['type'] == ARG:
+            #     rec = node_data['rec']
+            #     sel = node_data['sel']
+            #     if Data.decode(rec):
+            #         receiver_info = Data.decode(rec)
+            #         data_type = type_to_str(receiver_info[0])
+            #         if data_type == 'unknown':
+            #             print "BACK TRACK HERE."
+            #         rec = data_type
+            #     if rec in OCClass.classes_indexed_by_name and not OCClass.classes_indexed_by_name[rec][0].imported:
+            #         func = OCClass.retrieve_func(rec=rec, sel=sel)
+            #     if Frameworks.query(node_data['rec'], node_data['sel']):
+            #         return  # BUT SINK MAY BE CHECKED HERE.
+            node_data_in_etree = self.node_and_trace[src_node].tree.nodes[node_data['node']]
+            handler = eval(node_data_in_etree['handler'])
+            if type(handler) == int:
+                imp = handler
+            elif handler is None:
+                return
+            else:
+                print 'T'
+                imp = None
+            self.track_usage(src_node, imp, data_transferred,
+                             generator={
+                                 'AS_PROTO_METH_PARA': node_data['index'],
+                                 'AS_API_RET': None
+                             })
+
+        elif node_data['type'] == RET:
+            if int(node_data['ctx']) in OCFunction.oc_function_set:
+                src_f = OCFunction.oc_function_set[int(node_data['ctx'])]
                 for caller in API(receiver=src_f.receiver, selector=src_f.selector).find_calls(gist='ADJ'):
-                    eTree = TaintTask.current_task.machoTask.analyze_function(start_addr=caller)
-                    for des_node in self.analyze_etree(eTree, current_level+1, data_transferred, random.uniform(0, 100),
-                                                       generator={
-                                                           'AS_PARA': None,
-                                                           'AS_API_RET': {'rec': src_f.receiver, 'sel': src_f.selector}
-                                                       }):
-                        self.tracked_trace.add_edge(src_node, des_node,
-                                                    label='return {}'.format(data_transferred), color='red')
-            elif src_ctx in OCFunction.meth_list:
+                    self.track_usage(src_node, caller, data_transferred,
+                                     generator={
+                                         'AS_PROTO_METH_PARA': None,
+                                         'AS_API_RET': {'rec': src_f.receiver, 'sel': src_f.selector}
+                                     })
+            elif node_data['ctx'] in OCFunction.meth_list:
                 # 如果为subroutine，则需要查找引用。但这样对吗？subroutine有返回值？
                 # for caller in XrefsTo(src['ctx']):
-                #     eTree_dot = TaintTask.current_task.machoTask.analyze_function(start_addr=caller)
-                #     self.analyze_etree(eTree_dot, src['level'], rec=src_f.receiver, sel=src_f.selector)
                 pass
 
-    def analyze_etree(self, eTree_dot, level, data_transferred, src_node, generator=None):
+    def track_usage(self, src, func, data_transferred, generator=None):
         """
-
-        :param eTree_dot:
+        :param func:
         :param level: 当前过程所处的level，该过程内所有节点都为该level
-        :param as_parameter:
-        :param rec:
-        :param sel:
         :return:
         """
-        start_nodes = []
+        # TODO 如果func与src同一ctx？
+
+        eTree_dot = TaintTask.current_task.machoTask.analyze_function(start_addr=func)
         if eTree_dot:
-            if generator['AS_PARA']:
-                pass
+
+            current_level = self.tracked_trace.nodes[src]['level'] + 1
+
+            if generator['AS_PROTO_METH_PARA'] is not None:
+                print 'T'
+                for trace in ETree(eTree_dot).traverse():
+                    trace.taint_analyze(as_parameter=generator['AS_PROTO_METH_PARA'])
+                    if trace.tainted_subtrace and trace.tainted_subtrace[0]['type'] == GEN_PARA:
+                        des = self.add_node(trace.tainted_subtrace[0], current_level, trace,
+                                            data_transferred=data_transferred,
+                                            node_label=random.uniform(0, 100))
+                        self.build_intra_conn(trace.tainted_subtrace, des)
+                        self.tracked_trace.add_edge(src, des, color='red')
+
             elif generator['AS_API_RET']:
-                traces = ETree(eTree_dot).analyze(rec=generator['AS_API_RET']['rec'], sel=generator['AS_API_RET']['sel'])
-                for t in traces:
-                    if t.tainted_subtrace:
-                        if t.tainted_subtrace[0]['type'] == GEN_API:
-                            start_node = self.add_node(t.tainted_subtrace[0], level, data_transferred=data_transferred,
-                                                       add_node_label=src_node)
-                            start_nodes.append(start_node)
-                            self.build_intra_conn(t.tainted_subtrace, start_node, level)
-                        else:
-                            print 'ERROR: THE FIRST NODE OF TAINTED TRACE IS NOT GENERATOR.'
-        return start_nodes
-
-    def sink(self, usage_node):
-        usage_info = self.tracked_trace.nodes[usage_node]
-        if 'NSURLConnection' in usage_info['rec'] and 'start' == usage_info['sel']:
-            pass
-
+                for trace in ETree(eTree_dot).traverse():
+                    trace.taint_analyze(rec=generator['AS_API_RET']['rec'], sel=generator['AS_API_RET']['sel'])
+                    if trace.tainted_subtrace and trace.tainted_subtrace[0]['type'] == GEN_API:
+                        des = self.add_node(trace.tainted_subtrace[0], current_level, trace,
+                                            data_transferred=data_transferred,
+                                            node_label=random.uniform(0, 100))
+                        self.build_intra_conn(trace.tainted_subtrace, des)
+                        self.tracked_trace.add_edge(src, des, color='blue')
 
     def track(self):
-        print 'Track'
         level = 0
         while True:
-            if level == LEVEL_TOP:
+            if level == LEVEL_TOP or str(level) not in self.tracked_trace.graph:
                 break
-            to_be_analyzed = []
-            for node in self.tracked_trace.nodes:
-                if self.tracked_trace.nodes[node]['level'] == level:
-                    to_be_analyzed.append(node)
-            if not to_be_analyzed:
-                break
-            for node in to_be_analyzed:
+            for node in self.tracked_trace.graph[str(level)]:
                 self.find_usage(node)
             level += 1
-        fp = '/home/gjy/Desktop/results/tainted_traces/{}/{}.dot'.format(LEVEL_TOP, self.tracked_trace.nodes[self.src]['ctx_name'])
+
+        fp = '/home/gjy/Desktop/results/tainted_traces/{}/{}_{}.dot'.format(
+            LEVEL_TOP, self.tracked_trace.nodes[self.src]['node_data']['ctx_name'], random.random())
         try:
             nx.drawing.nx_agraph.write_dot(self.tracked_trace, fp)
-            return fp
         except Exception as e:
             print 'Failed to generate {}, {} '.format(fp, e)
-            return None
-
 
 
 TaintTask.main_test()
-

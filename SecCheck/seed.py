@@ -1,4 +1,4 @@
-#coding=utf-8
+# coding=utf-8
 from Data.OCivar import IVar
 from Data.OCClass import OCClass
 from Data.OCFunction import OCFunction
@@ -9,6 +9,7 @@ import pickle
 
 
 SEL_LIMIT = 100
+
 
 class API:
 
@@ -24,7 +25,7 @@ class API:
             self.description = self.function
 
         self.ea = ea
-        self.calls = None
+        self.calls = set()
 
     def find_selector_last_occurs(self, context):
         last_ea = 0
@@ -51,7 +52,11 @@ class API:
                         self.calls = s_ctx
             return self.calls
         else:
-            pass
+            if self.function in OCFunction.meth_list and self.function not in OCFunction.oc_function_set:
+                sub_callers = Xrefs.ask_for_xrefs(self.function, 'sub')
+                if sub_callers:
+                    self.calls = sub_callers
+            return self.calls
 
             # Where the selector occurs
             # for ea, f in s_ctx.items():
@@ -96,15 +101,50 @@ class ADT:
 
     def find_occurrences(self):
         """
-        查找该数据可能出现的上下文，返回值为可疑上下文的起始地址的集合（可能为OC函数，也可能为subroutine）
+        查找该数据可能出现的上下文，返回值为可疑上下文的起始地址的集合（可能为OC函数，也可能为subroutine）.
+        包括该数据，该数据的父类、子类。
         :return: the function set (not that precisely)
         """
         if not self.occurrences:
             occurrences = set()
-            occurrences.update(set(self.as_receiver().keys()))
-            occurrences.update(set(self.as_class().values()))
-            occurrences.update(self.as_ivar())
+            occurrences.update(self.find_occurrences_single_type())
+            occurrences.update(self.find_occurrences_up())
+            occurrences.update(self.find_occurrences_down())
             self.occurrences = occurrences
+        return occurrences
+
+    def find_occurrences_up(self):
+        # 查找当前类的父类（链）
+        ret = set()
+        if self.type in OCClass.classes_indexed_by_name:
+            oc_class = OCClass.classes_indexed_by_name[self.type][0]
+            if oc_class.superclass_addr and oc_class.superclass_addr in OCClass.binary_class_set:
+                superclass = OCClass.binary_class_set[oc_class.superclass_addr]
+                superclass_adt = ADT(superclass.name)
+                ret.update(superclass_adt.find_occurrences_single_type())
+                ret.update(superclass_adt.find_occurrences_up())
+        return ret
+
+    def find_occurrences_down(self):
+        ret = set()
+        if self.type in OCClass.classes_indexed_by_name:
+            oc_class = OCClass.classes_indexed_by_name[self.type][0]
+            if oc_class.class_addr in OCClass.class_and_subclasses:
+                for subclass in OCClass.class_and_subclasses[oc_class.class_addr]:
+                    subclass_adt = ADT(subclass)
+                    ret.update(subclass_adt.find_occurrences_single_type())
+                    ret.update(subclass_adt.find_occurrences_down())
+        return ret
+
+    def find_occurrences_single_type(self):
+        """
+        查找该数据可能出现的上下文，返回值为可疑上下文的起始地址的集合（可能为OC函数，也可能为subroutine）
+        :return: the function set (not that precisely)
+        """
+        occurrences = set()
+        occurrences.update(set(self.as_receiver().keys()))
+        occurrences.update(set(self.as_class().values()))
+        occurrences.update(self.as_ivar())
         return occurrences
 
     def as_class(self):
@@ -114,6 +154,9 @@ class ADT:
         """
         if not self._as_class:
             self._as_class = Xrefs.ask_for_xrefs(self.type, 'class')
+            for ea, oc_class in OCClass.binary_class_set.items():  # superclass, category ?
+                if self.type == oc_class.name:
+                    self._as_class.update(oc_class.class_meths)
         return self._as_class
 
     def as_receiver(self):
@@ -139,11 +182,11 @@ class ADT:
                 if ivar.type == str_to_type(self.type):
                     xrefs_to_ivar = Xrefs.ask_for_xrefs(ptr, 'ivar')
                     ctx.update(set(xrefs_to_ivar.values()))
-                    ivar.parse_accessors()
-                    setter = API(receiver=ivar._class, selector=ivar.setter)
-                    ctx.update(set(setter.find_calls().keys()))
-                    getter = API(receiver=ivar._class, selector=ivar.getter)
-                    ctx.update(set(getter.find_calls().keys()))
+                    # ivar.parse_accessors()
+                    # setter = API(receiver=ivar._class, selector=ivar.setter)
+                    # ctx.update(setter.find_calls())
+                    # getter = API(receiver=ivar._class, selector=ivar.getter)
+                    # ctx.update(getter.find_calls())
             self._as_ivar = ctx
         return self._as_ivar
 
@@ -159,6 +202,7 @@ class ADT:
             if oc_class.class_meths:
                 for f in oc_class.class_meths:
                     MachOTask.currentTask.analyze_function(start_addr=f)
+                    print 'T'
 
     def as_para(self):
         """

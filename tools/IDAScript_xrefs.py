@@ -27,7 +27,8 @@ class Binary:
         self.xrefs = {
             'class': dict(),
             'selector': dict(),  # selector_name: [xref.frm, ]
-            'ivar': dict()  # ivar_ea
+            'ivar': dict(),  # ivar_ea
+            'sub': dict()
         }
 
         self.parse()
@@ -55,6 +56,14 @@ class Binary:
                 fi = idaapi.get_func(xref.frm)
                 if xref.frm - 4 not in self.xrefs['class'][cls] and fi:
                     self.xrefs['class'][cls][xref.frm] = fi.startEA
+
+        for f in Functions():
+            if 'sub_' in idc.GetFunctionName(f):
+                self.xrefs['sub'][f] = set()
+                for xref in XrefsTo(f):
+                    fi = idaapi.get_func(xref.frm)
+                    if fi:
+                        self.xrefs['sub'][f].add(fi.startEA)
 
     def parse_classref(self, ea):
         classname = idc.Name(ea).replace('classRef_', '')
@@ -111,7 +120,7 @@ class Binary:
         }
 
     def dump(self):
-        f = open('/home/gjy/Desktop/MachOA/dbs/WeiBo_arm64_xrefs.pkl', 'wb')
+        f = open('/home/gjy/Desktop/MachOA/dbs/CsdnPlus_arm64.pkl', 'wb')
         pickle.dump(self.xrefs, f)
         f.close()
 

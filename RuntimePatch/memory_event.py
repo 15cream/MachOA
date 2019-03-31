@@ -23,6 +23,13 @@ def mem_read(state):
     elif ptr in range(MachO.pd.segdata['bss'].min_addr, MachO.pd.segdata['bss'].max_addr):
         state.inspect.mem_read_expr = BSS.get(ptr).load(length)
 
+    elif ptr in range(MachO.pd.segdata['got'].min_addr, MachO.pd.segdata['got'].max_addr):
+        if ptr % 2:
+            state.inspect.mem_read_expr = claripy.BVS(MachO.pd.macho.get_symbol_by_address_fuzzy(ptr-GOT_ADD_ON).name, length,
+                                                      uninitialized=True)
+        else:
+            state.inspect.mem_read_expr = claripy.BVV(ptr + GOT_ADD_ON, length)
+
 
 def mem_write(state):
     resolved_data = None

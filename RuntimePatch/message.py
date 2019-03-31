@@ -4,6 +4,7 @@ __author__ = 'gjy'
 from Data.CONSTANTS import *
 from Data.data import Data, SEL, Receiver
 from BinaryPatch.Utils import *
+from Data.MachO import *
 from RuntimePatch.Utils import expr_args
 from SecCheck.analyzer import Analyzer
 from callbacks.delegate import Delegate
@@ -33,15 +34,11 @@ class Message:
         #     self.receiver.type_infer_by_selector()
         self.description = "{}[{} {}]".format(self.receiver.type, self.receiver.expr, self.selector.expr)
 
-        # 如果过程间分析的开关打开，查找imp；否则，返回None
-        if IPC:
-            # 如果是performSelector等方法，返回的imp应该为即将进入的代码imp。
-            sel_imp = OCFunction.ask_for_imp(rec=self.receiver.oc_class, sel=self.selector, send_super=self.send_super)
-            if sel_imp:
-                return sel_imp
-        return None
+        # 如果是performSelector等方法，返回的imp应该为即将进入的代码imp。
+        msg_handler = OCFunction.ask_for_imp_at_runtime(rec=self.receiver, sel=self.selector, send_super=self.send_super)
+        return msg_handler
 
-    def send2(self):
+    def send(self):
 
         # 动态绑定，需要完成查找imp的过程；在查找过程中如有必要，对receiver的类型进行确认。
         imp = self.dynamic_bind()
@@ -86,6 +83,32 @@ class Message:
         self.g.nodes[self.node]['ret'] = x0
         self.dispatch_state.regs.x0 = self.dispatch_state.solver.BVS(x0, 64)
         self.check_particularity()
+
+    def send2(self):
+
+        # 动态绑定，确定receiver和selector，需要完成查找imp的过程。
+        imp = self.dynamic_bind()
+
+        # 推测返回值，根据已解析的receiver和selector推测返回值。实际上，当不进行过程间分析时，这里是模拟调用对程序状态的影响。
+        ret_type = 'unknown'
+        if self.receiver.oc_class:
+            ret_type = OCFunction.find_detailed_prototype(self.selector.expr, self.receiver.oc_class)[0]
+
+        x0 = FORMAT_INSTANCE.format(data_type=ret_type, instance_type='RET', ptr=hex(self.invoke_ea),
+                                    name="[{} {}]".format(self.receiver.expr, self.selector.expr))
+
+        self.dispatch_state.regs.x0 = self.dispatch_state.solver.BVS(x0, 64)
+        self.check_particularity()
+        self.node = MachO.pd.task.cg.insert_invoke(self.invoke_ea, self.description,
+                                                   self.dispatch_state,
+                                                   receiver=self.receiver.data.expr,
+                                                   selector=self.selector.expr,
+                                                   args=self.selector.args)
+        self.g.nodes[self.node]['ret'] = x0
+        self.g.nodes[self.node]['ret_type'] = ret_type
+        self.g.nodes[self.node]['rec_type'] = self.receiver.data_type
+        self.g.nodes[self.node]['rec_dpr'] = self.receiver.dpr
+        self.g.nodes[self.node]['handler'] = imp
 
     def tainted(self):
         if 'tainted' in self.g.nodes[self.node]:

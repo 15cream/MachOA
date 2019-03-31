@@ -3,9 +3,11 @@
 from Data.OCProtocol import Protocol
 from Data.CONSTANTS import *
 from tools.oc_type_parser import parser1
+import re
 
 
 class OCFunction:
+
     meth_list = []
     meth_data = dict()
     function_symbols = dict()
@@ -51,6 +53,9 @@ class OCFunction:
         if not oc_class:
             return ['unknown']
 
+        if Frameworks.query(oc_class.name, sel):
+            return Frameworks.query(oc_class.name, sel)
+
         # 预定义的规则
         for (_rec, _sel), _ret in REC_SEL_RET.items():
             if sel == _sel:
@@ -84,28 +89,31 @@ class OCFunction:
         return ['unknown']
 
     @staticmethod
-    def ask_for_imp(rec=None, sel=None, send_super=False):
+    def ask_for_imp_at_runtime(rec=None, sel=None, send_super=False):
         """
         Find the method implementation to handle a message. How about category?
-        :param rec: oc_class object
-        :param sel: selector string
+        :param rec: Receiver object
+        :param sel: SEL object
         :return:
         """
-        if sel and sel.expr in OCFunction.meth_indexed_by_sel:
-            selector = sel.expr
-        elif sel.expr in performSelectors:
+        if not rec.valid:
+            return None
+
+        if sel.expr in performSelectors:
             selector = sel.args[0].expr
         else:
+            selector = sel.expr
+
+        if selector not in OCFunction.meth_indexed_by_sel:
             return None
 
         classes_imp_sel = {}
         for f in OCFunction.meth_indexed_by_sel[selector]:
             classes_imp_sel[f.receiver] = f
 
-        if rec:
+        if rec.oc_class:
+            rec = rec.oc_class
             if send_super:
-                classes_imp_sel = dict()
-
                 superclass_addr = rec.superclass_addr
                 while superclass_addr:
                     if superclass_addr not in rec.binary_class_set:
@@ -116,15 +124,18 @@ class OCFunction:
                     superclass_addr = _class.superclass_addr
             else:
                 for f in OCFunction.meth_indexed_by_sel[selector]:
-                    if rec and f.receiver == rec.name:  # should consider superclass ? category?
+                    if rec and f.receiver == rec.name:  # TODO  should consider superclass ? category?
                         return f.imp
+            return None
         else:
             # 这里是不合理的其实，当receiver的类型未知时，selector也可能是导入的类的selector。
-            if len(OCFunction.meth_indexed_by_sel[selector]) == 1:
-                return OCFunction.meth_indexed_by_sel[selector][0].imp
+            # if len(OCFunction.meth_indexed_by_sel[selector]) == 1:
+            #     return OCFunction.meth_indexed_by_sel[selector][0].imp
+            return [rec.dpr, selector]
 
-        return None
-
+    @staticmethod
+    def find_protocol_method(proto, sel):
+        return []
 
 
 

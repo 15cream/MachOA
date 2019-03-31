@@ -3,7 +3,7 @@ import angr
 import pickle
 
 current_ctx = None
-BLOCK_LIMIT = 205
+BLOCK_LIMIT = 300
 
 LAZY_BIND_F = 0
 MSGSEND = 1
@@ -22,7 +22,7 @@ IPC = False
 CS_LIMITED = True
 
 # Sensitive Data Analysis
-SDA = True
+SDA = False
 
 # ...
 # 当开启时，采取从stub->stub_helper->analyze_lazy_bind_symbol的方案
@@ -76,6 +76,8 @@ FORMAT_IVAR_OFFSET = '(<ea:{ptr}>)IVAR_OFFSET'
 FORMAT_COMMON_DATA = '(unknown<ea:{ptr}>)COMMON_DATA'
 FORMAT_BSS_DATA = '(unknown<ea:{ptr}>)BSS_DATA'
 
+GOT_ADD_ON = 1
+
 # INSTANCE_RANDOM_RANGE
 IRR = 1000
 
@@ -95,6 +97,9 @@ REC_SEL_RET = {
     ('NSKeyedArchiver', 'archivedDataWithRootObject:'): 'NSData',
 }
 
+AS_PROTO_METH_PARA = 1
+AS_RET = 0
+
 Rules = {
     'Location': [
         {
@@ -102,7 +107,9 @@ Rules = {
             'Selector': 'locationManager:didUpdateLocations:',
             'Arguments': ['CLLocationManager', 'NSArray<CLLocation *>'],
             'RET': None,
-            'Description': 'Tells the delegate that new location rule is available.'
+            'Description': 'Tells the delegate that new location rule is available.',
+            'Type': AS_PROTO_METH_PARA,
+            'Index': 1,
         }
     ],
     'ID': [
@@ -111,7 +118,9 @@ Rules = {
             'Selector': 'identifierForVendor',
             'Arguments': None,
             'RET': 'NSUUID',
-            'Description': 'An alphanumeric string that uniquely identifies a device to the app’s vendor.'
+            'Description': 'An alphanumeric string that uniquely identifies a device to the app’s vendor.',
+            'Type': AS_RET,
+            'Index': None,
         }
     ]
 }
@@ -129,7 +138,7 @@ class Xrefs:
     def ask_for_xrefs(ea, ea_type):
         """
         :param ea:
-        :param ea_type: class, sel, ivar
+        :param ea_type: class, sel, ivar, sub
         :return: the xrefs already parsed by IDA.
         """
         if ea_type in Xrefs.database and ea in Xrefs.database[ea_type]:
@@ -137,5 +146,24 @@ class Xrefs:
         else:
             return {}
 
+
+class Frameworks:
+
+    database = None
+
+    def __init__(self, fp):
+        f = open(fp)
+        Frameworks.database = pickle.load(f)
+        f.close()
+
+    @staticmethod
+    def query(class_name, sel):
+        if class_name in Frameworks.database[0]:
+            for SEL in Frameworks.database[0][class_name]:
+                if SEL.strip('*') == sel:
+                    processed = []
+                    for t in Frameworks.database[0][class_name][SEL]:
+                        processed.append(t)
+                    return processed
 
 # XREF_DB = Xrefs.database

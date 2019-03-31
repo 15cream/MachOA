@@ -19,6 +19,9 @@ def str_to_type(str):
 
 # @"UIEvent" to UIEvent
 def type_to_str(type_str):
-    return type_str.strip('@').strip('"')
+    # 'NSBundle *'
+    if '*' in type_str:
+        return type_str.strip(' *')
+    return type_str.strip('@"')
 
 

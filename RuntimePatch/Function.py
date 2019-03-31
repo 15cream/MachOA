@@ -28,7 +28,7 @@ class Func:
         self.ret_type = None
 
     def init(self):
-        if self.start_ea not in OCFunction.meth_list:
+        if self.start_ea not in OCFunction.meth_data:
             print 'NOT A FUNCTION START EA.'
             return None
         elif self.start_ea in OCFunction.oc_function_set:

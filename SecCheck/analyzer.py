@@ -1,6 +1,6 @@
 #coding=utf-8
-import re
 from BinaryPatch.Utils import *
+from RuntimePatch.Utils import resolve_context
 
 
 class Analyzer:
