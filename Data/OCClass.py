@@ -2,6 +2,7 @@ import archinfo
 import re
 from OCivar import IVar
 from OCFunction import OCFunction
+from Data.CONSTANTS import Frameworks
 
 
 class OCClass:
@@ -212,5 +213,7 @@ class OCClass:
             for func in OCFunction.meth_indexed_by_sel[sel]:
                 if func.receiver == rec:
                     return func
+            if Frameworks.query(rec, sel):
+                return 0
         return None
 

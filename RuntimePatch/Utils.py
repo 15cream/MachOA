@@ -106,12 +106,22 @@ def read_str_from_cfstring(self, state, addr):
 
 
 def expr_args(args):
+    return expr_args_for_taint_analysis(args)
     expr = ''
     if args:
         for i in range(0, len(args)):
             reg_name = 'para' + str(i)
             reg_value = args[i]
             expr += '{}: {}\n'.format(reg_name, reg_value.expr)
+    return expr
+
+
+def expr_args_for_taint_analysis(args):
+    expr = []
+    if args:
+        for i in range(0, len(args)):
+            reg_value = args[i]
+            expr.append(reg_value.expr)
     return expr
 
 

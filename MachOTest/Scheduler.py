@@ -50,7 +50,7 @@ class Scheduler:
         #         if ret_set:
         #             for ret in ret_set:
         #                 if 'Marked' in str(ret):
-        #                     pass  # Sensitive rule escaped here.
+        #                     pass  # Sensitive rule_id escaped here.
         #         self.analyzer.to_be_analyzed.remove(f)
         self.analyzer.clear()
 
@@ -59,7 +59,7 @@ class Scheduler:
         # self.analyzer.analyze_class(classname='WXOMTAGCDAsyncSocket')
         # self.analyzer.analyze_class(classname='SmLocation')
         # print self.analyzer.analyze_function(start_addr=0x10078DD40)
-        self.analyzer.analyze_function(start_addr=0x010035ED94)
+        self.analyzer.analyze_function(start_addr=0x100346bb0)
 
 
 sd_scheduler = Scheduler()

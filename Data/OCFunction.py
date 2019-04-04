@@ -99,10 +99,11 @@ class OCFunction:
         if not rec.valid:
             return None
 
-        if sel.expr in performSelectors:
-            selector = sel.args[0].expr
-        else:
-            selector = sel.expr
+        # if sel.expr in performSelectors:
+        #     selector = sel.args[0].expr
+        # else:
+        #     selector = sel.expr
+        selector = sel.expr
 
         if selector not in OCFunction.meth_indexed_by_sel:
             return None
@@ -131,11 +132,11 @@ class OCFunction:
             # 这里是不合理的其实，当receiver的类型未知时，selector也可能是导入的类的selector。
             # if len(OCFunction.meth_indexed_by_sel[selector]) == 1:
             #     return OCFunction.meth_indexed_by_sel[selector][0].imp
-            return [rec.dpr, selector]
+            return []
 
     @staticmethod
     def find_protocol_method(proto, sel):
-        return []
+        return set()
 
 
 

@@ -120,7 +120,7 @@ class Binary:
         }
 
     def dump(self):
-        f = open('/home/gjy/Desktop/MachOA/dbs/CsdnPlus_arm64.pkl', 'wb')
+        f = open('/home/gjy/Desktop/MachOA/dbs/CsdnPlus_arm64_xrefs.pkl', 'wb')
         pickle.dump(self.xrefs, f)
         f.close()
 

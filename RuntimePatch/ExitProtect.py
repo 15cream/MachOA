@@ -78,7 +78,7 @@ def branch_check(state):
             return
 
     #  RET, Sub call, method call
-    state.inspect.exit_guard = claripy.true
+    # state.inspect.exit_guard = claripy.true
     state.__setattr__('help', True)
 
 

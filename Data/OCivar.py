@@ -72,7 +72,7 @@ class IVar:
                     elif f.selector.lower() in ['dealloc', '.cxx_destruct']:
                         ivar.dealloc.append(f)
                     elif 'init' in f.selector.lower():
-                        ivar.init.append(f)
+                        ivar.rearrange_if_necessary.append(f)
                     else:
                         if fi in ivar.direct_ref:
                             ivar.direct_ref[fi].append(xref)

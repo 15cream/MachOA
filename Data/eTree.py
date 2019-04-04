@@ -1,16 +1,23 @@
 # coding=utf-8
-from tools.oc_type_parser import *
-import os
-import re
+
 import networkx as nx
 import copy
 from tools.TypeInfer import TypeInfer
+from tools.common import *
+from Data.OCClass import OCClass
+from Data.OCFunction import OCFunction
+from MachOTest.MachOTask import MachOTask
 
 RET = 'as return value'
 REC = 'as receiver'
 ARG = 'as argument'
 GEN_PARA = 'as parameter'
 GEN_API = 'as generator'
+
+UNDEF = None
+IMPORTED = 0
+
+FAILED_TO_UPDATE_NODE = 0
 
 
 class ETree:
@@ -20,6 +27,16 @@ class ETree:
         self.start_node = self.eTree.graph['start']
         self.ret_nodes = eval(self.eTree.graph['ret'])
         self.traces = []
+
+    @staticmethod
+    def get_handler(etree_file=None, start_ea=None):
+        if start_ea:
+            eTree_dot = MachOTask.currentTask.analyze_function(start_addr=start_ea)
+            if eTree_dot and os.path.exists(eTree_dot):
+                return ETree(eTree_dot)
+        elif etree_file and os.path.exists(etree_file):
+            return ETree(etree_file)
+        return None
 
     def traverse(self):
 
@@ -41,10 +58,31 @@ class ETree:
 
         return self.traces
 
-    def query_ret_values(self):
+    def query_ret_values(self, limits=None):
+        """
+        执行树的返回值为数据，因此重点就是数据的类型判定；
+        方法的返回值通常来自于 1）方法过程内的某次调用结果，或者是来自2）直接引用的数据，或者是3）参数；
+        当为1）时，类型有大比例会不确定。
+        :param limits:当返回值有多种类型时，可以根据后续该对象可以处理的selector消息来进行类型推断。
+        :return:
+        """
+        ret_data_type = dict()
+        sel_limits = []
+        for limit in limits:
+            sel_limits.append(limit[1]) if limit[0] == 'SEL' else None
+
+        # PLAN A: 对每一个返回值节点，如果该数据实现了selector，那么作为备选项；否则淘汰。
         for node in self.ret_nodes:
-            data = self.eTree.nodes[node]
-            print data
+            data_type, instance_type, ptr = symbol_resolved(self.eTree.nodes[node]['ret'])
+            if data_type and data_type not in ret_data_type:
+                f = OCClass.retrieve_func(rec=data_type, sel=sel_limits[0])
+                if f is UNDEF:
+                    pass
+                elif f is IMPORTED:
+                    add_value_to_list_in_dict_with_key(node, data_type, ret_data_type)
+                elif type(f) == OCFunction:
+                    add_value_to_list_in_dict_with_key(node, data_type, ret_data_type)
+        return ret_data_type
 
 
 class Trace:
@@ -66,10 +104,8 @@ class Trace:
             self.route = pre_existing
         self.alive = True
 
-        # 该路径中被污染的子路径，可能有多条（有多个匹配的起始节点）
-        self.tainted_subtrace = None
-        # 该路径中 地址-节点 的映射字典
-        self.ea_node = dict()
+        self.tainted_subtrace = None  # 该路径中被污染的子路径，可能有多条（有多个匹配的起始节点）
+        self.ea_node = dict()  # 该路径中 地址-节点 的映射字典
 
     def terminate(self):
         self.alive = False
@@ -79,7 +115,6 @@ class Trace:
     def step(self):
         out_edges = self.tree.out_edges(self.route[-1])
         if len(out_edges) == 0:
-            # print "Trace terminated at {}.".format(self.route[-1])
             self.terminate()
         elif len(out_edges) == 1:
             self.route.append(list(out_edges)[0][-1])
@@ -106,19 +141,15 @@ class Trace:
 
         # 被标记数据作为参数传入，该值为参数的index. None表示该数据不作为参数，而是以API返回值方式产生。
         if as_parameter is not None:
-            if 'args' in self.tree.nodes[start_node]:
-                node_data = self.tree.nodes[start_node]
+            node_data = self.tree.nodes[start_node]
+            if 'args' in node_data:
                 tainted_data.append(eval(node_data['args'])[as_parameter])
                 tainted_subtrace.append(
                     {
                         'type': GEN_PARA,
-                        'rec': node_data['rec'],
-                        'sel': node_data['sel'],
                         'data': eval(node_data['args'])[as_parameter],
-                        'ea': node_data['addr'],
-                        'ctx': node_data['context'],
-                        'ctx_name': node_data['context_name'],
-                        'node': start_node
+                        'node': start_node,
+                        'index': as_parameter
                     }
                 )
 
@@ -133,12 +164,7 @@ class Trace:
                         tainted_subtrace.append(
                             {
                                 'type': GEN_API,
-                                'rec': node_data['rec'],
-                                'sel': node_data['sel'],
                                 'data': node_data['ret'],
-                                'ea': node_data['addr'],
-                                'ctx': node_data['context'],
-                                'ctx_name': node_data['context_name'],
                                 'node': node
                             }
                         )
@@ -148,12 +174,7 @@ class Trace:
                 tainted_subtrace.append(
                     {
                         'type': REC,
-                        'rec': node_data['rec'],
-                        'sel': node_data['sel'],
                         'data': self.tainted(node_data['rec'], tainted_data),
-                        'ea': node_data['addr'],
-                        'ctx': node_data['context'],
-                        'ctx_name': node_data['context_name'],
                         'node': node
                     }
                 )
@@ -162,19 +183,14 @@ class Trace:
 
             if 'args' in node_data and node_data['des'] != 'Start':
                 index = 0
-                for para in node_data['args'].strip('\n').split('\n'):
-                    para = ':'.join(para.split(':')[1:]).strip(' ')
+                for para in eval(node_data['args']):
+                    # para = ':'.join(para.split(':')[1:]).strip(' ')
                     if self.tainted(para, tainted_data) and 'rec' in node_data:
                         tainted_subtrace.append(
                             {
                                 'type': ARG,
                                 'index': index,
-                                'rec': node_data['rec'],
-                                'sel': node_data['sel'],
                                 'data': self.tainted(para, tainted_data),
-                                'ea': node_data['addr'],
-                                'ctx': node_data['context'],
-                                'ctx_name': node_data['context_name'],
                                 'node': node
                             }
                         )
@@ -183,7 +199,6 @@ class Trace:
                         if 'rec' in node_data and node_data['rec']:
                             tainted_data.append(node_data['rec'])
                     index += 1
-                continue
 
             if node in ret_nodes:
                 if 'ret' in node_data:
@@ -192,9 +207,6 @@ class Trace:
                             {
                                 'type': RET,
                                 'data': self.tainted(node_data['ret'], tainted_data),
-                                'ea': node_data['addr'],
-                                'ctx': node_data['context'],
-                                'ctx_name': node_data['context_name'],
                                 'node': node
                             }
                         )
@@ -212,27 +224,42 @@ class Trace:
             if td in data:
                 return td
 
+    def update_node(self, node):
+        """
+        node为eTree中一节点，该节点信息依赖于前文节点，因此在此更新，根据信息需求可能会迭代更新前文节点。
+        :param node:
+        :return:
+        """
+        node_data = self.tree.nodes[node]
+        if 'rec_dpr' not in node_data or not node_data['rec_dpr']:
+            return FAILED_TO_UPDATE_NODE
 
-        # if seed.data_type:
-        #     if str_to_type(seed.data_type) in self.data_and_ptrs:  # ADT
-        #         for ptr in self.data_and_ptrs[str_to_type(seed.data_type)]:
-        #             if ptr in self.ea_and_nodes:
-        #                 matched_nodes.extend(self.ea_and_nodes[ptr])
-        #     for node in self.eTree.nodes:
-        #         if 'rec' in self.eTree.nodes[node] and self.eTree.nodes[node]['rec'] == seed.data_type:
-        #             matched_nodes.append(node)
-        #
-        # else:  # API
-        #     for node in self.eTree.nodes:
-        #         if 'sel' in self.eTree.nodes[node] and self.eTree.nodes[node]['sel'] == seed.selector:
-        #             m = re.search('\((?P<data_type>.+)<(?P<instance_type>.+):(?P<ptr>.+)>\)(?P<name>.+)',
-        #                           self.eTree.nodes[node]['rec'])
-        #             if m and str_to_type(seed.receiver) == m.group('data_type').encode('UTF-8'):
-        #                 matched_nodes.append(node)
-        #             elif self.eTree.nodes[node]['rec'] == seed.receiver:
-        #                 matched_nodes.append(node)
+        dp_node_ea = int(eval(node_data['rec_dpr']).keys()[0].strip('L'), 16)
+        dp_type = eval(node_data['rec_dpr']).values()[0]
+        if dp_node_ea not in self.ea_node:
+            return FAILED_TO_UPDATE_NODE
+        else:
+            dp_node = self.ea_node[dp_node_ea]
 
-
-# etree = ETree('/home/gjy/Desktop/results/Privacy/ToGoProject/0x100465e18+[GTXUploadAttachmentFileOperation create:].dot')
-# etree.analyze(rec='UIDevice', sel='identifierForVendor')
-# etree.query_ret_values()
+        if dp_type == 'RET':
+            if type(eval(dp_node['handler'])) != int:  # 'TODO: 被依赖节点类型不确定，需要再向上？'
+                return FAILED_TO_UPDATE_NODE
+            execution_tree_of_dp_node = ETree.get_handler(start_ea=eval(dp_node['handler']))
+            if not execution_tree_of_dp_node:
+                return FAILED_TO_UPDATE_NODE
+            ret_values = execution_tree_of_dp_node.query_ret_values(limits=[('SEL', node_data['sel'])])
+            if len(ret_values) > 1:
+                print "TODO: 在更新节点时，即使使用selector进行限制，也有多种可能性，怎么解决。"
+            for ret in ret_values:
+                current_method = OCClass.retrieve_func(rec=ret, sel=node_data['sel'])
+                if current_method:
+                    node_data['handler'].append(current_method.imp)
+                    # UPDATE: 将当前节点的REC_TYPE, RET_TYPE, handler都修改,但出现多个匹配怎么办？
+                    # TODO：那有没有资格改上个节点的信息？没有资格去改上文节点的eTree，但有资格改TaintedTrace中的上文节点，约束路径。
+                    print 'T'
+        elif dp_type == 'PARA':
+            pass
+        elif dp_type == 'IVAR':
+            pass
+        else:
+            pass

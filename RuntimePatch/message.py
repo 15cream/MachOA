@@ -26,7 +26,7 @@ class Message:
 
     def dynamic_bind(self):
         self.selector = SEL(
-            Data(self.dispatch_state, reg=self.dispatch_state.regs.x1))  # take care of 'performSelector'
+            Data(self.dispatch_state, reg=self.dispatch_state.regs.x1)).rearrange_if_necessary()  # take care of 'performSelector'
         self.receiver = Receiver(Data(self.dispatch_state, reg=self.dispatch_state.regs.x0),
                                  self.selector)
         # 根据selector来推断receiver类型这个方法，考虑到误报时后果严重，因此保守起见暂时禁止。
@@ -93,6 +93,8 @@ class Message:
         ret_type = 'unknown'
         if self.receiver.oc_class:
             ret_type = OCFunction.find_detailed_prototype(self.selector.expr, self.receiver.oc_class)[0]
+            if ret_type == 'instancetype':
+                ret_type = self.receiver.oc_class.name
 
         x0 = FORMAT_INSTANCE.format(data_type=ret_type, instance_type='RET', ptr=hex(self.invoke_ea),
                                     name="[{} {}]".format(self.receiver.expr, self.selector.expr))

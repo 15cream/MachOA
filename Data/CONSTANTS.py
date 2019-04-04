@@ -34,7 +34,7 @@ STUB_HOOK = True
 dispatch = ['_dispatch_async', '_dispatch_once']
 msgSendSuper = ['_objc_msgSendSuper2', '_objc_msgSendSuper']
 msgSends = ['_objc_msgSend', '_objc_msgSendSuper2']
-performSelectors = ['performSelector:withObject:afterDelay:', ]
+performSelectors = ['performSelector:withObject:afterDelay:', 'performSelector:']
 retSymbols = []
 objc_symbols = ['_objc_retainAutoreleasedReturnValue',
                 '_objc_retainAutoreleaseReturnValue',
@@ -97,8 +97,9 @@ REC_SEL_RET = {
     ('NSKeyedArchiver', 'archivedDataWithRootObject:'): 'NSData',
 }
 
-AS_PROTO_METH_PARA = 1
+AS_METH_PARA = 1
 AS_RET = 0
+EMPTY_LIST = []
 
 Rules = {
     'Location': [
@@ -107,8 +108,8 @@ Rules = {
             'Selector': 'locationManager:didUpdateLocations:',
             'Arguments': ['CLLocationManager', 'NSArray<CLLocation *>'],
             'RET': None,
-            'Description': 'Tells the delegate that new location rule is available.',
-            'Type': AS_PROTO_METH_PARA,
+            'Description': 'Tells the delegate that new location rule_id is available.',
+            'Type': AS_METH_PARA,
             'Index': 1,
         }
     ],

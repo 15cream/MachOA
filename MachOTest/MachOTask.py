@@ -1,5 +1,6 @@
 __author__ = 'gjy'
 
+import os
 import sys
 import ConfigParser
 sys.path.append('/home/gjy/Desktop/MachOA')
@@ -7,7 +8,6 @@ sys.path.append('/home/gjy/Desktop/MachOA')
 from cle.backends.macho.binding import BindingHelper
 from BinaryPatch.LazyBind import lazy_bind_patch
 from BinaryPatch.StubResolver import *
-from BinaryPatch.Utils import *
 
 from RuntimePatch.AddressConcretize import *
 from RuntimePatch.ExitProtect import *
@@ -18,12 +18,10 @@ from RuntimePatch.Function import Func
 from RuntimePatch.memory_event import *
 from RuntimePatch.Slice import Slice
 
-from event_simulator.CoreLocationDriver import CLDriver
-from event_simulator.UIEvent import UIEvent
-
 from SecCheck.sensitiveData import SensitiveData
-from tools.Files import *
-from tools.common import block_excess
+from tools.common import block_excess, checked_existence_in_dir
+
+
 # from angrutils import *
 
 
@@ -33,6 +31,7 @@ class MachOTask:
 
     def __init__(self, binary, store=None, visualize=None):
 
+        MachOTask.currentTask = self
         self.p = angr.Project(binary, load_options={'auto_load_libs': True})
         self.loader = self.p.loader
         self.macho = self.loader.main_object
@@ -50,7 +49,7 @@ class MachOTask:
         self.logger = open('../log', mode='wb')
         self.pre_process()
 
-        self.checked = checked("{}{}".format(self.configs.get('PATH', 'results'), self.macho.provides))
+        self.checked = checked_existence_in_dir("{}{}".format(self.configs.get('PATH', 'results'), self.macho.provides))
         # self.checked = []
         self.class_blacklist = []
         self.meth_blacklist = [0x10011a60cL, 0x10045AB08, 0x1002FD890, 0x1003B2118, 0x10026df08L, 0x100206740L,

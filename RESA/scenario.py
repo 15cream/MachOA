@@ -295,10 +295,10 @@ class Scenario:
 
     def standardization(self, node_dict, data=None):
         """
-        If the node is 'Start', the node should be rule other than invoke.
+        If the node is 'Start', the node should be rule_id other than invoke.
         :param data:
         :param node_dict:
-        :param dp_type: if 'Start', the exact rule position.
+        :param dp_type: if 'Start', the exact rule_id position.
         :return:
         """
         if data:

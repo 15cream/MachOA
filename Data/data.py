@@ -6,7 +6,7 @@ from types import *
 from Data.MachO import MachO
 from Data.OCClass import OCClass
 from Data.OCFunction import OCFunction
-from Data.CONSTANTS import FORMAT_INSTANCE, GOT_ADD_ON
+from Data.CONSTANTS import FORMAT_INSTANCE, GOT_ADD_ON, performSelectors
 from tools.oc_type_parser import *
 
 
@@ -135,6 +135,15 @@ class SEL:
         self.state = data.state
         self.expr = data.expr
         self.args = self.resolve_args()
+
+    def rearrange_if_necessary(self):
+        if self.expr in performSelectors:
+            # todo 不准确
+            self.state.regs.x1 = self.state.regs.x2
+            self.state.regs.x2 = self.state.regs.x3
+            return SEL(Data(self.state, reg=self.state.regs.x1))
+        else:
+            return self
 
     def resolve_args(self):
         args = []
