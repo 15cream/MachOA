@@ -2,6 +2,7 @@
 
 import networkx as nx
 import copy
+import chardet
 from tools.TypeInfer import TypeInfer
 from tools.common import *
 from Data.OCClass import OCClass
@@ -11,6 +12,7 @@ from MachOTest.MachOTask import MachOTask
 RET = 'as return value'
 REC = 'as receiver'
 ARG = 'as argument'
+GEN_REC = 'as receiver'
 GEN_PARA = 'as parameter'
 GEN_API = 'as generator'
 
@@ -18,6 +20,7 @@ UNDEF = None
 IMPORTED = 0
 
 FAILED_TO_UPDATE_NODE = 0
+AS_RECEIVER = -1
 
 
 class ETree:
@@ -84,6 +87,20 @@ class ETree:
                     add_value_to_list_in_dict_with_key(node, data_type, ret_data_type)
         return ret_data_type
 
+    def taint_analyze(self, rec=None, sel=None, as_parameter=None, rule=None, data_transferred=None):
+        if not self.traces:
+            self.traverse()
+        tainted_traces = []
+        bak_tainted = []
+        for trace in self.traces:
+            trace.taint_analyze(rec=rec, sel=sel, as_parameter=as_parameter, rule=rule, data_transferred=data_transferred)
+            if len(trace.tainted_subtrace) > 1:
+                if trace.tainted_subtrace in bak_tainted:
+                    continue
+                bak_tainted.append(trace.tainted_subtrace)
+                tainted_traces.append(trace)
+        return tainted_traces
+
 
 class Trace:
 
@@ -127,7 +144,7 @@ class Trace:
         else:
             print '??? WHY ???'
 
-    def taint_analyze(self, rec=None, sel=None, as_parameter=None, rule=None):
+    def taint_analyze(self, rec=None, sel=None, as_parameter=None, rule=None, data_transferred=None):
         tainted_subtrace = []
         start_node = self.tree.graph['start']
         ret_nodes = eval(self.tree.graph['ret'])
@@ -142,16 +159,28 @@ class Trace:
         # 被标记数据作为参数传入，该值为参数的index. None表示该数据不作为参数，而是以API返回值方式产生。
         if as_parameter is not None:
             node_data = self.tree.nodes[start_node]
-            if 'args' in node_data:
-                tainted_data.append(eval(node_data['args'])[as_parameter])
+            if as_parameter == AS_RECEIVER:
+                tainted_data.append(node_data['rec'])
                 tainted_subtrace.append(
                     {
-                        'type': GEN_PARA,
-                        'data': eval(node_data['args'])[as_parameter],
+                        'type': GEN_REC,
+                        'data': node_data['rec'],
                         'node': start_node,
                         'index': as_parameter
                     }
                 )
+
+            else:  # as custom parameter
+                if 'args' in node_data:
+                    tainted_data.append(eval(node_data['args'])[as_parameter])
+                    tainted_subtrace.append(
+                        {
+                            'type': GEN_PARA,
+                            'data': eval(node_data['args'])[as_parameter],
+                            'node': start_node,
+                            'index': as_parameter
+                        }
+                    )
 
         for node in self.route:
             node_data = self.tree.nodes[node]
@@ -174,6 +203,7 @@ class Trace:
                 tainted_subtrace.append(
                     {
                         'type': REC,
+                        'index': AS_RECEIVER,
                         'data': self.tainted(node_data['rec'], tainted_data),
                         'node': node
                     }
@@ -217,21 +247,28 @@ class Trace:
         return tainted_subtrace
 
     def tainted(self, data, tainted_data):
-        if data in tainted_data:
-            return data
-        for td in tainted_data:
-            # TODO 不准确，且如果出现多个怎么办？ 【这里主要为暂时解决CSEL指令问题】
-            if td in data:
-                return td
+        if data:
+            try:
+                if type(data) == str:
+                    encoding = chardet.detect(data)['encoding']
+                    data = data.decode(encoding).encode('utf-8')  # TODO: 对从dot文件中解析出来的数据统一做编码处理
+                if data in tainted_data:
+                    return data
+                for td in tainted_data:
+                    # TODO 不准确，且如果出现多个怎么办？ 【这里主要为暂时解决CSEL指令问题】
+                    if td in data:
+                        return td
+            except UnicodeDecodeError as e:
+                print 'ERROR 7: {}'.format(e)
 
     def update_node(self, node):
         """
-        node为eTree中一节点，该节点信息依赖于前文节点，因此在此更新，根据信息需求可能会迭代更新前文节点。
+        node为eTree中一节点，该节点信息(receiver)依赖于前文节点，因此在此更新，根据信息需求可能会迭代更新前文节点。
         :param node:
         :return:
         """
         node_data = self.tree.nodes[node]
-        if 'rec_dpr' not in node_data or not node_data['rec_dpr']:
+        if 'rec_dpr' not in node_data or not eval(node_data['rec_dpr']):
             return FAILED_TO_UPDATE_NODE
 
         dp_node_ea = int(eval(node_data['rec_dpr']).keys()[0].strip('L'), 16)
@@ -243,13 +280,14 @@ class Trace:
 
         if dp_type == 'RET':
             if type(eval(dp_node['handler'])) != int:  # 'TODO: 被依赖节点类型不确定，需要再向上？'
+                print '被依赖节点类型不确定，需再向上更新。'
                 return FAILED_TO_UPDATE_NODE
             execution_tree_of_dp_node = ETree.get_handler(start_ea=eval(dp_node['handler']))
             if not execution_tree_of_dp_node:
                 return FAILED_TO_UPDATE_NODE
             ret_values = execution_tree_of_dp_node.query_ret_values(limits=[('SEL', node_data['sel'])])
             if len(ret_values) > 1:
-                print "TODO: 在更新节点时，即使使用selector进行限制，也有多种可能性，怎么解决。"
+                print "TODO: 在更新节点时，即使使用selector进行限制，也有多种可能性，怎么解决。（可以考虑使用路径约束）"
             for ret in ret_values:
                 current_method = OCClass.retrieve_func(rec=ret, sel=node_data['sel'])
                 if current_method:
@@ -257,9 +295,16 @@ class Trace:
                     # UPDATE: 将当前节点的REC_TYPE, RET_TYPE, handler都修改,但出现多个匹配怎么办？
                     # TODO：那有没有资格改上个节点的信息？没有资格去改上文节点的eTree，但有资格改TaintedTrace中的上文节点，约束路径。
                     print 'T'
-        elif dp_type == 'PARA':
-            pass
+        elif dp_type == 'GEN_PARA':
+            args = eval(dp_node['args'])
+            index = args.index(node_data['rec']) if node_data['rec'] in args else None
+            if index is not None:
+                if 'temp_para' in self.tree.nodes[self.tree.graph['start']]:
+                    pass
+
         elif dp_type == 'IVAR':
             pass
         else:
             pass
+
+

@@ -4,7 +4,6 @@ import random
 from Data.CONSTANTS import *
 from RuntimePatch.Utils import *
 from RuntimePatch.ConstraintHelper import *
-from RuntimePatch.DependencyResolve import DPResolver
 from RuntimePatch.Utils import resolve_context
 
 
@@ -33,7 +32,6 @@ class GraphView:
         self.g = nx.DiGraph()
         self.history_records = dict()
         self.start = None
-        self.dpr = DPResolver(self.g, self)
 
         self.g.graph['start'] = None
         self.g.graph['ret'] = set()

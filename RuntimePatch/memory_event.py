@@ -34,6 +34,7 @@ def mem_read(state):
 def mem_write(state):
     resolved_data = None
     length = state.inspect.mem_write_length * 8
+    # TODO: UnsatError("CompositeSolver is already unsat")
     ptr = state.solver.eval(state.inspect.mem_write_address)
 
     if ptr in IVar.ivars:

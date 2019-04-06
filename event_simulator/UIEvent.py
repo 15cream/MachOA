@@ -1,6 +1,6 @@
 from Data.OCClass import OCClass
 from Data.Symbol import ImportedClass
-from Data.classes.UIResponder import UIResponder
+from RuntimePatch.frameworks.UIKit.UIResponder import UIResponder
 
 
 class UIEvent:

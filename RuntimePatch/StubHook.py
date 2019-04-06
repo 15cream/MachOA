@@ -8,7 +8,7 @@ from Data.OCivar import *
 from Data.data import Block
 from RuntimePatch.Utils import *
 from RuntimePatch.message import Message
-from RuntimePatch.AddressConcretize import mem_resolve2
+from RuntimePatch.libs.libobjcA import handle_objc_loadWeakRetained
 
 
 class StubHelper(SimProcedure):
@@ -32,7 +32,7 @@ class StubHelper(SimProcedure):
                 # print hex(invoke_ea), msg.description
 
             elif symbol.name == '_objc_loadWeakRetained':
-                mem_resolve2(dispatch_state)
+                handle_objc_loadWeakRetained(dispatch_state)
 
             elif symbol.name in setProperty:
                 print 'Here'

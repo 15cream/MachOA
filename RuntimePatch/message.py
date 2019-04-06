@@ -7,7 +7,6 @@ from BinaryPatch.Utils import *
 from Data.MachO import *
 from RuntimePatch.Utils import expr_args
 from SecCheck.analyzer import Analyzer
-from callbacks.delegate import Delegate
 
 
 class Message:

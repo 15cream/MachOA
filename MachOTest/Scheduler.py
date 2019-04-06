@@ -59,7 +59,7 @@ class Scheduler:
         # self.analyzer.analyze_class(classname='WXOMTAGCDAsyncSocket')
         # self.analyzer.analyze_class(classname='SmLocation')
         # print self.analyzer.analyze_function(start_addr=0x10078DD40)
-        self.analyzer.analyze_function(start_addr=0x100346bb0)
+        self.analyzer.analyze_function(start_addr=0x1001106C8)
 
 
 sd_scheduler = Scheduler()

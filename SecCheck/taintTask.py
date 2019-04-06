@@ -1,14 +1,12 @@
 # coding=utf-8
-from MachOTest.MachOTask import MachOTask
 from SecCheck.seed import API
-from Data.CONSTANTS import *
-from Data.eTree import *
+from SecCheck.eTree import *
 from Data.OCFunction import *
-from Data.OCClass import *
 from Data.data import *
-from tools.oc_type_parser import *
 import networkx as nx
 import random
+
+from RuntimePatch.frameworks.Foundation.NSData import NSData
 
 
 class TaintTask:
@@ -37,8 +35,12 @@ class TaintTask:
                     continue
                 execution_tree = ETree.get_handler(start_ea=f)
                 if execution_tree:
-                    for trace in execution_tree.traverse():
-                        if trace.taint_analyze(rule=rule):
+                    # for trace in execution_tree.traverse():
+                    #     if trace.taint_analyze(rule=rule):
+                    #         TaintedTrace(self.rule_id, trace).track()
+                    tainted_traces = execution_tree.taint_analyze(rule=rule)
+                    for trace in tainted_traces:
+                        if trace.tainted_subtrace:
                             TaintedTrace(self.rule_id, trace).track()
 
 
@@ -138,12 +140,14 @@ class TaintedTrace:
         node_data_in_etree = self.node_and_trace[src_node].tree.nodes[node_in_etree]
         ctx = int(node_data_in_etree['context'])
 
-        if node_type == ARG:
+        if node_type in [ARG, REC]:
             handler = eval(node_data_in_etree['handler'])
             if type(handler) == int:
                 self.track_usage(src_node, handler, data_transferred, para_index=tainted_info['index'])
             elif handler is None:
-                return
+                self.node_and_trace[src_node].update_node(node_in_etree)
+                if self.is_sink(node_data_in_etree):
+                    print 'FOUND SINK: {}'.format(src_node)
             else:
                 if handler is EMPTY_LIST:
                     self.node_and_trace[src_node].update_node(node_in_etree)
@@ -154,11 +158,18 @@ class TaintedTrace:
         elif node_type == RET:
             if ctx in OCFunction.oc_function_set:
                 src_f = OCFunction.oc_function_set[ctx]
+                if src_f.ret_type.startswith('v'):
+                    return
                 for caller in API(receiver=src_f.receiver, selector=src_f.selector).find_calls(gist='ADJ'):
                     self.track_usage(src_node, caller, data_transferred, rec=src_f.receiver, sel=src_f.selector)
             elif ctx in OCFunction.meth_list:  # TODO: subroutine
                 # for caller in XrefsTo(ctx):
                 pass
+
+    def is_sink(self, node_data_in_etree):
+        if NSData.is_writing_action(sel=node_data_in_etree['sel']):
+            return True
+        return False
 
     def track_usage(self, src, func, data_transferred, para_index=None, rec=None, sel=None):
         """
@@ -177,11 +188,11 @@ class TaintedTrace:
         if not execution_tree:
             return  # 该污点数据追踪不可行
 
+        execution_tree.eTree.nodes[execution_tree.start_node]['temp_para'] = eval(self.node_and_trace[src].tree.nodes[self.tracked_trace.nodes[src]['tainted_info']['node']]['args'])
         current_level = self.tracked_trace.nodes[src]['level'] + 1
-        execution_tree.traverse()
         if para_index is not None:
-            for trace in execution_tree.traces:
-                trace.taint_analyze(as_parameter=para_index)
+            tainted_traces = execution_tree.taint_analyze(as_parameter=para_index, data_transferred=data_transferred)
+            for trace in tainted_traces:
                 if trace.tainted_subtrace and trace.tainted_subtrace[0]['type'] == GEN_PARA:
                     des = self.add_node(trace.tainted_subtrace[0], current_level, trace,
                                         data_transferred=data_transferred,
@@ -190,8 +201,8 @@ class TaintedTrace:
                     self.tracked_trace.add_edge(src, des, color='red')
 
         elif rec and sel:
-            for trace in execution_tree.traces:
-                trace.taint_analyze(rec=rec, sel=sel)
+            tainted_traces = execution_tree.taint_analyze(rec=rec, sel=sel, data_transferred=data_transferred)
+            for trace in tainted_traces:
                 if trace.tainted_subtrace and trace.tainted_subtrace[0]['type'] == GEN_API:
                     des = self.add_node(trace.tainted_subtrace[0], current_level, trace,
                                         data_transferred=data_transferred,
@@ -215,6 +226,8 @@ class TaintedTrace:
             print 'Failed to generate {}, {} '.format(fp, e)
 
 
+# 关于设置数据引用的层级；每一层扩展，都意味着数据的引用。设置这个限制的原因，主要是考虑到效率，路径长度（PiOS中也有类似的考量），
+# 以及越外层的数据，事实上被处理得越面目全非 = ， =
 LEVEL_TOP = 7
 analyzer = TaintTask('/home/gjy/Desktop/samples/ToGoProject', 'ID')
 analyzer.run()
