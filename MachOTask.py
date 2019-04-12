@@ -73,10 +73,10 @@ class MachOTask:
     def pre_process(self):
         self.config()
         # add_options={angr.options.LAZY_SOLVES}
-        if not os.path.exists('{}.i64'.format(self.binary_path)):
-            cmd = '{} -A -B {}'.format(self.configs.get('PATH', 'ida_path'), self.binary_path)
-            commands.getstatusoutput(cmd)
         if not os.path.exists(self.ida_xref_pkl):
+            if not os.path.exists('{}.i64'.format(self.binary_path)):
+                cmd = '{} -A -B {}'.format(self.configs.get('PATH', 'ida_path'), self.binary_path)
+                commands.getstatusoutput(cmd)
             cmd = '{} -S{} {}'.format(self.configs.get('PATH', 'ida_path'), self.configs.get('PATH', 'ida_script'), self.binary_path)
             commands.getstatusoutput(cmd)
         SensitiveData.init(self.ida_xref_pkl)
