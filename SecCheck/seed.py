@@ -4,9 +4,7 @@ from Data.OCClass import OCClass
 from Data.OCFunction import OCFunction
 from Data.CONSTANTS import *
 from tools.oc_type_parser import *
-from MachOTest.MachOTask import MachOTask
-import pickle
-
+from MachOTask import MachOTask
 
 SEL_LIMIT = 100
 

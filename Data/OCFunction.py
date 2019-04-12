@@ -136,7 +136,11 @@ class OCFunction:
 
     @staticmethod
     def find_protocol_method(proto, sel):
-        return set()
+        ret = set([])
+        if sel in OCFunction.meth_indexed_by_sel:
+            for oc_f in OCFunction.meth_indexed_by_sel[sel]:
+                ret.add(oc_f.imp)
+        return ret
 
 
 

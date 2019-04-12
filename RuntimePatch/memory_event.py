@@ -15,7 +15,6 @@ def mem_read(state):
     if ptr in IVar.ivars:
         ivar = IVar.ivars[ptr]
         state.inspect.mem_read_expr = claripy.BVS(FORMAT_IVAR_OFFSET.format(ptr=hex(ptr)), length, uninitialized=True)
-        print 'T'
 
     elif MachO.pd.segdata['common'] and ptr in range(MachO.pd.segdata['common'].min_addr, MachO.pd.segdata['common'].max_addr):
         state.inspect.mem_read_expr = claripy.BVS(FORMAT_COMMON_DATA.format(ptr=hex(ptr)), length, uninitialized=True)

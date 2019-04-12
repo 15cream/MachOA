@@ -1,6 +1,9 @@
 [PATH]
-binary = ../../samples/
-dds = ../dds/
-xmls = ../xmls/
-dbs = ../dbs/
-results = ../../results/Privacy/
+binary = ../samples/
+dds = dds/
+xmls = xmls/
+dbs = dbs/
+results = ../results/Privacy/
+ida_path = /home/gjy/ida-6.6/idaq64
+ida_script = /home/gjy/Desktop/MachOA/tools/IDAScript_xrefs.py
+

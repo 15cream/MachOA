@@ -24,4 +24,4 @@ def handle_objc_loadWeakRetained(state):
                                               name='{}.{}'.format(ivar._class, ivar.name))
                 state.regs.x0 = claripy.BVS(expr, 64)
     except AttributeError as e:
-        print 'Handle _objc_loadWeakRetained: ' + e
+        print 'Handle _objc_loadWeakRetained: ' + str(e)

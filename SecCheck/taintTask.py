@@ -5,8 +5,10 @@ from Data.OCFunction import *
 from Data.data import *
 import networkx as nx
 import random
+import sys
 
 from RuntimePatch.frameworks.Foundation.NSData import NSData
+from RuntimePatch.frameworks.Foundation.Networking import NSURLSession
 
 
 class TaintTask:
@@ -167,7 +169,10 @@ class TaintedTrace:
                 pass
 
     def is_sink(self, node_data_in_etree):
-        if NSData.is_writing_action(sel=node_data_in_etree['sel']):
+        selector = node_data_in_etree['sel']
+        if NSData.is_writing_action(sel=selector):
+            return True
+        if NSURLSession.is_upload_task(sel=selector):
             return True
         return False
 
@@ -229,5 +234,8 @@ class TaintedTrace:
 # 关于设置数据引用的层级；每一层扩展，都意味着数据的引用。设置这个限制的原因，主要是考虑到效率，路径长度（PiOS中也有类似的考量），
 # 以及越外层的数据，事实上被处理得越面目全非 = ， =
 LEVEL_TOP = 7
-analyzer = TaintTask('/home/gjy/Desktop/samples/ToGoProject', 'ID')
-analyzer.run()
+# analyzer = TaintTask('/home/gjy/Desktop/samples/CarcorderFree_arm64', 'ID')
+# analyzer.run()
+binary_path = sys.argv[0]
+RULE_NAME = sys.argv[1]
+print binary_path, RULE_NAME

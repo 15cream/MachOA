@@ -2,6 +2,8 @@
 import re
 import claripy
 import archinfo
+import chardet
+import unicodedata
 from types import *
 from Data.MachO import MachO
 from Data.OCClass import OCClass
@@ -117,7 +119,12 @@ class Data(object):
 
     @staticmethod
     def read_cfstring(state, addr):
-        return state.mem[addr + 16].deref.string.concrete
+        data = state.mem[addr + 16].deref.string.concrete
+        encoding = chardet.detect(data)['encoding']
+        if encoding:
+            # data = data.decode(encoding).encode('utf-8')
+            data = unicodedata.normalize('NFKD', data.decode(encoding)).encode('ascii', 'ignore')
+        return data
 
     @staticmethod
     def decode(s):

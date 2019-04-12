@@ -104,13 +104,32 @@ EMPTY_LIST = []
 Rules = {
     'Location': [
         {
-            'Receiver': '<CLLocationManagerDelegate>',
+            'Protocol': 'CLLocationManagerDelegate',
+            'Receiver': 'NSObject',
             'Selector': 'locationManager:didUpdateLocations:',
             'Arguments': ['CLLocationManager', 'NSArray<CLLocation *>'],
             'RET': None,
             'Description': 'Tells the delegate that new location rule_id is available.',
             'Type': AS_METH_PARA,
             'Index': 1,
+        },
+        {
+            'Protocol': 'CLLocationManagerDelegate',
+            'Receiver': 'NSObject',
+            'Selector': 'locationManager:didUpdateToLocation:fromLocation:',
+            'RET': None,
+            'Description': 'Tells the delegate that new location rule_id is available.',
+            'Type': AS_METH_PARA,
+            'Index': 1,
+        },
+        {
+            'Receiver': 'CLLocationManager',
+            'Selector': 'location',
+            'Arguments': None,
+            'RET': 'CLLocation',
+            'Description': 'Tells the delegate that new location rule_id is available.',
+            'Type': AS_RET,
+            'Index': None,
         }
     ],
     'ID': [

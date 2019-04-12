@@ -1,4 +1,6 @@
 import re
+import sys
+import os
 import pickle
 
 import idc
@@ -119,11 +121,16 @@ class Binary:
             'functions': self._functions
         }
 
-    def dump(self):
-        f = open('/home/gjy/Desktop/MachOA/dbs/CsdnPlus_arm64_xrefs.pkl', 'wb')
+    def dump(self, p):
+        f = open(p, 'wb')
         pickle.dump(self.xrefs, f)
         f.close()
 
 binary = Binary()
 binary.build_xrefs()
-binary.dump()
+if 'IDA_XREF_PATH' in os.environ:
+    binary.dump(os.environ['IDA_XREF_PATH'])
+else:
+    print 'IDA_XREF_PATH does not exist in environ.'
+# binary.dump('/home/gjy/Desktop/MachOA/dbs/SpeedCamera_free_arm64_xrefs.pkl')
+Exit(0)

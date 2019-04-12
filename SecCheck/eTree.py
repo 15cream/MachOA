@@ -7,7 +7,7 @@ from tools.TypeInfer import TypeInfer
 from tools.common import *
 from Data.OCClass import OCClass
 from Data.OCFunction import OCFunction
-from MachOTest.MachOTask import MachOTask
+from MachOTask import MachOTask
 
 RET = 'as return value'
 REC = 'as receiver'

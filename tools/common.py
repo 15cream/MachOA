@@ -1,14 +1,14 @@
 import os
 import re
-
+from clint.textui import colored, puts, indent
 from Data.CONSTANTS import BLOCK_LIMIT
 
 
 def block_excess(angr_project, start_addr):
     cfg = angr_project.analyses.CFGAccurate(keep_state=True, starts=[start_addr, ], call_depth=0)
-    print '{} BLOCKS DETECTED in {}.'.format(len(cfg._nodes), hex(start_addr))
+    printy('{} BLOCKS DETECTED in {}.'.format(len(cfg._nodes), hex(start_addr)), 1)
     if len(cfg._nodes) > BLOCK_LIMIT:
-        print 'SKIPPED(TOO MUCH BLOCKS): ', hex(start_addr)
+        printy('SKIPPED(TOO MUCH BLOCKS): ', 4)
         return True
     return False
 
@@ -39,3 +39,19 @@ def symbol_resolved(symbol):
         ptr = int(m.group('ptr').encode('UTF-8').strip('L'), 16)
         return data_type, instance_type, ptr
     return None, None, None
+
+
+def printy(s, status):
+    colors = ['green', 'white', 'red', 'cyan', 'yellow']
+    with indent(4, quote='......   '):
+        str = '{:10}'.format(s)
+        puts(getattr(colored, colors[status])(str))
+
+
+def printy_result(s, status):
+    with indent(4, quote='......   '):
+        str = '{:.<40}'.format(s)
+        if status:
+            puts(getattr(colored, 'green')(str + '[OK]'))
+        else:
+            puts(getattr(colored, 'red')(str + '[ERROR]'))
