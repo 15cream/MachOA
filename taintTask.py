@@ -2,6 +2,7 @@
 from SecCheck.seed import API
 from SecCheck.eTree import *
 from Data.OCFunction import *
+from Data.OCivar import IVar
 from Data.data import *
 import networkx as nx
 import random
@@ -144,7 +145,18 @@ class TaintedTrace:
         if node_type in [ARG, REC]:
             handler = eval(node_data_in_etree['handler'])
             if type(handler) == int:
-                self.track_usage(src_node, handler, data_transferred, para_index=tainted_info['index'])
+                if node_type is REC:
+                    self.track_usage(src_node, handler, data_transferred, para_index=tainted_info['index'])
+                elif node_type is ARG:
+                    # 检测是否作为setter的参数，若是则直接解析getter的调用者
+                    getter = IVar.ret_getter_according_to_setter(ea=handler)
+                    if getter and getter in OCFunction.oc_function_set:
+                        getter = OCFunction.oc_function_set[getter]
+                        for caller in API(receiver=getter.receiver, selector=getter.selector).find_calls(gist='ADJ'):
+                            self.track_usage(src_node, caller, data_transferred, rec=getter.receiver, sel=getter.selector)
+                    else:
+                        self.track_usage(src_node, handler, data_transferred, para_index=tainted_info['index'])
+
             elif handler is None:
                 self.node_and_trace[src_node].update_node(node_in_etree)
                 if self.is_sink(node_data_in_etree):
@@ -235,8 +247,8 @@ class TaintedTrace:
 LEVEL_TOP = 7
 binary_path = sys.argv[1]
 RULE_NAME = sys.argv[2]
-# binary_path = '/home/gjy/Desktop/samples/SpeedCamera_free_arm64'
-# addr = 'Location'
+# binary_path = '/home/gjy/Desktop/samples/yellowpage_arm64'
+# RULE_NAME = 'Location'
 if os.path.exists(binary_path):
     if RULE_NAME in Rules:
         analyzer = TaintTask(binary_path, RULE_NAME)

@@ -3,7 +3,7 @@ import angr
 import pickle
 
 current_ctx = None
-BLOCK_LIMIT = 300
+BLOCK_LIMIT = 500
 
 LAZY_BIND_F = 0
 MSGSEND = 1

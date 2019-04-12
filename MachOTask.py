@@ -34,7 +34,7 @@ class MachOTask:
 
         MachOTask.currentTask = self
         self.binary_path = binary
-        self.p = angr.Project(binary, load_options={'auto_load_libs': True})
+        self.p = angr.Project(binary, load_options={'auto_load_libs': False})
         self.loader = self.p.loader
         self.macho = self.loader.main_object
         self.pd = MachO(self.macho, self)
@@ -85,9 +85,10 @@ class MachOTask:
         Frameworks('{}FrameworkHeaders.pkl'.format(self.configs.get('PATH', 'dbs')))
         self.init_state = self.p.factory.blank_state(add_options={angr.options.LAZY_SOLVES})
         bh = BindingHelper(self.macho)
-        # bh.do_normal_bind(self.macho.rebase_blob)
+        bh.do_normal_bind(self.macho.rebase_blob)
         bh.do_normal_bind(self.macho.binding_blob)
         bh.do_lazy_bind(self.macho.lazy_binding_blob)
+        # self.macho.do_binding()
 
         self.pd.build(self.init_state)
         StubResolver(self.init_state, self.pd).run()

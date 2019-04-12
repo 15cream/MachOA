@@ -1,99 +1,32 @@
 # MachOA
 
-
-```
-analyzer = MachOTask('../samples/AppJobber_arm64', store=True, visualize=False)
-# 对实现了CLLocationManagerDelegate协议的类（方法），模拟事件触发解析
-CLDriver(analyzer).simulate()
-analyzer.clear()
-```
-结果示例：  
-
-```
---------------------------------------------------------------------------------
-0x100260f10 +[UIDevice currentDevice]
-Receiver: UIDevice 
-Arguments:
---------------------------------------------------------------------------------
-0x100260f1c -[[UIDevice currentDevice] identifierForVendor]
-Receiver: (@"UIDevice"<RET:0x100260f10L>)[UIDevice currentDevice] 
-Arguments:
---------------------------------------------------------------------------------
-0x100260f30 -[[[WXOMTAEnv alloc] init] setIfv:]
-Receiver: (@"WXOMTAEnv"<RET:0x100260e8cL>)[[WXOMTAEnv alloc] init] 
-Arguments:
-para0: (unknown<RET:0x100260f1cL>)[[UIDevice currentDevice] identifierForVendor]
-
-```
+【测试中】
+1. 安装angr，直接pip install angr即可；由于当前的cle库对Mach-O二进制的解析支持有问题（待确认），因此在安装angr后重新安装7.8.7.1版本的cle：pip install cle==7.8.7.1。
+2. 配置文件为config/config0，关键路径包括：
+    ida_path: IDA（64）可执行文件的绝对路径；
+    ida_script: 用于解析Mach-O二进制中引用关系的脚本，是Mach-O项目中tools/IDAScript_xrefs.py文件，可移动，在此处填写绝对路径；
+    dbs: 数据库所在文件夹路径，每对一个Mach-O二进制进行解析会生成两个.pkl文件存储二进制的信息（首次解析时生成），一个是使用IDA脚本生成的引用关系，另一个则是类、方法、实例变量、协议等信息；
+    results: 测试结果所在文件夹路径.   
+3. python Scheduler.py Mach-O文件路径 待测试的方法起始地址 （对该方法进行符号执行，获得执行树输出为.dot文件到results路径中）     
+    或者      
+   python Scheduler.py Mach-O文件路径 receiver selector 模式 （根据receiver和selector查找该方法的调用者，对每个调用者实施解析。）   
+   模式有三种：   
+   MSG，receiver与selector同时出现的代码片段视作可疑调用者；   
+   SEL，完全依赖selector，当selector十分特殊时可以使用该模式，init之类的就别了；   
+   ADJ，适配模式，二者之间，大家可以查看代码自己调整。  
+4. 符号执行有个“IPC”开关，决定是否在符号执行过程中实现过程间路径。（开关、常量大多在Data/CONSTANTS.py中，大家可以查找其引用查看代码逻辑）慎用，不好控制。
+5. Mach-O二进制只支持arm64，有必要的话先脱壳再lipo。
 
 
-### 如何判断UIEvent的响应方法
-1. 继承UIResponder的类所实现的事件处理方法；  
-2. addTarget:action:forControlEvents:调用中target对象的action方法；  
-从event_simulator/UIEvent.py入手。  
+【给师妹】   
+RuntimePatch/message.py中，（Message就是模拟出的message对象，每当objc_msgSend函数执行时处理的消息）  
+send2方法里，（模拟消息发送）   
+有一句insert_invoke，是将当前消息的信息作为调用节点录入执行树里面（最后会被输出为dot文件），你在这里开调试看下数据结构，可以写一个解析器来看是否调用了敏感API。   
+这样匹配其实有点粗糙，因为是单个过程内做解析，没有上下文信息，比如你一个消息的receiver依赖于上文的调用或者传入的参数，按理说应该再做个数据类型追踪、更新，那部分在污点分析那边...  
+这个你先凑合用。    
 
-
-### 注意对象的构造表达式
-instance_types = {
-​    'PARA': 'passed_in_as_parameter',
-​    'REC': 'as_receiver',
-​    'RET': 'as_ret_value',
-​    'IVAR': 'ret_as_ivar'
-}
-FORMAT_INSTANCE = '({data_type}<{instance_type}:{ptr}>){name}'
-
-### 数据的产生
-#### from RuntimePatch.message import Func
-初始化寄存器，主要看方法是否为instance method，若是将X0初始化为该instance（添加随机数）。arguments的来源有两个，一是可以通过Func(args=...)传入指定类型；二是查看该方法是否为协议方法（因为协议定义的方法在MachO中有类型），同样添加随机数标识该对象；否则，使用Pn作为名称。
-
-#### from RuntimePatch.message import Messgae
-在执行过程中，需要关注的是返回值的生成。
-根据FORMAT_INSTANCE = '({data_type}<{instance_type}:{ptr}>){name}'，返回值需要主要几个数据：  
-1. 返回值类型：如果能对调用进行解析，查看该调用的meth_type获得返回值类型；否则计作'unknown'；
-2. instance_type为'RET'，ptr为该调用的地址；
-3. name，表示为调用的表达，即[receiver selector]的形式。
-
-#### 对返回值类型的查找：  
-1. 依据协议；receiver
-2. 依据methtype ;
-3. unknown；
-
-### 数据的表示以及解析
-#### from Data.data.py import Data
-(￣▽￣) 这个名字太不友好了。  
-数据的解析尽量统一使用该类来完成。主要解析包括：  
-1. 根据寄存器类型进行数据表示，如果是BVV，解析所属段、数据类型，获得合适的表达；如果是BVS，比较简单的使用'_'.join(args[0].split('_')[0:-2])方法，因为BVS自带的_?_?随机表示。
-2. 还有一个关键内容，是栈地址的解析。
-
-#### from Data.data.py import SEL
-def __init__(self, data)
-其实就是在Data数据上，进一步进行selector相关的解析。例如，参数的解析（已知state，selector，可以确定参数的个数；或者selector是stringWithFormat:时）。
-
-#### from Data.data.py import Receiver
-def __init__(self, data, sel)
-注意这里sel是必要的参数，因为对一次调用来说，selector是很容易被确认的。  
-同时，当receiver类型无法确认时，通过selector对其进行类型推断。  
-
-receiver的类型：  
-1. BVV, classdata_ea，类方法调用
-2. BVV, string，为字符串，实例方法调用
-3. BVS，符号表示，需要进行类型提取／推断
-
-#### 注意reciever类型推断与返回值推断
-
-receiver类型推断发生在dynamic_bind，根据selector推断receiver；  
-返回值推断发生在过程间分析，当需要过程间分析时，直接解析调用，进入另一进程；当无需过程间分析时，对返回值进行合理表示，在OCFunction.find_detailed_prototype中进行推断，根据receiver类型和selector进行解析。  
-```python
-# 在此处进行receiver类型推断，尽可能确定({data_type}<{instance_type}:{ptr}>){name}'中的
-# data_type
-self.receiver = Receiver(Data(self.dispatch_state, reg=self.dispatch_state.regs.x0),
-                                 self.selector)
-# 返回值类型的推断，是一定需要receiver类型已确定的情况，否则为unknown；
-# 通常是依据protocol_methtype, methtype, 预定义的alloc, init, currentDevice等；
-ret_type = OCFunction.find_detailed_prototype(self.selector.expr, self.receiver.oc_class)[0]
-```
-
-
+   
+    
 
 
 

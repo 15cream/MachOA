@@ -7,6 +7,7 @@ from types import *
 
 from OCClass import OCClass
 from OCFunction import OCFunction
+from Data.OCivar import IVar
 from OCProtocol import Protocol
 from Data.CONSTANTS import *
 
@@ -35,7 +36,7 @@ class MachO:
             Protocol.analyze_protolist(self.macho, state)
             MachO.dump(db)
         OCFunction.build_meth_list(self.macho)
-        # IVar.parse_accessor()
+        IVar.parse_accessor()
 
     def build_classdata(self, state):
 

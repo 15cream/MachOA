@@ -9,6 +9,7 @@ class IVar:
     ivars = dict()
     xrefs = dict()
     ivars_accessed_during_analysis = set()
+    ivar_indexed_by_accessors = dict()
 
     def __init__(self, ptr, name=None, _class=None, type=None):
         self.ptr = ptr
@@ -33,16 +34,34 @@ class IVar:
         if self.ptr not in IVar.ivars:
             IVar.ivars[self.ptr] = self
 
+    @staticmethod
+    def parse_accessor():
+        for ptr, ivar in IVar.ivars.items():
+            ivar.parse_accessors()
+
     def parse_accessors(self):
         if self.property:
             if self.setter:
                 pass
             else:
                 self.setter = "set{}:".format(self.property[0].upper() + self.property[1:])
+                symbol = "{} {}".format(self._class, self.setter)
+                if symbol in OCFunction.function_symbols:
+                    IVar.ivar_indexed_by_accessors[OCFunction.function_symbols[symbol]] = self
             if self.getter:
                 pass
             else:
-                self.getter = "{}:".format(self.property)
+                self.getter = "{}".format(self.property)
+
+    @staticmethod
+    def ret_getter_according_to_setter(ea=None, symbol=None):
+        if ea and ea in IVar.ivar_indexed_by_accessors:
+            ivar = IVar.ivar_indexed_by_accessors[ea]
+            if ivar.getter:
+                symbol = "{} {}".format(ivar._class, ivar.getter)
+                if symbol in OCFunction.function_symbols:
+                    return OCFunction.function_symbols[symbol]
+        return None
 
     def add_record(self, record):
         self.records.append(record)
