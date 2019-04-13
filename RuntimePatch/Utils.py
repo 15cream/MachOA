@@ -120,8 +120,8 @@ def expr_args_for_taint_analysis(args):
     expr = []
     if args:
         for i in range(0, len(args)):
-            reg_value = args[i]
-            expr.append(reg_value.expr)
+            arg_value = args[i]
+            expr.append(arg_value.expr)
     return expr
 
 

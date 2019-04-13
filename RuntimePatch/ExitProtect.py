@@ -34,7 +34,7 @@ def branch_check(state):
     # 如果目标地址为０，默认方法体结束，x0中可能存在返回值。
     if jmp_target == 0:
         if 'start_func_object' in state.globals:
-            ret_value = Data(state, reg=state.regs.get('x0'))
+            ret_value = Data(state, bv=state.regs.get('x0'))
             if src > text.max_addr:
                 if STUB_HOOK:
                     ret_state = state.history.parent.parent  # invoke_context_state -> msgSend_stub -> stub_helper

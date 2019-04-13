@@ -25,8 +25,8 @@ class Message:
 
     def dynamic_bind(self):
         self.selector = SEL(
-            Data(self.dispatch_state, reg=self.dispatch_state.regs.x1)).rearrange_if_necessary()  # take care of 'performSelector'
-        self.receiver = Receiver(Data(self.dispatch_state, reg=self.dispatch_state.regs.x0),
+            Data(self.dispatch_state, bv=self.dispatch_state.regs.x1)).rearrange_if_necessary()  # take care of 'performSelector'
+        self.receiver = Receiver(Data(self.dispatch_state, bv=self.dispatch_state.regs.x0),
                                  self.selector)
         # 根据selector来推断receiver类型这个方法，考虑到误报时后果严重，因此保守起见暂时禁止。
         # if not self.receiver.oc_class:

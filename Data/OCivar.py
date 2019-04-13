@@ -1,15 +1,18 @@
+# coding=utf-8
+import claripy
+
 __author__ = 'gjy'
 import pickle
 from OCFunction import OCFunction
-from Data.CONSTANTS import *
+from CONSTANTS import *
 
 
 class IVar:
-
     ivars = dict()
     xrefs = dict()
     ivars_accessed_during_analysis = set()
     ivar_indexed_by_accessors = dict()
+    fake_memory_and_ivar = dict()
 
     def __init__(self, ptr, name=None, _class=None, type=None):
         self.ptr = ptr
@@ -64,9 +67,17 @@ class IVar:
         return None
 
     def add_record(self, record):
-        self.records.append(record)
         if self.ptr not in IVar.ivars_accessed_during_analysis:
             IVar.ivars_accessed_during_analysis.add(self.ptr)
+        self.records.insert(0, record)
+
+    def ret_latest_data(self):
+        if self.records:
+            for record in self.records:
+                if record.type == 'str':
+                    return record.value.bv
+        return claripy.BVS(FORMAT_INSTANCE.format(data_type=self.type, ptr=hex(self.ptr), instance_type='IVAR',
+                                                  name='{}.{}'.format(self._class, self.name)), 64)
 
     @staticmethod
     # deprecated for the moment
@@ -101,18 +112,20 @@ class IVar:
 
 class AccessedRecord:
 
-    def __init__(self, ea, type, direct=True, ctx=None, value=None):
+    def __init__(self, state, ea, type, instance=None, direct=True, ctx=None, value=None):
         """
 
         :param ea: exactly address where the accessed happened.
-        :param type: get or set
+        :param type: getProperty or setProperty, ldr or str
         :param ctx:
         :param value:
         :param direct: direct or through accessor methods
         """
+        self.state = state
         self.ea = ea
         self.ctx = ctx
         self.type = type
+        self.instance = instance
         self.value = value
         self.direct_ref = direct
         self.path = None  # actually, if path-sensitive

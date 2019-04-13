@@ -22,48 +22,40 @@ class StubHelper(SimProcedure):
 
         if lib == '/usr/lib/libobjc.A.dylib':
             if symbol.name == "_objc_msgSend":
-                msg = Message(dispatch_state, invoke_ea, simprocedure_handler=self)
-                msg.send2()
-                # print hex(invoke_ea), msg.description
-
+                Message(dispatch_state, invoke_ea, simprocedure_handler=self).send2()
             elif symbol.name == "_objc_msgSendSuper2":
-                msg = Message(dispatch_state, invoke_ea, simprocedure_handler=self, send_super=True)
-                msg.send2()
-                # print hex(invoke_ea), msg.description
-
+                Message(dispatch_state, invoke_ea, simprocedure_handler=self, send_super=True).send2()
             elif symbol.name == '_objc_loadWeakRetained':
                 handle_objc_loadWeakRetained(dispatch_state)
-
             elif symbol.name in setProperty:
-                print 'Here'
                 m = re.search('<BV\d+ \(<ea:0x(?P<ptr>[0-9a-f]+)L>\)IVAR_OFFSET.+', str(dispatch_state.regs.x3.args[0]))
                 if m:
                     ivar = IVar.ivars[int(m.group('ptr'), 16)]
-                    # ivar.add_record(AccessedRecord(invoke_ea, symbol.name, value=dispatch_state.regs.x2))
-
+                    ivar.add_record(AccessedRecord(dispatch_state, invoke_ea, symbol.name, value=dispatch_state.regs.x2))
             elif symbol.name in getProperty:
-                print 'Here'
-        elif '_dispatch_' in symbol.name:
-            # base = state.regs.x1
-            # for i in range(1, 6):
-            #     ea = state.mem[base + 8 * i].long.concrete
-            #     if ea in MachO.pd.macho.lc_function_starts:
-            #         return ea
-            block = None
-            for i in range(0, 5):
-                block = Block(self.state, self.state.registers.load('x{}'.format(i)))
-                if block.subroutine:
-                    break
-            if block.subroutine and not block_excess(MachO.pd.task.p, block.subroutine):
-                self.state.regs.x0 = block.data_ea
-                self.jump(block.subroutine)
-            return
+                pass
+        elif lib == '/usr/lib/libSystem.B.dylib':
+            if '_dispatch_' in symbol.name:  # TODO 检查是否不同的dispatch，参数不同
+                # base = state.regs.x1
+                # for i in range(1, 6):
+                #     ea = state.mem[base + 8 * i].long.concrete
+                #     if ea in MachO.pd.macho.lc_function_starts:
+                #         return ea
+                block = None
+                for i in range(0, 5):
+                    block = Block(self.state, self.state.registers.load('x{}'.format(i)))
+                    if block.subroutine:
+                        break
+                if block.subroutine and not block_excess(MachO.pd.task.p, block.subroutine):
+                    self.state.regs.x0 = block.data_ea
+                    self.jump(block.subroutine)
+                return
         else:
             # args = []
             # for i in range(0, 6):
             #     reg_name = 'x{}'.format(i)
-            #     reg = Data(self.state, reg=dispatch_state.regs.get(reg_name))
-            #     args.append(reg)
+            #     bv = Data(self.state, bv=dispatch_state.regs.get(reg_name))
+            #     args.append(bv)
             # MachO.pd.task.cg.insert_invoke(invoke_ea, symbol, dispatch_state, args=args)
             return dispatch_state.registers.load('x0')
 
@@ -85,30 +77,21 @@ def analyze_lazy_bind_invoke(dispatch_state, ptr):
 
     if lib == '/usr/lib/libobjc.A.dylib':
         if symbol.name == "_objc_msgSend":
-            msg = Message(dispatch_state, invoke_ea)
-            msg.send2()
-            # print hex(invoke_ea), msg.description
-
+            Message(dispatch_state, invoke_ea).send2()
         elif symbol.name == "_objc_msgSendSuper2":
-            msg = Message(dispatch_state, invoke_ea, send_super=True)
-            msg.send2()
-            # print hex(invoke_ea), msg.description
-
+            Message(dispatch_state, invoke_ea, send_super=True).send2()
         elif symbol.name in setProperty:
-            print 'Here'
             m = re.search('<BV\d+ \(<ea:0x(?P<ptr>[0-9a-f]+)L>\)IVAR_OFFSET.+', str(dispatch_state.regs.x3.args[0]))
             if m:
                 ivar = IVar.ivars(int(m.group('ptr'), 16))
                 ivar.add_record(AccessedRecord(invoke_ea, symbol.name, value=dispatch_state.regs.x2))
-
         elif symbol.name in getProperty:
-            print 'Here'
-
+            pass
     else:
         args = []
         for i in range(0, 6):
             reg_name = 'x{}'.format(i)
-            reg = Data(dispatch_state, reg=dispatch_state.regs.get(reg_name))
+            reg = Data(dispatch_state, bv=dispatch_state.regs.get(reg_name))
             args.append(reg)
         MachO.pd.task.cg.insert_invoke(invoke_ea, symbol, dispatch_state, args=args)
 

@@ -58,7 +58,7 @@ class Func:
                 else:
                     reg = FORMAT_INSTANCE.format(data_type='unknown', ptr=hex(f.imp), instance_type='GEN_PARA', name="P" + str(i))
                 self.init_state.registers.store('x{}'.format(str(i+2)), self.init_state.solver.BVS(reg, 64))
-                args_data.append(Data(self.init_state, reg=self.init_state.registers.load('x{}'.format(str(i+2)))))
+                args_data.append(Data(self.init_state, bv=self.init_state.registers.load('x{}'.format(str(i + 2)))))
 
             self.task.cg.add_start_node(self.start_ea, 'Start', self.init_state, args=args_data)
             return self
@@ -82,7 +82,7 @@ class Func:
         Because of Inter-procedural analysis, so we need to resolve the context.
         :return:
         """
-        reg_data = Data(state, reg=state.regs.get('x0'))
+        reg_data = Data(state, bv=state.regs.get('x0'))
         if 'Marked' in reg_data.expr:
             self.ret = resolve_context(state.addr)
 
@@ -136,13 +136,13 @@ class Func:
         # Check no sensitive database in this state.
         ea = state.regs.bp
         while state.solver.eval(ea > state.regs.sp):
-            if 'Marked' in Data(state, reg=ea).expr:
-                print 'Sensitive database {} exists at {}, state:{}'.format(Data(state, reg=ea).expr, ea, hex(state.addr))
+            if 'Marked' in Data(state, bv=ea).expr:
+                print 'Sensitive database {} exists at {}, state:{}'.format(Data(state, bv=ea).expr, ea, hex(state.addr))
                 return True
             ea -= 8
 
         for i in range(0, 32):
-            reg_data = Data(state, reg=state.regs.get('x{}'.format(i)))
+            reg_data = Data(state, bv=state.regs.get('x{}'.format(i)))
             if 'Marked' in reg_data.expr:
                 print 'Sensitive database X{} {} exists at {}, state:{}'.format(i, reg_data.expr, hex(state.addr), hex(state.addr))
                 return True

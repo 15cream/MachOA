@@ -14,17 +14,17 @@ from tools.oc_type_parser import *
 
 class Data(object):
 
-    def __init__(self, state, ea=None, reg=None):
+    def __init__(self, state, ea=None, bv=None):
         self.state = state
         self.ea = ea
-        self.reg = reg
+        self.bv = bv
 
         self.type = None
         self.expr = None
         self.concrete = False
         self.is_instance = False
 
-        if type(self.reg) is not NoneType:
+        if type(self.bv) is not NoneType:
             self.resolve_reg()
         # if type(self.ea) is not NoneType:
         #     self.resolve_addr(self.ea)
@@ -34,7 +34,7 @@ class Data(object):
         Register could be BVV or BVS.
         :return:
         """
-        reg = self.reg
+        reg = self.bv
         state = self.state
         if reg.op == 'BVV' and '0x7f' in hex(reg.args[0]):
             reg = state.memory.load(reg).reversed
@@ -95,7 +95,7 @@ class Data(object):
                     64)
                 for ea in pts['ea']:
                     self.state.memory.store(ea, new_val)
-                for reg in pts['reg']:
+                for reg in pts['bv']:
                     self.state.registers.store(reg, new_val)
 
     def pt_analyze(self):
@@ -104,17 +104,17 @@ class Data(object):
         Sorry that I forgot.)
         :return:
         """
-        pts = {'ea': [], 'reg': []}
+        pts = {'ea': [], 'bv': []}
         state = self.state
         ea = state.regs.bp
         while state.solver.eval(ea > state.regs.sp):
-            if Data(state, reg=ea).expr == self.expr:
+            if Data(state, bv=ea).expr == self.expr:
                 pts['ea'].append(ea)
             ea -= 8
 
         for i in range(0, 32):
-            if Data(state, reg=state.regs.get('x{}'.format(i))).expr == self.expr:
-                pts['reg'].append('x{}'.format(i))
+            if Data(state, bv=state.regs.get('x{}'.format(i))).expr == self.expr:
+                pts['bv'].append('x{}'.format(i))
         return pts
 
     @staticmethod
@@ -148,7 +148,7 @@ class SEL:
             # todo 不准确
             self.state.regs.x1 = self.state.regs.x2
             self.state.regs.x2 = self.state.regs.x3
-            return SEL(Data(self.state, reg=self.state.regs.x1))
+            return SEL(Data(self.state, bv=self.state.regs.x1))
         else:
             return self
 
@@ -157,25 +157,25 @@ class SEL:
         if self.expr == 'dictionaryWithObjects:forKeys:count:':
             objects = self.state.regs.x2
             keys = self.state.regs.x3
-            count = int(Data(self.state, reg=self.state.regs.x4).expr)
+            count = int(Data(self.state, bv=self.state.regs.x4).expr)
             object_list = []
             key_list = []
             for i in range(0, count):
-                object_list.append(Data(self.state, reg=objects + i * 8))
-                key_list.append(Data(self.state, reg=keys + i * 8))
+                object_list.append(Data(self.state, bv=objects + i * 8))
+                key_list.append(Data(self.state, bv=keys + i * 8))
             args = object_list + key_list
             return args
 
         for c in range(0, self.expr.count(':')):
             reg_name = 'x{}'.format(c + 2)
-            reg = Data(self.state, reg=self.state.regs.get(reg_name))
+            reg = Data(self.state, bv=self.state.regs.get(reg_name))
             args.append(reg)
         if self.expr == 'stringWithFormat:':
             format_string = args[0].expr
             fs_args = format_string.count("%")
             for c in range(0, fs_args):
                 sp = self.state.regs.sp + c * 8
-                reg = Data(self.state, reg=sp)
+                reg = Data(self.state, bv=sp)
                 args.append(reg)
 
         return args
@@ -228,7 +228,7 @@ class Receiver:
             # 莫非根据selector进行推断
 
     def type_infer_by_selector(self):
-        if self.selector.expr in OCFunction.meth_indexed_by_sel:
+        if self.selector and self.selector.expr in OCFunction.meth_indexed_by_sel:
             for f in OCFunction.meth_indexed_by_sel[self.selector.expr]:
                 if f.receiver in self.expr:
                     self.oc_class = OCClass.retrieve_by_classname(f.receiver)
@@ -238,14 +238,15 @@ class Receiver:
 class Block:
 
     def __init__(self, state, data):
+        # TODO __NSConcreteGlobalBlock
         self.data_ea = data
         self.subroutine = None
-        self.data = Data(state, reg=data)
+        self.data = Data(state, bv=data)
         if self.data.type == 'got':
             if self.data.concrete:
                 got_ptr = int(self.data.expr) - GOT_ADD_ON
                 if MachO.pd.macho.get_symbol_by_address_fuzzy(got_ptr).name == '__NSConcreteStackBlock':
-                    sub = Data(state, reg=data+0x10)
+                    sub = Data(state, bv=data + 0x10)
                     if sub.type == 'code' and sub.concrete:
                         subroutine = int(sub.expr)
                         if subroutine in OCFunction.meth_data:

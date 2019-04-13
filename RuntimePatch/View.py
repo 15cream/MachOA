@@ -9,6 +9,9 @@ from RuntimePatch.Utils import resolve_context
 
 class GraphView:
 
+    view_pool = dict()  # 为后续可能的并行解析做准备
+    current_view = None
+
     def __init__(self):
         """
         * Graph attributes *
@@ -30,12 +33,14 @@ class GraphView:
         :return:
         """
         self.g = nx.DiGraph()
-        self.history_records = dict()
+        self.history_records = HS.history_records
         self.start = None
 
         self.g.graph['start'] = None
         self.g.graph['ret'] = set()
         self.g.graph['data_usage'] = {}
+
+        GraphView.current_view = self
 
     def insert_invoke(self, ea, description, state, args=None, receiver=None, selector=None):
         """
@@ -64,7 +69,8 @@ class GraphView:
             # print "Invoke has been recorded: {}".format(node)
 
         # Record this invoke.
-        self.history_records[state.history] = HS(ea, repr_constraints(state), node)
+        # self.history_records[state.history] = HS(ea, repr_constraints(state), node)
+        HS(ea, repr_constraints(state), node).record(state.history)
 
         # Add the edge. Because path sensitive, one predecessor only.
         last_invoke_history = self.find_last_invoke(state)
@@ -72,13 +78,11 @@ class GraphView:
             self.g.nodes[node]['pnode'] = last_invoke_history.node
             color = 'red' if self.g.nodes[last_invoke_history.node]['context'] != self.g.nodes[node]['context'] \
                 else 'green'
-            lable = '\n'.join(find_constraint_addtion(self.history_records[state.history], last_invoke_history))
+            # lable = '\n'.join(find_constraint_addtion(self.history_records[state.history], last_invoke_history))
             self.g.add_edge(last_invoke_history.node, node, lable='', color=color)
         else:
             self.g.nodes[node]['pnode'] = None
 
-        # self.dpr.resolve_dp(node)
-        # print self.g.nodes[node]['dp']
         return node
 
     def add_simple_node(self, ea, description, state, args=None, type=None):
@@ -95,7 +99,8 @@ class GraphView:
         if node not in self.g.nodes:
             self.g.add_node(node, des=description, context=context, context_name=context_name, addr=ea,
                             args=expr_args(args), dp=None, pnode=None, rec=None, sel=None)
-            self.history_records[state.history] = HS(ea, repr_constraints(state), node)
+            # self.history_records[state.history] = HS(ea, repr_constraints(state), node)
+            HS(ea, repr_constraints(state), node).record(state.history)
         return node
 
     def add_start_node(self, ea, description, state, edge=None, args=None):
@@ -120,11 +125,24 @@ class GraphView:
         last_invoke_history = self.find_last_invoke(state)
         self.g.add_edge(last_invoke_history.node, node)
 
-    def find_last_invoke(self, state):
+    def find_last_invoke_deprecated(self, state):
+        # 以前由于节点为函数调用节点，即一个调用节点必然对应一个唯一的history。
+        # 然而，当出现指令级节点时，表示一个state/history可能对应多个节点，所以该方案不可行。
         history = state.history.parent
         while history:
             if history in self.history_records:
                 return self.history_records[history]
+            history = history.parent
+
+    def find_last_invoke(self, state):
+        history = state.history
+        if len(self.history_records[history]) > 1:
+            return self.history_records[history][-2]
+        else:
+            history = history.parent
+        while history:
+            if history in self.history_records:
+                return self.history_records[history][-1]
             history = history.parent
 
     def find_pnode(self, node, p_addr):
@@ -143,10 +161,21 @@ class GraphView:
         except Exception as e:
             print 'Failed to generate {}, {} '.format(fp, e)
             return None
+        finally:
+            HS.history_records = dict()
 
 
 class HS:
+
+    history_records = dict()
+
     def __init__(self, ea, cs, node):
         self.node = node
         self.invoke_addr = ea
         self.constraints = cs
+
+    def record(self, history):
+        if history in HS.history_records:
+            HS.history_records[history].append(self)
+        else:
+            HS.history_records[history] = [self, ]
