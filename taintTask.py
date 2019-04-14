@@ -143,7 +143,7 @@ class TaintedTrace:
         ctx = int(node_data_in_etree['context'])
 
         if node_type in [ARG, REC]:
-            handler = eval(node_data_in_etree['handler'])
+            handler = eval(node_data_in_etree['handler']) if 'handler' in node_data_in_etree else None
             if type(handler) == int:
                 if node_type is REC:
                     self.track_usage(src_node, handler, data_transferred, para_index=tainted_info['index'])
@@ -198,8 +198,8 @@ class TaintedTrace:
         :param sel:
         :return:
         """
-        # TODO 如果func与src同一context？
-
+        if eval(self.node_and_trace[src].tree.nodes[self.node_and_trace[src].route[0]]['context']) == func:
+            return  # TODO 如果func与src同一context，则跳过。这里逻辑需要再考虑下。
         execution_tree = ETree.get_handler(start_ea=func)
         if not execution_tree:
             return  # 该污点数据追踪不可行
@@ -245,10 +245,10 @@ class TaintedTrace:
 # 关于设置数据引用的层级；每一层扩展，都意味着数据的引用。设置这个限制的原因，主要是考虑到效率，路径长度（PiOS中也有类似的考量），
 # 以及越外层的数据，事实上被处理得越面目全非 = ， =
 LEVEL_TOP = 7
-binary_path = sys.argv[1]
-RULE_NAME = sys.argv[2]
-# binary_path = '/home/gjy/Desktop/samples/yellowpage_arm64'
-# RULE_NAME = 'Location'
+# binary_path = sys.argv[1]
+# RULE_NAME = sys.argv[2]
+binary_path = '/home/gjy/Desktop/samples/yellowpage_arm64'
+RULE_NAME = 'ID'
 if os.path.exists(binary_path):
     if RULE_NAME in Rules:
         analyzer = TaintTask(binary_path, RULE_NAME)

@@ -52,12 +52,10 @@ class MachOTask:
         self.logger = open('../log', mode='wb')
         self.pre_process()
 
-        self.checked = checked_existence_in_dir("{}{}".format(self.configs.get('PATH', 'results'), self.macho.provides))
-        # self.checked = []
+        self.result_dir = "{}{}".format(self.configs.get('PATH', 'results'), self.macho.provides)
         self.class_blacklist = []
         self.meth_blacklist = [0x10011a60cL, 0x10045AB08, 0x1002FD890, 0x1003B2118, 0x10026df08L, 0x100206740L,
                                0x100c209d4L, 0x100027f68L, 0X10000C05C, 0x100127480L, 0x10078dd40L, 0x100712cfcL]
-        #  0x10078dd40L, 0x100712cfcL
 
     def config(self):
         config = ConfigParser.RawConfigParser()
@@ -116,9 +114,9 @@ class MachOTask:
         if start_addr in self.meth_blacklist:
             # print 'SKIPPED(IN BLACKLIST): ', hex(start_addr)
             return None
-        if hex(start_addr).strip('L') in self.checked:
+        if hex(start_addr).strip('L') in checked_existence_in_dir(self.result_dir):
             # print 'SKIPPED(ALREADY CHECKED): ', hex(start_addr)
-            return self.checked[hex(start_addr).strip('L')]
+            return checked_existence_in_dir(self.result_dir)[hex(start_addr).strip('L')]
         if block_excess(self.p, start_addr):
             return None
 
@@ -150,7 +148,7 @@ class MachOTask:
         if class_obj:
             if class_obj.imported:
                 return
-            if class_obj.name in self.checked:
+            if class_obj.name in checked_existence_in_dir(self.result_dir):
                 return
             for meth in class_obj.class_meths:
                 if meth in self.meth_blacklist:
