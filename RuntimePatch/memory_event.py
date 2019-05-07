@@ -86,7 +86,3 @@ def mem_write(state):
     elif ptr in range(MachO.pd.segdata['bss'].min_addr, MachO.pd.segdata['bss'].max_addr):
         # 并不改变写入值，只是对写入值进行记录
         BSS.get(ptr).store(state.inspect.mem_write_expr)
-
-# ivar_expr = "{}@ivar".format(hex(ptr))
-# IVar.ivars[ptr].add_set_accessor(state)
-# state.inspect.mem_read_expr = claripy.BVV(ptr, 64)

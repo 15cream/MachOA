@@ -6,7 +6,7 @@ from Data.CONSTANTS import *
 from tools.oc_type_parser import *
 from MachOTask import MachOTask
 
-SEL_LIMIT = 100
+SEL_LIMIT = 20
 
 
 class API:
@@ -34,6 +34,7 @@ class API:
         return last_ea
 
     def find_calls(self, gist='MSG'):
+        self.calls = set()
         if self.is_oc_function:
             s_ctx = Xrefs.ask_for_xrefs(self.selector, 'selector')
             s_ctx = set(s_ctx.values())
@@ -50,8 +51,8 @@ class API:
                         self.calls = s_ctx
             return self.calls
         else:
-            if self.function in OCFunction.meth_list and self.function not in OCFunction.oc_function_set:
-                sub_callers = Xrefs.ask_for_xrefs(self.function, 'sub')
+            if self.ea in OCFunction.meth_list and self.ea not in OCFunction.oc_function_set:
+                sub_callers = Xrefs.ask_for_xrefs(self.ea, 'sub')
                 if sub_callers:
                     self.calls = sub_callers
             return self.calls

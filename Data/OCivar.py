@@ -66,6 +66,16 @@ class IVar:
                     return OCFunction.function_symbols[symbol]
         return None
 
+    @staticmethod
+    def ret_ldr_ctx_according_to_setter(ea=None, symbol=None):
+        if ea and ea in IVar.ivar_indexed_by_accessors:
+            ivar = IVar.ivar_indexed_by_accessors[ea]
+            if ivar.getter:
+                symbol = "{} {}".format(ivar._class, ivar.getter)
+                if symbol in OCFunction.function_symbols:
+                    return OCFunction.function_symbols[symbol]
+        return None
+
     def add_record(self, record):
         if self.ptr not in IVar.ivars_accessed_during_analysis:
             IVar.ivars_accessed_during_analysis.add(self.ptr)

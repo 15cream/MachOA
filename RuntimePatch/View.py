@@ -70,7 +70,8 @@ class GraphView:
 
         # Record this invoke.
         # self.history_records[state.history] = HS(ea, repr_constraints(state), node)
-        HS(ea, repr_constraints(state), node).record(state.history)
+        current_history = HS(ea, repr_constraints(state), node)
+        current_history.record(state.history)
 
         # Add the edge. Because path sensitive, one predecessor only.
         last_invoke_history = self.find_last_invoke(state)
@@ -78,8 +79,8 @@ class GraphView:
             self.g.nodes[node]['pnode'] = last_invoke_history.node
             color = 'red' if self.g.nodes[last_invoke_history.node]['context'] != self.g.nodes[node]['context'] \
                 else 'green'
-            # lable = '\n'.join(find_constraint_addtion(self.history_records[state.history], last_invoke_history))
-            self.g.add_edge(last_invoke_history.node, node, lable='', color=color)
+            label = '\n'.join(find_constraint_addtion(current_history, last_invoke_history))
+            self.g.add_edge(last_invoke_history.node, node, label=label, color=color)
         else:
             self.g.nodes[node]['pnode'] = None
 

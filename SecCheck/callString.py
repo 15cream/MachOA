@@ -1,3 +1,4 @@
+# coding=utf-8
 from seed import *
 import copy
 
@@ -16,6 +17,7 @@ class CallString:
 
     def copy_and_add(self, call):
         cs_copy = self.copy()
+        # 避免循环调用
         for c in cs_copy.stack:
             if c.description == call.description:
                 return None
@@ -48,7 +50,7 @@ class CallString:
                             _caller = cs.copy_and_add(API(receiver=oc_func.receiver, selector=oc_func.selector, ea=caller))
                         elif caller in OCFunction.meth_data:
                             _caller = cs.copy_and_add(API(func=OCFunction.meth_data[caller]['name'], ea=caller))
-                        if _caller:
+                        if _caller and _caller not in add:
                             add.append(_caller)
                 dele.append(cs)
 
@@ -62,3 +64,5 @@ class CallString:
         for call in self.stack:
             print call.description
         print
+
+    # TODO 要记录调用发生或数据被引用的位置（block），随后再根据CFG限制符号执行的路径，后续可能还需要污点分析技术

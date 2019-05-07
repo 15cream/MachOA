@@ -12,6 +12,7 @@ from BinaryPatch.StubResolver import *
 
 from RuntimePatch.AddressConcretize import *
 from RuntimePatch.ExitProtect import *
+from RuntimePatch.ConstraintHelper import *
 from RuntimePatch.View import GraphView
 from RuntimePatch.StubHook import StubHelper
 from RuntimePatch.Utils import *
@@ -126,6 +127,7 @@ class MachOTask:
         st.inspect.b('mem_read', when=angr.BP_AFTER, action=mem_read)
         st.inspect.b('mem_write', when=angr.BP_BEFORE, action=mem_write)
         st.inspect.b('address_concretization', when=angr.BP_AFTER, action=mem_resolve)
+        st.inspect.b('constraints', when=angr.BP_AFTER, action=constraints_event_handler)
 
         # etree = self.p.analyses.CFGAccurate(keep_state=True, starts=[start_addr, ], initial_state=st,
         #                                   call_depth=2, context_sensitivity_level=3)
