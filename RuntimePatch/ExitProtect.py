@@ -109,6 +109,31 @@ def loop_found(state):
     return False
 
 
+def branch_check2(state):
+    """
+
+    :param state:
+    :return:
+    """
+    text = MachO.pd.macho.get_segment_by_name('__TEXT').get_section_by_name('__text')
+    jmp_target = state.solver.eval(state.inspect.exit_target)
+    src = state.addr
+
+    # 避免一不小心过程间分析了，或者是angr没有做好代码块划分
+    if state.solver.eval(state.regs.lr) in MachO.pd.macho.lc_function_starts:
+        state.inspect.exit_target = state.solver.BVV(0, 64)
+
+    if jmp_target in MachO.pd.stubs:
+        jmp_target = state.solver.eval(state.regs.lr)
+
+    if src > MachO.pd.macho.get_segment_by_name('__TEXT').get_section_by_name('__text').max_addr:
+        return
+
+    # print 'jump from {} to {}'.format(hex(src), hex(jmp_target))
+    if jmp_target in state.globals['jmp_target']:
+        state.globals['jmp_target'][jmp_target].append(src)
+    else:
+        state.globals['jmp_target'][jmp_target] = [src]
 
 
 

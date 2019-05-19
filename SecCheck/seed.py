@@ -38,7 +38,7 @@ class API:
         if self.is_oc_function:
             s_ctx = Xrefs.ask_for_xrefs(self.selector, 'selector')
             s_ctx = set(s_ctx.values())
-            if gist == 'SEL':
+            if gist == 'SEL':  # 仅凭借selector来寻找可疑caller
                 self.calls = s_ctx
             else:
                 r_ctx = ADT(self.receiver).find_occurrences()
@@ -57,26 +57,34 @@ class API:
                     self.calls = sub_callers
             return self.calls
 
-            # Where the selector occurs
-            # for ea, f in s_ctx.items():
-            #     if f not in inter_ctx:
-            #         inter_ctx[f] = {
-            #             'sel': [ea, ],
-            #             'rec': []
-            #         }
-            #     else:
-            #         inter_ctx[f]['sel'].append(ea)
+    def find_calls_for_cs(self):
+        ret = dict()
+        if self.is_oc_function:
+            s_ctx = Xrefs.ask_for_xrefs(self.selector, 'selector')
+            for ea, ctx in s_ctx.items():
+                if ctx not in ret:
+                    ret[ctx] = {'sel': [ea]}
+                else:
+                    ret[ctx]['sel'].append(ea)
+            r_ctx = ADT(self.receiver).find_occurrences()
+            if r_ctx & set(ret.keys()):
+                for ctx in ret.keys():
+                    if ctx not in r_ctx:
+                        ret.pop(ctx)
+            elif len(list(s_ctx)) < SEL_LIMIT:
+                pass
+            else:
+                ret = dict()
 
-            # If receiver occurs in the context where selector occurs also.
-            # if r_ctx:
-            #     for ea, f in r_ctx.items():
-            #         if f in inter_ctx:
-            #             inter_ctx[f]['rec'].append(ea)
-            # if r_ctx:
-            #     for f in r_ctx:
-            #         if f in inter_ctx:
-            #             inter_ctx[f]['rec'].append(f)
-            # self.calls = inter_ctx
+        elif self.ea in OCFunction.meth_list and self.ea not in OCFunction.oc_function_set:
+            sub_callers = Xrefs.ask_for_xrefs(self.ea, 'sub')
+            for call_site, ctx in sub_callers.items():
+                if ctx not in ret:
+                    ret[ctx] = [call_site]
+                else:
+                    ret[ctx].append(call_site)
+        return ret
+
 
 
 class ADT:
@@ -149,6 +157,7 @@ class ADT:
     def as_class(self):
         """
         查当前数据类型的类引用，例如当需要定位NSURLSession对象时，可以先定位NSURLSession类引用所在代码。
+        以及类方法。
         :return:  {ea: f}
         """
         if not self._as_class:

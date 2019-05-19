@@ -61,11 +61,11 @@ class Binary:
 
         for f in Functions():
             if 'sub_' in idc.GetFunctionName(f):
-                self.xrefs['sub'][f] = set()
+                self.xrefs['sub'][f] = dict()
                 for xref in XrefsTo(f):
                     fi = idaapi.get_func(xref.frm)
                     if fi:
-                        self.xrefs['sub'][f].add(fi.startEA)
+                        self.xrefs['sub'][f][xref.frm] = fi.startEA
 
     def parse_classref(self, ea):
         classname = idc.Name(ea).replace('classRef_', '')

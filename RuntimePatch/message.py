@@ -5,8 +5,9 @@ from Data.CONSTANTS import *
 from Data.data import Data, SEL, Receiver
 from BinaryPatch.Utils import *
 from Data.MachO import *
-from RuntimePatch.Utils import expr_args
+from RuntimePatch.Utils import expr_args, resolve_context
 from SecCheck.analyzer import Analyzer
+from RuntimePatch.Utils import *
 
 
 class Message:
@@ -63,8 +64,6 @@ class Message:
                     self.simprocedure_handler.jump(imp)
                     return
 
-            # 如果经过限制，没有必要进行过程间分析，依然会来到接下来的返回值推断。
-
         # 推测返回值。实际上，当不进行过程间分析时，这里是模拟调用对程序状态的影响
         ret_type = 'unknown'
         if self.receiver.oc_class:
@@ -87,6 +86,12 @@ class Message:
 
         # 动态绑定，确定receiver和selector，需要完成查找imp的过程。
         imp = self.dynamic_bind()
+        if IPC and CS_LIMITED:
+            updated_imp = self.should_step_in(imp)
+            if updated_imp:
+                self.prepare_for_new_context(updated_imp)
+                self.simprocedure_handler.jump(updated_imp)
+                return
 
         # 推测返回值，根据已解析的receiver和selector推测返回值。实际上，当不进行过程间分析时，这里是模拟调用对程序状态的影响。
         ret_type = 'unknown'
@@ -122,8 +127,52 @@ class Message:
         if self.selector.expr == 'getCString:maxLength:encoding:':
             self.dispatch_state.memory.store(self.dispatch_state.regs.x2, self.dispatch_state.regs.x0)
 
-    def prepare_for_new_context(self):
+    def prepare_for_new_context(self, ctx):
+        """
+        ctx为即将进入的方法体
+        :param ctx:
+        :return:
+        """
         if self.selector.expr == 'performSelector:withObject:afterDelay:':
             # 原本的第一个参数作为selector,原本withObject:对应的参数作为第一个参数
             self.dispatch_state.registers.store('x1', self.dispatch_state.regs.x2.ast)
             self.dispatch_state.registers.store('x2', self.dispatch_state.regs.x3.ast)
+        if self.receiver.oc_class is None and ctx in OCFunction.oc_function_set:
+            callee = OCFunction.oc_function_set[ctx]
+            if callee.receiver in OCClass.classes_indexed_by_name:
+                self.receiver.oc_class = OCClass.classes_indexed_by_name[callee.receiver][0]
+                self.receiver.data_type = str_to_type(self.receiver.oc_class.name)
+
+
+
+    def should_step_in(self, imp):
+        ctx = resolve_context(self.invoke_ea)
+        execution_limitations = self.dispatch_state.globals['Func_Object'].execution_limitations
+        if ctx in execution_limitations:
+            termination = execution_limitations['destination']  # API instance
+            if termination.selector == self.selector.expr and termination.receiver in self.receiver.expr:
+                return False
+
+            the_method_should_step_in = execution_limitations[ctx]['target']
+            if the_method_should_step_in in OCFunction.oc_function_set:
+                target_method = OCFunction.oc_function_set[the_method_should_step_in]
+                if imp == target_method.imp:
+                    return imp
+                else:
+                    pass  # 这里难道还要反馈给imp,　调整它的值？
+                    # if target_method.receiver in self.receiver.expr and target_method.selector == self.selector.expr:
+                    # self.receiver是子类，进入子类方法后可以通过调用sendSuper
+                    if target_method.selector == self.selector.expr:
+                        if target_method.receiver in self.receiver.expr:
+                            return target_method.imp
+                        target_method_receiver = OCClass.classes_indexed_by_name[target_method.receiver][0]
+                        if target_method_receiver.class_addr in OCClass.class_and_subclasses:
+                            for subclass in OCClass.class_and_subclasses[target_method_receiver.class_addr]:
+                                if subclass in self.receiver.expr:
+                                    return target_method.imp
+            else:
+                if imp == the_method_should_step_in:  # subroutine
+                    return imp
+        else:
+            print 'ERROR FROM message.should_step_in'
+        return False

@@ -1,3 +1,4 @@
+# coding=utf-8
 __author__ = 'gjy'
 
 import os
@@ -46,6 +47,7 @@ class MachOTask:
         # self.current_f = None
         self.cg = GraphView()
         self.init_state = None  # memory initialized
+        self.bps = []
         self.store = store
         self.visualize = visualize
         self.configs = None
@@ -107,7 +109,7 @@ class MachOTask:
             s.run()
             self.cg.view()
 
-    def analyze_function(self, init_args=None, start_addr=None, name=None):
+    def analyze_function(self, init_args=None, start_addr=None, name=None, call_string=None):
         if name and OCClass.retrieve_func(name=name):
             start_addr = OCClass.retrieve_func(name=name).imp
         if not start_addr:
@@ -139,6 +141,95 @@ class MachOTask:
             return self.cg.view()
             # return f.get_ret_values()
 
+    def analyze_with_cs(self, call_string):
+        print '----- Here is a callString.'
+        call_string.stack.reverse()
+        execution_limits = dict()
+        index = 0
+        for method in call_string.stack:
+            index += 1
+            if index == len(call_string.stack):
+                execution_limits['destination'] = method  # 目标程序点，如果发现一个方法调用为des就可以终止执行了
+                print 'END.'
+                break
+
+            callee = call_string.stack[index]
+            execution_limits[method.ea] = {
+                'target': callee.ea,  # 当前方法体内(ctx)执行到方法调用target时，进入该target
+                'paths': set(),
+                'sensitive_blocks': set(),
+            }
+            print 'in method {}, {} may be invoked.'.format(method.description, callee.description)
+
+            st = self.init_state.copy()
+            self.add_bp(st, 'exit', angr.BP_BEFORE, branch_check2)
+            st.globals['jmp_target'] = dict()
+            st.regs.ip = method.ea
+            cfg = self.p.analyses.CFGAccurate(starts=[method.ea, ], initial_state=st)
+            jmps_indexed_by_target = st.globals['jmp_target']
+            self.clear_bps(st)
+
+            limits = call_string.extra[(method.ea, callee.ea)]  # 有两种限制类型，一是根据selector，二是subroutine的被调用地址；且不会同时出现。
+            blocks = set()  # 从方法起点到达该block所要经过的所有可能block
+            src_list = set()
+            if 'sel' in limits:
+                for sel_occur in limits['sel']:
+                    block_where_sel_occurs = cfg.get_any_node(sel_occur, anyaddr=True)
+                    blocks.add(block_where_sel_occurs.addr)
+                    if not block_where_sel_occurs or block_where_sel_occurs.addr not in jmps_indexed_by_target:  # 怎么会呢？
+                        if block_where_sel_occurs.addr == method.ea:  # 就是第一个代码块
+                            print 'selector appears in the first block at {}.'.format(hex(block_where_sel_occurs.addr))
+                        else:
+                            print 'ERROR.'
+                        continue
+                    print 'selector appears in the block started at {}.'.format(hex(block_where_sel_occurs.addr))
+                    src_list.update(set(jmps_indexed_by_target[block_where_sel_occurs.addr]))
+            else:
+                for xref_of_sub in limits:
+                    block_where_sub_refs = cfg.get_any_node(xref_of_sub, anyaddr=True)
+                    blocks.add(block_where_sub_refs.addr)
+                    if not block_where_sub_refs or block_where_sub_refs.addr not in jmps_indexed_by_target:
+                        if block_where_sub_refs.addr == method.ea:  # 就是第一个代码块
+                            print 'subroutine is referred in the first block at {}.'.format(hex(block_where_sub_refs.addr))
+                        else:
+                            print 'ERROR.'
+                        continue
+                    print 'subroutine is referred in the block started at {}.'.format(hex(block_where_sub_refs.addr))
+                    src_list.update(set(jmps_indexed_by_target[block_where_sub_refs.addr]))
+
+            execution_limits[method.ea]['sensitive_blocks'].update(blocks)
+            blocks = set()
+
+            while src_list:
+                new_src_list = set()
+                for src in src_list:
+                    src_block = cfg.get_any_node(src, anyaddr=True)
+                    if src_block and src_block.addr in jmps_indexed_by_target:
+                        new_src_list.update(set(jmps_indexed_by_target[src_block.addr]))
+                        blocks.add(src_block.addr)
+                src_list = new_src_list
+
+            execution_limits[method.ea]['paths'].update(blocks)
+            block_str = ''
+            for b in blocks:
+                block_str += hex(b) + ', '
+            print 'We may go through blocks {} to reach the invocation.'.format(block_str)
+            print ''
+
+        print 'Start Symbolic Execution.'
+        self.cg = GraphView()
+        st = self.init_state.copy()
+        self.add_bp(st, 'exit', angr.BP_BEFORE, branch_check)
+        self.add_bp(st, 'mem_read', angr.BP_AFTER, mem_read)
+        self.add_bp(st, 'mem_write', angr.BP_BEFORE, mem_write)
+        self.add_bp(st, 'address_concretization', angr.BP_AFTER, mem_resolve)
+        self.add_bp(st, 'constraints', angr.BP_AFTER, constraints_event_handler)
+        f = Func(call_string.stack[0].ea, self.macho, self, st, args=None, limits=execution_limits).init()
+        if f:
+            f.analyze()
+            self.cg.view()
+        self.clear_bps(st)
+
     def analyze_bin(self):
         for ref in OCClass.classes_indexed_by_ref.keys():
             if ref in self.class_blacklist:
@@ -165,6 +256,14 @@ class MachOTask:
 
     def clear(self):
         self.loader.close()
+
+    def add_bp(self, state, event, when, handler):
+        self.bps.append((event, state.inspect.b(event, when=when, action=handler)))
+
+    def clear_bps(self, state):
+        for (event, bp) in self.bps:
+            state.inspect.remove_breakpoint(event, bp=bp)
+        self.bps = []
 
 
 # if __name__ == "__main__":

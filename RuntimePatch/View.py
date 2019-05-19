@@ -79,7 +79,8 @@ class GraphView:
             self.g.nodes[node]['pnode'] = last_invoke_history.node
             color = 'red' if self.g.nodes[last_invoke_history.node]['context'] != self.g.nodes[node]['context'] \
                 else 'green'
-            label = '\n'.join(find_constraint_addtion(current_history, last_invoke_history))
+            # label = '\n'.join(find_constraint_addtion(current_history, last_invoke_history))
+            label = ''
             self.g.add_edge(last_invoke_history.node, node, label=label, color=color)
         else:
             self.g.nodes[node]['pnode'] = None

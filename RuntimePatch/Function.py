@@ -5,13 +5,14 @@ from Utils import *
 
 from BinaryPatch.Utils import *
 from SecCheck.sensitiveData import SensitiveData
+from RuntimePatch.Utils import resolve_context
 
 import random
 
 
 class Func:
 
-    def __init__(self, addr, binary, task, state, args=None):
+    def __init__(self, addr, binary, task, state, args=None, limits=None):
 
         self.start_ea = addr
         self.binary = binary
@@ -26,6 +27,7 @@ class Func:
         self.text_seg_boundary = MachO.pd.macho.get_segment_by_name('__TEXT').get_section_by_name('__text').max_addr
         self.ret = set()
         self.ret_type = None
+        self.execution_limitations = limits
 
     def init(self):
         if self.start_ea not in OCFunction.meth_data:
@@ -71,9 +73,41 @@ class Func:
     def analyze(self):
         print 'ANALYZE {} {}'.format(hex(self.start_ea), self.name)
         self.init_state.regs.ip = self.start_ea
+        self.init_state.globals['Func_Object'] = self
+        self.init_state.globals['sensitive_data'] = dict()
         simgr = self.task.p.factory.simgr(self.init_state)
         while simgr.active:
             simgr.step()
+            if self.execution_limitations:
+                simgr.move(from_stash='active', to_stash='useless', filter_func=self.state_filter)
+
+    def state_filter(self, state):
+        """
+        :param state:
+        :return: 如果当前state没有必要再继续，返回 True。
+        """
+        if state.addr > self.text_seg_boundary:
+            return False
+
+        ctx = resolve_context(state.addr)
+        if ctx in self.execution_limitations:
+            # 对state的限制，是将其放在当前过程内来判断的
+            limits = self.execution_limitations[ctx]
+            if state.addr == ctx or state.addr in limits['paths']:
+                return False
+            if state.addr in limits['sensitive_blocks']:
+                if limits['target'] in OCFunction.oc_function_set:
+                    state.globals['sensitive_data'][ctx] = OCFunction.oc_function_set[limits['target']].selector  # 标记要检查什么数据
+                else:
+                    pass  # 默认subroutine只出现在一个block里，当前这个block允许就够了
+                return False
+            if ctx in state.globals['sensitive_data']:  # 表明在到达这个状态的过程中曾经出现过selector
+                if self.is_data_in_state(state, state.globals['sensitive_data'][ctx]):
+                    return False
+                else:
+                    del state.globals['sensitive_data'][ctx]   # 如果被标记的数据不在了，就可以终止了
+                    return True
+            return True
 
     def check_if_as_ret(self, state):
         """
@@ -153,4 +187,21 @@ class Func:
 
     def not_sensitive(self, state):
         return not self.sensitive(state)
+
+    def is_data_in_state(self, state, data):
+        # if state.addr > self.text_seg_boundary:
+        #     return True
+        ea = state.regs.bp
+        while state.solver.eval(ea > state.regs.sp):
+            if data in Data(state, bv=ea).expr:
+                return True
+            ea -= 8
+
+        for i in range(0, 30):
+            reg_data = Data(state, bv=state.regs.get('x{}'.format(i)))
+            if data in reg_data.expr:
+                return True
+
+        return False
+
 

@@ -1,5 +1,6 @@
 from MachOTask import MachOTask
 from SecCheck.seed import API, ADT
+from SecCheck.callString import CallString
 import sys
 
 
@@ -63,16 +64,25 @@ class Scheduler:
         self.analyzer.analyze_function(start_addr=ea)
 
 
-binary_path = sys.argv[1]
-sd_scheduler = Scheduler(binary_path)
-if len(sys.argv) == 3:
-    addr = eval(sys.argv[2])
-    sd_scheduler.simple_analyze(addr)
-elif len(sys.argv) == 5:
-    rec = sys.argv[2]
-    sel = sys.argv[3]
-    gist = sys.argv[4]
-    sd_scheduler.sensitive_data_analyze(receiver=rec, selector=sel, gist=gist)
+# binary_path = sys.argv[1]
+# sd_scheduler = Scheduler(binary_path)
+# if len(sys.argv) == 3:
+#     addr = eval(sys.argv[2])
+#     sd_scheduler.simple_analyze(addr)
+# elif len(sys.argv) == 5:
+#     rec = sys.argv[2]
+#     sel = sys.argv[3]
+#     gist = sys.argv[4]
+#     sd_scheduler.sensitive_data_analyze(receiver=rec, selector=sel, gist=gist)
 
-# sd_scheduler = Scheduler('../samples/SpeedCamera_free_arm64')
-# sd_scheduler.simple_analyze(0x1000142D8)
+sd_scheduler = Scheduler('../samples/yellowpage_arm64')
+api = API(receiver='MGSwipeButtonsView ', selector='handleClick:fromExpansion:')
+# api = API(receiver='UIDevice', selector='identifierForVendor')
+cs = CallString.construct_according_to_a_seed(api)
+print len(cs)
+# for call_string in cs:
+#     sd_scheduler.analyzer.analyze_with_cs(call_string)
+sd_scheduler.analyzer.analyze_with_cs(cs[2])
+
+# sd_scheduler.simple_analyze(0x01000BE1D4)
+# sd_scheduler.simple_analyze(0x1000E2F0C)
