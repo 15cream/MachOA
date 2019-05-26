@@ -1,37 +1,66 @@
 # coding=utf-8
 import copy
 import claripy
+from Data.data import Data
 
 
-def repr_constraints(state):
-        cs = []
-        if state.solver.constraints:
-            for c in state.solver.constraints:
-                # cs.append(str(c).replace('<', '').replace('>', ''))
-                cs.append(str(c))
-        return cs
-        # return copy.deepcopy(state.solver.constraints)
+class Constraint:
 
+    def __init__(self, bv, state):
+        self.bv = bv
+        self.state = state
+        self.solutions = {}
 
-def find_constraint_addtion(des, src):
-        cs = []
-        for c in des.constraints:
-            if c not in src.constraints:
-                # cs.append(str(c).replace('<', '').replace('>', ''))
-                cs.append(c)
-                # print c
-        return cs
+    def analyze(self):
+        for arg in self.bv.args:
+            arg_data = Data(self.state, bv=arg)
+            if arg_data.concrete is False:
+                try:
+                    value = self.state.solver.eval(arg)
+                except Exception:
+                    value = 'UNSAT'
+                # arg_expr = arg_data.decode_expr()
+                arg_expr = arg_data.expr
+                # print '{}: {}'.format(arg_data.expr, value)
+                if arg_expr in self.solutions:
+                    self.solutions[arg_expr].append((str(self.bv), value))
+                else:
+                    self.solutions[arg_expr] = [(str(self.bv), value), ]
+        return self
+
+    @staticmethod
+    def construct(current, last=None):
+        """
+        :param current: current history object
+        :param last:
+        :return:
+        """
+        ret = []
+        if current.state.solver.constraints:
+            if last is not None:
+                ret.extend(last.constraints)
+                current_constraints_count = len(current.state.solver.constraints)
+                last_constraints_count = len(last.constraints)
+                if current_constraints_count != last_constraints_count:
+                    for i in range(last_constraints_count, current_constraints_count):
+                        ret.append(Constraint(current.state.solver.constraints[i], current.state).analyze())
+            else:
+                for c in current.state.solver.constraints:
+                    ret.append(Constraint(c, current.state).analyze())
+        return ret
 
 
 def constraints_event_handler(state):
     """
-    当新的约束被添加到state时，该断电被触发：https://github.com/angr/angr-doc/blob/master/docs/simulation.md
+    当新的约束被添加到state时，该断点被触发：https://github.com/angr/angr-doc/blob/master/docs/simulation.md
     :param state:
     :return:
     """
     added_constraints = state.inspect.added_constraints
     if added_constraints[0] is not claripy.true:
         print str(added_constraints[0])
+        # state.globals['added_constraints'].append(str(added_constraints[0]).strip('<>'), )
+
 
 """
 常见的约束类型：

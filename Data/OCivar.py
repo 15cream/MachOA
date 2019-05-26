@@ -81,13 +81,13 @@ class IVar:
             IVar.ivars_accessed_during_analysis.add(self.ptr)
         self.records.insert(0, record)
 
-    def ret_latest_data(self):
+    def ret_latest_data(self, length=None):
         if self.records:
             for record in self.records:
                 if record.type == 'str':
                     return record.value.bv
         return claripy.BVS(FORMAT_INSTANCE.format(data_type=self.type, ptr=hex(self.ptr), instance_type='IVAR',
-                                                  name='{}.{}'.format(self._class, self.name)), 64)
+                                                  name='{}.{}'.format(self._class, self.name)), length if length else 64)
 
     @staticmethod
     # deprecated for the moment

@@ -5,6 +5,7 @@ from Data.CONSTANTS import *
 from RuntimePatch.Utils import *
 from RuntimePatch.ConstraintHelper import *
 from RuntimePatch.Utils import resolve_context
+from RuntimePatch.ConstraintHelper import Constraint
 
 
 class GraphView:
@@ -27,13 +28,13 @@ class GraphView:
         edge['color']: green if intra-procedural, red if inter-procedural.
         edge['label']: constraints.
 
-        * history_records *
+        * history_and_node *
         Use the SimState.history as key, HS instance as value.
 
         :return:
         """
         self.g = nx.DiGraph()
-        self.history_records = HS.history_records
+        self.extra_records = ExtraRecord.history_and_node
         self.start = None
 
         self.g.graph['start'] = None
@@ -69,21 +70,22 @@ class GraphView:
             # print "Invoke has been recorded: {}".format(node)
 
         # Record this invoke.
-        # self.history_records[state.history] = HS(ea, repr_constraints(state), node)
-        current_history = HS(ea, repr_constraints(state), node)
-        current_history.record(state.history)
+        current_invoke_record = ExtraRecord(ea, node, state.history)
 
         # Add the edge. Because path sensitive, one predecessor only.
-        last_invoke_history = self.find_last_invoke(state)
-        if last_invoke_history:
-            self.g.nodes[node]['pnode'] = last_invoke_history.node
-            color = 'red' if self.g.nodes[last_invoke_history.node]['context'] != self.g.nodes[node]['context'] \
+        last_invoke_record = self.find_last_invoke(state)
+        if last_invoke_record:
+            self.g.nodes[node]['pnode'] = last_invoke_record.node
+            color = 'red' if self.g.nodes[last_invoke_record.node]['context'] != self.g.nodes[node]['context'] \
                 else 'green'
-            # label = '\n'.join(find_constraint_addtion(current_history, last_invoke_history))
-            label = ''
-            self.g.add_edge(last_invoke_history.node, node, label=label, color=color)
+            current_invoke_record.analyze_constraints(last=last_invoke_record)
+            # label = '\n'.join(current_invoke_record.ret_incremental_constraints())
+            label = current_invoke_record.ret_incremental_constraints_str()
+            # label = ''
+            self.g.add_edge(last_invoke_record.node, node, label=label, color=color)
         else:
             self.g.nodes[node]['pnode'] = None
+            current_invoke_record.analyze_constraints()
 
         return node
 
@@ -101,8 +103,7 @@ class GraphView:
         if node not in self.g.nodes:
             self.g.add_node(node, des=description, context=context, context_name=context_name, addr=ea,
                             args=expr_args(args), dp=None, pnode=None, rec=None, sel=None)
-            # self.history_records[state.history] = HS(ea, repr_constraints(state), node)
-            HS(ea, repr_constraints(state), node).record(state.history)
+            ExtraRecord(ea, node, state.history)
         return node
 
     def add_start_node(self, ea, description, state, edge=None, args=None):
@@ -112,8 +113,8 @@ class GraphView:
             self.start = "{}{}".format(hex(self.g.nodes[node]['context']), self.g.nodes[node]['context_name'])
             self.g.graph['start'] = node
         if edge:
-            last_invoke_history = self.find_last_invoke(state)
-            self.g.add_edge(last_invoke_history.node, node)
+            last_invoke_record = self.find_last_invoke(state)
+            self.g.add_edge(last_invoke_record.node, node)
 
     def add_ret_node(self, ea, state, ret_value):
         # 返回值有时是一致的，区分在于其前向节点是什么。
@@ -124,28 +125,33 @@ class GraphView:
             self.g.graph['ret'] = set(node)
         else:
             self.g.graph['ret'].add(node)
-        last_invoke_history = self.find_last_invoke(state)
-        self.g.add_edge(last_invoke_history.node, node)
+        last_invoke_record = self.find_last_invoke(state)
+        self.g.add_edge(last_invoke_record.node, node)
 
     def find_last_invoke_deprecated(self, state):
         # 以前由于节点为函数调用节点，即一个调用节点必然对应一个唯一的history。
         # 然而，当出现指令级节点时，表示一个state/history可能对应多个节点，所以该方案不可行。
         history = state.history.parent
         while history:
-            if history in self.history_records:
-                return self.history_records[history]
+            if history in self.extra_records:
+                return self.extra_records[history]
             history = history.parent
 
     def find_last_invoke(self, state):
+        """
+        :param state:
+        :return: 上一个调用节点
+        """
         history = state.history
-        if len(self.history_records[history]) > 1:
-            return self.history_records[history][-2]
-        else:
-            history = history.parent
+        # 由于是查找上一个节点，如果当前history拥有多个节点，那么返回倒数第二个
+        if len(self.extra_records[history]) > 1:
+            return self.extra_records[history][-2]
+        history = history.parent
         while history:
-            if history in self.history_records:
-                return self.history_records[history][-1]
+            if history in self.extra_records:
+                return self.extra_records[history][-1]
             history = history.parent
+        return None
 
     def find_pnode(self, node, p_addr):
         p_node = node
@@ -164,20 +170,51 @@ class GraphView:
             print 'Failed to generate {}, {} '.format(fp, e)
             return None
         finally:
-            HS.history_records = dict()
+            ExtraRecord.history_and_node = dict()
 
 
-class HS:
+class ExtraRecord:
 
-    history_records = dict()
+    history_and_node = dict()
 
-    def __init__(self, ea, cs, node):
-        self.node = node
+    def __init__(self, ea, node, history):
         self.invoke_addr = ea
-        self.constraints = cs
-
-    def record(self, history):
-        if history in HS.history_records:
-            HS.history_records[history].append(self)
+        self.node = node
+        self.constraints = []  # LIST OF CONSTRAINT OBJECTS
+        self.history = history
+        self.state = history.state
+        self.last = None
+        if history in ExtraRecord.history_and_node:
+            ExtraRecord.history_and_node[history].append(self)
         else:
-            HS.history_records[history] = [self, ]
+            ExtraRecord.history_and_node[history] = [self, ]
+
+    def analyze_constraints(self, last=None):
+        """
+        之所以需要上一个调用节点的约束信息，是想只对增量进行求解。
+        :param last:
+        :return:
+        """
+        if self.last is None:
+            self.last = last
+        self.constraints = Constraint.construct(self, last=last)
+
+    def ret_incremental_constraints_str(self):
+        # print 'Incremental constraints for node: {}'.format(self.node)
+        constraints = []
+        if self.last:
+            last_count = len(self.last.constraints)
+            current_count = len(self.constraints)
+            if last_count == current_count:
+                return ''
+            for c in self.constraints[last_count - current_count:]:
+                for var, constraint_list in c.solutions.items():
+                    for c in constraint_list:
+                        constraints.append(c[0].strip('<>'))
+        else:
+            for c in self.constraints:
+                for var, constraint_list in c.solutions.items():
+                    for c in constraint_list:
+                        constraints.append(c[0].strip('<>'))
+
+        return '\n'.join(constraints)

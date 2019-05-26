@@ -23,7 +23,7 @@ from RuntimePatch.Slice import Slice
 
 from SecCheck.sensitiveData import SensitiveData
 from tools.common import block_excess, checked_existence_in_dir
-
+from Data.CONSTANTS import IPC, CS_LIMITED
 
 # from angrutils import *
 
@@ -84,7 +84,7 @@ class MachOTask:
         IVar.init(self.ida_xref_pkl)
         Xrefs(self.ida_xref_pkl)
         Frameworks('{}FrameworkHeaders.pkl'.format(self.configs.get('PATH', 'dbs')))
-        self.init_state = self.p.factory.blank_state(add_options={angr.options.LAZY_SOLVES})
+        self.init_state = self.p.factory.blank_state(add_options={angr.options.LAZY_SOLVES, angr.options.CACHELESS_SOLVER})
         bh = BindingHelper(self.macho)
         bh.do_normal_bind(self.macho.rebase_blob)
         bh.do_normal_bind(self.macho.binding_blob)
@@ -129,7 +129,7 @@ class MachOTask:
         st.inspect.b('mem_read', when=angr.BP_AFTER, action=mem_read)
         st.inspect.b('mem_write', when=angr.BP_BEFORE, action=mem_write)
         st.inspect.b('address_concretization', when=angr.BP_AFTER, action=mem_resolve)
-        st.inspect.b('constraints', when=angr.BP_AFTER, action=constraints_event_handler)
+        # st.inspect.b('constraints', when=angr.BP_AFTER, action=constraints_event_handler)
 
         # etree = self.p.analyses.CFGAccurate(keep_state=True, starts=[start_addr, ], initial_state=st,
         #                                   call_depth=2, context_sensitivity_level=3)
@@ -223,7 +223,9 @@ class MachOTask:
         self.add_bp(st, 'mem_read', angr.BP_AFTER, mem_read)
         self.add_bp(st, 'mem_write', angr.BP_BEFORE, mem_write)
         self.add_bp(st, 'address_concretization', angr.BP_AFTER, mem_resolve)
-        self.add_bp(st, 'constraints', angr.BP_AFTER, constraints_event_handler)
+        # self.add_bp(st, 'constraints', angr.BP_AFTER, constraints_event_handler)
+        st.globals['added_constraints'] = []
+
         f = Func(call_string.stack[0].ea, self.macho, self, st, args=None, limits=execution_limits).init()
         if f:
             f.analyze()

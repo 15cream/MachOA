@@ -18,7 +18,7 @@ RETFS = "Return {} at {}\n(random:{})"
 IVAR_FORMAT = "{class_name}{var_name}{var_typr}"
 
 # Inter-procedural analysis
-IPC = False
+IPC = True
 CS_LIMITED = True
 
 # Sensitive Data Analysis

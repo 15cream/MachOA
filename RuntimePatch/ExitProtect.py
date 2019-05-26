@@ -17,6 +17,9 @@ def branch_check(state):
     text = MachO.pd.macho.get_segment_by_name('__TEXT').get_section_by_name('__text')
     jmp_target = state.solver.eval(state.inspect.exit_target)
     src = state.addr
+    # if state.inspect.exit_guard is not claripy.true:
+    #     constraint = str(state.inspect.exit_guard).strip('<>')
+    #     state.globals['added_constraints'].append(constraint)
 
     if not STUB_HOOK:
         if jmp_target in MachO.pd.stubs:

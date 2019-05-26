@@ -25,7 +25,10 @@ class Data(object):
         self.is_instance = False
 
         if type(self.bv) is not NoneType:
-            self.resolve_reg()
+            if type(self.bv) is claripy.ast.bool.Bool or type(self.bv) is bool:
+                self.expr = str(self.bv)
+            else:
+                self.resolve_reg()
         # if type(self.ea) is not NoneType:
         #     self.resolve_addr(self.ea)
 
@@ -133,6 +136,9 @@ class Data(object):
             return [m.group('data_type'), m.group('instance_type'), m.group('ptr'), m.group('name')]
         else:
             return None
+
+    def decode_expr(self):
+        return Data.decode(self.expr)
 
 
 class SEL:

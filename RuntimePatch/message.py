@@ -60,6 +60,7 @@ class Message:
                     return
             if CS_LIMITED:
                 if Analyzer.allowed_step_in(self, imp):
+                    print 'STEP INTO NEW CONTEXT: {} at {}'.format(hex(imp), hex(self.invoke_ea))
                     self.prepare_for_new_context()
                     self.simprocedure_handler.jump(imp)
                     return
@@ -89,6 +90,7 @@ class Message:
         if IPC and CS_LIMITED:
             updated_imp = self.should_step_in(imp)
             if updated_imp:
+                print 'STEP INTO NEW CONTEXT: {} at {}'.format(hex(updated_imp), hex(self.invoke_ea))
                 self.prepare_for_new_context(updated_imp)
                 self.simprocedure_handler.jump(updated_imp)
                 return
