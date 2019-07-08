@@ -31,6 +31,10 @@ class CallString:
 
     @staticmethod
     def construct_according_to_a_seed(seed):
+        """
+        :param seed: 是API类型的对象
+        :return:
+        """
         ret = []
         tmp = []
 
@@ -46,20 +50,16 @@ class CallString:
                 callee = cs.stack[-1]
                 callers = callee.find_calls_for_cs()
                 if not callers:
-                    ret.append(cs)  # event handler,　是否要查找event handler对应的event occurrence?
+                    # 没有找到调用者，将其视作event handler,是否要查找event handler对应的event occurrence?
+                    ret.append(cs)
                 else:
-                    # 注意，对一个给定的callee，我们想要查找它的caller——无法准确查找到call site。
-                    # 只能告诉你，在caller_ctx这个方法体内，借助caller_info可能定位到caller(call site)的位置。
-                    # 从callString中我们可以看到caller_ctx这个方法调用了callee，但是在哪里调用呢？具体执行了才知道。
-                    for caller_ctx, caller_info in callers.items():  # caller_info是在caller_ctx中到达call site的约束信息
+                    for caller_ctx, caller_info in callers.items():
                         new_cs = None
                         if caller_ctx in OCFunction.oc_function_set:
                             oc_func = OCFunction.oc_function_set[caller_ctx]
                             meth = API(receiver=oc_func.receiver, selector=oc_func.selector, ea=caller_ctx)
                         elif caller_ctx in OCFunction.meth_data:
-                            # 当然如果是subroutine那么可以定位
                             meth = API(func=OCFunction.meth_data[caller_ctx]['name'], ea=caller_ctx)
-
                         new_cs = cs.copy_and_add(meth)
                         if new_cs and new_cs not in add:
                             new_cs.add_constraints_for_meth_to_reach_callsite(meth.ea, callee.ea, caller_info)

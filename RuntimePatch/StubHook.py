@@ -9,6 +9,7 @@ from Data.data import Block
 from RuntimePatch.Utils import *
 from RuntimePatch.message import Message
 from RuntimePatch.libs.libobjcA import handle_objc_loadWeakRetained
+from SecCheck.cryptographic import CryptoChecker
 
 
 class StubHelper(SimProcedure):
@@ -50,6 +51,19 @@ class StubHelper(SimProcedure):
                     self.state.regs.x0 = block.data_ea
                     self.jump(block.subroutine)
                 return
+            elif symbol.name in CryptoChecker.crypt_funcs:
+                args = []
+                for i in range(0, 6):
+                    reg_name = 'x{}'.format(i)
+                    bv = Data(self.state, bv=dispatch_state.regs.get(reg_name))
+                    args.append(bv)
+                node = MachO.pd.task.cg.insert_invoke(invoke_ea, symbol.name, dispatch_state, args=args)
+                CryptoChecker.check(MachO.pd.task.cg, node, args)
+                # NOTE: 如果只是检测加密函数的使用，不用检测接下来，那么到此结束；
+                # 如果是其他分支的加密函数，会在其他分支再次解析的，不会影响上下文敏感性。
+                # self.jump(self.state.solver.BVV(0, 64))
+
+
         else:
             # args = []
             # for i in range(0, 6):

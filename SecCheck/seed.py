@@ -25,20 +25,37 @@ class API:
         self.ea = ea
         self.calls = set()
 
-    def find_selector_last_occurs(self, context):
-        last_ea = 0
-        for ea, ctx in Xrefs.ask_for_xrefs(self.selector, 'selector').items():
-            if ctx == context:
-                if ea > last_ea:
-                    last_ea = ea
-        return last_ea
-
     def find_calls(self, gist='MSG'):
+        # 这个是最简单的，返回可疑的方法体即可
         self.calls = set()
         if self.is_oc_function:
             s_ctx = Xrefs.ask_for_xrefs(self.selector, 'selector')
             s_ctx = set(s_ctx.values())
             if gist == 'SEL':  # 仅凭借selector来寻找可疑caller
+                self.calls = s_ctx
+            else:
+                r_ctx = ADT(self.receiver).find_occurrences()
+                if gist == 'MSG':
+                    self.calls = r_ctx & s_ctx
+                elif gist == 'ADJ':
+                    if r_ctx & s_ctx:
+                        self.calls = r_ctx & s_ctx
+                    elif len(list(s_ctx)) < SEL_LIMIT:
+                        self.calls = s_ctx
+            return self.calls
+        else:
+            if self.ea in OCFunction.meth_list and self.ea not in OCFunction.oc_function_set:
+                sub_callers = Xrefs.ask_for_xrefs(self.ea, 'sub')
+                if sub_callers:
+                    self.calls = sub_callers
+            return self.calls
+
+    def find_calls_with_detail(self, gist='MSG'):
+        self.calls = set()
+        if self.is_oc_function:
+            s_ctx = Xrefs.ask_for_xrefs(self.selector, 'selector')
+            s_ctx = set(s_ctx.values())
+            if gist == 'SEL':
                 self.calls = s_ctx
             else:
                 r_ctx = ADT(self.receiver).find_occurrences()
@@ -66,15 +83,17 @@ class API:
                     ret[ctx] = {'sel': [ea]}
                 else:
                     ret[ctx]['sel'].append(ea)
+
             r_ctx = ADT(self.receiver).find_occurrences()
-            if r_ctx & set(ret.keys()):
+            if r_ctx & set(ret.keys()):  # 如果receiver出现的context与selector出现的context有交集，求交集
                 for ctx in ret.keys():
                     if ctx not in r_ctx:
                         ret.pop(ctx)
-            elif len(list(s_ctx)) < SEL_LIMIT:
+            elif len(list(s_ctx)) < SEL_LIMIT:  # 如果没有交集，但是selector本身出现的次数就很少，返回selector所在context
                 pass
-            else:
+            else:  # 没有交集，但是selector出现的context过多，例如selector是'alloc'类似，则返回空
                 ret = dict()
+            # 综上，一切以selector为主
 
         elif self.ea in OCFunction.meth_list and self.ea not in OCFunction.oc_function_set:
             sub_callers = Xrefs.ask_for_xrefs(self.ea, 'sub')
@@ -84,7 +103,6 @@ class API:
                 else:
                     ret[ctx].append(call_site)
         return ret
-
 
 
 class ADT:

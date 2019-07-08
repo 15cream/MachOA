@@ -130,6 +130,7 @@ class MachOTask:
         st.inspect.b('mem_write', when=angr.BP_BEFORE, action=mem_write)
         st.inspect.b('address_concretization', when=angr.BP_AFTER, action=mem_resolve)
         # st.inspect.b('constraints', when=angr.BP_AFTER, action=constraints_event_handler)
+        # st.globals['added_constraints'] = []
 
         # etree = self.p.analyses.CFGAccurate(keep_state=True, starts=[start_addr, ], initial_state=st,
         #                                   call_depth=2, context_sensitivity_level=3)
@@ -142,7 +143,8 @@ class MachOTask:
             # return f.get_ret_values()
 
     def analyze_with_cs(self, call_string):
-        print '----- Here is a callString.'
+        # 给出一个callStack，根据栈进行符号执行
+        print '----- Here is a callString ------.'
         call_string.stack.reverse()
         execution_limits = dict()
         index = 0
@@ -150,7 +152,6 @@ class MachOTask:
             index += 1
             if index == len(call_string.stack):
                 execution_limits['destination'] = method  # 目标程序点，如果发现一个方法调用为des就可以终止执行了
-                print 'END.'
                 break
 
             callee = call_string.stack[index]
@@ -162,14 +163,15 @@ class MachOTask:
             print 'in method {}, {} may be invoked.'.format(method.description, callee.description)
 
             st = self.init_state.copy()
-            self.add_bp(st, 'exit', angr.BP_BEFORE, branch_check2)
+            self.add_bp(st, 'exit', angr.BP_BEFORE, traverse_cfg)
             st.globals['jmp_target'] = dict()
             st.regs.ip = method.ea
             cfg = self.p.analyses.CFGAccurate(starts=[method.ea, ], initial_state=st)
             jmps_indexed_by_target = st.globals['jmp_target']
             self.clear_bps(st)
 
-            limits = call_string.extra[(method.ea, callee.ea)]  # 有两种限制类型，一是根据selector，二是subroutine的被调用地址；且不会同时出现。
+            # 有两种限制类型，一是根据selector，二是subroutine的被调用地址；且不会同时出现。
+            limits = call_string.extra[(method.ea, callee.ea)]
             blocks = set()  # 从方法起点到达该block所要经过的所有可能block
             src_list = set()
             if 'sel' in limits:
@@ -231,6 +233,50 @@ class MachOTask:
             f.analyze()
             self.cg.view()
         self.clear_bps(st)
+
+    def calculate_valid_blocks_to_criterion(self, ea, ctx):
+        """
+        给定一个程序点，计算从它所在方法体起点到达该点可能经过的所有blocks.
+        但是呢，延续性不一样。
+        如果该凭据是一个C函数，该点的invoke_node记录完后，这条路径的符号执行就可以结束了；
+        如果该凭据是一个selref，持续到该selref不再存在于状态中；【这里其实有争议，比如你用切片分析】
+        如果说该凭据是一个block...
+        ！但，我们这里，只计算该点之前可能经历的blocks。至于之后的事情，别人来管
+        :param:
+        :return:
+        """
+        valid_blocks = set()  # 从方法起点到达target所要经过的所有可能blocks
+        target_blocks = set()
+
+        st = self.init_state.copy()
+        self.add_bp(st, 'exit', angr.BP_BEFORE, traverse_cfg)
+        st.globals['jmp_target'] = dict()
+        st.regs.ip = ctx
+        cfg = self.p.analyses.CFGAccurate(starts=[ctx, ], initial_state=st)
+        jmps_indexed_by_target = st.globals['jmp_target']
+        self.clear_bps(st)
+
+        target_block = cfg.get_any_node(ea, anyaddr=True)
+        valid_blocks.add(target_block.addr)
+        target_blocks.add(target_block.addr)
+        if not target_block or target_block.addr not in jmps_indexed_by_target:
+            if target_block.addr == ctx:  # 即target出现在第一个代码块
+                pass
+            else:
+                print 'ERROR.'
+                return None
+
+        srcs = set(jmps_indexed_by_target[target_block.addr])
+        while srcs:
+            new_srcs = set()
+            for src in srcs:
+                src_block = cfg.get_any_node(src, anyaddr=True)
+                if src_block and src_block.addr in jmps_indexed_by_target:
+                    new_srcs.update(set(jmps_indexed_by_target[src_block.addr]))
+                    valid_blocks.add(src_block.addr)
+            srcs = new_srcs
+
+        return valid_blocks, target_blocks
 
     def analyze_bin(self):
         for ref in OCClass.classes_indexed_by_ref.keys():

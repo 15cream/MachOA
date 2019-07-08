@@ -112,9 +112,9 @@ def loop_found(state):
     return False
 
 
-def branch_check2(state):
+def traverse_cfg(state):
     """
-
+    利用angr本身的CFG构造方法，在CFG构造时通过捕获跳转来识别块与块之间的转移。原因是angr的CFG对象有点不好处理
     :param state:
     :return:
     """
@@ -122,17 +122,21 @@ def branch_check2(state):
     jmp_target = state.solver.eval(state.inspect.exit_target)
     src = state.addr
 
-    # 避免一不小心过程间分析了，或者是angr没有做好代码块划分
+    # 当angr没有做好方法体边界划分或者是跳转到subroutine时
     if state.solver.eval(state.regs.lr) in MachO.pd.macho.lc_function_starts:
         state.inspect.exit_target = state.solver.BVV(0, 64)
 
+    # 动态链接的函数调用，没有必要跳转
+    # 但之所以还会进行记录，而不是是return，因为angr符号执行时路径与CFG的路径基本一致
     if jmp_target in MachO.pd.stubs:
         jmp_target = state.solver.eval(state.regs.lr)
 
+    # 如果src是代码段以外的地址，
     if src > MachO.pd.macho.get_segment_by_name('__TEXT').get_section_by_name('__text').max_addr:
         return
 
     # print 'jump from {} to {}'.format(hex(src), hex(jmp_target))
+    # 在state的全局变量处进行记录，angr构造CFG后便于回收跳转记录
     if jmp_target in state.globals['jmp_target']:
         state.globals['jmp_target'][jmp_target].append(src)
     else:

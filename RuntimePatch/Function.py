@@ -6,6 +6,7 @@ from Utils import *
 from BinaryPatch.Utils import *
 from SecCheck.sensitiveData import SensitiveData
 from RuntimePatch.Utils import resolve_context
+from RuntimePatch.ExecutionLimitation import CLimitation
 
 import random
 
@@ -78,8 +79,14 @@ class Func:
         simgr = self.task.p.factory.simgr(self.init_state)
         while simgr.active:
             simgr.step()
+            filter = None
             if self.execution_limitations:
-                simgr.move(from_stash='active', to_stash='useless', filter_func=self.state_filter)
+                filter = self.state_filter
+            if CLimitation.currentLimitation:
+                filter = CLimitation.currentLimitation.state_filter
+            if filter:
+                simgr.move(from_stash='active', to_stash='useless', filter_func=filter)
+
 
     def state_filter(self, state):
         """
@@ -91,13 +98,14 @@ class Func:
 
         ctx = resolve_context(state.addr)
         if ctx in self.execution_limitations:
-            # 对state的限制，是将其放在当前过程内来判断的
+            # 在过程内对state进行限制
             limits = self.execution_limitations[ctx]
             if state.addr == ctx or state.addr in limits['paths']:
                 return False
             if state.addr in limits['sensitive_blocks']:
                 if limits['target'] in OCFunction.oc_function_set:
-                    state.globals['sensitive_data'][ctx] = OCFunction.oc_function_set[limits['target']].selector  # 标记要检查什么数据
+                    # 标记要检查什么数据
+                    state.globals['sensitive_data'][ctx] = OCFunction.oc_function_set[limits['target']].selector
                 else:
                     pass  # 默认subroutine只出现在一个block里，当前这个block允许就够了
                 return False
