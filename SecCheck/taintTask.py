@@ -165,7 +165,7 @@ class TaintedTrace:
                 for caller in API(receiver=src_f.receiver, selector=src_f.selector).find_calls(gist='ADJ'):
                     self.track_usage(src_node, caller, data_transferred, rec=src_f.receiver, sel=src_f.selector)
             elif ctx in OCFunction.meth_list:  # TODO: subroutine
-                # for caller in XrefsTo(ctx):
+                # for caller in XrefsTo(caller_ctx):
                 pass
 
     def is_sink(self, node_data_in_etree):

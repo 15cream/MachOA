@@ -1,3 +1,4 @@
+# coding=utf-8
 __author__ = 'gjy'
 
 import os
@@ -9,6 +10,7 @@ from OCClass import OCClass
 from OCFunction import OCFunction
 from Data.OCivar import IVar
 from OCProtocol import Protocol
+from OCCategory import Category
 from Data.CONSTANTS import *
 
 
@@ -22,6 +24,7 @@ class MachO:
         self.task = task
         self.functions = dict()
         self.stubs = dict()  # stub_code -> symbol_name
+        self.symbol_and_stub = dict()  # symbol_name -> stub_code
         self.segdata = dict()
         self.libs = dict()
 
@@ -33,6 +36,7 @@ class MachO:
             MachO.unpack(state, db)
         else:
             self.build_classdata(state)
+            Category.analyze_catlist(self.macho, state)
             Protocol.analyze_protolist(self.macho, state)
             MachO.dump(db)
         OCFunction.build_meth_list(self.macho)
@@ -44,10 +48,11 @@ class MachO:
         classrefs = self.macho.get_segment_by_name('__DATA').get_section_by_name('__objc_classrefs')
         superrefs = self.macho.get_segment_by_name('__DATA').get_section_by_name('__objc_superrefs')
         symbols = self.macho.symbols
+        # 即使bind也是０，因为这些符号无法动态链接
         for s in symbols:
             for addr in s.bind_xrefs:
                 if addr in range(classrefs.min_addr, classrefs.max_addr) or addr in range(superrefs.min_addr, superrefs.max_addr):
-                    OCClass(addr, imported=True, name=s.name.split('$_')[-1]).build(state)
+                    OCClass(addr, imported=True, name=s.name.split('$_')[-1]).build(state, bind_xrefs=s.bind_xrefs)
         # binary classes
         for addr in range(classrefs.min_addr, classrefs.max_addr, 8):
             if addr in OCClass.imported_class_set:
@@ -97,13 +102,17 @@ class MachO:
     @staticmethod
     def dump(db):
         output = open(db, 'wb')
-        pickle.dump([OCClass.class_set2, Protocol.protocol_indexed_by_data_EA, OCFunction.oc_function_set], output)
+        pickle.dump([OCClass.class_set2,
+                     Protocol.protocol_indexed_by_data_EA,
+                     Category.category_indexed_by_data_EA,
+                     OCFunction.oc_function_set],
+                    output)
         output.close()
 
     @staticmethod
     def unpack(state, db):
         input = open(db, 'rb')
-        [class_set, protocol_set, func_set] = pickle.load(input)
+        [class_set, protocol_set, category_set, func_set] = pickle.load(input)
         for cd in class_set:
             if cd.imported:
                 OCClass.imported_class_set.append(cd)
@@ -140,6 +149,10 @@ class MachO:
         Protocol.protocol_indexed_by_data_EA = protocol_set
         for ea, p in protocol_set.items():
             Protocol.protocol_indexed_by_name[p.name] = p
+
+        Category.category_indexed_by_data_EA = category_set
+        for ea, c in category_set.items():
+            Category.category_indexed_by_name[c.name] = c
 
         OCFunction.oc_function_set = func_set
 

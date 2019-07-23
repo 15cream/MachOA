@@ -8,8 +8,8 @@ from Data.OCivar import *
 from Data.data import Block
 from RuntimePatch.Utils import *
 from RuntimePatch.message import Message
-from RuntimePatch.libs.libobjcA import handle_objc_loadWeakRetained
-from SecCheck.cryptographic import CryptoChecker
+from RuntimePatch.libs.libobjcA import *
+from Results.call_sites import CallSite
 
 
 class StubHelper(SimProcedure):
@@ -20,28 +20,25 @@ class StubHelper(SimProcedure):
         invoke_ea = invoke_state.addr + invoke_state.recent_instruction_count * 4
         symbol = MachO.pd.stubs[dispatch_state.history.parent.addr]
         lib = symbol.library_name
+        node = None
 
-        if lib == '/usr/lib/libobjc.A.dylib':
+        if lib == '/usr/lib/libobjc.A.dylib':  # 这个是运行时库的代码，如果要处理函数调用需要模拟其功能
             if symbol.name == "_objc_msgSend":
-                Message(dispatch_state, invoke_ea, simprocedure_handler=self).send2()
+                msg = Message(dispatch_state, invoke_ea, simprocedure_handler=self)
+                node = msg.send2()
             elif symbol.name == "_objc_msgSendSuper2":
-                Message(dispatch_state, invoke_ea, simprocedure_handler=self, send_super=True).send2()
-            elif symbol.name == '_objc_loadWeakRetained':
-                handle_objc_loadWeakRetained(dispatch_state)
+                msg = Message(dispatch_state, invoke_ea, simprocedure_handler=self, send_super=True)
+                node = msg.send2()
+            elif symbol.name in objcA_handlers:
+                objcA_handlers[symbol.name](dispatch_state)
             elif symbol.name in setProperty:
                 m = re.search('<BV\d+ \(<ea:0x(?P<ptr>[0-9a-f]+)L>\)IVAR_OFFSET.+', str(dispatch_state.regs.x3.args[0]))
                 if m:
                     ivar = IVar.ivars[int(m.group('ptr'), 16)]
                     ivar.add_record(AccessedRecord(dispatch_state, invoke_ea, symbol.name, value=dispatch_state.regs.x2))
-            elif symbol.name in getProperty:
-                pass
+
         elif lib == '/usr/lib/libSystem.B.dylib':
             if '_dispatch_' in symbol.name:  # TODO 检查是否不同的dispatch，参数不同
-                # base = state.regs.x1
-                # for i in range(1, 6):
-                #     ea = state.mem[base + 8 * i].long.concrete
-                #     if ea in MachO.pd.macho.lc_function_starts:
-                #         return ea
                 block = None
                 for i in range(0, 5):
                     block = Block(self.state, self.state.registers.load('x{}'.format(i)))
@@ -51,33 +48,39 @@ class StubHelper(SimProcedure):
                     self.state.regs.x0 = block.data_ea
                     self.jump(block.subroutine)
                 return
-            elif symbol.name in CryptoChecker.crypt_funcs:
+            else:
                 args = []
-                for i in range(0, 6):
+                for i in range(0, 7):
                     reg_name = 'x{}'.format(i)
                     bv = Data(self.state, bv=dispatch_state.regs.get(reg_name))
                     args.append(bv)
                 node = MachO.pd.task.cg.insert_invoke(invoke_ea, symbol.name, dispatch_state, args=args)
-                CryptoChecker.check(MachO.pd.task.cg, node, args)
-                # NOTE: 如果只是检测加密函数的使用，不用检测接下来，那么到此结束；
-                # 如果是其他分支的加密函数，会在其他分支再次解析的，不会影响上下文敏感性。
+                if symbol.name in MachO.pd.symbol_and_stub:
+                    MachO.pd.task.cg.g.nodes[node]['handler'] = MachO.pd.symbol_and_stub[symbol.name]
                 # self.jump(self.state.solver.BVV(0, 64))
-
-
         else:
-            # args = []
-            # for i in range(0, 6):
-            #     reg_name = 'x{}'.format(i)
-            #     bv = Data(self.state, bv=dispatch_state.regs.get(reg_name))
-            #     args.append(bv)
-            # MachO.pd.task.cg.insert_invoke(invoke_ea, symbol, dispatch_state, args=args)
-            return dispatch_state.registers.load('x0')
+            args = []
+            for i in range(0, 6):
+                reg_name = 'x{}'.format(i)
+                bv = Data(self.state, bv=dispatch_state.regs.get(reg_name))
+                args.append(bv)
+            node = MachO.pd.task.cg.insert_invoke(invoke_ea, symbol, dispatch_state, args=args)
+            x0 = FORMAT_INSTANCE.format(data_type='unknown', instance_type='RET', ptr=hex(invoke_ea),
+                                        name=symbol.name)
+            dispatch_state.regs.x0 = dispatch_state.solver.BVS(x0, 64)
+            if symbol.name in MachO.pd.symbol_and_stub:
+                MachO.pd.task.cg.g.nodes[node]['handler'] = MachO.pd.symbol_and_stub[symbol.name]
+            # return dispatch_state.registers.load('x0')
+
+        if node:
+            CallSite.collect(MachO.pd.task.cg, node)
 
     def ret_from_msgSend(self):
         print 'I just jumped to a meth_imp and returned'
         return
 
 
+# 另一种尝试
 def analyze_lazy_bind_invoke(dispatch_state, ptr):
     """
     这一段代码是没有经过stub_helper跳转的代码
@@ -99,11 +102,10 @@ def analyze_lazy_bind_invoke(dispatch_state, ptr):
             if m:
                 ivar = IVar.ivars(int(m.group('ptr'), 16))
                 ivar.add_record(AccessedRecord(invoke_ea, symbol.name, value=dispatch_state.regs.x2))
-        elif symbol.name in getProperty:
-            pass
+
     else:
         args = []
-        for i in range(0, 6):
+        for i in range(0, 6):  # TODO 需要收集更多函数原型
             reg_name = 'x{}'.format(i)
             reg = Data(dispatch_state, bv=dispatch_state.regs.get(reg_name))
             args.append(reg)

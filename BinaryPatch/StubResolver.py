@@ -34,7 +34,13 @@ class StubResolver:
         this = StubResolver.resolver
         stub_code_addr = state.addr - 4
         if stub_code_addr not in this.mf.stubs:
-           this.mf.stubs[stub_code_addr] = this.bin.get_symbol_by_address_fuzzy(state.solver.eval(state.inspect.mem_read_address))
+            symbol = this.bin.get_symbol_by_address_fuzzy(state.solver.eval(state.inspect.mem_read_address))
+            this.mf.stubs[stub_code_addr] = symbol
+            if symbol:
+                this.mf.symbol_and_stub[symbol.name] = stub_code_addr
+            else:  # TODO stub绑定的符号还可能是二进制中的函数
+                symbol_addr = state.solver.eval(state.inspect.mem_read_address)
+                # sub_addr = state.mem[state.inspect.mem_read_address].long.concrete
 
 
 

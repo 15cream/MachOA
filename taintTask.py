@@ -10,7 +10,7 @@ import sys
 import commands
 
 from RuntimePatch.frameworks.Foundation.NSData import NSData
-from RuntimePatch.frameworks.Foundation.Networking import NSURLSession
+from RuntimePatch.frameworks.Foundation.Networking import *
 
 
 class TaintTask:
@@ -176,7 +176,7 @@ class TaintedTrace:
                 for caller in API(receiver=src_f.receiver, selector=src_f.selector).find_calls(gist='ADJ'):
                     self.track_usage(src_node, caller, data_transferred, rec=src_f.receiver, sel=src_f.selector)
             elif ctx in OCFunction.meth_list:  # TODO: subroutine
-                # for caller in XrefsTo(ctx):
+                # for caller in XrefsTo(caller_ctx):
                 pass
 
     def is_sink(self, node_data_in_etree):
@@ -184,6 +184,8 @@ class TaintedTrace:
         if NSData.is_writing_action(sel=selector):
             return True
         if NSURLSession.is_upload_task(sel=selector):
+            return True
+        if NSURLRequest.is_HTTPBody(sel=selector) or NSMutableURLRequest.is_HTTPBody(sel=selector):
             return True
         return False
 
@@ -242,13 +244,13 @@ class TaintedTrace:
             print 'Failed to generate {}, {} '.format(fp, e)
 
 
-# 关于设置数据引用的层级；每一层扩展，都意味着数据的引用。设置这个限制的原因，主要是考虑到效率，路径长度（PiOS中也有类似的考量），
-# 以及越外层的数据，事实上被处理得越面目全非 = ， =
-LEVEL_TOP = 7
 # binary_path = sys.argv[1]
 # RULE_NAME = sys.argv[2]
 binary_path = '/home/gjy/Desktop/samples/yellowpage_arm64'
 RULE_NAME = 'ID'
+# 关于设置数据引用的层级；每一层扩展，都意味着数据的引用。设置这个限制的原因，主要是考虑到效率，路径长度（PiOS中也有类似的考量），
+# 以及越外层的数据，事实上被处理得越面目全非 = ， =
+LEVEL_TOP = 7
 if os.path.exists(binary_path):
     if RULE_NAME in Rules:
         analyzer = TaintTask(binary_path, RULE_NAME)

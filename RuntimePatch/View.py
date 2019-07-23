@@ -6,6 +6,7 @@ from RuntimePatch.Utils import *
 from RuntimePatch.ConstraintHelper import *
 from RuntimePatch.Utils import resolve_context
 from RuntimePatch.ConstraintHelper import Constraint
+from tools.common import symbol_resolved
 
 
 class GraphView:
@@ -67,7 +68,6 @@ class GraphView:
                             rec=receiver, sel=selector)
         else:
             pass  # Invoke again. (Impossible ?)
-            # print "Invoke has been recorded: {}".format(node)
 
         # Record this invoke.
         current_invoke_record = ExtraRecord(ea, node, state.history)
@@ -81,7 +81,6 @@ class GraphView:
             current_invoke_record.analyze_constraints(last=last_invoke_record)
             # label = '\n'.join(current_invoke_record.ret_incremental_constraints())
             label = current_invoke_record.ret_incremental_constraints_str()
-            # label = ''
             self.g.add_edge(last_invoke_record.node, node, label=label, color=color)
         else:
             self.g.nodes[node]['pnode'] = None
@@ -153,6 +152,62 @@ class GraphView:
             history = history.parent
         return None
 
+    def find_dp_node(self, expr, node):
+        """
+        :param expr: 待追踪的数据表达式
+        :param node: 从该节点开始向上追踪，expr表示的数据可能是该节点的receiver或参数【路径敏感】
+        :return: 返回数据表达式中未知参数依赖的节点
+        """
+        dp_node = None
+        data_type, instance_type, ptr = symbol_resolved(expr)
+        pnode = self.g.nodes[node]['pnode']
+        while True:
+            if self.g.nodes[pnode]['addr'] == ptr:
+                dp_node = pnode
+                break
+            else:
+                pnode = self.g.nodes[pnode]['pnode']
+                continue
+        return dp_node
+
+    def definition_analysis(self, node, index=None, expr=None):
+        """
+        对expr表示的数据进行定值分析，node为使用该数值的节点（注意，并非该数值的产生节点）
+        当前定值分析只限于在当前方法内进行。
+        """
+        data_type, instance_type, ptr = symbol_resolved(expr)
+        node_data = self.g.nodes[node]
+        if instance_type == 'RET':
+            dp_node = self.find_dp_node(expr, node)
+            if dp_node:
+                node_data = self.g.nodes[dp_node]
+                if node_data['handler']:
+                    return 'RET_VALUE', node_data['handler'], None
+                else:
+                    rtype, imp, extra = self.definition_analysis(node, expr=node_data['rec'])
+                    if rtype == 'RAW':
+                        return rtype, imp, expr
+                    else:
+                        return rtype, imp, extra
+            else:
+                print 'Exception: 没有查找到dp_node'
+
+        elif instance_type == 'GEN_PARA':
+            arg_index = self.g.nodes[self.g.graph['start']]['args'].index(expr)
+            return 'PARA', node_data['context'], arg_index
+
+        elif instance_type == 'REC':
+            return 'TODO', None, None
+
+        elif instance_type == 'IVAR':
+            ivar_ea = hex(ptr)
+            return 'TODO', None, None
+
+        elif instance_type is None:  # 通常是receiver为外部符号时
+            return 'RAW', None, expr
+
+        return 'ERROR', None, None
+
     def find_pnode(self, node, p_addr):
         p_node = node
         while p_node:
@@ -161,8 +216,13 @@ class GraphView:
                 return p_node
         return None
 
-    def view(self):
-        fp = '{}{}/{}.dot'.format(MachO.pd.task.configs.get('PATH', 'results'), MachO.pd.macho.provides, self.start)
+    def view(self, cs_limited=False):
+        fp = None
+        if cs_limited:
+            pass  # 由CallSite.dump()一并处理
+            return None
+        else:
+            fp = '{}{}/{}.dot'.format(MachO.pd.task.configs.get('PATH', 'results'), MachO.pd.macho.provides, self.start)
         try:
             nx.drawing.nx_agraph.write_dot(self.g, fp)
             return fp

@@ -30,7 +30,8 @@ class Binary:
             'class': dict(),
             'selector': dict(),  # selector_name: [xref.frm, ]
             'ivar': dict(),  # ivar_ea
-            'sub': dict()
+            'sub': dict(),
+            'stub': dict()
         }
 
         self.parse()
@@ -66,6 +67,12 @@ class Binary:
                     fi = idaapi.get_func(xref.frm)
                     if fi:
                         self.xrefs['sub'][f][xref.frm] = fi.startEA
+
+        for stub in self.xrefs['stub']:
+            for xref in XrefsTo(stub):
+                fi = idaapi.get_func(xref.frm)
+                if fi:
+                    self.xrefs['stub'][stub][xref.frm] = fi.startEA
 
     def parse_classref(self, ea):
         classname = idc.Name(ea).replace('classRef_', '')
@@ -109,6 +116,9 @@ class Binary:
             elif segName in ['__objc_ivar']:
                 for ea in range(idc.SegStart(seg), idc.SegEnd(seg), 4):
                     self.parser[segName](ea)
+            elif segName == '__stubs':
+                for ea in range(idc.SegStart(seg), idc.SegEnd(seg), 12):
+                    self.xrefs['stub'][ea] = dict()
 
     def get_data(self):
         return {

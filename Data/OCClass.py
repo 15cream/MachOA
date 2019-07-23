@@ -29,6 +29,7 @@ class OCClass:
         self.instance_meths = dict()
         self.ivars = dict()
         self.prots = dict()
+        self.categories = []
 
     @staticmethod
     def retrieve(classref=None, classname=None):
@@ -48,12 +49,13 @@ class OCClass:
         else:
             return None
 
-    def build(self, state, superclass=False):
+    def build(self, state, superclass=False, bind_xrefs=None):
         if superclass:
             self.is_superclass = True
         if self.imported:
             bv = state.solver.BVV(self.classref_addr, 64).reversed
-            state.memory.store(self.classref_addr, bv)
+            for ea in bind_xrefs:
+                state.memory.store(ea, bv)
             OCClass.imported_class_set.append(self.classref_addr)
         else:
             # self.class_addr = state.memory.load(self.classref_addr, 8, endness=archinfo.Endness.LE)

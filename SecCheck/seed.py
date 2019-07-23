@@ -3,106 +3,78 @@ from Data.OCivar import IVar
 from Data.OCClass import OCClass
 from Data.OCFunction import OCFunction
 from Data.CONSTANTS import *
+from Data.MachO import MachO
 from tools.oc_type_parser import *
-from MachOTask import MachOTask
-
-SEL_LIMIT = 20
+from tools.common import *
 
 
 class API:
 
-    def __init__(self, receiver=None, selector=None, func=None, ea=None):
+    SEL_LIMIT = 20
+
+    def __init__(self, receiver=None, selector=None, symbol=None, ea=None):
+        self.function = None  # the imp of function, None if func's external
+        self.is_oc_function = False
+        self.is_stub = False
+        self.calls = set()
+        self.description = None
+        self.ea = ea  # TODO
+
+        if ea:
+            self.function = ea
+            if ea in OCFunction.oc_function_set:
+                receiver = OCFunction.oc_function_set[ea].receiver
+                selector = OCFunction.oc_function_set[ea].selector
+            elif ea in OCFunction.meth_data:
+                self.description = OCFunction.meth_data[ea]['name']
+            elif ea in MachO.pd.stubs:
+                pass
+        elif symbol:
+            self.function = MachO.pd.symbol_and_stub[symbol]  # stub_ea
+            self.is_stub = True
+            self.description = symbol
+
         if receiver and selector:
             self.is_oc_function = True
             self.receiver = receiver
             self.selector = selector
             self.description = '[{} {}]'.format(self.receiver, self.selector)
-        else:
-            self.is_oc_function = False
-            self.function = func
-            self.description = self.function
-
-        self.ea = ea
-        self.calls = set()
 
     def find_calls(self, gist='MSG'):
-        # 这个是最简单的，返回可疑的方法体即可
-        self.calls = set()
-        if self.is_oc_function:
-            s_ctx = Xrefs.ask_for_xrefs(self.selector, 'selector')
-            s_ctx = set(s_ctx.values())
-            if gist == 'SEL':  # 仅凭借selector来寻找可疑caller
-                self.calls = s_ctx
-            else:
-                r_ctx = ADT(self.receiver).find_occurrences()
-                if gist == 'MSG':
-                    self.calls = r_ctx & s_ctx
-                elif gist == 'ADJ':
-                    if r_ctx & s_ctx:
-                        self.calls = r_ctx & s_ctx
-                    elif len(list(s_ctx)) < SEL_LIMIT:
-                        self.calls = s_ctx
-            return self.calls
-        else:
-            if self.ea in OCFunction.meth_list and self.ea not in OCFunction.oc_function_set:
-                sub_callers = Xrefs.ask_for_xrefs(self.ea, 'sub')
-                if sub_callers:
-                    self.calls = sub_callers
-            return self.calls
+        """
+        :param gist:
+        :return: only suspicious contexts
+        """
+        return self.find_calls_with_detail(gist=gist).keys()
 
     def find_calls_with_detail(self, gist='MSG'):
         self.calls = set()
         if self.is_oc_function:
-            s_ctx = Xrefs.ask_for_xrefs(self.selector, 'selector')
-            s_ctx = set(s_ctx.values())
+            sel_and_ctx = Xrefs.ask_for_xrefs(self.selector, 'selector')
+            ctx_and_sel = reverse_dict(sel_and_ctx)
+            s_ctx = set(ctx_and_sel.keys())
             if gist == 'SEL':
-                self.calls = s_ctx
+                pass
             else:
                 r_ctx = ADT(self.receiver).find_occurrences()
-                if gist == 'MSG':
-                    self.calls = r_ctx & s_ctx
-                elif gist == 'ADJ':
-                    if r_ctx & s_ctx:
-                        self.calls = r_ctx & s_ctx
-                    elif len(list(s_ctx)) < SEL_LIMIT:
-                        self.calls = s_ctx
-            return self.calls
+                if gist == 'MSG' or (gist == 'ADJ' and r_ctx & s_ctx):
+                    for ctx in s_ctx:
+                        if ctx not in r_ctx:
+                            ctx_and_sel.pop(ctx)
+                elif gist == 'ADJ' and not r_ctx & s_ctx:
+                    if len(list(s_ctx)) > API.SEL_LIMIT:  # TODO EMPTY?
+                        ctx_and_sel = set()
+            self.calls = ctx_and_sel
+
+        elif self.is_stub:
+            stub_xrefs = Xrefs.ask_for_xrefs(self.function, 'stub')
+            self.calls = reverse_dict(stub_xrefs)
+
         else:
-            if self.ea in OCFunction.meth_list and self.ea not in OCFunction.oc_function_set:
-                sub_callers = Xrefs.ask_for_xrefs(self.ea, 'sub')
-                if sub_callers:
-                    self.calls = sub_callers
-            return self.calls
+            sub_callers = Xrefs.ask_for_xrefs(self.function, 'sub')
+            self.calls = reverse_dict(sub_callers)
 
-    def find_calls_for_cs(self):
-        ret = dict()
-        if self.is_oc_function:
-            s_ctx = Xrefs.ask_for_xrefs(self.selector, 'selector')
-            for ea, ctx in s_ctx.items():
-                if ctx not in ret:
-                    ret[ctx] = {'sel': [ea]}
-                else:
-                    ret[ctx]['sel'].append(ea)
-
-            r_ctx = ADT(self.receiver).find_occurrences()
-            if r_ctx & set(ret.keys()):  # 如果receiver出现的context与selector出现的context有交集，求交集
-                for ctx in ret.keys():
-                    if ctx not in r_ctx:
-                        ret.pop(ctx)
-            elif len(list(s_ctx)) < SEL_LIMIT:  # 如果没有交集，但是selector本身出现的次数就很少，返回selector所在context
-                pass
-            else:  # 没有交集，但是selector出现的context过多，例如selector是'alloc'类似，则返回空
-                ret = dict()
-            # 综上，一切以selector为主
-
-        elif self.ea in OCFunction.meth_list and self.ea not in OCFunction.oc_function_set:
-            sub_callers = Xrefs.ask_for_xrefs(self.ea, 'sub')
-            for call_site, ctx in sub_callers.items():
-                if ctx not in ret:
-                    ret[ctx] = [call_site]
-                else:
-                    ret[ctx].append(call_site)
-        return ret
+        return self.calls
 
 
 class ADT:
@@ -208,11 +180,11 @@ class ADT:
                 if ivar.type == str_to_type(self.type):
                     xrefs_to_ivar = Xrefs.ask_for_xrefs(ptr, 'ivar')
                     ctx.update(set(xrefs_to_ivar.values()))
-                    # ivar.parse_accessors()
-                    # setter = API(receiver=ivar._class, selector=ivar.setter)
-                    # ctx.update(setter.find_calls())
-                    # getter = API(receiver=ivar._class, selector=ivar.getter)
-                    # ctx.update(getter.find_calls())
+                    ivar.parse_accessors()
+                    setter = API(receiver=ivar._class, selector=ivar.setter)
+                    ctx.update(setter.find_calls())
+                    getter = API(receiver=ivar._class, selector=ivar.getter)
+                    ctx.update(getter.find_calls())
             self._as_ivar = ctx
         return self._as_ivar
 
@@ -227,7 +199,7 @@ class ADT:
             oc_class = OCClass.classes_indexed_by_name[self.type]
             if oc_class.class_meths:
                 for f in oc_class.class_meths:
-                    MachOTask.currentTask.analyze_function(start_addr=f)
+                    #TODO MachOTask.currentTask.analyze_function(start_addr=f)
                     print 'T'
 
     def as_para(self):

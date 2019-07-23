@@ -8,6 +8,7 @@ from Data.MachO import *
 from RuntimePatch.Utils import expr_args, resolve_context
 from SecCheck.analyzer import Analyzer
 from RuntimePatch.Utils import *
+from RuntimePatch.ExecutionLimitation import CLimitation
 
 
 class Message:
@@ -87,13 +88,14 @@ class Message:
 
         # 动态绑定，确定receiver和selector，需要完成查找imp的过程。
         imp = self.dynamic_bind()
-        if IPC and CS_LIMITED:
-            updated_imp = self.should_step_in(imp)
-            if updated_imp:
-                print 'STEP INTO NEW CONTEXT: {} at {}'.format(hex(updated_imp), hex(self.invoke_ea))
-                self.prepare_for_new_context(updated_imp)
-                self.simprocedure_handler.jump(updated_imp)
-                return
+        if CS_LIMITED:
+            if IPC:
+                updated_imp = self.should_step_in(imp)
+                if updated_imp:
+                    print 'STEP INTO NEW CONTEXT: {} at {}'.format(hex(updated_imp), hex(self.invoke_ea))
+                    self.prepare_for_new_context(updated_imp)
+                    self.simprocedure_handler.jump(updated_imp)
+                    return None
 
         # 推测返回值，根据已解析的receiver和selector推测返回值。实际上，当不进行过程间分析时，这里是模拟调用对程序状态的影响。
         ret_type = 'unknown'
@@ -117,6 +119,8 @@ class Message:
         self.g.nodes[self.node]['rec_type'] = self.receiver.data_type
         self.g.nodes[self.node]['rec_dpr'] = self.receiver.dpr
         self.g.nodes[self.node]['handler'] = imp
+
+        return self.node
 
     def tainted(self):
         if 'tainted' in self.g.nodes[self.node]:
@@ -145,36 +149,29 @@ class Message:
                 self.receiver.oc_class = OCClass.classes_indexed_by_name[callee.receiver][0]
                 self.receiver.data_type = str_to_type(self.receiver.oc_class.name)
 
-
-
     def should_step_in(self, imp):
+        # 给出一个方法体的imp，判断
         ctx = resolve_context(self.invoke_ea)
-        execution_limitations = self.dispatch_state.globals['Func_Object'].execution_limitations
-        if ctx in execution_limitations:
-            termination = execution_limitations['destination']  # API instance
-            if termination.selector == self.selector.expr and termination.receiver in self.receiver.expr:
-                return False
+        if ctx not in CLimitation.pools:
+            return None
+        cl = CLimitation.pools[ctx]
+        target = cl.target_api  # API instance
 
-            the_method_should_step_in = execution_limitations[ctx]['target']
-            if the_method_should_step_in in OCFunction.oc_function_set:
-                target_method = OCFunction.oc_function_set[the_method_should_step_in]
-                if imp == target_method.imp:
-                    return imp
-                else:
-                    pass  # 这里难道还要反馈给imp,　调整它的值？
-                    # if target_method.receiver in self.receiver.expr and target_method.selector == self.selector.expr:
-                    # self.receiver是子类，进入子类方法后可以通过调用sendSuper
-                    if target_method.selector == self.selector.expr:
-                        if target_method.receiver in self.receiver.expr:
-                            return target_method.imp
-                        target_method_receiver = OCClass.classes_indexed_by_name[target_method.receiver][0]
-                        if target_method_receiver.class_addr in OCClass.class_and_subclasses:
-                            for subclass in OCClass.class_and_subclasses[target_method_receiver.class_addr]:
-                                if subclass in self.receiver.expr:
-                                    return target_method.imp
+        if imp:
+            if imp == target.ea:
+                return imp
             else:
-                if imp == the_method_should_step_in:  # subroutine
-                    return imp
-        else:
-            print 'ERROR FROM message.should_step_in'
-        return False
+                return None
+        elif target.is_oc_function:
+            if target.selector == self.selector.expr and target.receiver in self.receiver.expr:
+                return target.ea  # TODO
+            # self.receiver是子类，进入子类方法后可以通过调用sendSuper
+            # if target_method.selector == self.selector.expr:
+            #     if target_method.receiver in self.receiver.expr:
+            #         return target_method.imp
+            #     target_method_receiver = OCClass.classes_indexed_by_name[target_method.receiver][0]
+            #     if target_method_receiver.class_addr in OCClass.class_and_subclasses:
+            #         for subclass in OCClass.class_and_subclasses[target_method_receiver.class_addr]:
+            #             if subclass in self.receiver.expr:
+            #                 return target_method.imp
+

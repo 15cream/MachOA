@@ -20,5 +20,5 @@ def lazy_bind_patch(state, binary):
             else:
                 state.memory.store(ptr, state.solver.BVV(ptr, 64).reversed)
         else:
-            pass
+            pass  # TODO 该ptr指向二进制中函数的实现
     return stub_helper

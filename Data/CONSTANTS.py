@@ -18,7 +18,7 @@ RETFS = "Return {} at {}\n(random:{})"
 IVAR_FORMAT = "{class_name}{var_name}{var_typr}"
 
 # Inter-procedural analysis
-IPC = True
+IPC = False
 CS_LIMITED = True
 
 # Sensitive Data Analysis
@@ -43,9 +43,6 @@ objc_symbols = ['_objc_retainAutoreleasedReturnValue',
                 '_objc_release',
                 '_objc_retainAutorelease',
                 ]
-getProperty = [
-    '_objc_getProperty',
-]
 
 setProperty = [
     '_objc_setProperty_nonatomic_copy',
@@ -63,6 +60,8 @@ angr.types.define_struct('struct proplist{int entrysize; int count;}')
 angr.types.define_struct('struct prop{char* name; char* attr;}')
 angr.types.define_struct('struct prot{long isa; char* name; long prots; long inst_meths; long class_meths; '
                          'long opt_inst_meths; long opt_class_meths; long inst_props; int cb; int flags; long methtype;}')
+angr.types.define_struct('struct category{char* name; long _class; long inst_meths; long class_meths; '
+                         'long prots; long props;}')
 
 
 instance_types = {

@@ -50,6 +50,14 @@ class Data(object):
             expr = self.resolve_addr(args[0])
         elif op == 'BVS':
             expr = '_'.join(args[0].split('_')[0:-2])
+        elif op == 'Concat':
+            operand1 = Data(state, bv=args[0])
+            operand2 = Data(state, bv=args[1])
+            expr = "Concat({}, {})".format(operand1.expr, operand2.expr)
+        elif op == '__add__':
+            addend1 = Data(state, bv=args[0])
+            addend2 = Data(state, bv=args[1])
+            expr = "Add({}, {})".format(addend1.expr, addend2.expr)
         else:  # expression
             expr = str(reg)
         self.expr = expr
@@ -259,6 +267,13 @@ class Block:
                             self.subroutine = subroutine
             else:
                 print "EXCEPTION HERE: data.Block.__init__"
+
+        # 最开始使用的简陋方法，查找附近有没有出现subroutine的地址
+        # base = state.regs.x1
+        # for i in range(1, 6):
+        #     ea = state.mem[base + 8 * i].long.concrete
+        #     if ea in MachO.pd.macho.lc_function_starts:
+        #         return ea
 
 
 

@@ -57,7 +57,7 @@ class Func:
             for i in range(0, f.selector.count(':')):
                 if args:
                     reg = FORMAT_INSTANCE.format(data_type=args[i], ptr=hex(f.imp), instance_type='GEN_PARA',
-                                                 name='{}#{}'.format(type_to_str(args[i]), random.randint(0, IRR)))
+                                                 name='{}#P{}_{}'.format(type_to_str(args[i]), i, random.randint(0, IRR)))
                 else:
                     reg = FORMAT_INSTANCE.format(data_type='unknown', ptr=hex(f.imp), instance_type='GEN_PARA', name="P" + str(i))
                 self.init_state.registers.store('x{}'.format(str(i+2)), self.init_state.solver.BVS(reg, 64))
@@ -72,7 +72,6 @@ class Func:
             return self
 
     def analyze(self):
-        print 'ANALYZE {} {}'.format(hex(self.start_ea), self.name)
         self.init_state.regs.ip = self.start_ea
         self.init_state.globals['Func_Object'] = self
         self.init_state.globals['sensitive_data'] = dict()
@@ -82,11 +81,10 @@ class Func:
             filter = None
             if self.execution_limitations:
                 filter = self.state_filter
-            if CLimitation.currentLimitation:
-                filter = CLimitation.currentLimitation.state_filter
+            if CS_LIMITED:
+                filter = CLimitation.filter
             if filter:
                 simgr.move(from_stash='active', to_stash='useless', filter_func=filter)
-
 
     def state_filter(self, state):
         """

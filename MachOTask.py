@@ -15,6 +15,7 @@ from RuntimePatch.AddressConcretize import *
 from RuntimePatch.ExitProtect import *
 from RuntimePatch.ConstraintHelper import *
 from RuntimePatch.View import GraphView
+from RuntimePatch.register_event import reg_read
 from RuntimePatch.StubHook import StubHelper
 from RuntimePatch.Utils import *
 from RuntimePatch.Function import Func
@@ -24,6 +25,7 @@ from RuntimePatch.Slice import Slice
 from SecCheck.sensitiveData import SensitiveData
 from tools.common import block_excess, checked_existence_in_dir
 from Data.CONSTANTS import IPC, CS_LIMITED
+from Results.call_sites import CallSite
 
 # from angrutils import *
 
@@ -80,13 +82,13 @@ class MachOTask:
                 commands.getstatusoutput(cmd)
             cmd = '{} -S{} {}'.format(self.configs.get('PATH', 'ida_path'), self.configs.get('PATH', 'ida_script'), self.binary_path)
             commands.getstatusoutput(cmd)
-        SensitiveData.init(self.ida_xref_pkl)
+        # SensitiveData.init(self.ida_xref_pkl)
         IVar.init(self.ida_xref_pkl)
         Xrefs(self.ida_xref_pkl)
         Frameworks('{}FrameworkHeaders.pkl'.format(self.configs.get('PATH', 'dbs')))
         self.init_state = self.p.factory.blank_state(add_options={angr.options.LAZY_SOLVES, angr.options.CACHELESS_SOLVER})
         bh = BindingHelper(self.macho)
-        bh.do_normal_bind(self.macho.rebase_blob)
+        # bh.do_normal_bind(self.macho.rebase_blob)
         bh.do_normal_bind(self.macho.binding_blob)
         bh.do_lazy_bind(self.macho.lazy_binding_blob)
         # self.macho.do_binding()
@@ -109,16 +111,14 @@ class MachOTask:
             s.run()
             self.cg.view()
 
-    def analyze_function(self, init_args=None, start_addr=None, name=None, call_string=None):
+    def analyze_function(self, init_args=None, start_addr=None, name=None, from_cs=False):
         if name and OCClass.retrieve_func(name=name):
             start_addr = OCClass.retrieve_func(name=name).imp
         if not start_addr:
             return None
         if start_addr in self.meth_blacklist:
-            # print 'SKIPPED(IN BLACKLIST): ', hex(start_addr)
             return None
         if hex(start_addr).strip('L') in checked_existence_in_dir(self.result_dir):
-            # print 'SKIPPED(ALREADY CHECKED): ', hex(start_addr)
             return checked_existence_in_dir(self.result_dir)[hex(start_addr).strip('L')]
         if block_excess(self.p, start_addr):
             return None
@@ -129,6 +129,7 @@ class MachOTask:
         st.inspect.b('mem_read', when=angr.BP_AFTER, action=mem_read)
         st.inspect.b('mem_write', when=angr.BP_BEFORE, action=mem_write)
         st.inspect.b('address_concretization', when=angr.BP_AFTER, action=mem_resolve)
+        # st.inspect.b('reg_read', when=angr.BP_AFTER, action=reg_read)
         # st.inspect.b('constraints', when=angr.BP_AFTER, action=constraints_event_handler)
         # st.globals['added_constraints'] = []
 
@@ -139,9 +140,100 @@ class MachOTask:
         f = Func(start_addr, self.macho, self, st, args=init_args).init()
         if f:
             f.analyze()
-            return self.cg.view()
+            return self.cg.view(cs_limited=from_cs)
             # return f.get_ret_values()
 
+    def get_cfg(self, start_ea):
+        st = self.init_state.copy()
+        self.add_bp(st, 'exit', angr.BP_BEFORE, traverse_cfg)
+        st.globals['jmp_target'] = dict()
+        st.regs.ip = start_ea
+        cfg = self.p.analyses.CFGAccurate(starts=[start_ea, ], initial_state=st, max_iterations=1)
+        jmps_indexed_by_target = st.globals['jmp_target']
+        self.clear_bps(st)
+        return cfg, jmps_indexed_by_target
+
+    def calculate_valid_blocks_to_criterion(self, ea, ctx):
+        """
+        给定一个程序点，计算从它所在方法体起点到达该点可能经过的所有blocks.
+        但是呢，延续性不一样。
+        如果该凭据是一个C函数，该点的invoke_node记录完后，这条路径的符号执行就可以结束了；
+        如果该凭据是一个selref，持续到该selref不再存在于状态中；【这里其实有争议，比如你用切片分析】
+        如果说该凭据是一个block...
+        ！但，我们这里，只计算该点之前可能经历的blocks。至于之后的事情，别人来管
+        :param:
+        :return:
+        """
+        valid_blocks = set()  # 从方法起点到达target所要经过的所有可能blocks
+        target_blocks = set()
+
+        st = self.init_state.copy()
+        self.add_bp(st, 'exit', angr.BP_BEFORE, traverse_cfg)
+        st.globals['jmp_target'] = dict()
+        st.regs.ip = ctx
+        cfg = self.p.analyses.CFGAccurate(starts=[ctx, ], initial_state=st, max_iterations=1)
+        jmps_indexed_by_target = st.globals['jmp_target']
+        self.clear_bps(st)
+
+        target_block = cfg.get_any_node(ea, anyaddr=True)
+        valid_blocks.add(target_block.addr)
+        target_blocks.add(target_block.addr)
+        if not target_block or target_block.addr not in jmps_indexed_by_target:
+            if target_block.addr == ctx:  # 即target出现在第一个代码块
+                pass
+            else:
+                print 'ERROR.'
+                return None
+
+        srcs = set(jmps_indexed_by_target[target_block.addr])
+        while srcs:
+            new_srcs = set()
+            for src in srcs:
+                src_block = cfg.get_any_node(src, anyaddr=True)
+                if src_block and src_block.addr in jmps_indexed_by_target:
+                    if src_block.addr not in valid_blocks:
+                        new_srcs.update(set(jmps_indexed_by_target[src_block.addr]))
+                    valid_blocks.add(src_block.addr)
+            srcs = new_srcs
+
+        return valid_blocks, target_blocks
+
+    def analyze_bin(self):
+        for ref in OCClass.classes_indexed_by_ref.keys():
+            if ref in self.class_blacklist:
+                continue
+            self.analyze_class(classref=ref)
+
+    def analyze_class(self, classref=None, classname=None):
+        class_obj = OCClass.retrieve(classref=classref, classname=classname)
+        if class_obj:
+            if class_obj.imported:
+                return
+            if class_obj.name in checked_existence_in_dir(self.result_dir):
+                return
+            for meth in class_obj.class_meths:
+                if meth in self.meth_blacklist:
+                    continue
+                self.analyze_function(start_addr=meth)
+            for meth in class_obj.instance_meths:
+                if meth in self.meth_blacklist:
+                    continue
+                self.analyze_function(start_addr=meth)
+        else:
+            print 'CANNOT FIND THIS CLASS.'
+
+    def clear(self):
+        self.loader.close()
+
+    def add_bp(self, state, event, when, handler):
+        self.bps.append((event, state.inspect.b(event, when=when, action=handler)))
+
+    def clear_bps(self, state):
+        for (event, bp) in self.bps:
+            state.inspect.remove_breakpoint(event, bp=bp)
+        self.bps = []
+
+    # deprecated
     def analyze_with_cs(self, call_string):
         # 给出一个callStack，根据栈进行符号执行
         print '----- Here is a callString ------.'
@@ -156,7 +248,7 @@ class MachOTask:
 
             callee = call_string.stack[index]
             execution_limits[method.ea] = {
-                'target': callee.ea,  # 当前方法体内(ctx)执行到方法调用target时，进入该target
+                'target': callee.ea,  # 当前方法体内(caller_ctx)执行到方法调用target时，进入该target
                 'paths': set(),
                 'sensitive_blocks': set(),
             }
@@ -233,86 +325,6 @@ class MachOTask:
             f.analyze()
             self.cg.view()
         self.clear_bps(st)
-
-    def calculate_valid_blocks_to_criterion(self, ea, ctx):
-        """
-        给定一个程序点，计算从它所在方法体起点到达该点可能经过的所有blocks.
-        但是呢，延续性不一样。
-        如果该凭据是一个C函数，该点的invoke_node记录完后，这条路径的符号执行就可以结束了；
-        如果该凭据是一个selref，持续到该selref不再存在于状态中；【这里其实有争议，比如你用切片分析】
-        如果说该凭据是一个block...
-        ！但，我们这里，只计算该点之前可能经历的blocks。至于之后的事情，别人来管
-        :param:
-        :return:
-        """
-        valid_blocks = set()  # 从方法起点到达target所要经过的所有可能blocks
-        target_blocks = set()
-
-        st = self.init_state.copy()
-        self.add_bp(st, 'exit', angr.BP_BEFORE, traverse_cfg)
-        st.globals['jmp_target'] = dict()
-        st.regs.ip = ctx
-        cfg = self.p.analyses.CFGAccurate(starts=[ctx, ], initial_state=st)
-        jmps_indexed_by_target = st.globals['jmp_target']
-        self.clear_bps(st)
-
-        target_block = cfg.get_any_node(ea, anyaddr=True)
-        valid_blocks.add(target_block.addr)
-        target_blocks.add(target_block.addr)
-        if not target_block or target_block.addr not in jmps_indexed_by_target:
-            if target_block.addr == ctx:  # 即target出现在第一个代码块
-                pass
-            else:
-                print 'ERROR.'
-                return None
-
-        srcs = set(jmps_indexed_by_target[target_block.addr])
-        while srcs:
-            new_srcs = set()
-            for src in srcs:
-                src_block = cfg.get_any_node(src, anyaddr=True)
-                if src_block and src_block.addr in jmps_indexed_by_target:
-                    new_srcs.update(set(jmps_indexed_by_target[src_block.addr]))
-                    valid_blocks.add(src_block.addr)
-            srcs = new_srcs
-
-        return valid_blocks, target_blocks
-
-    def analyze_bin(self):
-        for ref in OCClass.classes_indexed_by_ref.keys():
-            if ref in self.class_blacklist:
-                continue
-            self.analyze_class(classref=ref)
-
-    def analyze_class(self, classref=None, classname=None):
-        class_obj = OCClass.retrieve(classref=classref, classname=classname)
-        if class_obj:
-            if class_obj.imported:
-                return
-            if class_obj.name in checked_existence_in_dir(self.result_dir):
-                return
-            for meth in class_obj.class_meths:
-                if meth in self.meth_blacklist:
-                    continue
-                self.analyze_function(start_addr=meth)
-            for meth in class_obj.instance_meths:
-                if meth in self.meth_blacklist:
-                    continue
-                self.analyze_function(start_addr=meth)
-        else:
-            print 'CANNOT FIND THIS CLASS.'
-
-    def clear(self):
-        self.loader.close()
-
-    def add_bp(self, state, event, when, handler):
-        self.bps.append((event, state.inspect.b(event, when=when, action=handler)))
-
-    def clear_bps(self, state):
-        for (event, bp) in self.bps:
-            state.inspect.remove_breakpoint(event, bp=bp)
-        self.bps = []
-
 
 # if __name__ == "__main__":
 #     print time.strftime("-START-%Y-%m-%d %H:%M:%S", time.localtime())

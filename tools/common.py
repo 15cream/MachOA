@@ -6,7 +6,7 @@ from Data.CONSTANTS import BLOCK_LIMIT
 
 def block_excess(angr_project, start_addr):
     cfg = angr_project.analyses.CFGAccurate(keep_state=True, starts=[start_addr, ], call_depth=0)
-    printy('{} BLOCKS DETECTED in {}.'.format(len(cfg._nodes), hex(start_addr)), 1)
+    # printy('{} BLOCKS DETECTED in {}.'.format(len(cfg._nodes), hex(start_addr)), 1)
     if len(cfg._nodes) > BLOCK_LIMIT:
         printy('SKIPPED(TOO MUCH BLOCKS): ', 4)
         return True
@@ -55,3 +55,13 @@ def printy_result(s, status):
             puts(getattr(colored, 'green')(str + '[OK]'))
         else:
             puts(getattr(colored, 'red')(str + '[ERROR]'))
+
+
+def reverse_dict(ori):
+    ret = dict()
+    for k, v in ori.items():
+        if v in ret:
+            ret[v].append(k)
+        else:
+            ret[v] = [k, ]
+    return ret
